@@ -150,8 +150,8 @@
                     <div class="evolution-container" v-show="evolve.condition !== 'trade'">
                         <!-- 当前形态 -->
                         <div class="pokemon-card">
-                            <img class="pokemon-image" :src="getImageSrc(pokemon_info.编号)" :alt="pokemon_info.名称">
-                            <p class="pokemon-name">{{ pokemon_info.名称 }}</p>
+                            <img class="pokemon-image" :src="getImageSrc(pokemonStore.getPokemonIdByName(evolve.pokemonName))" :alt="pokemon_info.名称">
+                            <p class="pokemon-name">{{ evolve.pokemonName }}</p>
                         </div>
 
                         <!-- 进化条件 -->

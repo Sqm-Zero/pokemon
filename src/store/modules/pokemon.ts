@@ -315,20 +315,43 @@ export const usePokemonStore = defineStore('counter', {
         },
         // 根据精灵名称查询进化等级
         getEvolveByName(name: string): Evolve[] {
-            // 从进化数据中
-            const evolution = reqEvolve().filter(
-                evolution => evolution.pokemonName === name
-            )
-            // 如果找到，返回精灵信息；否则返回空对象
-            return evolution || [{
-                "pokemonName": "",
-                "move": "",
-                "level": "",
-                "time": "",
-                "item": "",
-                "NextStage": "",
-                "condition": ""
-            }]
+            const allEvos = reqEvolve();
+            const visited = new Set<string>(); // 记录已添加的宝可梦名，防止重复
+            const result: Evolve[] = [];
+
+            // 步骤1：找到根节点（最原始的祖先）
+            function findRoot(name: string | undefined): string | undefined {
+                const parent = allEvos.find(evo => evo.NextStage === name);
+                if (!parent) return name;
+                return findRoot(parent.pokemonName);
+            }
+
+            // 步骤2：从指定节点开始，BFS 遍历所有子分支
+            function traverse(pokemonName: any): any {
+                if (visited.has(pokemonName)) return;
+                visited.add(pokemonName);
+
+                // 找到所有从此形态进化的路径
+                const children = allEvos.filter(evo => evo.pokemonName === pokemonName);
+                for (const child of children) {
+                    if (!result.some(r => r.pokemonName === child.pokemonName && r.NextStage === child.NextStage)) {
+                        result.push(child);
+                    }
+                    // 递归处理下一级
+                    traverse(child.NextStage);
+                }
+            }
+
+            // 先找到根
+            const rootName = findRoot(name);
+            if (!allEvos.some(evo => evo.pokemonName === rootName)) {
+                return [];
+            }
+
+            // 从根开始遍历所有分支
+            traverse(rootName);
+
+            return result.length > 0 ? result : [];
         },
         setType(type: string) {
             this.type = type;

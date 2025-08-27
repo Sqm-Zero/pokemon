@@ -38,14 +38,14 @@ export interface Ability {
 }
 
 export interface Method {
-    "pokemonName": string|null,
-    "捕捉方式": string|null,
-    "进化等级": number|null,
-    "特殊说明": string|null
+    "pokemonName": string | null,
+    "捕捉方式": string | null,
+    "进化等级": number | null,
+    "特殊说明": string | null
 }
 
-export interface Evolve{
-    "pokemonName": string|null,
+export interface Evolve {
+    "pokemonName": any,
     "move"?: string,
     "level"?: string,
     "time"?: string,
