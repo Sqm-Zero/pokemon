@@ -1,0 +1,87 @@
+export const locationNameMap = {
+  // 城市和城镇
+  'kanazu_city': '卡那兹市',
+  'kaina_city': '凯那市',
+  'orange_city': '橙华市',
+  'purple_city': '紫堇市',
+  'new_purple_city': '新紫堇',
+  'sea_purple_city': '海紫堇',
+  'crystal_city': '琉璃市',
+  'green_ridge_city': '绿岭市',
+  'water_static_city': '水静市',
+  'inyu_city': '茵郁市',
+
+  // 小镇
+  'wei_white_town': '未白镇',
+  'ancient_rose_town': '古玫镇',
+  'wudou_town': '武斗镇',
+  'autumn_leaf_town': '秋叶镇',
+  'green_lawn_town': '绿茵镇',
+  'furnace_town': '釜炎镇',
+  'twilight_town': '暮水镇',
+  'caiyou_town': '彩幽市',
+
+  // 道路和水道
+  'route_101': '101号道路',
+  'route_102': '102号道路',
+  'route_103': '103号道路',
+  'route_104': '104号道路',
+  'waterway_105': '105号水道',
+  'waterway_106': '106号水道',
+  'waterway_107': '107号水道',
+  'waterway_108': '108号水道',
+  'waterway_109': '109号水道',
+  'route_110': '110号道路',
+  'route_111': '111号道路',
+  'route_112': '112号道路',
+  'route_113': '113号道路',
+  'route_114': '114号道路',
+  'route_115': '115号道路',
+  'route_116': '116号道路',
+  'route_117': '117号道路',
+  'route_118': '118号道路',
+  'route_119': '119号道路',
+  'route_120': '120号道路',
+  'route_121': '121号道路',
+  'waterway_122': '122号水道',
+  'route_123': '123号道路',
+  'waterway_124': '124号水道',
+  'waterway_125': '125号水道',
+  'waterway_126': '126号水道',
+  'waterway_127': '127号水道',
+  'waterway_128': '128号水道',
+  'waterway_129': '129号水道',
+  'waterway_130': '130号水道',
+  'waterway_131': '131号水道',
+  'waterway_132': '132号水道',
+  'waterway_133': '133号水道',
+  'waterway_134': '134号水道',
+
+  // 特殊地点
+  'orange_forest': '橙华森林',
+  'karyu_tunnel': '卡绿隧道',
+  'champion_road': '冠军之路',
+  'drought_rock': '天旱焦岩',
+  'drought_cave_exterior': '天旱石窟 外部',
+  'sky_pillar': '天空之柱',
+  'battle_frontier': '对战名胜区',
+  'announcement_chamber': '布告石室',
+  'meteor_falls': '流星瀑布',
+  'shallow_cave': '浅滩洞穴',
+  'underwater_cave': '海底洞窟',
+  'aqua_hideout': '海洋队本部',
+  'chimney_mountain': '烟囱山',
+  'hot_path': '热焰小径',
+  'magma_hideout': '熔岩队本部',
+  'safari_zone': '狩猎地带',
+  'stone_cave': '石之洞窟',
+  'awakening_shrine': '觉醒祠堂',
+  'mt_ember': '送火山',
+  'ao_tu_mountain': '凹凸山道'
+};
+
+// 反向映射
+export const reverseLocationNameMap = Object.entries(locationNameMap).reduce((acc, [key, value]) => {
+  acc[value] = key;
+  return acc;
+}, {} as { [key: string]: string }); 
