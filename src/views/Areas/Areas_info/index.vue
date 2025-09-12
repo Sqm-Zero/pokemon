@@ -35,7 +35,8 @@
                                 <span class="badge badge-rate">{{ item.rate }}</span>
                             </td> -->
                             <td>
-                                <span v-if="item.floor && group.pokemon.some((p: any) => p.floor > 1)" class="badge badge-floor">{{ `${item.floor}层` }}</span>
+                                <span v-if="item.floor && group.pokemon.some((p: any) => p.floor > 1)"
+                                    class="badge badge-floor">{{ `${item.floor}层` }}</span>
                                 <span v-else class="muted">-</span>
                             </td>
                         </tr>
@@ -244,7 +245,7 @@ const groupByFloor = (data: any[]) => {
     vertical-align: middle;
 }
 
-.method-table tbody tr + tr:not(.floor-divider) td {
+.method-table tbody tr+tr:not(.floor-divider) td {
     border-top: 1px dashed #edf3f7;
 }
 
@@ -362,11 +363,13 @@ const groupByFloor = (data: any[]) => {
         font-size: 16px;
         padding: 8px 10px;
     }
+
     .method-table th,
     .method-table td {
         padding: 10px 8px;
         font-size: 14px;
     }
+
     .pokemon-image {
         width: 44px;
         height: 44px;
