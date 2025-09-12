@@ -9,7 +9,7 @@
                     <tr>
                         <th>宝可梦</th>
                         <th>等级范围</th>
-                        <th>出现几率</th>
+                        <!-- <th>出现几率</th> -->
                         <th>位置</th>
                     </tr>
                 </thead>
@@ -20,16 +20,23 @@
                             <td colspan="4">{{ `第 ${group.floor} 层` }}</td>
                         </tr>
                         <tr v-for="(item, idx) in group.pokemon" :key="idx"
-                            :class="{ 'floor-row': group.floor && group.pokemon.some((p: any) => p.floor > 1) }">
+                            :class="{ 'floor-row': group.floor && group.pokemon.some((p: any) => p.floor > 1) }"
+                            :data-floor="item.floor || 0">
                             <td>
                                 <div class="pokemon" @click="handlePokemonInfo(item.name)">
                                     <img :src="getImageSrc(item.name)" alt="pokemon" class="pokemon-image" />
-                                    <span>{{ item.name }}</span>
+                                    <span class="pokemon-name">{{ item.name }}</span>
                                 </div>
                             </td>
-                            <td>{{ item.level }}</td>
-                            <td>{{ item.rate }}</td>
-                            <td>{{item.floor && group.pokemon.some((p: any) => p.floor > 1) ? `${item.floor}层` : '-'}}
+                            <td>
+                                <span class="badge badge-level">{{ item.level }}</span>
+                            </td>
+                            <!-- <td>
+                                <span class="badge badge-rate">{{ item.rate }}</span>
+                            </td> -->
+                            <td>
+                                <span v-if="item.floor && group.pokemon.some((p: any) => p.floor > 1)" class="badge badge-floor">{{ `${item.floor}层` }}</span>
+                                <span v-else class="muted">-</span>
                             </td>
                         </tr>
                     </template>
@@ -186,90 +193,150 @@ const groupByFloor = (data: any[]) => {
 <style scoped>
 .container {
     width: 100%;
-    padding: 10px;
-    background-color: #f0f8ff;
+    padding: 12px;
+    background: linear-gradient(180deg, #f5fbff 0%, #eef7fc 100%);
 }
 
 .method-container {
-    margin-bottom: 20px;
-    border-radius: 8px;
+    margin-bottom: 18px;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    background: #fff;
+    border: 1px solid rgba(76, 182, 231, 0.15);
 }
 
 .method-title {
-    font-size: 20px;
-    font-weight: bold;
-    background-color: #4cb6e7;
-    color: white;
-    text-align: center;
-    padding: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    background: linear-gradient(90deg, #4cb6e7 0%, #5ed0ff 100%);
+    color: #fff;
+    text-align: left;
+    padding: 10px 12px;
+    letter-spacing: 0.5px;
 }
 
 .method-table {
     width: 100%;
-    border-collapse: collapse;
-    background-color: white;
+    border-collapse: separate;
+    border-spacing: 0;
+    background-color: #fff;
+}
+
+.method-table thead th {
+    position: sticky;
+    top: 0;
+    background: #ffffff;
+    z-index: 1;
+    border-bottom: 1px solid #e7eef3;
 }
 
 .method-table th,
 .method-table td {
     text-align: center;
-    border: 1px solid #ddd;
-    padding: 12px 8px;
+    padding: 12px 10px;
 }
 
-.method-table th {
-    background-color: #4cb6e7;
-    color: white;
-    font-weight: bold;
+/* 单独确保“等级范围”（第2列）始终居中 */
+.method-table thead th:nth-child(2),
+.method-table tbody td:nth-child(2) {
+    text-align: center;
+    vertical-align: middle;
+}
+
+.method-table tbody tr + tr:not(.floor-divider) td {
+    border-top: 1px dashed #edf3f7;
+}
+
+/* 轻微斑马纹增强可读性（不影响已注释代码） */
+.method-table tbody tr:nth-child(even):not(.floor-divider) td {
+    background: rgba(76, 182, 231, 0.025);
+}
+
+/* 鼠标悬停强化当前行 */
+.method-table tbody tr:not(.floor-divider):hover td {
+    background: rgba(76, 182, 231, 0.06);
 }
 
 .pokemon {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    justify-content: center;
-    gap: 8px;
+    gap: 10px;
     cursor: pointer;
     transition: transform 0.2s ease;
 }
 
 .pokemon:hover {
-    transform: scale(1.05);
+    transform: translateY(-1px);
 }
 
 .pokemon-image {
-    width: 40px;
-    height: 40px;
+    width: 56px;
+    height: 56px;
     object-fit: contain;
+    background: #f7fbff;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px #e6eef5;
+}
+
+.pokemon-name {
+    font-weight: 600;
+    font-size: 15px;
+    color: #274c5e;
+}
+
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.badge-level {
+    background: rgba(76, 182, 231, 0.12);
+    color: #2196c8;
+    box-shadow: inset 0 0 0 1px rgba(76, 182, 231, 0.35);
+}
+
+.badge-rate {
+    background: rgba(40, 167, 69, 0.12);
+    color: #1f8b43;
+    box-shadow: inset 0 0 0 1px rgba(40, 167, 69, 0.35);
+}
+
+.badge-floor {
+    background: rgba(255, 193, 7, 0.12);
+    color: #9a7400;
+    box-shadow: inset 0 0 0 1px rgba(255, 193, 7, 0.45);
+}
+
+.muted {
+    color: #96a3ad;
 }
 
 .floor-divider {
-    background-color: #e9ecef;
+    background: linear-gradient(90deg, rgba(76, 182, 231, 0.08), rgba(76, 182, 231, 0));
 }
 
 .floor-divider td {
-    padding: 8px;
-    font-weight: bold;
-    color: #495057;
+    padding: 8px 10px;
+    font-weight: 700;
+    color: #2a5670;
     text-align: left;
     border-bottom: 2px solid #4cb6e7;
 }
 
 .floor-row {
-    background-color: rgba(76, 182, 231, 0.05);
-}
-
-.floor-row:hover {
-    background-color: rgba(76, 182, 231, 0.1);
-}
-
-.method-table tr {
+    background-color: rgba(76, 182, 231, 0.04);
     transition: background-color 0.2s ease;
 }
 
-.method-table tbody tr:not(.floor-divider):hover {
-    background-color: rgba(76, 182, 231, 0.1);
+.floor-row:hover {
+    background-color: rgba(76, 182, 231, 0.08);
 }
 
 /* 不同层数使用不同的边框颜色 */
@@ -291,18 +358,18 @@ const groupByFloor = (data: any[]) => {
 
 /* 响应式样式调整 */
 @media screen and (max-width: 768px) {
-    .floor-divider td {
-        font-size: 14px;
-        padding: 6px;
+    .method-title {
+        font-size: 16px;
+        padding: 8px 10px;
     }
-
+    .method-table th,
     .method-table td {
-        padding: 8px 4px;
+        padding: 10px 8px;
+        font-size: 14px;
     }
-
     .pokemon-image {
-        width: 32px;
-        height: 32px;
+        width: 44px;
+        height: 44px;
     }
 }
 </style>
