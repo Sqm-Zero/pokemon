@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 import type { Pokemon_Type } from './type'
 import { reqPokemon, reqAbility } from '@/apis/pokemon/index'
 import { reqMoves } from '@/apis/moves';
-import { reqPokemon_Moves } from '@/apis/pokemonMoves';
+import { reqPokemon_Moves, reqEggMoves } from '@/apis/pokemonMoves';
 import { reqMethod, reqEvolve } from '@/apis/method';
 
 import { Pokemon, Move, Ability, Method } from '@/apis/pokemon/type';
@@ -239,6 +239,15 @@ export const usePokemonStore = defineStore('counter', {
         getPokemonMovesByNumber(number: string) {
             // 从数据源中查找匹配的精灵
             const pokemonMoves = reqPokemon_Moves().find(
+                pokemon => pokemon.序号 === number
+            )
+            // 如果找到，返回技能列表；否则返回空数组
+            return pokemonMoves ? pokemonMoves.SkillList : []
+        },
+        // 根据精灵编号获取蛋招式
+        getEggMovesByNumber(number: string) {
+            // 从数据源中查找匹配的精灵
+            const pokemonMoves = reqEggMoves().find(
                 pokemon => pokemon.序号 === number
             )
             // 如果找到，返回技能列表；否则返回空数组

@@ -3,8 +3,6 @@
         <Top title="训练家列表" color="linear-gradient(90deg, #bdbdbd,#dedede,#ffffff)" />
 
         <div class="group-list">
-            <!-- 新增的两个版本选项 - 左右排列 -->
-
             <div class="version-container">
                 <el-card class="group-item" :class="{ selected: currentVersion === 'normal', challenge: true }"
                     shadow="hover" @click="currentVersion = 'normal'">
@@ -16,7 +14,7 @@
                 <el-card class="group-item" :class="{ selected: currentVersion === 'hardcore', hardcore: true }"
                     shadow="hover" @click="currentVersion = 'hardcore'">
                     <div class="card-content">
-                        <span class="group-name">硬核版</span>  
+                        <span class="group-name">硬核版</span>
                     </div>
                 </el-card>
             </div>
@@ -55,27 +53,27 @@ const groupNames = [
 const VERSION_KEY = 'trainer_version';
 
 const currentVersion = ref<'normal' | 'hardcore'>(
-  (localStorage.getItem(VERSION_KEY) as 'normal' | 'hardcore') || 'normal'
+    (localStorage.getItem(VERSION_KEY) as 'normal' | 'hardcore') || 'normal'
 )
 
 watch(currentVersion, (val) => {
-  localStorage.setItem(VERSION_KEY, val)
+    localStorage.setItem(VERSION_KEY, val)
 })
 
 onMounted(() => {
-  // 进入页面时再次同步，防止外部变更
-  const saved = localStorage.getItem(VERSION_KEY) as 'normal' | 'hardcore';
-  if (saved && saved !== currentVersion.value) {
-    currentVersion.value = saved;
-  }
+    // 进入页面时再次同步，防止外部变更
+    const saved = localStorage.getItem(VERSION_KEY) as 'normal' | 'hardcore';
+    if (saved && saved !== currentVersion.value) {
+        currentVersion.value = saved;
+    }
 })
 
 function handleClick(name: string) {
-  $router.push({
-    name: 'GroupDetail',
-    params: { groupName: encodeURIComponent(name) },
-    query: { version: currentVersion.value }
-  })
+    $router.push({
+        name: 'GroupDetail',
+        params: { groupName: encodeURIComponent(name) },
+        query: { version: currentVersion.value }
+    })
 }
 
 </script>
@@ -177,15 +175,19 @@ function handleClick(name: string) {
         max-width: 100vw;
         padding-bottom: 16px;
     }
+
     .group-list {
         padding: 0 2px;
     }
+
     .version-container .group-item,
     .group-item {
         font-size: 15px;
         padding: 12px 0;
     }
-    .card-content, .group-name {
+
+    .card-content,
+    .group-name {
         font-size: 14px;
     }
 }

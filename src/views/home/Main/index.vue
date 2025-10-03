@@ -52,63 +52,69 @@ const handleAreaInfo = (area_name: string) => {
 </script>
 
 <style scoped>
-.m_menu {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  margin-top: 20px;
-  padding: 0 20px;
+.m_areas {
+  width: 100%;
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
-.function_container {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
+.m_menu {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* 每行两列，等宽 */
+  gap: 20px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .function {
   position: relative;
-  width: 160px;
-  height: 160px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: #808080;
+  aspect-ratio: 1 / 1;
+  /* 保持正方形，避免写死宽高 */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 16px;
   overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin-top: 5%;
+  min-height: 120px;
+  /* 最小高度保障可点 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-wrapper {
   position: absolute;
-  top: 0;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  padding: 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+  z-index: 2;
 }
 
 .function p {
   margin: 0;
-  padding: 5px 10px;
+  padding: 6px 12px;
   text-align: center;
-  background: linear-gradient(50deg, #ba3fb3, #1d00d6);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  -webkit-text-stroke: 1px white;
   font-size: 16px;
   font-weight: bold;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+  color: white;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
   white-space: nowrap;
+  letter-spacing: 0.5px;
+  font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", sans-serif;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
 }
 
+/* 图片背景 */
 .function_pokemon {
   background-image: url('@/assets/images/main_images/img01.png');
 }
@@ -125,60 +131,36 @@ const handleAreaInfo = (area_name: string) => {
   background-image: url('@/assets/images/main_images/img04.png');
 }
 
-/* 移动端适配 */
-@media screen and (max-width: 768px) {
+/* 小屏适配：保持两列，但缩小尺寸 */
+@media screen and (max-width: 390px) {
   .m_menu {
-    gap: 15px;
-    margin-top: 15px;
-    padding: 0 15px;
-  }
-
-  .function_container {
-    gap: 15px;
+    gap: 16px;
+    padding: 0 12px;
   }
 
   .function {
-    width: 140px;
-    height: 140px;
+    min-height: 110px;
   }
 
   .function p {
     font-size: 14px;
+    padding: 5px 10px;
   }
 }
 
-/* 小屏幕手机适配 */
-@media screen and (max-width: 360px) {
+/* 超小屏（如 iPhone SE） */
+@media screen and (max-width: 320px) {
   .m_menu {
-    gap: 10px;
+    gap: 14px;
     padding: 0 10px;
   }
 
-  .function_container {
-    gap: 10px;
-  }
-
   .function {
-    width: 120px;
-    height: 120px;
+    min-height: 100px;
   }
 
   .function p {
-    font-size: 12px;
-  }
-}
-
-/* 横屏适配 */
-@media screen and (orientation: landscape) and (max-height: 500px) {
-  .m_menu {
-    flex-direction: row;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .function {
-    width: 100px;
-    height: 100px;
+    font-size: 13px;
   }
 }
 </style>

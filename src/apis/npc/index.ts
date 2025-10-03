@@ -168,10 +168,10 @@ export const reqNPC = (): object => {
                         "name": "叉字蝠",
                         "level": 36,
                         "item": "气势披带",
-                        "ability": "加速",
+                        "ability": "狙击手",
                         "moves": [
                             "双翼",
-                            "意念头锤",
+                            "燕返",
                             "十字毒刃",
                             "暗袭要害"
                         ]
@@ -341,7 +341,7 @@ export const reqNPC = (): object => {
                         "name": "爆音怪",
                         "level": 48,
                         "item": "讲究围巾",
-                        "ability": "隔音",
+                        "ability": "胆量",
                         "moves": [
                             "爆音波",
                             "污泥波",
@@ -388,12 +388,12 @@ export const reqNPC = (): object => {
                         "name": "暴鲤龙",
                         "level": 48,
                         "item": "暴鲤龙进化石",
-                        "ability": "威吓",
+                        "ability": "强壮之颚",
                         "moves": [
                             "咬碎",
-                            "雪崩",
-                            "龙神俯冲",
-                            "波动冲"
+                            "冰冻牙",
+                            "龙之舞",
+                            "强力腮咬"
                         ]
                     }
                 ]
@@ -403,7 +403,7 @@ export const reqNPC = (): object => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "龙卷云",
+                        "name": "毒卷云",
                         "level": 50,
                         "item": "黑色污泥",
                         "ability": "疾风之翼",
@@ -411,7 +411,7 @@ export const reqNPC = (): object => {
                             "污泥波",
                             "毒菱",
                             "顺风",
-                            "空气斩"
+                            "极恶声波"
                         ]
                     },
                     {
@@ -429,17 +429,17 @@ export const reqNPC = (): object => {
                     {
                         "name": "胡帕",
                         "level": 50,
-                        "item": "吃剩的东西",
-                        "ability": "妖怪石板",
+                        "item": "妖怪石板",
+                        "ability": "恶作剧之心",
                         "moves": [
                             "异次元洞",
                             "异次元猛攻",
                             "神之怒吼",
-                            "电磁波"
+                            "神威"
                         ]
                     },
                     {
-                        "name": "Mega诅咒娃娃",
+                        "name": "M诅咒娃娃",
                         "level": 50,
                         "item": "",
                         "ability": "恶作剧之心",
@@ -463,7 +463,7 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "Mega耿鬼",
+                        "name": "M耿鬼",
                         "level": 50,
                         "item": "",
                         "ability": "踩影",
@@ -505,15 +505,15 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "快龙",
+                        "name": "勾帕路翁",
                         "level": 56,
-                        "item": "飞行宝石",
+                        "item": "抗火果",
                         "ability": "不服输",
                         "moves": [
-                            "双翼",
-                            "燕返",
-                            "龙神俯冲",
-                            "冰冻拳"
+                            "金属爆炸",
+                            "制裁猛击",
+                            "钢铁头槌",
+                            "十万马力"
                         ]
                     },
                     {
@@ -625,10 +625,10 @@ export const reqNPC = (): object => {
                     {
                         "name": "水君",
                         "level": 62,
-                        "item": "突击背心",
-                        "ability": "湿润之躯",
+                        "item": "速度果",
+                        "ability": "适应力",
                         "moves": [
-                            "魔法闪耀",
+                            "神威",
                             "蒸汽爆炸",
                             "天龙之息",
                             "冰冻光束"
@@ -638,10 +638,10 @@ export const reqNPC = (): object => {
                         "name": "暴鲤龙",
                         "level": 62,
                         "item": "暴鲤龙进化石",
-                        "ability": "威吓",
+                        "ability": "强壮之颚",
                         "moves": [
-                            "波动冲",
-                            "龙神俯冲",
+                            "咬碎",
+                            "强力腮咬",
                             "冰冻牙",
                             "龙之舞"
                         ]
@@ -694,22 +694,22 @@ export const reqNPC = (): object => {
                         "item": "呆壳兽进化石",
                         "ability": "储水",
                         "moves": [
-                            "辅助力量",
-                            "黑雾",
+                            "精神震荡",
+                            "冥想",
                             "治愈波动",
                             "热水"
                         ]
                     },
                     {
-                        "name": "死神棺",
+                        "name": "胡帕",
                         "level": 68,
                         "item": "心灵香草",
-                        "ability": "无关天气",
+                        "ability": "恶作剧之心",
                         "moves": [
-                            "奇异之风",
+                            "异次元洞",
                             "戏法空间",
-                            "冥想",
-                            "分担痛楚"
+                            "神威",
+                            "精神强念"
                         ]
                     },
                     {
@@ -767,15 +767,15 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "派拉斯特",
+                        "name": "黑鲁加",
                         "level": 68,
-                        "item": "剧毒宝珠",
-                        "ability": "毒疗",
+                        "item": "黑鲁加进化石",
+                        "ability": "日照",
                         "moves": [
-                            "十字毒刃",
-                            "影子偷袭",
-                            "虫突",
-                            "剧毒"
+                            "热风",
+                            "暗影球",
+                            "终极吸取",
+                            "恶之波动"
                         ]
                     },
                     {
@@ -786,8 +786,8 @@ export const reqNPC = (): object => {
                         "moves": [
                             "暗黑连击",
                             "十字毒刃",
-                            "十万马力",
-                            "十字劈"
+                            "十字剪",
+                            "虫突"
                         ]
                     }
                 ]
@@ -799,7 +799,7 @@ export const reqNPC = (): object => {
                     {
                         "name": "耿鬼",
                         "level": 68,
-                        "item": "耿鬼进化石",
+                        "item": "气势披带",
                         "ability": "飘浮",
                         "moves": [
                             "污泥波",
@@ -833,13 +833,13 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "毒骷蛙",
+                        "name": "巨牙鲨",
                         "level": 68,
-                        "item": "气势披带",
-                        "ability": "轻装",
+                        "item": "巨牙鲨进化石",
+                        "ability": "加速",
                         "moves": [
-                            "击掌奇袭",
-                            "十字毒刃",
+                            "强力腮咬",
+                            "咬碎",
                             "近身战",
                             "突袭"
                         ]
@@ -896,7 +896,7 @@ export const reqNPC = (): object => {
                         "name": "雷电兽",
                         "level": 60,
                         "item": "生命宝珠",
-                        "ability": "避雷针",
+                        "ability": "威吓",
                         "moves": [
                             "十万伏特",
                             "能量球",
@@ -931,7 +931,7 @@ export const reqNPC = (): object => {
                             "击掌奇袭",
                             "十字毒刃",
                             "看我嘛",
-                            "黑雾"
+                            "拍落"
                         ]
                     },
                     {
@@ -971,15 +971,15 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "黏美龙",
+                        "name": "胡帕",
                         "level": 72,
-                        "item": "突击背心",
-                        "ability": "黏滑",
+                        "item": "心灵香草",
+                        "ability": "恶作剧之心",
                         "moves": [
-                            "污泥波",
-                            "活活气泡",
-                            "龙之波动",
-                            "十万伏特"
+                            "异次元洞",
+                            "诡计",
+                            "神威",
+                            "精神强念"
                         ]
                     }
                 ]
@@ -989,7 +989,7 @@ export const reqNPC = (): object => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "龙卷云",
+                        "name": "毒卷云",
                         "level": 80,
                         "item": "黑色污泥",
                         "ability": "疾风之翼",
@@ -997,7 +997,7 @@ export const reqNPC = (): object => {
                             "污泥波",
                             "毒菱",
                             "顺风",
-                            "空气斩"
+                            "极恶声波"
                         ]
                     },
                     {
@@ -1007,13 +1007,13 @@ export const reqNPC = (): object => {
                         "ability": "纯朴",
                         "moves": [
                             "万箭毒射",
-                            "神之怒吼",
+                            "力量宝石",
                             "龙星群",
                             "大地神力"
                         ]
                     },
                     {
-                        "name": "花叶蒂 （永恒之花）",
+                        "name": "幽魂花",
                         "level": 80,
                         "item": "回复果",
                         "ability": "魔法反射",
@@ -1025,19 +1025,19 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "Mega耿鬼",
+                        "name": "M耿鬼",
                         "level": 80,
                         "item": "",
                         "ability": "踩影",
                         "moves": [
-                            "污泥炸弹",
+                            "污泥波",
                             "暗影球",
                             "终极吸取",
                             "守住"
                         ]
                     },
                     {
-                        "name": "Mega诅咒娃娃",
+                        "name": "M诅咒娃娃",
                         "level": 80,
                         "item": "",
                         "ability": "恶作剧之心",
@@ -1051,12 +1051,12 @@ export const reqNPC = (): object => {
                     {
                         "name": "胡帕",
                         "level": 80,
-                        "item": "吃剩的东西",
-                        "ability": "妖怪石板",
+                        "item": "妖怪石板",
+                        "ability": "恶作剧之心",
                         "moves": [
                             "异次元洞",
                             "异次元猛攻",
-                            "电磁波",
+                            "神威",
                             "神之怒吼"
                         ]
                     }
@@ -1072,7 +1072,7 @@ export const reqNPC = (): object => {
                         "item": "吃剩的东西",
                         "ability": "无关天气",
                         "moves": [
-                            "冲浪",
+                            "热水",
                             "精神强念",
                             "治愈波动",
                             "冰冻光束"
@@ -1081,8 +1081,8 @@ export const reqNPC = (): object => {
                     {
                         "name": "水君",
                         "level": 90,
-                        "item": "生命宝珠",
-                        "ability": "引水",
+                        "item": "速度果",
+                        "ability": "适应力",
                         "moves": [
                             "蒸汽爆炸",
                             "月亮之力",
@@ -1091,15 +1091,15 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "劈斩司令",
+                        "name": "胡帕",
                         "level": 90,
-                        "item": "气势披带",
-                        "ability": "硬爪",
+                        "item": "心灵香草",
+                        "ability": "恶作剧之心",
                         "moves": [
-                            "钢铁头槌",
-                            "暗黑连击",
-                            "守住",
-                            "科技爆破"
+                            "异次元洞",
+                            "诡计",
+                            "神威",
+                            "精神强念"
                         ]
                     },
                     {
@@ -1121,7 +1121,7 @@ export const reqNPC = (): object => {
                         "ability": "储水",
                         "moves": [
                             "潮旋",
-                            "黑雾",
+                            "冥想",
                             "精神强念",
                             "治愈波动"
                         ]
@@ -1129,13 +1129,13 @@ export const reqNPC = (): object => {
                     {
                         "name": "坚盾剑怪",
                         "level": 90,
-                        "item": "弱点保险",
+                        "item": "强力香草",
                         "ability": "战斗切换",
                         "moves": [
-                            "圣剑",
+                            "潜灵奇袭",
                             "王者盾牌",
-                            "影子偷袭",
-                            "加农光炮"
+                            "剑盾之魂",
+                            "钢铁头槌"
                         ]
                     }
                 ]
@@ -1174,7 +1174,7 @@ export const reqNPC = (): object => {
                         "item": "气势披带",
                         "ability": "硬爪",
                         "moves": [
-                            "嬉闹",
+                            "彗星拳",
                             "暗影之刺",
                             "升龙烈破",
                             "十字毒刃"
@@ -1267,7 +1267,7 @@ export const reqNPC = (): object => {
                             "月亮之力",
                             "暗影球",
                             "魔法火焰",
-                            "诡计"
+                            "能量球"
                         ]
                     }
                 ]
@@ -1366,7 +1366,7 @@ export const reqNPC = (): object => {
                         "item": "广角镜",
                         "ability": "引火",
                         "moves": [
-                            "过热",
+                            "爆炸烈焰",
                             "暗黑爆破"
                         ]
                     },
@@ -1414,17 +1414,17 @@ export const reqNPC = (): object => {
                         "moves": [
                             "打雷",
                             "暴风",
-                            "神之怒吼",
-                            "求雨"
+                            "神威",
+                            "气象球"
                         ]
                     },
                     {
                         "name": "暴鲤龙",
                         "level": 93,
                         "item": "暴鲤龙进化石",
-                        "ability": "威吓",
+                        "ability": "强壮之颚",
                         "moves": [
-                            "波动冲",
+                            "强力腮咬",
                             "咬碎",
                             "水流喷射",
                             "冰冻牙"
@@ -1473,14 +1473,14 @@ export const reqNPC = (): object => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "龙卷云（灵兽）",
+                        "name": "毒卷云（灵兽）",
                         "level": 92,
                         "item": "弱点保险",
                         "ability": "适应力",
                         "moves": [
                             "污泥波",
                             "顺风",
-                            "空气斩",
+                            "极恶声波",
                             "燕返"
                         ]
                     },
@@ -1604,7 +1604,7 @@ export const reqNPC = (): object => {
                         "name": "巨沼怪",
                         "level": 38,
                         "item": "巨沼怪进化石",
-                        "ability": "拨沙",
+                        "ability": "强行",
                         "moves": [
                             "水流喷射",
                             "十万马力",
@@ -1682,7 +1682,7 @@ export const reqNPC = (): object => {
                         "name": "巨沼怪",
                         "level": 63,
                         "item": "巨沼怪进化石",
-                        "ability": "拨沙",
+                        "ability": "强行",
                         "moves": [
                             "水流喷射",
                             "十万马力",
@@ -1702,10 +1702,10 @@ export const reqNPC = (): object => {
                         "item": "突击背心",
                         "ability": "扬沙",
                         "moves": [
-                            "冰冻光束",
                             "天龙之息",
+                            "冰冻光束",
                             "大地之力",
-                            "岩石巨炮"
+                            "力量宝石"
                         ]
                     },
                     {
@@ -1760,7 +1760,7 @@ export const reqNPC = (): object => {
                         "name": "巨沼怪",
                         "level": 70,
                         "item": "巨沼怪进化石",
-                        "ability": "拨沙",
+                        "ability": "强行",
                         "moves": [
                             "水流喷射",
                             "地裂",
@@ -1804,7 +1804,7 @@ export const reqNPC = (): object => {
                         "ability": "加速",
                         "moves": [
                             "圣剑",
-                            "精神利刃",
+                            "意念头锤",
                             "暗袭要害",
                             "刃叶斩"
                         ]
@@ -1828,7 +1828,7 @@ export const reqNPC = (): object => {
                         "ability": "强行",
                         "moves": [
                             "虫鸣",
-                            "龙之波动",
+                            "天龙之息",
                             "空气斩",
                             "大地之力"
                         ]
@@ -1858,7 +1858,7 @@ export const reqNPC = (): object => {
                         "ability": "强行",
                         "moves": [
                             "银色旋风",
-                            "龙之波动",
+                            "天龙之息",
                             "空气斩",
                             "大地之力"
                         ]
@@ -1869,7 +1869,7 @@ export const reqNPC = (): object => {
                         "item": "艾路雷朵进化石",
                         "ability": "加速",
                         "moves": [
-                            "精神利刃",
+                            "意念头锤",
                             "刃叶斩",
                             "圣剑",
                             "广域防守"
@@ -1896,7 +1896,7 @@ export const reqNPC = (): object => {
                             "蒸汽爆炸",
                             "大字爆炎",
                             "污泥炸弹",
-                            "剧毒"
+                            "气象球"
                         ]
                     },
                     {
@@ -1933,7 +1933,7 @@ export const reqNPC = (): object => {
                 "pokemons": [
                     {
                         "name": "超甲龙犀",
-                        "level": 21,
+                        "level": 20,
                         "item": "沙沙岩石",
                         "ability": "扬沙",
                         "moves": [
@@ -1945,7 +1945,7 @@ export const reqNPC = (): object => {
                     },
                     {
                         "name": "小碎钻",
-                        "level": 21,
+                        "level": 20,
                         "item": "进化奇石",
                         "ability": "恶作剧之心",
                         "moves": [
@@ -1957,7 +1957,7 @@ export const reqNPC = (): object => {
                     },
                     {
                         "name": "土台龟",
-                        "level": 21,
+                        "level": 20,
                         "item": "弱点保险",
                         "ability": "坚硬脑袋",
                         "moves": [
@@ -1969,7 +1969,7 @@ export const reqNPC = (): object => {
                     },
                     {
                         "name": "花岩怪",
-                        "level": 21,
+                        "level": 20,
                         "item": "生命宝珠",
                         "ability": "魔法防守",
                         "moves": [
@@ -1981,7 +1981,7 @@ export const reqNPC = (): object => {
                     },
                     {
                         "name": "雷吉洛克",
-                        "level": 21,
+                        "level": 20,
                         "item": "吃剩的东西",
                         "ability": "纯朴",
                         "moves": [
@@ -1993,7 +1993,7 @@ export const reqNPC = (): object => {
                     },
                     {
                         "name": "蒂安希",
-                        "level": 21,
+                        "level": 20,
                         "item": "蒂安希进化石",
                         "ability": "魔法防守",
                         "moves": [
@@ -2010,15 +2010,15 @@ export const reqNPC = (): object => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "黑夜魔灵",
+                        "name": "电击魔兽",
                         "level": 30,
-                        "item": "吃剩的东西",
-                        "ability": "铁拳",
+                        "item": "气势披带",
+                        "ability": "轻装",
                         "moves": [
-                            "暗影拳",
-                            "影子偷袭",
-                            "吸取拳",
-                            "雷电拳"
+                            "击掌奇袭",
+                            "电电加速",
+                            "升龙烈破",
+                            "冰冻拳"
                         ]
                     },
                     {
@@ -2034,7 +2034,7 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "美洛耶塔",
+                        "name": "美洛耶塔（舞步）",
                         "level": 30,
                         "item": "格斗宝石",
                         "ability": "轻装",
@@ -2048,10 +2048,10 @@ export const reqNPC = (): object => {
                     {
                         "name": "代拉基翁",
                         "level": 30,
-                        "item": "气势披带",
+                        "item": "突击背心",
                         "ability": "不服输",
                         "moves": [
-                            "圣剑",
+                            "制裁猛击",
                             "冲岩",
                             "嬉闹",
                             "岩崩"
@@ -2077,7 +2077,7 @@ export const reqNPC = (): object => {
                         "moves": [
                             "真空波",
                             "疯狂植物",
-                            "波导弹",
+                            "神秘之剑",
                             "神之怒吼"
                         ]
                     }
@@ -2088,46 +2088,45 @@ export const reqNPC = (): object => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "雷电兽",
+                        "name": "雷电云（灵兽）",
                         "level": 40,
-                        "item": "雷电兽进化石",
-                        "ability": "威吓",
+                        "item": "突击背心",
+                        "ability": "降雨",
                         "moves": [
-                            "十万伏特",
-                            "妖精之风",
-                            "大地之力",
-                            "伏特替换"
+                            "闪电之触",
+                            "暴风",
+                            "气象球"
                         ]
                     },
                     {
                         "name": "代欧奇希斯（速度）",
                         "level": 40,
-                        "item": "吃剩的东西",
+                        "item": "心灵香草",
                         "ability": "恶作剧之心",
                         "moves": [
-                            "神之怒吼",
+                            "神威",
                             "闪电之触",
-                            "精神突进",
-                            "电磁波"
+                            "精神震荡",
+                            "伏特替换"
                         ]
                     },
                     {
-                        "name": "电击魔兽",
+                        "name": "玛纳霏",
                         "level": 40,
                         "item": "气势披带",
-                        "ability": "无防守",
+                        "ability": "坚硬脑袋",
                         "moves": [
-                            "击掌奇袭",
-                            "电电加速",
-                            "爆裂拳",
-                            "冰冻拳"
+                            "疯狂伏特",
+                            "波动冲",
+                            "意念头锤",
+                            "水流喷射"
                         ]
                     },
                     {
                         "name": "雷皇",
                         "level": 40,
-                        "item": "生命宝珠",
-                        "ability": "强行",
+                        "item": "气球",
+                        "ability": "适应力",
                         "moves": [
                             "怒雷",
                             "大地之力",
@@ -2136,19 +2135,19 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "捷克罗姆",
+                        "name": "酋雷姆（暗黑）",
                         "level": 40,
-                        "item": "弱点保险",
-                        "ability": "加速",
+                        "item": "强力香草",
+                        "ability": "双连击",
                         "moves": [
                             "理想闪电",
-                            "神之怒吼",
                             "龙之逆鳞",
+                            "冰冻伏特",
                             "十万马力"
                         ]
                     },
                     {
-                        "name": "皮卡丘",
+                        "name": "皮卡丘（赤皮）",
                         "level": 40,
                         "item": "电气球",
                         "ability": "加速",
@@ -2166,24 +2165,27 @@ export const reqNPC = (): object => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "黑鲁加",
+                        "name": "破天炎",
                         "level": 50,
-                        "item": "黑鲁加进化石",
-                        "ability": "日照",
+                        "item": "气势披带",
+                        "ability": "终结之地",
                         "moves": [
-                            "气象球",
-                            "暗黑爆破",
-                            "暗影球",
+                            "龙星群",
+                            "爆炸烈焰",
+                            "大地之力",
                             "阳光烈焰"
                         ]
                     },
                     {
-                        "name": "火暴兽",
+                        "name": "席多蓝恩",
                         "level": 50,
-                        "item": "讲究眼镜",
-                        "ability": "太阳驱动",
+                        "item": "速度果",
+                        "ability": "飘浮",
                         "moves": [
-                            "火山喷发"
+                            "熔岩风暴",
+                            "加农光炮",
+                            "大地之力",
+                            "力量宝石"
                         ]
                     },
                     {
@@ -2199,39 +2201,39 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "火神蛾",
+                        "name": "黑鲁加",
                         "level": 50,
-                        "item": "气势披带",
+                        "item": "黑鲁加进化石",
                         "ability": "日照",
                         "moves": [
-                            "火神之舞",
-                            "空气斩",
-                            "终极吸取",
-                            "虫鸣"
+                            "暗黑爆破",
+                            "气象球",
+                            "阳光烈焰",
+                            "暗影球"
                         ]
                     },
                     {
-                        "name": "炎帝",
-                        "level": 50,
-                        "item": "突击背心",
-                        "ability": "威吓",
-                        "moves": [
-                            "灭世之火",
-                            "龙之逆鳞",
-                            "嬉闹",
-                            "迅炎"
-                        ]
-                    },
-                    {
-                        "name": "莱希拉姆",
+                        "name": "凤王",
                         "level": 50,
                         "item": "气势披带",
-                        "ability": "加速",
+                        "ability": "魔法防守",
+                        "moves": [
+                            "神圣之火",
+                            "勇鸟猛攻",
+                            "意念头锤",
+                            "神圣之力"
+                        ]
+                    },
+                    {
+                        "name": "酋雷姆（焰白）",
+                        "level": 50,
+                        "item": "突击背心",
+                        "ability": "双连击",
                         "moves": [
                             "真实之焰",
                             "龙星群",
                             "大地之力",
-                            "力量宝石"
+                            "冰封世界"
                         ]
                     }
                 ]
@@ -2243,49 +2245,37 @@ export const reqNPC = (): object => {
                     {
                         "name": "美洛耶塔",
                         "level": 55,
-                        "item": "妖精宝石",
-                        "ability": "天恩",
+                        "item": "气势披带",
+                        "ability": "轻装",
                         "moves": [
-                            "波导弹",
+                            "古老之歌",
                             "月亮之力",
-                            "精神强念",
-                            "古老之歌"
+                            "波导弹",
+                            "精神强念"
                         ]
                     },
                     {
-                        "name": "差不多娃娃",
+                        "name": "M差不多娃娃",
                         "level": 55,
-                        "item": "差不多娃娃进化石",
-                        "ability": "再生力",
+                        "item": "",
+                        "ability": "友情防守",
                         "moves": [
-                            "妖精之风",
                             "治愈波动",
+                            "妖精之风",
                             "看我嘛",
                             "庆祝"
                         ]
                     },
                     {
-                        "name": "雷吉奇卡斯",
+                        "name": "袋龙",
                         "level": 55,
-                        "item": "突击背心",
-                        "ability": "巨神之力",
+                        "item": "袋龙进化石",
+                        "ability": "硬爪",
                         "moves": [
-                            "亿万吨重击",
-                            "重磅冲撞",
+                            "蓄能龙拳",
+                            "逐步击破",
                             "吸取拳",
-                            "十万马力"
-                        ]
-                    },
-                    {
-                        "name": "请假王",
-                        "level": 55,
-                        "item": "速度果",
-                        "ability": "铁拳",
-                        "moves": [
-                            "迷昏拳",
-                            "暗影拳",
-                            "冰冻拳",
-                            "吸取拳"
+                            "击掌奇袭"
                         ]
                     },
                     {
@@ -2301,12 +2291,24 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
+                        "name": "雷吉奇卡斯",
+                        "level": 55,
+                        "item": "突击背心",
+                        "ability": "巨神之力",
+                        "moves": [
+                            "亿万吨重击",
+                            "重磅冲撞",
+                            "吸取拳",
+                            "十万马力"
+                        ]
+                    },
+                    {
                         "name": "阿尔宙斯",
                         "level": 55,
                         "item": "广角镜",
                         "ability": "纯朴",
                         "moves": [
-                            "破坏光线",
+                            "暗黑爆破",
                             "大字爆炎",
                             "月亮之力",
                             "暴风雪"
@@ -2319,39 +2321,39 @@ export const reqNPC = (): object => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "闪电鸟",
-                        "level": 65,
-                        "item": "强力香草",
-                        "ability": "适应力",
-                        "moves": [
-                            "疯狂伏特",
-                            "嬉闹",
-                            "神鸟猛击",
-                            "电电加速"
-                        ]
-                    },
-                    {
-                        "name": "龙卷云",
-                        "level": 65,
-                        "item": "异常果",
-                        "ability": "疾风之翼",
-                        "moves": [
-                            "污泥波",
-                            "顺风",
-                            "喋喋不休",
-                            "波导弹"
-                        ]
-                    },
-                    {
                         "name": "洛奇亚",
                         "level": 65,
-                        "item": "突击背心",
+                        "item": "抗冰果",
                         "ability": "避雷针",
                         "moves": [
                             "大海之力",
                             "空中爆破",
-                            "打雷",
-                            "精神震荡"
+                            "冰冻光束",
+                            "神威"
+                        ]
+                    },
+                    {
+                        "name": "毒卷云",
+                        "level": 65,
+                        "item": "吃剩的东西",
+                        "ability": "疾风之翼",
+                        "moves": [
+                            "极恶声波",
+                            "污泥波",
+                            "顺风",
+                            "毒菱"
+                        ]
+                    },
+                    {
+                        "name": "伊裴尔塔尔",
+                        "level": 65,
+                        "item": "突击背心",
+                        "ability": "疾风之翼",
+                        "moves": [
+                            "死亡之翼",
+                            "突袭",
+                            "暗黑连击",
+                            "嬉闹"
                         ]
                     },
                     {
@@ -2362,6 +2364,7 @@ export const reqNPC = (): object => {
                         "moves": [
                             "空中爆破",
                             "暗黑爆破",
+                            "神威",
                             "神之怒吼"
                         ]
                     },
@@ -2369,7 +2372,7 @@ export const reqNPC = (): object => {
                         "name": "谢米",
                         "level": 65,
                         "item": "碧绿石板",
-                        "ability": "天恩",
+                        "ability": "厚脂肪",
                         "moves": [
                             "种子闪光",
                             "空气斩",
@@ -2378,15 +2381,15 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "土地云（灵兽）",
+                        "name": "M烈空坐",
                         "level": 65,
                         "item": "气势披带",
-                        "ability": "威吓",
+                        "ability": "时空乱流",
                         "moves": [
-                            "千波激荡",
-                            "急速折返",
-                            "拍落",
-                            "燕返"
+                            "胜利之炎",
+                            "画龙点睛",
+                            "龙之逆鳞",
+                            "神速"
                         ]
                     }
                 ]
@@ -2402,21 +2405,33 @@ export const reqNPC = (): object => {
                         "ability": "纯朴",
                         "moves": [
                             "磁铁轰炸",
-                            "王者盾牌",
-                            "神之怒吼",
+                            "钢铁之锁",
+                            "神威",
                             "精神突进"
                         ]
                     },
                     {
-                        "name": "Mega超梦X",
+                        "name": "比克提尼",
                         "level": 78,
-                        "item": "",
-                        "ability": "不服输",
+                        "item": "气势披带",
+                        "ability": "超幸运",
                         "moves": [
+                            "胜利之炎",
                             "精神利刃",
+                            "暗影爪",
+                            "十字劈"
+                        ]
+                    },
+                    {
+                        "name": "M超梦",
+                        "level": 78,
+                        "item": "超梦进化石X",
+                        "ability": "魔法防守",
+                        "moves": [
+                            "精神突进",
                             "瞬影三击",
                             "嬉闹",
-                            "铁尾"
+                            "暗影爪"
                         ]
                     },
                     {
@@ -2432,15 +2447,15 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "Mega超梦Y",
+                        "name": "幻梦",
                         "level": 78,
-                        "item": "",
+                        "item": "突击背心",
                         "ability": "好胜",
                         "moves": [
                             "精神击破",
                             "冰冻光束",
                             "波导弹",
-                            "魔法闪耀"
+                            "月亮之力"
                         ]
                     },
                     {
@@ -2453,18 +2468,6 @@ export const reqNPC = (): object => {
                             "幻象光线",
                             "治愈波动",
                             "魔法闪耀"
-                        ]
-                    },
-                    {
-                        "name": "比克提尼",
-                        "level": 78,
-                        "item": "焦点镜",
-                        "ability": "超幸运",
-                        "moves": [
-                            "胜利之炎",
-                            "精神利刃",
-                            "十字劈",
-                            "暗影爪"
                         ]
                     }
                 ]
@@ -2482,7 +2485,7 @@ export const reqNPC = (): object => {
                             "根源波动",
                             "暴风",
                             "冰冻光束",
-                            "神之怒吼"
+                            "神威"
                         ]
                     },
                     {
@@ -2513,36 +2516,36 @@ export const reqNPC = (): object => {
                         "name": "帕路奇亚",
                         "level": 82,
                         "item": "突击背心",
-                        "ability": "自信过度",
+                        "ability": "适应力",
                         "moves": [
                             "亚空裂斩",
                             "龙之逆鳞",
                             "暗影爪",
-                            "劈瓦"
+                            "近身战"
                         ]
                     },
                     {
-                        "name": "水箭龟",
+                        "name": "波尔凯尼恩",
                         "level": 82,
-                        "item": "水箭龟进化石",
-                        "ability": "硬壳盔甲",
+                        "item": "吃剩的东西",
+                        "ability": "纯朴",
                         "moves": [
-                            "活活气泡",
-                            "波导弹",
-                            "治愈波动",
-                            "加农光炮"
+                            "蒸汽爆炸",
+                            "大地之力",
+                            "气象球",
+                            "力量宝石"
                         ]
                     },
                     {
-                        "name": "凯路迪欧（觉悟形态）",
+                        "name": "阿尔宙斯",
                         "level": 82,
-                        "item": "生命宝珠",
-                        "ability": "好胜",
+                        "item": "水滴石板",
+                        "ability": "多属性",
                         "moves": [
-                            "神秘之剑",
-                            "真空波",
-                            "水炮",
-                            "冷冻干燥"
+                            "钻石风暴",
+                            "大地神力",
+                            "真实之焰",
+                            "龙星群"
                         ]
                     }
                 ]
@@ -2554,39 +2557,39 @@ export const reqNPC = (): object => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "三首恶龙",
+                        "name": "M甲贺忍蛙",
                         "level": 85,
-                        "item": "突击背心",
-                        "ability": "复眼",
+                        "item": "气势披带",
+                        "ability": "变幻自如",
                         "moves": [
                             "暗黑爆破",
-                            "暴狂龙卷",
-                            "真气弹",
-                            "加农光炮"
+                            "根源波动",
+                            "冷冻干燥",
+                            "能量球"
                         ]
                     },
                     {
-                        "name": "头巾混混",
+                        "name": "暗黑路卡",
                         "level": 85,
-                        "item": "吃剩的东西",
-                        "ability": "恶作剧之心",
+                        "item": "气势披带",
+                        "ability": "硬爪",
                         "moves": [
-                            "拍落",
-                            "剧毒",
-                            "庆祝",
-                            "看我嘛"
+                            "暗影之刺",
+                            "升龙烈破",
+                            "彗星拳",
+                            "嬉闹"
                         ]
                     },
                     {
                         "name": "阿勃梭鲁",
                         "level": 85,
                         "item": "阿勃梭鲁进化石",
-                        "ability": "超幸运",
+                        "ability": "狙击手",
                         "moves": [
                             "暗黑连击",
                             "嬉闹",
-                            "暗影爪",
-                            "圣剑"
+                            "十字剪",
+                            "十字劈"
                         ]
                     },
                     {
@@ -2597,32 +2600,32 @@ export const reqNPC = (): object => {
                         "moves": [
                             "暗黑爆破",
                             "空中爆破",
-                            "水炮",
+                            "神威",
                             "神之怒吼"
                         ]
                     },
                     {
                         "name": "伊裴尔塔尔",
                         "level": 85,
-                        "item": "贝壳之铃",
-                        "ability": "暗黑气场",
+                        "item": "突击背心",
+                        "ability": "疾风之翼",
                         "moves": [
-                            "守住",
+                            "嬉闹",
                             "死亡之翼",
                             "突袭",
                             "急速折返"
                         ]
                     },
                     {
-                        "name": "M甲贺忍蛙",
+                        "name": "达克莱伊",
                         "level": 85,
-                        "item": "气势披带",
-                        "ability": "变幻自如",
+                        "item": "抗妖果",
+                        "ability": "暗黑气场",
                         "moves": [
-                            "暗黑爆破",
-                            "污泥波",
-                            "飞水手里剑",
-                            "冰冻光束"
+                            "暗黑洞",
+                            "奇异之风",
+                            "热风",
+                            "异次元洞"
                         ]
                     }
                 ]
@@ -2632,27 +2635,26 @@ export const reqNPC = (): object => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "勾魂眼",
+                        "name": "胡帕",
                         "level": 86,
-                        "item": "勾魂眼进化石",
+                        "item": "妖怪石板",
                         "ability": "恶作剧之心",
                         "moves": [
-                            "看我嘛",
-                            "鬼火",
-                            "延后",
-                            "欺诈"
+                            "异次元洞",
+                            "异次元猛攻",
+                            "神威"
                         ]
                     },
                     {
-                        "name": "泥偶巨灵",
+                        "name": "骑拉帝纳（起源）",
                         "level": 86,
-                        "item": "先制之爪",
-                        "ability": "无防守",
+                        "item": "气势披带",
+                        "ability": "变幻自如",
                         "moves": [
-                            "爆裂拳",
-                            "地裂",
-                            "暗影拳",
-                            "影子偷袭"
+                            "龙星群",
+                            "热风",
+                            "暗影潜袭",
+                            "精神强念"
                         ]
                     },
                     {
@@ -2663,44 +2665,44 @@ export const reqNPC = (): object => {
                         "moves": [
                             "暗影潜袭",
                             "龙星群",
-                            "神之怒吼",
+                            "神威",
                             "广域防守"
                         ]
                     },
                     {
-                        "name": "达克莱伊",
+                        "name": "加班王",
                         "level": 86,
-                        "item": "生命宝珠",
-                        "ability": "强行",
+                        "item": "强力香草",
+                        "ability": "活力",
                         "moves": [
-                            "暗黑洞",
-                            "暗黑爆破",
-                            "十万伏特",
-                            "暗影球"
+                            "火箭头锤",
+                            "潜灵奇袭",
+                            "影子偷袭",
+                            "吸取拳"
                         ]
                     },
                     {
-                        "name": "骑拉帝纳（起源形态）",
+                        "name": "幽魂花",
                         "level": 86,
-                        "item": "气势披带",
-                        "ability": "变幻自如",
+                        "item": "心灵香草",
+                        "ability": "魔法反射",
                         "moves": [
-                            "龙星群",
+                            "破灭之光",
                             "奇异之风",
-                            "精神强念",
-                            "热风"
+                            "治愈波动",
+                            "新月舞"
                         ]
                     },
                     {
                         "name": "坚盾剑怪",
                         "level": 86,
-                        "item": "弱点保险",
+                        "item": "气势披带",
                         "ability": "战斗切换",
                         "moves": [
-                            "加农光炮",
-                            "圣剑",
+                            "钢铁头槌",
+                            "剑盾之魂",
                             "王者盾牌",
-                            "影子偷袭"
+                            "暗影爪"
                         ]
                     }
                 ]
@@ -2740,7 +2742,7 @@ export const reqNPC = (): object => {
                             "暴风雪",
                             "顺风",
                             "空气斩",
-                            "羽栖"
+                            "神威"
                         ]
                     },
                     {
@@ -2762,21 +2764,21 @@ export const reqNPC = (): object => {
                         "ability": "降雪",
                         "moves": [
                             "冰封世界",
-                            "暴狂龙卷",
-                            "神之怒吼",
+                            "龙星群",
+                            "神威",
                             "大地之力"
                         ]
                     },
                     {
-                        "name": "冰岩怪",
+                        "name": "雷吉艾斯",
                         "level": 87,
-                        "item": "气势披带",
-                        "ability": "防弹",
+                        "item": "突击背心",
+                        "ability": "纯朴",
                         "moves": [
-                            "雪崩",
-                            "重磅冲撞",
-                            "冰砾",
-                            "广域防守"
+                            "波导弹",
+                            "三重攻击",
+                            "大地之力",
+                            "暴风雪"
                         ]
                     }
                 ]
@@ -2786,42 +2788,6 @@ export const reqNPC = (): object => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "双斧战龙",
-                        "level": 88,
-                        "item": "气势披带",
-                        "ability": "硬爪",
-                        "moves": [
-                            "虫突",
-                            "十字剪",
-                            "双龙切",
-                            "暗影爪"
-                        ]
-                    },
-                    {
-                        "name": "黏美龙",
-                        "level": 88,
-                        "item": "吃剩的东西",
-                        "ability": "黏滑",
-                        "moves": [
-                            "污泥波",
-                            "毒菱",
-                            "天龙之息",
-                            "浊流"
-                        ]
-                    },
-                    {
-                        "name": "Mega烈空坐",
-                        "level": 88,
-                        "item": "气势披带",
-                        "ability": "时空乱流",
-                        "moves": [
-                            "画龙点睛",
-                            "龙之逆鳞",
-                            "胜利之炎",
-                            "神速"
-                        ]
-                    },
-                    {
                         "name": "莱希拉姆",
                         "level": 88,
                         "item": "弱点保险",
@@ -2829,8 +2795,44 @@ export const reqNPC = (): object => {
                         "moves": [
                             "真实之焰",
                             "龙星群",
-                            "神之怒吼",
+                            "神威",
                             "大地之力"
+                        ]
+                    },
+                    {
+                        "name": "捷克罗姆",
+                        "level": 88,
+                        "item": "气势披带",
+                        "ability": "加速",
+                        "moves": [
+                            "电电加速",
+                            "理想闪电",
+                            "龙之逆鳞",
+                            "十万马力"
+                        ]
+                    },
+                    {
+                        "name": "帕路奇亚",
+                        "level": 88,
+                        "item": "突击背心",
+                        "ability": "适应力",
+                        "moves": [
+                            "暗影爪",
+                            "龙之逆鳞",
+                            "亚空裂斩",
+                            "近身战"
+                        ]
+                    },
+                    {
+                        "name": "基格尔德",
+                        "level": 88,
+                        "item": "速度果",
+                        "ability": "纯朴",
+                        "moves": [
+                            "万箭毒射",
+                            "龙星群",
+                            "神之怒吼",
+                            "广域防守"
                         ]
                     },
                     {
@@ -2852,7 +2854,7 @@ export const reqNPC = (): object => {
                         "ability": "飘浮",
                         "moves": [
                             "洁净光芒",
-                            "天龙之息",
+                            "龙星群",
                             "暗影球",
                             "十万伏特"
                         ]
@@ -2871,12 +2873,12 @@ export const reqNPC = (): object => {
                         "moves": [
                             "月亮之力",
                             "治愈波动",
-                            "暗影球",
+                            "新月舞",
                             "破灭之愿"
                         ]
                     },
                     {
-                        "name": "Mega巨金怪",
+                        "name": "M巨金怪",
                         "level": 90,
                         "item": "",
                         "ability": "飘浮",
@@ -2888,15 +2890,15 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "Mega波士可多拉",
+                        "name": "席多蓝恩",
                         "level": 90,
-                        "item": "",
-                        "ability": "铁刺",
+                        "item": "突击背心",
+                        "ability": "飘浮",
                         "moves": [
-                            "隐形岩",
-                            "重磅冲撞",
-                            "金属爆炸",
-                            "龙尾"
+                            "熔岩风暴",
+                            "加农光炮",
+                            "大地之力",
+                            "力量宝石"
                         ]
                     },
                     {
@@ -2920,7 +2922,7 @@ export const reqNPC = (): object => {
                             "时光咆哮",
                             "龙星群",
                             "力量宝石",
-                            "神之怒吼"
+                            "神威"
                         ]
                     },
                     {
@@ -2930,8 +2932,8 @@ export const reqNPC = (): object => {
                         "ability": "纯朴",
                         "moves": [
                             "精神突进",
-                            "王者盾牌",
-                            "神之怒吼",
+                            "钢铁之锁",
+                            "神威",
                             "磁铁轰炸"
                         ]
                     }
@@ -2962,7 +2964,7 @@ export const reqNPC = (): object => {
                             "神之怒吼",
                             "异次元洞",
                             "异次元猛攻",
-                            "电磁波"
+                            "神威"
                         ]
                     },
                     {
@@ -2992,7 +2994,7 @@ export const reqNPC = (): object => {
                     {
                         "name": "伊裴尔塔尔",
                         "level": 96,
-                        "item": "贝壳之铃",
+                        "item": "突击背心",
                         "ability": "疾风之翼",
                         "moves": [
                             "死亡之翼",
@@ -3007,7 +3009,7 @@ export const reqNPC = (): object => {
                         "item": "先制果",
                         "ability": "纯朴",
                         "moves": [
-                            "大地神力",
+                            "大地之力",
                             "龙星群",
                             "万箭毒射",
                             "神圣之力"
@@ -3027,7 +3029,7 @@ export const reqNPC = (): object => {
                         "moves": [
                             "尖石攻击",
                             "冲岩",
-                            "圣剑",
+                            "制裁猛击",
                             "十万马力"
                         ]
                     },
@@ -3051,8 +3053,8 @@ export const reqNPC = (): object => {
                         "moves": [
                             "冰封世界",
                             "龙星群",
-                            "力量宝石",
-                            "神之怒吼"
+                            "神之怒吼",
+                            "力量宝石"
                         ]
                     },
                     {
@@ -3068,7 +3070,7 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "暗黑酋雷姆",
+                        "name": "酋雷姆（暗黑）",
                         "level": 97,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -3076,11 +3078,11 @@ export const reqNPC = (): object => {
                             "冰冻伏特",
                             "理想闪电",
                             "龙之逆鳞",
-                            "神之怒吼"
+                            "神威"
                         ]
                     },
                     {
-                        "name": "焰白酋雷姆",
+                        "name": "酋雷姆（焰白）",
                         "level": 97,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -3100,13 +3102,25 @@ export const reqNPC = (): object => {
                     {
                         "name": "达克莱伊",
                         "level": 98,
-                        "item": "生命宝珠",
-                        "ability": "强行",
+                        "item": "博识眼镜",
+                        "ability": "梦魇",
                         "moves": [
                             "暗黑洞",
-                            "暗黑爆破",
-                            "暗影球",
-                            "喷射火焰"
+                            "奇异之风",
+                            "异次元洞",
+                            "热风"
+                        ]
+                    },
+                    {
+                        "name": "克雷色利亚",
+                        "level": 98,
+                        "item": "心灵香草",
+                        "ability": "魔法反射",
+                        "moves": [
+                            "交换场地",
+                            "新月舞",
+                            "治愈波动",
+                            "妖精之风"
                         ]
                     },
                     {
@@ -3119,18 +3133,6 @@ export const reqNPC = (): object => {
                             "广域防守",
                             "龙星群",
                             "看我嘛"
-                        ]
-                    },
-                    {
-                        "name": "谢米（天空形态）",
-                        "level": 98,
-                        "item": "气势披带",
-                        "ability": "厚脂肪",
-                        "moves": [
-                            "空气斩",
-                            "种子闪光",
-                            "顺风",
-                            "魔法闪耀"
                         ]
                     },
                     {
@@ -3149,12 +3151,12 @@ export const reqNPC = (): object => {
                         "name": "帕路奇亚",
                         "level": 98,
                         "item": "气势披带",
-                        "ability": "自信过度",
+                        "ability": "适应力",
                         "moves": [
                             "亚空裂斩",
                             "龙之逆鳞",
                             "暗影爪",
-                            "劈瓦"
+                            "近身战"
                         ]
                     },
                     {
@@ -3181,9 +3183,9 @@ export const reqNPC = (): object => {
                         "item": "凸凸头盔",
                         "ability": "纯朴",
                         "moves": [
-                            "神之怒吼",
+                            "钢铁之锁",
                             "磁铁轰炸",
-                            "庆祝",
+                            "精神突进",
                             "镜面反射"
                         ]
                     },
@@ -3202,12 +3204,12 @@ export const reqNPC = (): object => {
                     {
                         "name": "代欧奇希斯（速度）",
                         "level": 99,
-                        "item": "光之黏土",
+                        "item": "心灵香草",
                         "ability": "恶作剧之心",
                         "moves": [
-                            "电电加速",
+                            "精神震荡",
                             "闪电之触",
-                            "反射壁",
+                            "神威",
                             "治愈波动"
                         ]
                     },
@@ -3236,15 +3238,13 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "Mega烈空坐",
+                        "name": "M烈空坐",
                         "level": 99,
-                        "item": "气势披带",
+                        "item": "焦点镜",
                         "ability": "时空乱流",
                         "moves": [
                             "胜利之炎",
-                            "画龙点睛",
-                            "龙之逆鳞",
-                            "神速"
+                            "画龙点睛"
                         ]
                     }
                 ]
@@ -3274,30 +3274,30 @@ export const reqNPC = (): object => {
                             "空气斩",
                             "冷冻干燥",
                             "顺风",
-                            "神之怒吼"
+                            "神威"
                         ]
                     },
                     {
-                        "name": "Mega超梦Y",
+                        "name": "M超梦",
                         "level": 100,
-                        "item": "",
-                        "ability": "不服输",
+                        "item": "超梦进化石X",
+                        "ability": "魔法防守",
                         "moves": [
                             "瞬影三击",
-                            "精神利刃",
+                            "精神突进",
                             "嬉闹",
                             "铁尾"
                         ]
                     },
                     {
-                        "name": "Mega超梦X",
+                        "name": "幻梦",
                         "level": 100,
-                        "item": "",
+                        "item": "抗虫果",
                         "ability": "好胜",
                         "moves": [
                             "月亮之力",
                             "精神击破",
-                            "治愈波动",
+                            "屏障",
                             "暗影球"
                         ]
                     },
@@ -3320,398 +3320,6 @@ export const reqNPC = (): object => {
                         "ability": "变身者",
                         "moves": [
                             "变身"
-                        ]
-                    }
-                ]
-            }
-        ],
-        "隐藏五天王": [
-            {
-                "title": "格兰德（地面天王）",
-                "battle_type": "三打",
-                "pokemons": [
-                    {
-                        "name": "土地云（灵兽）",
-                        "level": 100,
-                        "item": "沙沙岩石",
-                        "ability": "扬沙",
-                        "moves": [
-                            "燕返",
-                            "千波激荡",
-                            "拍落",
-                            "急速折返"
-                        ]
-                    },
-                    {
-                        "name": "Mega大钢蛇",
-                        "level": 100,
-                        "item": "",
-                        "ability": "分析",
-                        "moves": [
-                            "沙暴",
-                            "十万马力",
-                            "重磅冲撞",
-                            "隐形岩"
-                        ]
-                    },
-                    {
-                        "name": "哲尔尼亚斯",
-                        "level": 100,
-                        "item": "特攻果",
-                        "ability": "适应力",
-                        "moves": [
-                            "月亮之力",
-                            "大地神力",
-                            "终极吸取",
-                            "治愈波动"
-                        ]
-                    },
-                    {
-                        "name": "Mega巨沼怪",
-                        "level": 100,
-                        "item": "",
-                        "ability": "拨沙",
-                        "moves": [
-                            "波动冲",
-                            "水流喷射",
-                            "十万马力",
-                            "雪崩"
-                        ]
-                    },
-                    {
-                        "name": "雷吉奇卡斯",
-                        "level": 100,
-                        "item": "突击背心",
-                        "ability": "巨神之力",
-                        "moves": [
-                            "千波激荡",
-                            "亿万吨重击",
-                            "重磅冲撞",
-                            "吸取拳"
-                        ]
-                    },
-                    {
-                        "name": "阿尔宙斯",
-                        "level": 100,
-                        "item": "大地石板",
-                        "ability": "多属性",
-                        "moves": [
-                            "制裁光砾",
-                            "神速",
-                            "冰冻光束",
-                            "大字爆炎"
-                        ]
-                    }
-                ]
-            },
-            {
-                "title": "波伊森（毒系天王）",
-                "battle_type": "三打",
-                "pokemons": [
-                    {
-                        "name": "Mega妙蛙花",
-                        "level": 100,
-                        "item": "",
-                        "ability": "太阳之力",
-                        "moves": [
-                            "蘑菇孢子",
-                            "污泥波",
-                            "终极吸取",
-                            "剧毒"
-                        ]
-                    },
-                    {
-                        "name": "Mega耿鬼",
-                        "level": 100,
-                        "item": "",
-                        "ability": "踩影",
-                        "moves": [
-                            "奇异之风",
-                            "污泥波",
-                            "恶之波动",
-                            "终极吸取"
-                        ]
-                    },
-                    {
-                        "name": "龙卷云",
-                        "level": 100,
-                        "item": "吃剩的东西",
-                        "ability": "疾风之翼",
-                        "moves": [
-                            "毒菱",
-                            "神之怒吼",
-                            "污泥波",
-                            "顺风"
-                        ]
-                    },
-                    {
-                        "name": "花洁夫人",
-                        "level": 100,
-                        "item": "生命宝珠",
-                        "ability": "魔法防守",
-                        "moves": [
-                            "月亮之力",
-                            "污泥波",
-                            "暗影球",
-                            "治愈波动"
-                        ]
-                    },
-                    {
-                        "name": "基格尔德",
-                        "level": 100,
-                        "item": "速度果",
-                        "ability": "纯朴",
-                        "moves": [
-                            "万箭毒射",
-                            "大地之力",
-                            "龙星群",
-                            "神圣之力"
-                        ]
-                    },
-                    {
-                        "name": "阿尔宙斯",
-                        "level": 100,
-                        "item": "剧毒石板",
-                        "ability": "多属性",
-                        "moves": [
-                            "制裁光砾",
-                            "暗影球",
-                            "冰冻光束",
-                            "神速"
-                        ]
-                    }
-                ]
-            },
-            {
-                "title": "巴格（虫系天王）",
-                "battle_type": "三打",
-                "pokemons": [
-                    {
-                        "name": "Mega赫拉克罗斯",
-                        "level": 100,
-                        "item": "",
-                        "ability": "连续攻击",
-                        "moves": [
-                            "岩石爆击",
-                            "飞弹针",
-                            "猛推",
-                            "冰锥"
-                        ]
-                    },
-                    {
-                        "name": "盖诺赛克特",
-                        "level": 100,
-                        "item": "水流卡带",
-                        "ability": "引火",
-                        "moves": [
-                            "虫鸣",
-                            "冰冻光束",
-                            "磁铁轰炸",
-                            "高科技光炮"
-                        ]
-                    },
-                    {
-                        "name": "沙漠蜻蜓",
-                        "level": 100,
-                        "item": "生命宝珠",
-                        "ability": "强行",
-                        "moves": [
-                            "天龙之息",
-                            "虫鸣",
-                            "大地之力",
-                            "污泥波"
-                        ]
-                    },
-                    {
-                        "name": "音箱蟀",
-                        "level": 100,
-                        "item": "气势披带",
-                        "ability": "双连击",
-                        "moves": [
-                            "正义之罚",
-                            "暗黑连击",
-                            "虫突",
-                            "圣剑"
-                        ]
-                    },
-                    {
-                        "name": "Mega巨钳螳螂",
-                        "level": 100,
-                        "item": "",
-                        "ability": "适应力",
-                        "moves": [
-                            "彗星拳",
-                            "虫突",
-                            "断头钳",
-                            "双翼"
-                        ]
-                    },
-                    {
-                        "name": "阿尔宙斯",
-                        "level": 100,
-                        "item": "玉虫石板",
-                        "ability": "多属性",
-                        "moves": [
-                            "制裁光砾",
-                            "冷冻干燥",
-                            "神速",
-                            "水炮"
-                        ]
-                    }
-                ]
-            },
-            {
-                "title": "格拉斯（草系天王）",
-                "battle_type": "三打",
-                "pokemons": [
-                    {
-                        "name": "时拉比",
-                        "level": 100,
-                        "item": "防尘护目镜",
-                        "ability": "神奇守护",
-                        "moves": [
-                            "精神强念",
-                            "种子闪光",
-                            "月亮之力",
-                            "神圣之力"
-                        ]
-                    },
-                    {
-                        "name": "Mega妙蛙花",
-                        "level": 100,
-                        "item": "吃剩的东西",
-                        "ability": "太阳之力",
-                        "moves": [
-                            "终极吸取",
-                            "黑雾",
-                            "广域防守",
-                            "污泥波"
-                        ]
-                    },
-                    {
-                        "name": "谢米（天空形态）",
-                        "level": 100,
-                        "item": "气势披带",
-                        "ability": "天恩",
-                        "moves": [
-                            "空气斩",
-                            "治愈波动",
-                            "种子闪光",
-                            "顺风"
-                        ]
-                    },
-                    {
-                        "name": "Mega蜥蜴王",
-                        "level": 100,
-                        "item": "",
-                        "ability": "技术高手",
-                        "moves": [
-                            "种子机关枪",
-                            "飞弹针",
-                            "双龙切",
-                            "岩石爆击"
-                        ]
-                    },
-                    {
-                        "name": "毕力吉翁",
-                        "level": 100,
-                        "item": "抗飞果",
-                        "ability": "好胜",
-                        "moves": [
-                            "真空波",
-                            "疯狂植物",
-                            "月亮之力",
-                            "波导弹"
-                        ]
-                    },
-                    {
-                        "name": "阿尔宙斯",
-                        "level": 100,
-                        "item": "碧绿石板",
-                        "ability": "多属性",
-                        "moves": [
-                            "制裁光砾",
-                            "突飞猛扑",
-                            "尖石攻击",
-                            "神速"
-                        ]
-                    }
-                ]
-            },
-            {
-                "title": "菲里（妖精天王）",
-                "battle_type": "三打",
-                "pokemons": [
-                    {
-                        "name": "Mega超梦Y",
-                        "level": 100,
-                        "item": "",
-                        "ability": "好胜",
-                        "moves": [
-                            "月亮之力",
-                            "精神击破",
-                            "波导弹",
-                            "暗影球"
-                        ]
-                    },
-                    {
-                        "name": "花叶蒂（永恒之花）",
-                        "level": 100,
-                        "item": "速度果",
-                        "ability": "魔法反射",
-                        "moves": [
-                            "暗影球",
-                            "治愈波动",
-                            "广域防守",
-                            "破灭之光"
-                        ]
-                    },
-                    {
-                        "name": "基拉祈",
-                        "level": 100,
-                        "item": "突击背心",
-                        "ability": "飘浮",
-                        "moves": [
-                            "月亮之力",
-                            "破灭之愿",
-                            "大地之力",
-                            "力量宝石"
-                        ]
-                    },
-                    {
-                        "name": "阿尔宙斯",
-                        "level": 100,
-                        "item": "妖精石板",
-                        "ability": "多属性",
-                        "moves": [
-                            "制裁光砾",
-                            "神速",
-                            "大地之力",
-                            "大字爆炎"
-                        ]
-                    },
-                    {
-                        "name": "Mega蒂安希",
-                        "level": 100,
-                        "item": "",
-                        "ability": "魔法反射",
-                        "moves": [
-                            "钻石风暴",
-                            "大地之力",
-                            "治愈波动",
-                            "月亮之力"
-                        ]
-                    },
-                    {
-                        "name": "美洛耶塔",
-                        "level": 100,
-                        "item": "生命宝珠",
-                        "ability": "单纯",
-                        "moves": [
-                            "月亮之力",
-                            "庆祝",
-                            "广域防守",
-                            "破坏光线"
                         ]
                     }
                 ]
@@ -3840,12 +3448,12 @@ export const reqNPC = (): object => {
                         "name": "暴鲤龙",
                         "level": 75,
                         "item": "暴鲤龙进化石",
-                        "ability": "威吓",
+                        "ability": "强壮之颚",
                         "moves": [
-                            "龙神俯冲",
-                            "波动冲",
-                            "龙之舞",
-                            "咬碎"
+                            "咬碎",
+                            "强力腮咬",
+                            "冰冻牙",
+                            "龙之舞"
                         ]
                     },
                     {
@@ -3875,7 +3483,7 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "连胜家族 小雪",
+                "title": "76 - 连胜家族 小雪",
                 "battle_type": "双打",
                 "pokemons": [
                     {
@@ -3948,7 +3556,7 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "连胜家族 光代",
+                "title": "578 - 连胜家族 光代",
                 "battle_type": "双打",
                 "pokemons": [
                     {
@@ -3971,8 +3579,8 @@ export const reqNPC = (): object => {
                         "moves": [
                             "广域防守",
                             "岩崩",
-                            "庆祝",
-                            "冲岩"
+                            "冲岩",
+                            "庆祝"
                         ]
                     },
                     {
@@ -4005,10 +3613,10 @@ export const reqNPC = (): object => {
                         "item": "波士可多拉进化石",
                         "ability": "结实",
                         "moves": [
-                            "重磅冲撞",
                             "金属爆炸",
-                            "龙尾",
-                            "广域防守"
+                            "重磅冲撞",
+                            "广域防守",
+                            "龙尾"
                         ]
                     },
                     {
@@ -4026,9 +3634,401 @@ export const reqNPC = (): object => {
                 ]
             }
         ],
+        "隐藏五天王": [
+            {
+                "title": "格兰德（地面天王）",
+                "battle_type": "三打",
+                "pokemons": [
+                    {
+                        "name": "土地云（灵兽）",
+                        "level": 100,
+                        "item": "沙沙岩石",
+                        "ability": "扬沙",
+                        "moves": [
+                            "神威",
+                            "千波激荡",
+                            "拍落",
+                            "急速折返"
+                        ]
+                    },
+                    {
+                        "name": "M大钢蛇",
+                        "level": 100,
+                        "item": "先制之爪",
+                        "ability": "多重鳞片",
+                        "moves": [
+                            "沙暴",
+                            "十万马力",
+                            "重磅冲撞",
+                            "钢铁之躯"
+                        ]
+                    },
+                    {
+                        "name": "哲尔尼亚斯",
+                        "level": 100,
+                        "item": "速度果",
+                        "ability": "适应力",
+                        "moves": [
+                            "月亮之力",
+                            "大地神力",
+                            "终极吸取",
+                            "治愈波动"
+                        ]
+                    },
+                    {
+                        "name": "固拉多",
+                        "level": 100,
+                        "item": "朱红色宝珠",
+                        "ability": "日照",
+                        "moves": [
+                            "断崖之剑",
+                            "高温重压",
+                            "神之怒吼",
+                            "暗袭要害"
+                        ]
+                    },
+                    {
+                        "name": "雷吉奇卡斯",
+                        "level": 100,
+                        "item": "突击背心",
+                        "ability": "巨神之力",
+                        "moves": [
+                            "千波激荡",
+                            "亿万吨重击",
+                            "重磅冲撞",
+                            "吸取拳"
+                        ]
+                    },
+                    {
+                        "name": "阿尔宙斯",
+                        "level": 100,
+                        "item": "大地石板",
+                        "ability": "多属性",
+                        "moves": [
+                            "制裁光砾",
+                            "神速",
+                            "冰封世界",
+                            "真实之焰"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "波伊森（毒系天王）",
+                "battle_type": "三打",
+                "pokemons": [
+                    {
+                        "name": "M妙蛙花",
+                        "level": 100,
+                        "item": "吃剩的东西",
+                        "ability": "太阳之力",
+                        "moves": [
+                            "蘑菇孢子",
+                            "污泥波",
+                            "终极吸取",
+                            "剧毒"
+                        ]
+                    },
+                    {
+                        "name": "M耿鬼",
+                        "level": 100,
+                        "item": "气势披带",
+                        "ability": "踩影",
+                        "moves": [
+                            "奇异之风",
+                            "污泥波",
+                            "恶之波动",
+                            "终极吸取"
+                        ]
+                    },
+                    {
+                        "name": "毒卷云",
+                        "level": 100,
+                        "item": "吃剩的东西",
+                        "ability": "疾风之翼",
+                        "moves": [
+                            "极恶声波",
+                            "神之怒吼",
+                            "污泥波",
+                            "顺风"
+                        ]
+                    },
+                    {
+                        "name": "花洁夫人",
+                        "level": 100,
+                        "item": "生命宝珠",
+                        "ability": "魔法防守",
+                        "moves": [
+                            "月亮之力",
+                            "污泥波",
+                            "暗影球",
+                            "治愈波动"
+                        ]
+                    },
+                    {
+                        "name": "基格尔德",
+                        "level": 100,
+                        "item": "速度果",
+                        "ability": "纯朴",
+                        "moves": [
+                            "万箭毒射",
+                            "大地之力",
+                            "龙星群",
+                            "神威"
+                        ]
+                    },
+                    {
+                        "name": "阿尔宙斯",
+                        "level": 100,
+                        "item": "剧毒石板",
+                        "ability": "多属性",
+                        "moves": [
+                            "制裁光砾",
+                            "暗黑爆破",
+                            "冰封世界",
+                            "神速"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "巴格（虫系天王）",
+                "battle_type": "三打",
+                "pokemons": [
+                    {
+                        "name": "M赫拉克罗斯",
+                        "level": 100,
+                        "item": "气势披带",
+                        "ability": "连续攻击",
+                        "moves": [
+                            "岩石爆击",
+                            "飞弹针",
+                            "猛推",
+                            "冰锥"
+                        ]
+                    },
+                    {
+                        "name": "盖诺赛克特",
+                        "level": 100,
+                        "item": "水流卡带",
+                        "ability": "引火",
+                        "moves": [
+                            "虫鸣",
+                            "冰冻光束",
+                            "磁铁轰炸",
+                            "高科技光炮"
+                        ]
+                    },
+                    {
+                        "name": "沙漠蜻蜓",
+                        "level": 100,
+                        "item": "生命宝珠",
+                        "ability": "强行",
+                        "moves": [
+                            "天龙之息",
+                            "虫鸣",
+                            "大地之力",
+                            "污泥波"
+                        ]
+                    },
+                    {
+                        "name": "火神蛾",
+                        "level": 100,
+                        "item": "气势披带",
+                        "ability": "火焰之躯",
+                        "moves": [
+                            "火神之舞",
+                            "终极吸取",
+                            "空气斩",
+                            "虫鸣"
+                        ]
+                    },
+                    {
+                        "name": "M巨钳螳螂",
+                        "level": 100,
+                        "item": "抗火果",
+                        "ability": "适应力",
+                        "moves": [
+                            "彗星拳",
+                            "虫突",
+                            "断头钳",
+                            "双翼"
+                        ]
+                    },
+                    {
+                        "name": "阿尔宙斯",
+                        "level": 100,
+                        "item": "玉虫石板",
+                        "ability": "多属性",
+                        "moves": [
+                            "制裁光砾",
+                            "冰封世界",
+                            "神速",
+                            "根源波动"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "格拉斯（草系天王）",
+                "battle_type": "三打",
+                "pokemons": [
+                    {
+                        "name": "时拉比",
+                        "level": 100,
+                        "item": "防尘护目镜",
+                        "ability": "神奇守护",
+                        "moves": [
+                            "精神震荡",
+                            "种子闪光",
+                            "月亮之力",
+                            "新月舞"
+                        ]
+                    },
+                    {
+                        "name": "M妙蛙花",
+                        "level": 100,
+                        "item": "吃剩的东西",
+                        "ability": "太阳之力",
+                        "moves": [
+                            "终极吸取",
+                            "大晴天",
+                            "广域防守",
+                            "污泥波"
+                        ]
+                    },
+                    {
+                        "name": "谢米（天空）",
+                        "level": 100,
+                        "item": "气势披带",
+                        "ability": "天恩",
+                        "moves": [
+                            "空气斩",
+                            "治愈波动",
+                            "种子闪光",
+                            "顺风"
+                        ]
+                    },
+                    {
+                        "name": "M蜥蜴王",
+                        "level": 100,
+                        "item": "气势披带",
+                        "ability": "技术高手",
+                        "moves": [
+                            "种子机关枪",
+                            "飞弹针",
+                            "双龙切",
+                            "岩石爆击"
+                        ]
+                    },
+                    {
+                        "name": "毕力吉翁",
+                        "level": 100,
+                        "item": "抗飞果",
+                        "ability": "好胜",
+                        "moves": [
+                            "真空波",
+                            "疯狂植物",
+                            "月亮之力",
+                            "神秘之剑"
+                        ]
+                    },
+                    {
+                        "name": "阿尔宙斯",
+                        "level": 100,
+                        "item": "碧绿石板",
+                        "ability": "多属性",
+                        "moves": [
+                            "制裁光砾",
+                            "大地神力",
+                            "钻石风暴",
+                            "神速"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "菲里（妖精天王）",
+                "battle_type": "三打",
+                "pokemons": [
+                    {
+                        "name": "幻梦",
+                        "level": 100,
+                        "item": "突击背心",
+                        "ability": "好胜",
+                        "moves": [
+                            "月亮之力",
+                            "精神击破",
+                            "波导弹",
+                            "暗影球"
+                        ]
+                    },
+                    {
+                        "name": "幽魂花",
+                        "level": 100,
+                        "item": "心灵香草",
+                        "ability": "魔法反射",
+                        "moves": [
+                            "暗影球",
+                            "治愈波动",
+                            "广域防守",
+                            "破灭之光"
+                        ]
+                    },
+                    {
+                        "name": "基拉祈",
+                        "level": 100,
+                        "item": "突击背心",
+                        "ability": "飘浮",
+                        "moves": [
+                            "月亮之力",
+                            "破灭之愿",
+                            "大地之力",
+                            "力量宝石"
+                        ]
+                    },
+                    {
+                        "name": "阿尔宙斯",
+                        "level": 100,
+                        "item": "妖精石板",
+                        "ability": "多属性",
+                        "moves": [
+                            "制裁光砾",
+                            "神速",
+                            "大地神力",
+                            "真实之焰"
+                        ]
+                    },
+                    {
+                        "name": "M蒂安希",
+                        "level": 100,
+                        "item": "抗钢果",
+                        "ability": "魔法反射",
+                        "moves": [
+                            "钻石风暴",
+                            "大地之力",
+                            "治愈波动",
+                            "月亮之力"
+                        ]
+                    },
+                    {
+                        "name": "美洛耶塔",
+                        "level": 100,
+                        "item": "生命宝珠",
+                        "ability": "单纯",
+                        "moves": [
+                            "月亮之力",
+                            "庆祝",
+                            "广域防守",
+                            "破坏光线"
+                        ]
+                    }
+                ]
+            }
+        ],
         "二周目 重要战斗": [
             {
-                "title": "宝可梦训练家 希嘉娜（一番战）",
+                "title": "898 - 宝可梦训练家 希嘉娜（一番战）",
                 "battle_type": "双打",
                 "pokemons": [
                     {
@@ -4051,8 +4051,8 @@ export const reqNPC = (): object => {
                         "moves": [
                             "万箭毒射",
                             "大地之力",
-                            "龙之逆鳞",
-                            "神之怒吼"
+                            "龙星群",
+                            "神威"
                         ]
                     },
                     {
@@ -4070,12 +4070,12 @@ export const reqNPC = (): object => {
                     {
                         "name": "捷克罗姆",
                         "level": 90,
-                        "item": "生命宝珠",
+                        "item": "抗地果",
                         "ability": "加速",
                         "moves": [
                             "理想闪电",
                             "龙之逆鳞",
-                            "暗影爪",
+                            "神威",
                             "十万马力"
                         ]
                     },
@@ -4106,19 +4106,19 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "琉璃市居民 米可利（二周目-天空之柱）",
+                "title": "943 - 琉璃市居民 米可利（二周目-天空之柱）",
                 "battle_type": "群战",
                 "pokemons": [
                     {
-                        "name": "巨沼怪",
+                        "name": "M巨沼怪",
                         "level": 90,
-                        "item": "巨沼怪进化石",
+                        "item": "抗草果",
                         "ability": "悠游自如",
                         "moves": [
                             "波动冲",
-                            "冰柱坠击",
+                            "水流喷射",
                             "十万马力",
-                            "水流喷射"
+                            "冰柱坠击"
                         ]
                     },
                     {
@@ -4129,7 +4129,7 @@ export const reqNPC = (): object => {
                         "moves": [
                             "波动冲",
                             "水流喷射",
-                            "精神利刃",
+                            "意念头锤",
                             "嬉闹"
                         ]
                     },
@@ -4139,34 +4139,34 @@ export const reqNPC = (): object => {
                         "item": "速度果",
                         "ability": "降雨",
                         "moves": [
-                            "空中爆破",
-                            "顺风",
                             "大海之力",
+                            "顺风",
+                            "空中爆破",
                             "广域防守"
                         ]
                     },
                     {
-                        "name": "电灯怪",
+                        "name": "玛纳霏",
                         "level": 90,
-                        "item": "吃剩的东西",
+                        "item": "气势披带",
                         "ability": "避雷针",
                         "moves": [
-                            "热水",
-                            "十万伏特",
-                            "剧毒",
-                            "守住"
+                            "电电加速",
+                            "千万伏特",
+                            "水流喷射",
+                            "水尾连击"
                         ]
                     },
                     {
-                        "name": "凯路迪欧（觉悟形态）",
+                        "name": "M水箭龟",
                         "level": 90,
-                        "item": "突击背心",
-                        "ability": "好胜",
+                        "item": "吃剩的东西",
+                        "ability": "超级发射器",
                         "moves": [
-                            "神秘之剑",
-                            "水炮",
-                            "冰冻光束",
-                            "真空波"
+                            "治愈波动",
+                            "波导弹",
+                            "活活气泡",
+                            "加农光炮"
                         ]
                     },
                     {
@@ -4176,22 +4176,22 @@ export const reqNPC = (): object => {
                         "ability": "降雨",
                         "moves": [
                             "根源波动",
-                            "冷冻干燥",
-                            "守住",
-                            "暴风"
+                            "打雷",
+                            "暴风",
+                            "冰冻光束"
                         ]
                     }
                 ]
             },
             {
-                "title": "传承者 希嘉娜（二番战）",
+                "title": "713 - 传承者 希嘉娜（二番战）",
                 "battle_type": "三打",
                 "pokemons": [
                     {
                         "name": "帕路奇亚",
                         "level": 95,
                         "item": "速度果",
-                        "ability": "自信过度",
+                        "ability": "适应力",
                         "moves": [
                             "亚空裂斩",
                             "龙之逆鳞",
@@ -4207,7 +4207,7 @@ export const reqNPC = (): object => {
                         "moves": [
                             "暗影潜袭",
                             "广域防守",
-                            "神之怒吼",
+                            "神威",
                             "治愈波动"
                         ]
                     },
@@ -4224,7 +4224,7 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "焰白酋雷姆",
+                        "name": "酋雷姆（焰白）",
                         "level": 95,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -4236,7 +4236,7 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "暗黑酋雷姆",
+                        "name": "酋雷姆（暗黑）",
                         "level": 95,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -4254,9 +4254,9 @@ export const reqNPC = (): object => {
                         "ability": "多属性",
                         "moves": [
                             "制裁光砾",
-                            "冷冻干燥",
-                            "污泥波",
-                            "月亮之力"
+                            "冰封世界",
+                            "钻石风暴",
+                            "破灭之光"
                         ]
                     }
                 ]
@@ -4264,14 +4264,14 @@ export const reqNPC = (): object => {
         ],
         "最终挑战！游戏作者（茵郁市右下角树屋）": [
             {
-                "title": "游戏作者 阿布（一周目）",
+                "title": "856 - 游戏作者 阿布（一周目）",
                 "battle_type": "群战",
                 "pokemons": [
                     {
                         "name": "雷皇",
                         "level": 90,
-                        "item": "生命宝珠",
-                        "ability": "强行",
+                        "item": "抗冰果",
+                        "ability": "适应力",
                         "moves": [
                             "怒雷",
                             "天龙之息",
@@ -4318,13 +4318,13 @@ export const reqNPC = (): object => {
                     {
                         "name": "水君",
                         "level": 90,
-                        "item": "吃剩的东西",
-                        "ability": "引水",
+                        "item": "抗冰果",
+                        "ability": "适应力",
                         "moves": [
                             "蒸汽爆炸",
                             "冷冻干燥",
                             "薄雾场地",
-                            "龙之波动"
+                            "天龙之息"
                         ]
                     },
                     {
@@ -4336,13 +4336,13 @@ export const reqNPC = (): object => {
                             "种子闪光",
                             "幻象光线",
                             "魔法闪耀",
-                            "真气弹"
+                            "治愈波动"
                         ]
                     }
                 ]
             },
             {
-                "title": "游戏作者 阿布（二周目）",
+                "title": "857 - 游戏作者 阿布（二周目）",
                 "battle_type": "群战",
                 "pokemons": [
                     {
@@ -4365,7 +4365,7 @@ export const reqNPC = (): object => {
                         "moves": [
                             "新月舞",
                             "治愈波动",
-                            "精神强念",
+                            "精神震荡",
                             "广域防守"
                         ]
                     },
@@ -4376,9 +4376,9 @@ export const reqNPC = (): object => {
                         "ability": "多属性",
                         "moves": [
                             "制裁光砾",
-                            "大地之力",
-                            "精神强念",
-                            "冷冻干燥"
+                            "大地神力",
+                            "精神击破",
+                            "冰封世界"
                         ]
                     },
                     {
@@ -4388,13 +4388,13 @@ export const reqNPC = (): object => {
                         "ability": "踩影",
                         "moves": [
                             "暗影潜袭",
-                            "神之怒吼",
+                            "光墙",
                             "反射壁",
-                            "庆祝"
+                            "神威"
                         ]
                     },
                     {
-                        "name": "胡帕（解放形态）",
+                        "name": "胡帕（解放）",
                         "level": 100,
                         "item": "防尘护目镜",
                         "ability": "恶作剧之心",
@@ -4403,7 +4403,7 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "Mega烈空坐",
+                        "name": "M烈空坐",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "时空乱流",
@@ -4451,14 +4451,15 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "皮卡丘（摇滚巨星）",
+                        "name": "皮卡丘（摇滚）",
                         "level": 18,
                         "item": "电气球",
                         "ability": "狙击手",
                         "moves": [
                             "暗袭要害",
                             "电电加速",
-                            "击掌奇袭"
+                            "击掌奇袭",
+                            "水流裂破"
                         ]
                     },
                     {
@@ -4643,7 +4644,7 @@ export const reqYHNPC = () => {
                     {
                         "name": "水君",
                         "level": 60,
-                        "item": "弱点保险",
+                        "item": "速度果",
                         "ability": "引水",
                         "moves": [
                             "冰封世界",
@@ -4697,11 +4698,11 @@ export const reqYHNPC = () => {
                     {
                         "name": "雷皇",
                         "level": 60,
-                        "item": "气球",
+                        "item": "抗妖果",
                         "ability": "避雷针",
                         "moves": [
                             "闪电之触",
-                            "暴狂龙卷",
+                            "龙星群",
                             "大地神力",
                             "庆祝"
                         ]
@@ -4731,7 +4732,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega呆壳兽",
+                        "name": "M呆壳兽",
                         "level": 60,
                         "item": "吃剩的东西",
                         "ability": "纯朴",
@@ -4749,7 +4750,7 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "Mega耿鬼",
+                        "name": "M耿鬼",
                         "level": 63,
                         "item": "气势披带",
                         "ability": "踩影",
@@ -4799,23 +4800,24 @@ export const reqYHNPC = () => {
                     {
                         "name": "水君",
                         "level": 63,
-                        "item": "弱点保险",
-                        "ability": "引水",
+                        "item": "速度果",
+                        "ability": "适应力",
                         "moves": [
                             "蒸汽爆炸",
-                            "龙星群"
+                            "龙星群",
+                            "冰封世界"
                         ]
                     },
                     {
-                        "name": "暴鲤龙",
+                        "name": "M暴鲤龙",
                         "level": 63,
-                        "item": "暴鲤龙进化石",
-                        "ability": "威吓",
+                        "item": "速度果",
+                        "ability": "强壮之颚",
                         "moves": [
-                            "龙神俯冲",
-                            "水尾连击",
+                            "雷电牙",
+                            "强力腮咬",
                             "咬碎",
-                            "冰柱坠击"
+                            "冰冻牙"
                         ]
                     }
                 ]
@@ -4825,7 +4827,7 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "龙卷云",
+                        "name": "毒卷云",
                         "level": 66,
                         "item": "黑色污泥",
                         "ability": "疾风之翼",
@@ -4833,23 +4835,23 @@ export const reqYHNPC = () => {
                             "污泥波",
                             "毒菱",
                             "顺风",
-                            "空气斩"
+                            "极恶声波"
                         ]
                     },
                     {
-                        "name": "炎武王",
+                        "name": "M阿勃梭鲁",
                         "level": 66,
-                        "item": "吃剩的东西",
-                        "ability": "威吓",
+                        "item": "焦点镜",
+                        "ability": "硬爪",
                         "moves": [
-                            "击掌奇袭",
-                            "拍落",
-                            "熊熊火爆",
-                            "抛下狠话"
+                            "斩龙之刃",
+                            "暗黑连击",
+                            "精神利刃",
+                            "十字剪"
                         ]
                     },
                     {
-                        "name": "胡帕（解放形态）",
+                        "name": "胡帕（解放）",
                         "level": 66,
                         "item": "吃剩的东西",
                         "ability": "恶作剧之心",
@@ -4857,11 +4859,11 @@ export const reqYHNPC = () => {
                             "异次元洞",
                             "异次元猛攻",
                             "神之怒吼",
-                            "电磁波"
+                            "神威"
                         ]
                     },
                     {
-                        "name": "Mega诅咒娃娃",
+                        "name": "M诅咒娃娃",
                         "level": 66,
                         "item": "气势披带",
                         "ability": "恶作剧之心",
@@ -4873,10 +4875,10 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "花洁夫人",
+                        "name": "幽魂花",
                         "level": 66,
-                        "item": "生命宝珠",
-                        "ability": "魔法防守",
+                        "item": "心灵香草",
+                        "ability": "魔法反射",
                         "moves": [
                             "破灭之光",
                             "污泥波",
@@ -4893,7 +4895,7 @@ export const reqYHNPC = () => {
                             "万箭毒射",
                             "大地神力",
                             "神圣之力",
-                            "龙之逆鳞"
+                            "龙星群"
                         ]
                     }
                 ]
@@ -4927,15 +4929,15 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "快龙",
+                        "name": "勾帕路翁",
                         "level": 75,
-                        "item": "飞行宝石",
+                        "item": "突击背心",
                         "ability": "不服输",
                         "moves": [
-                            "双翼",
-                            "燕返",
-                            "龙神俯冲",
-                            "冰冻拳"
+                            "金属爆炸",
+                            "制裁猛击",
+                            "钢铁飞盘",
+                            "千波激荡"
                         ]
                     },
                     {
@@ -4951,7 +4953,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "凯路迪欧（觉悟形态）",
+                        "name": "凯路迪欧（觉醒）",
                         "level": 75,
                         "item": "弱点保险",
                         "ability": "好胜",
@@ -5003,15 +5005,15 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "劈斩司令",
+                        "name": "M艾路雷朵",
                         "level": 74,
-                        "item": "抗斗果",
+                        "item": "气势披带",
                         "ability": "不服输",
                         "moves": [
-                            "暗黑连击",
-                            "突袭",
-                            "钢铁头槌",
-                            "科技爆破"
+                            "精神利刃",
+                            "升龙烈破",
+                            "十字剪",
+                            "刃叶斩"
                         ]
                     },
                     {
@@ -5022,7 +5024,7 @@ export const reqYHNPC = () => {
                         "moves": [
                             "冲岩",
                             "尖石攻击",
-                            "圣剑",
+                            "制裁猛击",
                             "钢铁头槌"
                         ]
                     }
@@ -5072,24 +5074,24 @@ export const reqYHNPC = () => {
                         "name": "水君",
                         "level": 80,
                         "item": "突击背心",
-                        "ability": "湿润之躯",
+                        "ability": "适应力",
                         "moves": [
-                            "魔法闪耀",
+                            "薄雾球",
                             "蒸汽爆炸",
                             "龙星群",
-                            "冰冻光束"
+                            "冰封世界"
                         ]
                     },
                     {
-                        "name": "Mega暴鲤龙",
+                        "name": "M暴鲤龙",
                         "level": 80,
                         "item": "弱点保险",
-                        "ability": "自信过度",
+                        "ability": "强壮之颚",
                         "moves": [
-                            "波动冲",
-                            "龙神俯冲",
+                            "强力腮咬",
+                            "雷电牙",
                             "冰冻牙",
-                            "龙之舞"
+                            "咬碎"
                         ]
                     },
                     {
@@ -5137,25 +5139,25 @@ export const reqYHNPC = () => {
                     {
                         "name": "伊裴尔塔尔",
                         "level": 86,
-                        "item": "贝壳之铃",
+                        "item": "突击背心",
                         "ability": "疾风之翼",
                         "moves": [
                             "死亡之翼",
-                            "突袭",
+                            "嬉闹",
                             "暗黑连击",
-                            "燕返"
+                            "暗影爪"
                         ]
                     },
                     {
-                        "name": "死神棺",
+                        "name": "胡帕",
                         "level": 86,
                         "item": "心灵香草",
-                        "ability": "无关天气",
+                        "ability": "恶作剧之心",
                         "moves": [
-                            "奇异之风",
+                            "异次元洞",
                             "戏法空间",
-                            "冥想",
-                            "分担痛楚"
+                            "神威",
+                            "精神强念"
                         ]
                     },
                     {
@@ -5235,6 +5237,18 @@ export const reqYHNPC = () => {
                             "十万马力",
                             "十字劈"
                         ]
+                    },
+                    {
+                        "name": "M黑鲁加",
+                        "level": 85,
+                        "item": "突击背心",
+                        "ability": "太阳之力",
+                        "moves": [
+                            "热风",
+                            "暗影球",
+                            "终极吸取",
+                            "恶之波动"
+                        ]
                     }
                 ]
             },
@@ -5243,10 +5257,10 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "耿鬼",
+                        "name": "M耿鬼",
                         "level": 85,
-                        "item": "耿鬼进化石",
-                        "ability": "飘浮",
+                        "item": "气势披带",
+                        "ability": "踩影",
                         "moves": [
                             "污泥波",
                             "奇异之风",
@@ -5289,6 +5303,18 @@ export const reqYHNPC = () => {
                             "近身战",
                             "突袭"
                         ]
+                    },
+                    {
+                        "name": "加班王",
+                        "level": 85,
+                        "item": "广角镜",
+                        "ability": "活力",
+                        "moves": [
+                            "终极冲击",
+                            "影子偷袭",
+                            "暗影拳",
+                            "吸取拳"
+                        ]
                     }
                 ]
             },
@@ -5318,10 +5344,10 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "黑鲁加",
+                        "name": "M黑鲁加",
                         "level": 75,
-                        "item": "黑鲁加进化石",
-                        "ability": "日照",
+                        "item": "突击背心",
+                        "ability": "太阳之力",
                         "moves": [
                             "暗黑爆破",
                             "爆炸烈焰",
@@ -5339,10 +5365,10 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "雷电兽",
+                        "name": "M雷电兽",
                         "level": 75,
                         "item": "生命宝珠",
-                        "ability": "避雷针",
+                        "ability": "强行",
                         "moves": [
                             "十万伏特",
                             "能量球",
@@ -5369,22 +5395,22 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "头巾混混",
+                        "name": "胡帕",
                         "level": 90,
                         "item": "吃剩的东西",
                         "ability": "恶作剧之心",
                         "moves": [
-                            "击掌奇袭",
-                            "十字毒刃",
+                            "异次元洞",
                             "看我嘛",
-                            "黑雾"
+                            "神威",
+                            "恶之波动"
                         ]
                     },
                     {
-                        "name": "诅咒娃娃",
+                        "name": "M诅咒娃娃",
                         "level": 90,
-                        "item": "诅咒娃娃进化石",
-                        "ability": "诅咒之躯",
+                        "item": "气势披带",
+                        "ability": "恶作剧之心",
                         "moves": [
                             "潜灵奇袭",
                             "影子偷袭",
@@ -5435,7 +5461,7 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "龙卷云",
+                        "name": "毒卷云",
                         "level": 99,
                         "item": "黑色污泥",
                         "ability": "疾风之翼",
@@ -5443,7 +5469,7 @@ export const reqYHNPC = () => {
                             "污泥波",
                             "毒菱",
                             "顺风",
-                            "空气斩"
+                            "极恶声波"
                         ]
                     },
                     {
@@ -5453,13 +5479,13 @@ export const reqYHNPC = () => {
                         "ability": "纯朴",
                         "moves": [
                             "万箭毒射",
-                            "神之怒吼",
-                            "龙之逆鳞",
+                            "神威",
+                            "龙星群",
                             "大地神力"
                         ]
                     },
                     {
-                        "name": "花叶蒂（永恒之花）",
+                        "name": "幽魂花",
                         "level": 99,
                         "item": "回复果",
                         "ability": "魔法反射",
@@ -5471,19 +5497,19 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega耿鬼",
+                        "name": "M耿鬼",
                         "level": 99,
                         "item": "气势披带",
                         "ability": "踩影",
                         "moves": [
-                            "污泥炸弹",
+                            "污泥波",
                             "暗影球",
                             "终极吸取",
                             "守住"
                         ]
                     },
                     {
-                        "name": "Mega诅咒娃娃",
+                        "name": "M诅咒娃娃",
                         "level": 99,
                         "item": "气势披带",
                         "ability": "恶作剧之心",
@@ -5495,7 +5521,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "胡帕（解放形态）",
+                        "name": "胡帕（解放）",
                         "level": 99,
                         "item": "吃剩的东西",
                         "ability": "恶作剧之心",
@@ -5528,7 +5554,7 @@ export const reqYHNPC = () => {
                         "name": "水君",
                         "level": 100,
                         "item": "生命宝珠",
-                        "ability": "引水",
+                        "ability": "适应力",
                         "moves": [
                             "蒸汽爆炸",
                             "破灭之光",
@@ -5561,27 +5587,27 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega呆壳兽",
+                        "name": "M呆壳兽",
                         "level": 100,
                         "item": "心灵香草",
                         "ability": "纯朴",
                         "moves": [
                             "潮旋",
-                            "黑雾",
+                            "冥想",
                             "精神强念",
                             "治愈波动"
                         ]
                     },
                     {
-                        "name": "坚盾剑怪",
+                        "name": "胡帕",
                         "level": 100,
-                        "item": "弱点保险",
-                        "ability": "战斗切换",
+                        "item": "妖怪石板",
+                        "ability": "恶作剧之心",
                         "moves": [
-                            "圣剑",
-                            "王者盾牌",
-                            "影子偷袭",
-                            "加农光炮"
+                            "异次元洞",
+                            "异次元猛攻",
+                            "神威",
+                            "神之怒吼"
                         ]
                     }
                 ]
@@ -5629,10 +5655,10 @@ export const reqYHNPC = () => {
                     {
                         "name": "三首恶龙",
                         "level": 99,
-                        "item": "生命宝珠",
-                        "ability": "复眼",
+                        "item": "火焰宝珠",
+                        "ability": "受热激升",
                         "moves": [
-                            "真气弹",
+                            "三重攻击",
                             "暗黑爆破",
                             "暴狂龙卷",
                             "加农光炮"
@@ -5651,7 +5677,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "班基拉斯",
+                        "name": "M班基拉斯",
                         "level": 99,
                         "item": "生命宝珠",
                         "ability": "强行",
@@ -5705,15 +5731,15 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "死神棺",
+                        "name": "加班王",
                         "level": 99,
-                        "item": "吃剩的东西",
-                        "ability": "无关天气",
+                        "item": "广角镜",
+                        "ability": "活力",
                         "moves": [
-                            "暗影球",
-                            "戏法空间",
-                            "分担痛楚",
-                            "鬼火"
+                            "暗影拳",
+                            "终极冲击",
+                            "影子偷袭",
+                            "吸取拳"
                         ]
                     },
                     {
@@ -5725,11 +5751,11 @@ export const reqYHNPC = () => {
                             "月亮之力",
                             "暗影球",
                             "魔法火焰",
-                            "诡计"
+                            "能量球"
                         ]
                     },
                     {
-                        "name": "Mega冰鬼护",
+                        "name": "M冰鬼护",
                         "level": 99,
                         "item": "讲究围巾",
                         "ability": "冰冻皮肤",
@@ -5749,14 +5775,14 @@ export const reqYHNPC = () => {
                         "item": "讲究眼镜",
                         "ability": "飘浮",
                         "moves": [
-                            "自爆"
+                            "大爆炸"
                         ]
                     },
                     {
-                        "name": "耿鬼",
+                        "name": "M耿鬼",
                         "level": 99,
-                        "item": "耿鬼进化石",
-                        "ability": "飘浮",
+                        "item": "气势披带",
+                        "ability": "好胜",
                         "moves": [
                             "暗影球",
                             "污泥炸弹",
@@ -5771,7 +5797,7 @@ export const reqYHNPC = () => {
                         "ability": "适应力",
                         "moves": [
                             "污泥炸弹",
-                            "龙之波动",
+                            "天龙之息",
                             "墨汁炮",
                             "十万伏特"
                         ]
@@ -5792,10 +5818,10 @@ export const reqYHNPC = () => {
                         "name": "黏美龙",
                         "level": 99,
                         "item": "突击背心",
-                        "ability": "柔软",
+                        "ability": "污毒之躯",
                         "moves": [
-                            "污泥波",
-                            "龙之波动",
+                            "毒液冲击",
+                            "天龙之息",
                             "十万伏特",
                             "喷射火焰"
                         ]
@@ -5840,7 +5866,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega黑鲁加",
+                        "name": "M黑鲁加",
                         "level": 100,
                         "item": "广角镜",
                         "ability": "太阳之力",
@@ -5859,7 +5885,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega雷电兽",
+                        "name": "M雷电兽",
                         "level": 100,
                         "item": "生命宝珠",
                         "ability": "强行",
@@ -5898,12 +5924,12 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega暴鲤龙",
+                        "name": "M暴鲤龙",
                         "level": 100,
                         "item": "抗妖果",
-                        "ability": "自信过度",
+                        "ability": "强壮之颚",
                         "moves": [
-                            "波动冲",
+                            "强力腮咬",
                             "咬碎",
                             "水流喷射",
                             "冰冻牙"
@@ -5917,7 +5943,7 @@ export const reqYHNPC = () => {
                         "moves": [
                             "空中爆破",
                             "大海之力",
-                            "精神强念",
+                            "洁净光芒",
                             "冰封世界"
                         ]
                     },
@@ -5943,6 +5969,72 @@ export const reqYHNPC = () => {
                             "暗黑连击",
                             "嬉闹",
                             "神威"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "反派 海洋队骨干（绿岭市-坑爹双打）",
+                "battle_type": "双打",
+                "pokemons": [
+                    {
+                        "name": "毒卷云（灵兽）",
+                        "level": 100,
+                        "item": "弱点保险",
+                        "ability": "适应力",
+                        "moves": [
+                            "污泥波",
+                            "顺风",
+                            "极恶声波",
+                            "燕返"
+                        ]
+                    },
+                    {
+                        "name": "波尔凯尼恩",
+                        "level": 100,
+                        "item": "吃剩的东西",
+                        "ability": "纯朴",
+                        "moves": [
+                            "真实之焰",
+                            "蒸汽爆炸",
+                            "隐形岩",
+                            "神威"
+                        ]
+                    },
+                    {
+                        "name": "敏捷虫",
+                        "level": 100,
+                        "item": "气势披带",
+                        "ability": "技术高手",
+                        "moves": [
+                            "飞水手里剑",
+                            "虫鸣",
+                            "潮旋",
+                            "终极吸取"
+                        ]
+                    },
+                    {
+                        "name": "浮潜鼬",
+                        "level": 100,
+                        "item": "生命宝珠",
+                        "ability": "悠游自如",
+                        "moves": [
+                            "波导弹",
+                            "真空波",
+                            "水炮",
+                            "守住"
+                        ]
+                    },
+                    {
+                        "name": "M巨沼怪",
+                        "level": 100,
+                        "item": "抗草果",
+                        "ability": "悠游自如",
+                        "moves": [
+                            "千波激荡",
+                            "波动冲",
+                            "水流喷射",
+                            "冰柱坠击"
                         ]
                     }
                 ]
@@ -6014,7 +6106,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega巨沼怪",
+                        "name": "M巨沼怪",
                         "level": 52,
                         "item": "气势披带",
                         "ability": "强劲",
@@ -6092,7 +6184,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega巨沼怪",
+                        "name": "M巨沼怪",
                         "level": 80,
                         "item": "气势披带",
                         "ability": "强劲",
@@ -6117,8 +6209,8 @@ export const reqYHNPC = () => {
                         "moves": [
                             "冰冻光束",
                             "天龙之息",
-                            "大地之力",
-                            "岩石巨炮"
+                            "岩石巨炮",
+                            "大地之力"
                         ]
                     },
                     {
@@ -6134,19 +6226,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "(男)盖诺赛克特",
-                        "level": 88,
-                        "item": "水流卡带",
-                        "ability": "引火",
-                        "moves": [
-                            "高科技光炮",
-                            "虫鸣",
-                            "磁铁轰炸",
-                            "能量球"
-                        ]
-                    },
-                    {
-                        "name": "(女)Mega蒂安希",
+                        "name": "M蒂安希",
                         "level": 88,
                         "item": "抗钢果",
                         "ability": "魔法反射",
@@ -6155,6 +6235,18 @@ export const reqYHNPC = () => {
                             "大地神力",
                             "治愈波动",
                             "破灭之光"
+                        ]
+                    },
+                    {
+                        "name": "盖诺赛克特",
+                        "level": 88,
+                        "item": "水流卡带",
+                        "ability": "引火",
+                        "moves": [
+                            "高科技光炮",
+                            "虫鸣",
+                            "磁铁轰炸",
+                            "种子闪光"
                         ]
                     },
                     {
@@ -6182,7 +6274,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega巨沼怪",
+                        "name": "M巨沼怪",
                         "level": 88,
                         "item": "气势披带",
                         "ability": "强劲",
@@ -6212,7 +6304,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Meaga化石翼龙",
+                        "name": "M化石翼龙",
                         "level": 58,
                         "item": "气势披带",
                         "ability": "坚硬脑袋",
@@ -6224,13 +6316,13 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega艾路雷朵",
+                        "name": "M艾路雷朵",
                         "level": 58,
-                        "item": "突击背心",
-                        "ability": "不服输",
+                        "item": "生命宝珠",
+                        "ability": "魔法防守",
                         "moves": [
                             "圣剑",
-                            "精神利刃",
+                            "意念头锤",
                             "暗袭要害",
                             "刃叶斩"
                         ]
@@ -6239,12 +6331,12 @@ export const reqYHNPC = () => {
                         "name": "炎帝",
                         "level": 58,
                         "item": "生命宝珠",
-                        "ability": "威吓",
+                        "ability": "适应力",
                         "moves": [
                             "神圣之火",
                             "千波激荡",
                             "龙之逆鳞",
-                            "十字劈"
+                            "制裁猛击"
                         ]
                     },
                     {
@@ -6260,7 +6352,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega七夕青鸟",
+                        "name": "M七夕青鸟",
                         "level": 58,
                         "item": "弱点保险",
                         "ability": "单纯",
@@ -6278,7 +6370,7 @@ export const reqYHNPC = () => {
                 "battle_type": "群战",
                 "pokemons": [
                     {
-                        "name": "Mega七夕青鸟",
+                        "name": "M七夕青鸟",
                         "level": 100,
                         "item": "弱点保险",
                         "ability": "单纯",
@@ -6290,12 +6382,12 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega艾路雷朵",
+                        "name": "M艾路雷朵",
                         "level": 100,
-                        "item": "贝壳之铃",
-                        "ability": "不服输",
+                        "item": "生命宝珠",
+                        "ability": "魔法防守",
                         "moves": [
-                            "精神利刃",
+                            "意念头锤",
                             "刃叶斩",
                             "圣剑",
                             "广域防守"
@@ -6304,12 +6396,12 @@ export const reqYHNPC = () => {
                     {
                         "name": "哲尔尼亚斯",
                         "level": 100,
-                        "item": "强力香草",
-                        "ability": "妖精气场",
+                        "item": "速度果",
+                        "ability": "适应力",
                         "moves": [
                             "大地神力",
-                            "钻石风暴",
                             "破灭之光",
+                            "钻石风暴",
                             "治愈波动"
                         ]
                     },
@@ -6322,11 +6414,11 @@ export const reqYHNPC = () => {
                             "蒸汽爆炸",
                             "真实之焰",
                             "污泥炸弹",
-                            "剧毒"
+                            "神威"
                         ]
                     },
                     {
-                        "name": "Mega化石翼龙",
+                        "name": "M化石翼龙",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "坚硬脑袋",
@@ -6341,11 +6433,12 @@ export const reqYHNPC = () => {
                         "name": "炎帝",
                         "level": 100,
                         "item": "生命宝珠",
-                        "ability": "威吓",
+                        "ability": "适应力",
                         "moves": [
                             "神圣之火",
                             "千波激荡",
-                            "龙之逆鳞"
+                            "龙之逆鳞",
+                            "讯炎"
                         ]
                     }
                 ]
@@ -6389,11 +6482,11 @@ export const reqYHNPC = () => {
                             "十万伏特",
                             "力量宝石",
                             "喷射火焰",
-                            "龙之波动"
+                            "天龙之息"
                         ]
                     },
                     {
-                        "name": "Mega化石翼龙",
+                        "name": "M化石翼龙",
                         "level": 36,
                         "item": "气势披带",
                         "ability": "坚硬脑袋",
@@ -6411,13 +6504,13 @@ export const reqYHNPC = () => {
                         "ability": "不服输",
                         "moves": [
                             "尖石攻击",
-                            "圣剑",
+                            "制裁猛击",
                             "断崖之剑",
                             "冲岩"
                         ]
                     },
                     {
-                        "name": "Mega蒂安希",
+                        "name": "M蒂安希",
                         "level": 36,
                         "item": "抗钢果",
                         "ability": "魔法反射",
@@ -6435,7 +6528,7 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "美洛耶塔",
+                        "name": "美洛耶塔（舞步）",
                         "level": 48,
                         "item": "气势披带",
                         "ability": "轻装",
@@ -6443,7 +6536,7 @@ export const reqYHNPC = () => {
                             "暗影球",
                             "神秘之剑",
                             "破灭之光",
-                            "破坏光线"
+                            "钻石风暴"
                         ]
                     },
                     {
@@ -6455,7 +6548,7 @@ export const reqYHNPC = () => {
                             "冰冻拳",
                             "暗影之刺",
                             "升龙烈破",
-                            "十字毒刃"
+                            "彗星拳"
                         ]
                     },
                     {
@@ -6464,26 +6557,26 @@ export const reqYHNPC = () => {
                         "item": "进化奇石",
                         "ability": "不服输",
                         "moves": [
-                            "角钻",
-                            "圣剑",
+                            "钢铁飞盘",
+                            "制裁猛击",
                             "神之怒吼",
                             "金属爆炸"
                         ]
                     },
                     {
-                        "name": "Mega超梦X",
+                        "name": "M超梦",
                         "level": 48,
                         "item": "突击背心",
-                        "ability": "不服输",
+                        "ability": "加速",
                         "moves": [
                             "瞬影三击",
                             "精神突进",
-                            "拍落",
-                            "冰冻拳"
+                            "暗黑连击",
+                            "冰柱坠击"
                         ]
                     },
                     {
-                        "name": "凯路迪欧（觉悟形态）",
+                        "name": "凯路迪欧（觉醒）",
                         "level": 48,
                         "item": "突击背心",
                         "ability": "好胜",
@@ -6503,7 +6596,7 @@ export const reqYHNPC = () => {
                             "真空波",
                             "疯狂植物",
                             "神秘之剑",
-                            "神圣之力"
+                            "神威"
                         ]
                     }
                 ]
@@ -6518,7 +6611,7 @@ export const reqYHNPC = () => {
                         "item": "突击背心",
                         "ability": "降雨",
                         "moves": [
-                            "打雷",
+                            "闪电之触",
                             "暴风",
                             "气象球",
                             "冰封世界"
@@ -6530,14 +6623,14 @@ export const reqYHNPC = () => {
                         "item": "吃剩的东西",
                         "ability": "飘浮",
                         "moves": [
-                            "神之怒吼",
-                            "精神强念",
+                            "新月舞",
+                            "洁净光芒",
                             "闪电之触",
                             "治愈波动"
                         ]
                     },
                     {
-                        "name": "皮卡丘",
+                        "name": "皮卡丘（赤皮）",
                         "level": 58,
                         "item": "电气球",
                         "ability": "加速",
@@ -6551,8 +6644,8 @@ export const reqYHNPC = () => {
                     {
                         "name": "雷皇",
                         "level": 58,
-                        "item": "生命宝珠",
-                        "ability": "强行",
+                        "item": "抗地果",
+                        "ability": "适应力",
                         "moves": [
                             "怒雷",
                             "大地神力",
@@ -6561,7 +6654,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "暗黑酋雷姆",
+                        "name": "酋雷姆（暗黑）",
                         "level": 58,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -6579,9 +6672,9 @@ export const reqYHNPC = () => {
                         "ability": "恶作剧之心",
                         "moves": [
                             "闪电之触",
-                            "精神突进",
+                            "精神击破",
                             "神圣之力",
-                            "电磁波"
+                            "神威"
                         ]
                     }
                 ]
@@ -6610,17 +6703,17 @@ export const reqYHNPC = () => {
                         "moves": [
                             "蒸汽爆炸",
                             "隐形岩",
-                            "神之怒吼",
+                            "神威",
                             "火神之舞"
                         ]
                     },
                     {
-                        "name": "原始固拉多",
+                        "name": "固拉多（原始）",
                         "level": 68,
                         "item": "抗地果",
                         "ability": "终结之地",
                         "moves": [
-                            "高温重压",
+                            "灭世之火",
                             "断崖之剑",
                             "万箭毒射",
                             "神圣之力"
@@ -6629,26 +6722,26 @@ export const reqYHNPC = () => {
                     {
                         "name": "席多蓝恩",
                         "level": 68,
-                        "item": "气球",
-                        "ability": "太阳驱动",
+                        "item": "讲究眼镜",
+                        "ability": "飘浮",
                         "moves": [
                             "熔岩风暴"
                         ]
                     },
                     {
-                        "name": "炎帝",
+                        "name": "比克提尼",
                         "level": 68,
-                        "item": "突击背心",
-                        "ability": "威吓",
+                        "item": "气势披带",
+                        "ability": "超幸运",
                         "moves": [
-                            "灭世之火",
-                            "龙之逆鳞",
-                            "嬉闹",
+                            "胜利之炎",
+                            "制裁猛击",
+                            "精神突进",
                             "迅炎"
                         ]
                     },
                     {
-                        "name": "焰白酋雷姆",
+                        "name": "酋雷姆（焰白）",
                         "level": 68,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -6678,7 +6771,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega差不多娃娃",
+                        "name": "M差不多娃娃",
                         "level": 76,
                         "item": "心灵香草",
                         "ability": "友情防守",
@@ -6714,14 +6807,14 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "请假王",
+                        "name": "M袋龙",
                         "level": 76,
-                        "item": "强力香草",
-                        "ability": "铁拳",
+                        "item": "气势披带",
+                        "ability": "二连击",
                         "moves": [
-                            "影子偷袭",
-                            "火箭头锤",
-                            "暗影潜袭",
+                            "蓄能龙拳",
+                            "逐步击破",
+                            "击掌奇袭",
                             "吸取拳"
                         ]
                     },
@@ -6744,27 +6837,27 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "土地云（灵兽）",
+                        "name": "暗黑洛奇亚",
                         "level": 86,
-                        "item": "气势披带",
-                        "ability": "威吓",
+                        "item": "抗妖果",
+                        "ability": "时空乱流",
                         "moves": [
-                            "千波激荡",
-                            "急速折返",
-                            "拍落",
-                            "燕返"
+                            "空中爆破",
+                            "暗黑爆破",
+                            "神秘之剑",
+                            "神圣之力"
                         ]
                     },
                     {
-                        "name": "伊裴尔塔尔",
+                        "name": "谢米（天空）",
                         "level": 86,
-                        "item": "抗妖果",
-                        "ability": "疾风之翼",
+                        "item": "弱点保险",
+                        "ability": "厚脂肪",
                         "moves": [
-                            "死亡之翼",
-                            "暗黑连击",
-                            "顺风",
-                            "神之怒吼"
+                            "种子闪光",
+                            "空中爆破",
+                            "治愈波动",
+                            "顺风"
                         ]
                     },
                     {
@@ -6773,37 +6866,38 @@ export const reqYHNPC = () => {
                         "item": "突击背心",
                         "ability": "避雷针",
                         "moves": [
-                            "大海之力",
+                            "根源波动",
                             "空中爆破",
                             "冰封世界",
-                            "精神强念"
+                            "洁净光芒"
                         ]
                     },
                     {
-                        "name": "暗黑洛奇亚",
+                        "name": "伊裴尔塔尔",
                         "level": 86,
                         "item": "吃剩的东西",
-                        "ability": "时空乱流",
+                        "ability": "疾风之翼",
                         "moves": [
-                            "空中爆破",
-                            "暗黑爆破",
-                            "神之怒吼"
+                            "死亡之翼",
+                            "暗黑连击",
+                            "顺风",
+                            "神威"
                         ]
                     },
                     {
-                        "name": "谢米（天空形态）",
+                        "name": "阿尔宙斯",
                         "level": 86,
-                        "item": "抗冰果",
-                        "ability": "厚脂肪",
+                        "item": "蓝天石板",
+                        "ability": "多属性",
                         "moves": [
-                            "种子闪光",
-                            "空中爆破",
-                            "神圣之力",
-                            "治愈波动"
+                            "制裁光砾",
+                            "时光咆哮",
+                            "大地神力",
+                            "神速"
                         ]
                     },
                     {
-                        "name": "Mega烈空坐",
+                        "name": "M烈空坐",
                         "level": 86,
                         "item": "气势披带",
                         "ability": "时空乱流",
@@ -6827,9 +6921,9 @@ export const reqYHNPC = () => {
                         "ability": "魔法反射",
                         "moves": [
                             "看我嘛",
-                            "神圣之力",
+                            "新月舞",
                             "治愈波动",
-                            "精神强念"
+                            "洁净光芒"
                         ]
                     },
                     {
@@ -6840,15 +6934,15 @@ export const reqYHNPC = () => {
                         "moves": [
                             "制裁光砾",
                             "神秘之剑",
-                            "万箭毒射",
+                            "异次元洞",
                             "大地神力"
                         ]
                     },
                     {
-                        "name": "Mega超梦X",
+                        "name": "M超梦",
                         "level": 96,
                         "item": "气势披带",
-                        "ability": "不服输",
+                        "ability": "加速",
                         "moves": [
                             "瞬影三击",
                             "精神突进",
@@ -6857,7 +6951,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega超梦Y",
+                        "name": "幻梦",
                         "level": 96,
                         "item": "突击背心",
                         "ability": "好胜",
@@ -6869,27 +6963,27 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "代欧奇希斯（速度）",
+                        "name": "代欧奇希斯（防御）",
                         "level": 96,
-                        "item": "弱点保险",
-                        "ability": "神之威压",
+                        "item": "心灵香草",
+                        "ability": "纯朴",
                         "moves": [
-                            "电电加速",
-                            "千万伏特",
+                            "钢铁之锁",
+                            "磁铁轰炸",
                             "精神突进",
-                            "神之怒吼"
+                            "神威"
                         ]
                     },
                     {
-                        "name": "Mega拉帝欧斯",
+                        "name": "时拉比",
                         "level": 96,
-                        "item": "心之水滴",
-                        "ability": "天恩",
+                        "item": "气势披带",
+                        "ability": "神奇守护",
                         "moves": [
-                            "龙星群",
+                            "种子闪光",
                             "洁净光芒",
-                            "空中爆破",
-                            "真实之焰"
+                            "治愈波动",
+                            "薄雾球"
                         ]
                     }
                 ]
@@ -6899,7 +6993,7 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "原始盖欧卡",
+                        "name": "盖欧卡（原始）",
                         "level": 100,
                         "item": "抗草果",
                         "ability": "始源之海",
@@ -6919,7 +7013,7 @@ export const reqYHNPC = () => {
                             "亚空裂斩",
                             "水流喷射",
                             "电电加速",
-                            "千万伏特"
+                            "理想闪电"
                         ]
                     },
                     {
@@ -6928,17 +7022,17 @@ export const reqYHNPC = () => {
                         "item": "抗电果",
                         "ability": "降雨",
                         "moves": [
-                            "大海之力",
+                            "根源波动",
                             "空中爆破",
-                            "神之怒吼",
-                            "精神强念"
+                            "神威",
+                            "洁净光芒"
                         ]
                     },
                     {
                         "name": "帕路奇亚",
                         "level": 100,
                         "item": "突击背心",
-                        "ability": "自信过度",
+                        "ability": "适应力",
                         "moves": [
                             "亚空裂斩",
                             "龙之逆鳞",
@@ -6952,16 +7046,16 @@ export const reqYHNPC = () => {
                         "item": "水滴石板",
                         "ability": "多属性",
                         "moves": [
-                            "制裁光砾",
+                            "钻石风暴",
                             "冰封世界",
                             "大地神力",
                             "空中爆破"
                         ]
                     },
                     {
-                        "name": "凯路迪欧 （觉悟形态）",
+                        "name": "凯路迪欧（觉醒）",
                         "level": 100,
-                        "item": "生命宝珠",
+                        "item": "弱点保险",
                         "ability": "好胜",
                         "moves": [
                             "神秘之剑",
@@ -6979,31 +7073,31 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "胡帕（解放形态）",
+                        "name": "达克莱伊",
                         "level": 100,
-                        "item": "心灵香草",
-                        "ability": "恶作剧之心",
+                        "item": "抗妖果",
+                        "ability": "暗黑气场",
                         "moves": [
-                            "异次元洞",
-                            "异次元猛攻",
-                            "戏法空间",
-                            "电磁波"
+                            "暗黑洞",
+                            "奇异之风",
+                            "真实之焰",
+                            "异次元洞"
                         ]
                     },
                     {
                         "name": "暗黑洛奇亚",
                         "level": 100,
-                        "item": "吃剩的东西",
+                        "item": "先制之爪",
                         "ability": "时空乱流",
                         "moves": [
                             "暗黑爆破",
                             "空中爆破",
-                            "神之怒吼",
+                            "神威",
                             "破灭之光"
                         ]
                     },
                     {
-                        "name": "Mega阿勃梭鲁",
+                        "name": "M阿勃梭鲁",
                         "level": 100,
                         "item": "强力香草",
                         "ability": "硬爪",
@@ -7022,8 +7116,8 @@ export const reqYHNPC = () => {
                         "moves": [
                             "暗影之刺",
                             "瞬影三击",
-                            "暗黑连击",
-                            "嬉闹"
+                            "冰柱坠击",
+                            "彗星拳"
                         ]
                     },
                     {
@@ -7035,7 +7129,7 @@ export const reqYHNPC = () => {
                             "暗黑连击",
                             "死亡之翼",
                             "顺风",
-                            "急速折返"
+                            "神圣之力"
                         ]
                     },
                     {
@@ -7057,27 +7151,26 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "Mega勾魂眼",
+                        "name": "胡帕（解放）",
                         "level": 100,
-                        "item": "心灵香草",
+                        "item": "吃剩的东西",
                         "ability": "恶作剧之心",
                         "moves": [
-                            "看我嘛",
-                            "鬼火",
-                            "延后",
-                            "欺诈"
+                            "异次元洞",
+                            "异次元猛攻",
+                            "神威"
                         ]
                     },
                     {
-                        "name": "花叶蒂 （永恒之花）",
+                        "name": "幽魂花",
                         "level": 100,
-                        "item": "弱点保险",
+                        "item": "心灵香草",
                         "ability": "魔法反射",
                         "moves": [
                             "破灭之光",
-                            "奇异之风",
+                            "祸不单行",
                             "治愈波动",
-                            "污泥波"
+                            "新月舞"
                         ]
                     },
                     {
@@ -7093,19 +7186,19 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "达克莱伊",
+                        "name": "M耿鬼",
                         "level": 100,
-                        "item": "生命宝珠",
-                        "ability": "强行",
+                        "item": "气势披带",
+                        "ability": "踩影",
                         "moves": [
-                            "暗黑洞",
-                            "暗黑爆破",
+                            "污泥波",
+                            "祸不单行",
                             "怒雷",
-                            "奇异之风"
+                            "能量球"
                         ]
                     },
                     {
-                        "name": "骑拉帝纳（起源形态）",
+                        "name": "骑拉帝纳（起源）",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "变幻自如",
@@ -7122,10 +7215,10 @@ export const reqYHNPC = () => {
                         "item": "弱点保险",
                         "ability": "战斗切换",
                         "moves": [
-                            "加农光炮",
-                            "圣剑",
+                            "钢铁头槌",
+                            "剑盾之魂",
                             "王者盾牌",
-                            "影子偷袭"
+                            "暗影爪"
                         ]
                     }
                 ]
@@ -7147,7 +7240,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega冰鬼护",
+                        "name": "M冰鬼护",
                         "level": 100,
                         "item": "讲究围巾",
                         "ability": "冰冻皮肤",
@@ -7164,7 +7257,7 @@ export const reqYHNPC = () => {
                             "冰封世界",
                             "顺风",
                             "空中爆破",
-                            "神之怒吼"
+                            "神威"
                         ]
                     },
                     {
@@ -7200,7 +7293,7 @@ export const reqYHNPC = () => {
                             "冰封世界",
                             "神秘之剑",
                             "大地神力",
-                            "精神强念"
+                            "洁净光芒"
                         ]
                     }
                 ]
@@ -7234,7 +7327,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega烈空坐",
+                        "name": "M烈空坐",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "时空乱流",
@@ -7253,31 +7346,31 @@ export const reqYHNPC = () => {
                         "moves": [
                             "万箭毒射",
                             "龙星群",
-                            "神之怒吼",
+                            "神威",
                             "广域防守"
                         ]
                     },
                     {
-                        "name": "Mega拉帝亚斯",
+                        "name": "M拉帝亚斯",
                         "level": 100,
                         "item": "心之水滴",
                         "ability": "天恩",
                         "moves": [
                             "薄雾球",
                             "龙星群",
-                            "神圣之力",
+                            "新月舞",
                             "治愈波动"
                         ]
                     },
                     {
-                        "name": "Mega拉帝欧斯",
+                        "name": "M拉帝欧斯",
                         "level": 100,
                         "item": "心之水滴",
                         "ability": "天恩",
                         "moves": [
                             "洁净光芒",
                             "龙星群",
-                            "力量宝石",
+                            "钻石风暴",
                             "冰封世界"
                         ]
                     }
@@ -7311,7 +7404,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega巨金怪",
+                        "name": "M巨金怪",
                         "level": 100,
                         "item": "抗火果",
                         "ability": "飘浮",
@@ -7328,8 +7421,8 @@ export const reqYHNPC = () => {
                         "item": "吃剩的东西",
                         "ability": "无关天气",
                         "moves": [
-                            "王者盾牌",
-                            "神之怒吼",
+                            "钢铁之锁",
+                            "神威",
                             "看我嘛",
                             "精神突进"
                         ]
@@ -7337,12 +7430,10 @@ export const reqYHNPC = () => {
                     {
                         "name": "席多蓝恩",
                         "level": 100,
-                        "item": "气球",
-                        "ability": "太阳驱动",
+                        "item": "讲究眼镜",
+                        "ability": "飘浮",
                         "moves": [
-                            "熔岩风暴",
-                            "大地神力",
-                            "磁铁轰炸"
+                            "熔岩风暴"
                         ]
                     },
                     {
@@ -7376,7 +7467,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "胡帕（解放形态）",
+                        "name": "胡帕（解放）",
                         "level": 100,
                         "item": "先制之爪",
                         "ability": "恶作剧之心",
@@ -7388,14 +7479,14 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega蒂安希",
+                        "name": "M蒂安希",
                         "level": 100,
                         "item": "抗钢果",
                         "ability": "魔法反射",
                         "moves": [
                             "钻石风暴",
                             "破灭之光",
-                            "大地之力",
+                            "大地神力",
                             "治愈波动"
                         ]
                     },
@@ -7407,8 +7498,8 @@ export const reqYHNPC = () => {
                         "moves": [
                             "大地神力",
                             "钻石风暴",
-                            "月亮之力",
-                            "力量宝石"
+                            "薄雾球",
+                            "冰封世界"
                         ]
                     },
                     {
@@ -7442,15 +7533,15 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "代拉基翁",
+                        "name": "凯路迪欧（觉醒）",
                         "level": 100,
                         "item": "突击背心",
-                        "ability": "不服输",
+                        "ability": "好胜",
                         "moves": [
-                            "尖石攻击",
-                            "冲岩",
-                            "圣剑",
-                            "断崖之剑"
+                            "神秘之剑",
+                            "根源波动",
+                            "真空波",
+                            "冰封世界"
                         ]
                     },
                     {
@@ -7473,8 +7564,8 @@ export const reqYHNPC = () => {
                         "moves": [
                             "冰封世界",
                             "龙星群",
-                            "神威",
-                            "神之怒吼"
+                            "神之怒吼",
+                            "神威"
                         ]
                     },
                     {
@@ -7490,19 +7581,19 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "暗黑酋雷姆",
+                        "name": "酋雷姆（暗黑）",
                         "level": 100,
                         "item": "强力香草",
                         "ability": "双连击",
                         "moves": [
                             "冰冻伏特",
                             "理想闪电",
-                            "龙之逆鳞",
+                            "制裁猛击",
                             "千波激荡"
                         ]
                     },
                     {
-                        "name": "焰白酋雷姆",
+                        "name": "酋雷姆（焰白）",
                         "level": 100,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -7520,15 +7611,27 @@ export const reqYHNPC = () => {
                 "battle_type": "双打",
                 "pokemons": [
                     {
-                        "name": "骑拉帝纳（起源形态）",
+                        "name": "达克莱伊",
                         "level": 100,
                         "item": "气势披带",
-                        "ability": "变幻自如",
+                        "ability": "梦魇",
                         "moves": [
-                            "龙星群",
-                            "暗影潜袭",
-                            "神秘之剑",
+                            "暗黑洞",
+                            "奇异之风",
+                            "异次元洞",
                             "真实之焰"
+                        ]
+                    },
+                    {
+                        "name": "克雷色利亚",
+                        "level": 100,
+                        "item": "心灵香草",
+                        "ability": "魔法反射",
+                        "moves": [
+                            "看我嘛",
+                            "新月舞",
+                            "治愈波动",
+                            "洁净光芒"
                         ]
                     },
                     {
@@ -7538,21 +7641,9 @@ export const reqYHNPC = () => {
                         "ability": "无关天气",
                         "moves": [
                             "暗影潜袭",
+                            "广域防守",
                             "神威",
-                            "看我嘛",
-                            "神圣之力"
-                        ]
-                    },
-                    {
-                        "name": "谢米（天空形态）",
-                        "level": 100,
-                        "item": "抗冰果",
-                        "ability": "厚脂肪",
-                        "moves": [
-                            "空中爆破",
-                            "种子闪光",
-                            "顺风",
-                            "破灭之光"
+                            "看我嘛"
                         ]
                     },
                     {
@@ -7564,18 +7655,18 @@ export const reqYHNPC = () => {
                             "亿万吨重击",
                             "千波激荡",
                             "重磅冲撞",
-                            "吸取拳"
+                            "制裁猛击"
                         ]
                     },
                     {
                         "name": "帕路奇亚",
                         "level": 100,
                         "item": "气势披带",
-                        "ability": "自信过度",
+                        "ability": "适应力",
                         "moves": [
                             "亚空裂斩",
                             "龙之逆鳞",
-                            "十字毒刃",
+                            "彗星拳",
                             "瞬影三击"
                         ]
                     },
@@ -7603,9 +7694,9 @@ export const reqYHNPC = () => {
                         "item": "凸凸头盔",
                         "ability": "纯朴",
                         "moves": [
-                            "神圣之力",
+                            "钢铁之锁",
                             "磁铁轰炸",
-                            "神威",
+                            "精神突进",
                             "镜面反射"
                         ]
                     },
@@ -7622,19 +7713,19 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "代欧奇希斯 （速度）",
+                        "name": "代欧奇希斯（速度）",
                         "level": 100,
-                        "item": "光之黏土",
+                        "item": "心灵香草",
                         "ability": "恶作剧之心",
                         "moves": [
-                            "电电加速",
+                            "精神击破",
                             "闪电之触",
-                            "反射壁",
+                            "神威",
                             "治愈波动"
                         ]
                     },
                     {
-                        "name": "原始盖欧卡",
+                        "name": "盖欧卡（原始）",
                         "level": 100,
                         "item": "突击背心",
                         "ability": "始源之海",
@@ -7646,19 +7737,19 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "原始固拉多",
+                        "name": "固拉多（原始）",
                         "level": 100,
                         "item": "抗地果",
                         "ability": "终结之地",
                         "moves": [
                             "断崖之剑",
-                            "高温重压",
-                            "暗袭要害",
+                            "胜利之炎",
+                            "制裁猛击",
                             "神圣之力"
                         ]
                     },
                     {
-                        "name": "Mega烈空坐",
+                        "name": "M烈空坐",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "时空乱流",
@@ -7678,7 +7769,7 @@ export const reqYHNPC = () => {
                     {
                         "name": "闪电鸟",
                         "level": 100,
-                        "item": "生命宝珠",
+                        "item": "抗冰果",
                         "ability": "适应力",
                         "moves": [
                             "死亡之翼",
@@ -7700,19 +7791,19 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega超梦X",
+                        "name": "M超梦",
                         "level": 100,
                         "item": "气势披带",
-                        "ability": "不服输",
+                        "ability": "加速",
                         "moves": [
                             "瞬影三击",
                             "精神突进",
                             "嬉闹",
-                            "拍落"
+                            "暗黑连击"
                         ]
                     },
                     {
-                        "name": "Mega超梦Y",
+                        "name": "幻梦",
                         "level": 100,
                         "item": "弱点保险",
                         "ability": "好胜",
@@ -7720,7 +7811,7 @@ export const reqYHNPC = () => {
                             "破灭之光",
                             "精神击破",
                             "治愈波动",
-                            "暗影球"
+                            "异次元洞"
                         ]
                     },
                     {
@@ -7732,7 +7823,7 @@ export const reqYHNPC = () => {
                             "神圣之火",
                             "死亡之翼",
                             "广域防守",
-                            "神圣之力"
+                            "新月舞"
                         ]
                     },
                     {
@@ -7905,7 +7996,7 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "连胜家族 小雪",
+                "title": "76 - 连胜家族 小雪",
                 "battle_type": "双打",
                 "pokemons": [
                     {
@@ -7978,7 +8069,7 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "连胜家族 光代",
+                "title": "578 - 连胜家族 光代",
                 "battle_type": "双打",
                 "pokemons": [
                     {
@@ -8069,15 +8160,15 @@ export const reqYHNPC = () => {
                         "moves": [
                             "燕返",
                             "千波激荡",
-                            "拍落",
+                            "死亡之翼",
                             "神威"
                         ]
                     },
                     {
-                        "name": "Mega大钢蛇",
+                        "name": "M大钢蛇",
                         "level": 100,
-                        "item": "吃剩的东西",
-                        "ability": "分析",
+                        "item": "先制之爪",
+                        "ability": "多重鳞片",
                         "moves": [
                             "沙暴",
                             "千波激荡",
@@ -8098,15 +8189,15 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega巨沼怪",
+                        "name": "固拉多（原始）",
                         "level": 100,
-                        "item": "抗草果",
-                        "ability": "强劲",
+                        "item": "抗地果",
+                        "ability": "终结之地",
                         "moves": [
-                            "亚空裂斩",
-                            "水流喷射",
-                            "千波激荡",
-                            "雪崩"
+                            "断崖之剑",
+                            "胜利之炎",
+                            "神之怒吼",
+                            "制裁猛击"
                         ]
                     },
                     {
@@ -8117,7 +8208,7 @@ export const reqYHNPC = () => {
                         "moves": [
                             "千波激荡",
                             "亿万吨重击",
-                            "重磅冲撞",
+                            "彗星拳",
                             "吸取拳"
                         ]
                     },
@@ -8140,19 +8231,19 @@ export const reqYHNPC = () => {
                 "battle_type": "三打",
                 "pokemons": [
                     {
-                        "name": "Mega妙蛙花",
+                        "name": "M妙蛙花",
                         "level": 100,
                         "item": "吃剩的东西",
                         "ability": "太阳之力",
                         "moves": [
                             "蘑菇孢子",
                             "污泥波",
-                            "终极吸取",
+                            "种子闪光",
                             "剧毒"
                         ]
                     },
                     {
-                        "name": "Mega耿鬼",
+                        "name": "M耿鬼",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "踩影",
@@ -8164,13 +8255,13 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "龙卷云",
+                        "name": "毒卷云",
                         "level": 100,
                         "item": "吃剩的东西",
                         "ability": "疾风之翼",
                         "moves": [
                             "神威",
-                            "神之怒吼",
+                            "极恶声波",
                             "污泥波",
                             "顺风"
                         ]
@@ -8195,7 +8286,7 @@ export const reqYHNPC = () => {
                         "moves": [
                             "万箭毒射",
                             "大地神力",
-                            "神速",
+                            "龙星群",
                             "神圣之力"
                         ]
                     },
@@ -8206,7 +8297,7 @@ export const reqYHNPC = () => {
                         "ability": "多属性",
                         "moves": [
                             "制裁光砾",
-                            "真实之焰",
+                            "异次元洞",
                             "冰封世界",
                             "神速"
                         ]
@@ -8218,7 +8309,7 @@ export const reqYHNPC = () => {
                 "battle_type": "三打",
                 "pokemons": [
                     {
-                        "name": "Mega赫拉克罗斯",
+                        "name": "M赫拉克罗斯",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "连续攻击",
@@ -8254,19 +8345,19 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "音箱蟀",
+                        "name": "火神蛾",
                         "level": 100,
                         "item": "气势披带",
-                        "ability": "双连击",
+                        "ability": "火焰之躯",
                         "moves": [
-                            "正义之罚",
-                            "暗黑连击",
-                            "虫突",
-                            "圣剑"
+                            "火神之舞",
+                            "终极吸取",
+                            "空中爆破",
+                            "虫鸣"
                         ]
                     },
                     {
-                        "name": "Mega巨钳螳螂",
+                        "name": "M巨钳螳螂",
                         "level": 100,
                         "item": "抗火果",
                         "ability": "适应力",
@@ -8285,7 +8376,7 @@ export const reqYHNPC = () => {
                         "moves": [
                             "制裁光砾",
                             "冰封世界",
-                            "神速",
+                            "新月舞",
                             "根源波动"
                         ]
                     }
@@ -8304,35 +8395,35 @@ export const reqYHNPC = () => {
                             "精神击破",
                             "种子闪光",
                             "神威",
-                            "神圣之力"
+                            "新月舞"
                         ]
                     },
                     {
-                        "name": "Mega妙蛙花",
+                        "name": "M妙蛙花",
                         "level": 100,
                         "item": "吃剩的东西",
                         "ability": "太阳之力",
                         "moves": [
-                            "终极吸取",
-                            "黑雾",
+                            "疯狂植物",
+                            "剧毒",
                             "广域防守",
                             "污泥波"
                         ]
                     },
                     {
-                        "name": "谢米（天空形态）",
+                        "name": "谢米（天空）",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "天恩",
                         "moves": [
-                            "空气斩",
+                            "空中爆破",
                             "治愈波动",
                             "种子闪光",
                             "顺风"
                         ]
                     },
                     {
-                        "name": "Mega蜥蜴王",
+                        "name": "M蜥蜴王",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "技术高手",
@@ -8351,8 +8442,8 @@ export const reqYHNPC = () => {
                         "moves": [
                             "真空波",
                             "疯狂植物",
-                            "月亮之力",
-                            "波导弹"
+                            "破灭之光",
+                            "神秘之剑"
                         ]
                     },
                     {
@@ -8374,7 +8465,7 @@ export const reqYHNPC = () => {
                 "battle_type": "三打",
                 "pokemons": [
                     {
-                        "name": "Mega超梦Y",
+                        "name": "幻梦",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "好胜",
@@ -8382,11 +8473,11 @@ export const reqYHNPC = () => {
                             "破灭之光",
                             "精神击破",
                             "神秘之剑",
-                            "暗影球"
+                            "异次元洞"
                         ]
                     },
                     {
-                        "name": "花叶蒂（永恒之花）",
+                        "name": "幽魂花",
                         "level": 100,
                         "item": "速度果",
                         "ability": "魔法反射",
@@ -8400,13 +8491,13 @@ export const reqYHNPC = () => {
                     {
                         "name": "基拉祈",
                         "level": 100,
-                        "item": "突击背心",
+                        "item": "抗火果",
                         "ability": "飘浮",
                         "moves": [
-                            "月亮之力",
-                            "破灭之愿",
+                            "神圣之力",
+                            "新月舞",
                             "大地神力",
-                            "力量宝石"
+                            "时光咆哮"
                         ]
                     },
                     {
@@ -8422,7 +8513,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "Mega蒂安希",
+                        "name": "M蒂安希",
                         "level": 100,
                         "item": "抗钢果",
                         "ability": "魔法反射",
@@ -8439,10 +8530,245 @@ export const reqYHNPC = () => {
                         "item": "生命宝珠",
                         "ability": "单纯",
                         "moves": [
-                            "月亮之力",
+                            "薄雾球",
                             "神威",
                             "广域防守",
-                            "破坏光线"
+                            "高科技光炮"
+                        ]
+                    }
+                ]
+            }
+        ],
+        "二周目 重要战斗": [
+            {
+                "title": "898 - 宝可梦训练家 希嘉娜（一番战）",
+                "battle_type": "双打",
+                "pokemons": [
+                    {
+                        "name": "M拉帝亚斯",
+                        "level": 100,
+                        "item": "心之水滴",
+                        "ability": "天恩",
+                        "moves": [
+                            "薄雾球",
+                            "龙星群",
+                            "治愈波动",
+                            "神威"
+                        ]
+                    },
+                    {
+                        "name": "基格尔德",
+                        "level": 100,
+                        "item": "先制果",
+                        "ability": "纯朴",
+                        "moves": [
+                            "万箭毒射",
+                            "大地神力",
+                            "龙星群",
+                            "神之怒吼"
+                        ]
+                    },
+                    {
+                        "name": "酋雷姆",
+                        "level": 100,
+                        "item": "速度果",
+                        "ability": "龙之威压",
+                        "moves": [
+                            "冰封世界",
+                            "龙星群",
+                            "神秘之剑",
+                            "大地神力"
+                        ]
+                    },
+                    {
+                        "name": "捷克罗姆",
+                        "level": 100,
+                        "item": "生命宝珠",
+                        "ability": "加速",
+                        "moves": [
+                            "理想闪电",
+                            "龙之逆鳞",
+                            "暗影爪",
+                            "千波激荡"
+                        ]
+                    },
+                    {
+                        "name": "莱希拉姆",
+                        "level": 100,
+                        "item": "抗岩果",
+                        "ability": "加速",
+                        "moves": [
+                            "真实之焰",
+                            "龙星群",
+                            "大地神力",
+                            "神圣之力"
+                        ]
+                    },
+                    {
+                        "name": "拉帝欧斯",
+                        "level": 100,
+                        "item": "心之水滴",
+                        "ability": "天恩",
+                        "moves": [
+                            "洁净光芒",
+                            "龙星群",
+                            "空中爆破",
+                            "种子闪光"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "943 - 琉璃市居民 米可利（二周目-天空之柱）",
+                "battle_type": "群战",
+                "pokemons": [
+                    {
+                        "name": "帕路奇亚",
+                        "level": 100,
+                        "item": "速度果",
+                        "ability": "适应力",
+                        "moves": [
+                            "瞬影三击",
+                            "龙之逆鳞",
+                            "亚空裂斩",
+                            "千波激荡"
+                        ]
+                    },
+                    {
+                        "name": "亚克诺姆",
+                        "level": 100,
+                        "item": "生命宝珠",
+                        "ability": "魔法防守",
+                        "moves": [
+                            "波动冲",
+                            "精神突进",
+                            "水流喷射",
+                            "嬉闹"
+                        ]
+                    },
+                    {
+                        "name": "盖欧卡",
+                        "level": 100,
+                        "item": "突击背心",
+                        "ability": "降雨",
+                        "moves": [
+                            "根源波动",
+                            "空中爆破",
+                            "冷冻干燥"
+                        ]
+                    },
+                    {
+                        "name": "洛奇亚",
+                        "level": 100,
+                        "item": "吃剩的东西",
+                        "ability": "避雷针",
+                        "moves": [
+                            "空中爆破",
+                            "神威",
+                            "广域防守",
+                            "根源波动"
+                        ]
+                    },
+                    {
+                        "name": "凯路迪欧（觉醒）",
+                        "level": 100,
+                        "item": "突击背心",
+                        "ability": "好胜",
+                        "moves": [
+                            "神秘之剑",
+                            "加农水炮",
+                            "冰封世界",
+                            "真空波"
+                        ]
+                    },
+                    {
+                        "name": "盖欧卡（原始）",
+                        "level": 100,
+                        "item": "弱点保险",
+                        "ability": "始源之海",
+                        "moves": [
+                            "根源波动",
+                            "冰封世界",
+                            "守住",
+                            "闪电之触"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "713 - 传承者 希嘉娜（二番战）",
+                "battle_type": "三打",
+                "pokemons": [
+                    {
+                        "name": "帕路奇亚",
+                        "level": 100,
+                        "item": "速度果",
+                        "ability": "适应力",
+                        "moves": [
+                            "亚空裂斩",
+                            "龙之逆鳞",
+                            "瞬影三击",
+                            "暗影爪"
+                        ]
+                    },
+                    {
+                        "name": "骑拉帝纳",
+                        "level": 100,
+                        "item": "吃剩的东西",
+                        "ability": "无关天气",
+                        "moves": [
+                            "暗影潜袭",
+                            "广域防守",
+                            "神之怒吼",
+                            "神威"
+                        ]
+                    },
+                    {
+                        "name": "帝牙卢卡",
+                        "level": 100,
+                        "item": "突击背心",
+                        "ability": "适应力",
+                        "moves": [
+                            "时光咆哮",
+                            "钻石风暴",
+                            "大地神力",
+                            "龙星群"
+                        ]
+                    },
+                    {
+                        "name": "酋雷姆（焰白）",
+                        "level": 100,
+                        "item": "强力香草",
+                        "ability": "双连击",
+                        "moves": [
+                            "大地神力",
+                            "真实之焰",
+                            "极寒冷焰",
+                            "龙星群"
+                        ]
+                    },
+                    {
+                        "name": "酋雷姆（暗黑）",
+                        "level": 100,
+                        "item": "强力香草",
+                        "ability": "双连击",
+                        "moves": [
+                            "理想闪电",
+                            "冰冻伏特",
+                            "瞬影三击",
+                            "神之怒吼"
+                        ]
+                    },
+                    {
+                        "name": "阿尔宙斯",
+                        "level": 100,
+                        "item": "龙之石板",
+                        "ability": "多属性",
+                        "moves": [
+                            "制裁光砾",
+                            "冰封世界",
+                            "万箭毒射",
+                            "破灭之光"
                         ]
                     }
                 ]
@@ -8450,14 +8776,14 @@ export const reqYHNPC = () => {
         ],
         "最终挑战！游戏作者（茵郁市右下角树屋）": [
             {
-                "title": "游戏作者 阿布（一周目）",
+                "title": "856 - 游戏作者 阿布（一周目）",
                 "battle_type": "群战",
                 "pokemons": [
                     {
                         "name": "雷皇",
                         "level": 100,
-                        "item": "生命宝珠",
-                        "ability": "强行",
+                        "item": "抗冰果",
+                        "ability": "适应力",
                         "moves": [
                             "怒雷",
                             "龙星群",
@@ -8504,8 +8830,8 @@ export const reqYHNPC = () => {
                     {
                         "name": "水君",
                         "level": 100,
-                        "item": "吃剩的东西",
-                        "ability": "引水",
+                        "item": "抗冰果",
+                        "ability": "适应力",
                         "moves": [
                             "蒸汽爆炸",
                             "冷冻干燥",
@@ -8528,64 +8854,17 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "游戏作者 阿布（二周目）",
+                "title": "857 - 游戏作者 阿布（二周目）",
                 "battle_type": "群战",
                 "pokemons": [
                     {
-                        "name": "花叶蒂（永恒之花）",
+                        "name": "M蒂安希",
                         "level": 100,
-                        "item": "抗虫果",
+                        "item": "抗钢果",
                         "ability": "魔法反射",
                         "moves": [
-                            "治愈波动",
-                            "破灭之光",
-                            "击掌奇袭",
-                            "光墙"
-                        ]
-                    },
-                    {
-                        "name": "Mega烈空坐",
-                        "level": 100,
-                        "item": "气势披带",
-                        "ability": "时空乱流",
-                        "moves": [
-                            "死亡之翼",
-                            "胜利之炎",
-                            "暗黑连击",
-                            "理想闪电"
-                        ]
-                    },
-                    {
-                        "name": "阿尔宙斯",
-                        "level": 100,
-                        "item": "蓝天石板",
-                        "ability": "多属性",
-                        "moves": [
-                            "制裁光砾",
-                            "钻石风暴",
-                            "千波激荡",
-                            "冰封世界"
-                        ]
-                    },
-                    {
-                        "name": "骑拉帝纳（起源形态）",
-                        "level": 100,
-                        "item": "气势披带",
-                        "ability": "变幻自如",
-                        "moves": [
-                            "熔岩风暴",
-                            "时光咆哮",
-                            "根源波动",
-                            "大地神力"
-                        ]
-                    },
-                    {
-                        "name": "代欧奇希斯（速度）",
-                        "level": 100,
-                        "item": "心灵香草",
-                        "ability": "恶作剧之心",
-                        "moves": [
-                            "新月舞"
+                            "暗黑洞",
+                            "钻石风暴"
                         ]
                     },
                     {
@@ -8594,10 +8873,56 @@ export const reqYHNPC = () => {
                         "item": "抗妖果",
                         "ability": "时空乱流",
                         "moves": [
-                            "空中爆破",
-                            "暗黑爆破",
-                            "神秘之剑",
-                            "神圣之力"
+                            "看我嘛",
+                            "空中爆破"
+                        ]
+                    },
+                    {
+                        "name": "阿尔宙斯",
+                        "level": 100,
+                        "item": "异常果",
+                        "ability": "纯朴",
+                        "moves": [
+                            "制裁光砾",
+                            "千波激荡",
+                            "亚空裂斩",
+                            "异次元洞"
+                        ]
+                    },
+                    {
+                        "name": "酋雷姆（焰白）",
+                        "level": 100,
+                        "item": "抗地果",
+                        "ability": "双连击",
+                        "moves": [
+                            "熔岩风暴",
+                            "龙星群",
+                            "种子闪光",
+                            "钻石风暴"
+                        ]
+                    },
+                    {
+                        "name": "幽魂花",
+                        "level": 100,
+                        "item": "心灵香草",
+                        "ability": "友情防守",
+                        "moves": [
+                            "反射壁",
+                            "光墙",
+                            "薄雾场地",
+                            "治愈波动"
+                        ]
+                    },
+                    {
+                        "name": "基格尔德",
+                        "level": 100,
+                        "item": "黑色污泥",
+                        "ability": "纯朴",
+                        "moves": [
+                            "万箭毒射",
+                            "大地神力",
+                            "龙星群",
+                            "根源波动"
                         ]
                     }
                 ]

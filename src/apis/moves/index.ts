@@ -798,7 +798,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "利用地震的冲击，攻击自己周围所有的宝可梦。挖洞状态被击中时伤害翻倍。",
+      "description": "利用地震的冲击，攻击自己周围所有的宝可梦。挖洞状态被击中时伤害翻倍",
       "move": "地震",
       "move_id": "89",
       "power": "100",
@@ -825,7 +825,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "90",
       "category": "变化",
-      "description": "让对手陷入剧毒状态。每回合结束时损失最大HP的，伤害计数/16，计数从1增至15。",
+      "description": "让对手陷入剧毒状态。（只有毒系宝可梦可学习）每回合结束时损失最大HP的，伤害计数/16，计数从1增至15。",
       "move": "剧毒",
       "move_id": "92",
       "power": "0",
@@ -888,11 +888,11 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "如果在使出招式后受到攻击的话，会因愤怒的力量而提高攻击。",
-      "move": "愤怒",
+      "description": "带着怒火向对方进行攻击，有30%几率灼伤对手。如果在使出招式后受到攻击的话，会因愤怒提高自身攻击（1级）。",
+      "move": "怒火冲天",
       "move_id": "99",
-      "power": "20",
-      "type": "一般"
+      "power": "80",
+      "type": "幽灵"
     },
     {
       "accuracy": "101",
@@ -1228,13 +1228,13 @@ export const reqMoves = (): Move[] => {
       "type": "格斗"
     },
     {
-      "accuracy": "100",
+      "accuracy": "101",
       "category": "变化",
       "description": "发出来自神的强大威压，从而让其敌全方陷入麻痹状态且减速。",
-      "move": "大蛇瞪眼",
+      "move": "神威",
       "move_id": "137",
       "power": "0",
-      "type": "一般"
+      "type": "恶"
     },
     {
       "accuracy": "100",
@@ -1273,13 +1273,13 @@ export const reqMoves = (): Move[] => {
       "type": "虫"
     },
     {
-      "accuracy": "40",
+      "accuracy": "100",
       "category": "变化",
       "description": "用恐怖的脸强吻队友。让队友陷入睡眠状态。（坑队友专用技能）。",
       "move": "恶魔之吻",
       "move_id": "142",
       "power": "0",
-      "type": "一般"
+      "type": "妖精"
     },
     {
       "accuracy": "90",
@@ -1320,7 +1320,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "变化",
-      "description": "沙沙沙地撒满具有催眠效果的孢子，从而让对手陷入睡眠状态。",
+      "description": "沙沙沙地撒满具有催眠效果的孢子，从而让对手陷入睡眠状态。（最多两回合）",
       "move": "蘑菇孢子",
       "move_id": "147",
       "power": "0",
@@ -1417,13 +1417,13 @@ export const reqMoves = (): Move[] => {
       "type": "岩石"
     },
     {
-      "accuracy": "90",
+      "accuracy": "95",
       "category": "物理",
       "description": "用锋利的牙齿牢牢地咬住对手进行攻击。20%会使对手畏缩。",
-      "move": "必杀门牙",
+      "move": "强力腮咬",
       "move_id": "158",
-      "power": "80",
-      "type": "一般"
+      "power": "90",
+      "type": "水"
     },
     {
       "accuracy": "101",
@@ -1498,7 +1498,7 @@ export const reqMoves = (): Move[] => {
       "type": "一般"
     },
     {
-      "accuracy": "95",
+      "accuracy": "100",
       "category": "物理",
       "description": "连续3次踢对手进行攻击。每踢中一次，威力就会提高。每一击都有10%概率畏缩。",
       "move": "瞬影三击",
@@ -1854,7 +1854,7 @@ export const reqMoves = (): Move[] => {
       "description": "对手的HP至少会留下1HP，如此般手下留情地攻击。",
       "move": "点到为止",
       "move_id": "206",
-      "power": "40",
+      "power": "60",
       "type": "钢"
     },
     {
@@ -1941,7 +1941,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "和训练家默契配合的攻击对手造成亲密度度×0.4的伤害，威力最大为102。",
+      "description": "和训练家默契配合的攻击对手造成亲密度度×0.4的伤害，威力最大为102",
       "move": "报恩",
       "move_id": "216",
       "power": "1",
@@ -2022,7 +2022,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "90",
       "category": "特殊",
-      "description": "将强烈的龙之气息吹向对手进行攻击。",
+      "description": "将强烈的龙之气息吹向对手进行攻击。10%概率麻痹。",
       "move": "天龙之息",
       "move_id": "225",
       "power": "120",
@@ -2517,7 +2517,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "将手刀猛烈地挥下攻击对手。瞬间破坏光墙和反射壁等。此伤害不受减半效果影响。",
+      "description": "将手刀猛烈地挥下攻击对手。瞬间破坏光墙和反射壁等。此伤害不受减半效果影响",
       "move": "劈瓦",
       "move_id": "280",
       "power": "85",
@@ -2526,7 +2526,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "101",
       "category": "变化",
-      "description": "打个大哈欠引起睡意。在下一回合让对手陷入睡眠状态。",
+      "description": "打个大哈欠引起睡意。在下一回合让对手陷入睡眠状态。（优先度-5）",
       "move": "哈欠",
       "move_id": "281",
       "power": "0",
@@ -2616,7 +2616,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "第1回合潜入水中，第2回合浮上来进行攻击且提升自身特防（1级）。可以用来潜入大海之中。",
+      "description": "第1回合潜入水中，第2回合猛袭且提升特防（1级）。可潜入水底探索大海或沉船。",
       "move": "潜水",
       "move_id": "291",
       "power": "100",
@@ -2696,11 +2696,11 @@ export const reqMoves = (): Move[] => {
     },
     {
       "accuracy": "101",
-      "category": "物理",
+      "category": "变化",
       "description": "一旦使用此招式就会降低队友的速度。在5回合内减弱电属性的招式。（坑队友专用技能）",
       "move": "玩泥巴",
       "move_id": "300",
-      "power": "5",
+      "power": "0",
       "type": "地面"
     },
     {
@@ -2929,12 +2929,12 @@ export const reqMoves = (): Move[] => {
       "type": "幽灵"
     },
     {
-      "accuracy": "100",
+      "accuracy": "90",
       "category": "特殊",
       "description": "大脑集中精神发出看不见的精神力量进行破坏。20%几率造成混乱。",
       "move": "精神震荡",
       "move_id": "326",
-      "power": "75",
+      "power": "120",
       "type": "超能力"
     },
     {
@@ -3096,7 +3096,7 @@ export const reqMoves = (): Move[] => {
       "description": "放出千万伏特的电流攻击对手。使用后增加自身的攻击和特攻（1级）。",
       "move": "千万伏特",
       "move_id": "344",
-      "power": "120",
+      "power": "110",
       "type": "电"
     },
     {
@@ -3114,7 +3114,7 @@ export const reqMoves = (): Move[] => {
       "description": "用水湿透周围。在5回合内减弱火属性的招式。",
       "move": "玩水",
       "move_id": "346",
-      "power": "5",
+      "power": "0",
       "type": "水"
     },
     {
@@ -3258,7 +3258,7 @@ export const reqMoves = (): Move[] => {
       "description": "用水之力量向对方进行攻击必定命中对方要害。",
       "move": "水流裂破",
       "move_id": "362",
-      "power": "60",
+      "power": "61",
       "type": "水"
     },
     {
@@ -3363,7 +3363,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "扔掉自身携带的道具进行攻击。同时附加道具效果，黑色铁球威力最大是130。",
+      "description": "扔掉自身携带的道具进行攻击。同时附加道具效果，黑色铁球威力最大是130",
       "move": "投掷",
       "move_id": "374",
       "power": "1",
@@ -3660,7 +3660,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "释放出骇人的杀气，一边威慑一边撞击对手。自己的防御会降低（1级）。",
+      "description": "释放出骇人的杀气，一边威慑一边撞击对手。自己也会受到不小的伤害（-33%）。",
       "move": "龙神俯冲",
       "move_id": "407",
       "power": "120",
@@ -3849,10 +3849,10 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "将思念的力量集中在前额进行攻击。20%会使对手畏缩。",
+      "description": "将思念的力量全部集中在前额攻击对方。自己也会受到不小的伤害（-33%）。",
       "move": "意念头锤",
       "move_id": "428",
-      "power": "90",
+      "power": "120",
       "type": "超能力"
     },
     {
@@ -4029,16 +4029,16 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "特殊",
-      "description": "用非常烦人的，喋喋不休的音波攻击对手。使对手混乱。",
-      "move": "喋喋不休",
+      "description": "（敌方全体）用非常恶毒的语言且持续不断的音波攻击对手。必定让对手混乱。",
+      "move": "极恶声波",
       "move_id": "448",
-      "power": "100",
+      "power": "110",
       "type": "飞行"
     },
     {
       "accuracy": "101",
       "category": "特殊",
-      "description": "放出无数的光弹。属性会根据自己携带的石板不同而改变。使用后增加自身物攻、特攻、速度（1级）。",
+      "description": "放出必中的制裁光弹。属性会根据自己携带的石板不同而改变。使用后增加自身物攻、特攻、速度（1级）。",
       "move": "制裁光砾",
       "move_id": "449",
       "power": "150",
@@ -4266,14 +4266,14 @@ export const reqMoves = (): Move[] => {
       "description": "将特殊的毒液泼向对手。对处于中毒状态的对手，威力会变成2倍。",
       "move": "毒液冲击",
       "move_id": "474",
-      "power": "65",
+      "power": "75",
       "type": "毒"
     },
     {
       "accuracy": "101",
       "category": "变化",
-      "description": "削掉身体上没用的部分。大幅提高自己的速度（2级），同时体重也会减半。",
-      "move": "身体轻量化",
+      "description": "聚集剑和盾的力量，提升自身的攻击（1级），还有物防和特防（1级）。",
+      "move": "剑盾之魂",
       "move_id": "475",
       "power": "0",
       "type": "钢"
@@ -4317,10 +4317,10 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "向对手使出强烈的一击。攻击必定会击中要害。",
-      "move": "山岚摔",
+      "description": "充满正义向对手使出制裁一击。攻击必定会击中要害。并提升自身速度（1级）。",
+      "move": "制裁猛击",
       "move_id": "480",
-      "power": "60",
+      "power": "90",
       "type": "格斗"
     },
     {
@@ -4329,7 +4329,7 @@ export const reqMoves = (): Move[] => {
       "description": "如果击中，爆裂的火焰会攻击到对手。爆裂出的火焰还会飞溅到旁边的对手。",
       "move": "烈焰溅射",
       "move_id": "481",
-      "power": "70",
+      "power": "80",
       "type": "火"
     },
     {
@@ -4551,10 +4551,10 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "特殊",
-      "description": "接二连三地进行攻击。对处于异常状态的对手给予较大的伤害。",
+      "description": "接二连三地进行攻击。对处于异常状态的对手造成的伤害翻倍。",
       "move": "祸不单行",
       "move_id": "506",
-      "power": "65",
+      "power": "70",
       "type": "幽灵"
     },
     {
@@ -5010,7 +5010,7 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "从前额产生灼热的火焰，舍身撞击对手。会让对方进入挑衅状态。",
+      "description": "从前额产生灼热的火焰，舍身撞击对手。会让对方进入挑衅状态。有几率击中要害（2级）。",
       "move": "胜利之炎",
       "move_id": "557",
       "power": "150",
@@ -5082,10 +5082,10 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "暗黑路卡专属先制技能（优先度+1）。使用暗黑之力迅速刺向敌方。使用此招式打倒对手，攻击会大幅提高（2级）。",
+      "description": "暗黑路卡专属技能。使用暗黑之力刺向敌方。使用此招式打倒对手，攻击会大幅提高（2级）。",
       "move": "暗影之刺",
       "move_id": "565",
-      "power": "50",
+      "power": "75",
       "type": "恶"
     },
     {
@@ -5130,7 +5130,7 @@ export const reqMoves = (): Move[] => {
       "description": "（敌方全体）给敌方宝可梦造成闪电伤害。可以回复给予伤害的一半HP。",
       "move": "闪电之触",
       "move_id": "570",
-      "power": "100",
+      "power": "110",
       "type": "电"
     },
     {
@@ -5280,11 +5280,11 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "101",
       "category": "变化",
-      "description": "通过封锁，下一回合所有的宝可梦都无法逃走。",
-      "move": "妖精之锁",
+      "description": "通过封锁，对方所有的宝可梦都会束缚。并降低其速度（1级）。（优先度+1）",
+      "move": "钢铁之锁",
       "move_id": "587",
       "power": "0",
-      "type": "妖精"
+      "type": "钢"
     },
     {
       "accuracy": "101",
@@ -5338,7 +5338,7 @@ export const reqMoves = (): Move[] => {
       "move": "异次元洞",
       "move_id": "593",
       "power": "120",
-      "type": "幽灵"
+      "type": "恶"
     },
     {
       "accuracy": "100",
@@ -5490,7 +5490,7 @@ export const reqMoves = (): Move[] => {
       "description": "在攻击的时候手下留情，从而使对手的HP至少会留下1HP。",
       "move": "手下留情",
       "move_id": "610",
-      "power": "40",
+      "power": "60",
       "type": "钢"
     },
     {
@@ -5505,16 +5505,16 @@ export const reqMoves = (): Move[] => {
     {
       "accuracy": "100",
       "category": "物理",
-      "description": "通过反复击打对手，使自己的拳头慢慢变硬。打中对手攻击就会提高（1级）。",
-      "move": "增强拳",
+      "description": "全心集中自己的精神，使自己的拳头慢慢变硬。打中对手攻击就会提高（1级）。",
+      "move": "蓄能龙拳",
       "move_id": "612",
-      "power": "40",
-      "type": "格斗"
+      "power": "60",
+      "type": "龙"
     },
     {
-      "accuracy": "100",
+      "accuracy": "101",
       "category": "物理",
-      "description": "从锁定的对手身上吸取HP。回复给予对手伤害的全部HP。",
+      "description": "用死亡的力量锁定对手身上吸取HP。回复给予对手伤害的全部HP。必定命中无法躲开。",
       "move": "死亡之翼",
       "move_id": "613",
       "power": "110",
@@ -5557,7 +5557,7 @@ export const reqMoves = (): Move[] => {
       "type": "妖精"
     },
     {
-      "accuracy": "95",
+      "accuracy": "100",
       "category": "特殊",
       "description": "（敌方全体）用无数青白色且闪耀的光线攻击对手。",
       "move": "根源波动",
@@ -5566,7 +5566,7 @@ export const reqMoves = (): Move[] => {
       "type": "水"
     },
     {
-      "accuracy": "95",
+      "accuracy": "100",
       "category": "物理",
       "description": "（敌方全体）将大地的力量变化为利刃攻击对手。",
       "move": "断崖之剑",
@@ -5590,7 +5590,7 @@ export const reqMoves = (): Move[] => {
       "move": "异次元猛攻",
       "move_id": "621",
       "power": "140",
-      "type": "恶"
+      "type": "幽灵"
     }
   ]
 }

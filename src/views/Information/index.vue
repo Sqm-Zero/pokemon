@@ -132,11 +132,11 @@
                 </div>
             </div>
         </div>
-        <div class="pokemon-method" v-if="pokemon_info.名称">
+        <div class="pokemon-method" v-if="appearAreas.length > 0">
             <div class="method-header">精灵分布</div>
             <div class="method-content">
-                <template v-if="getAppearAreas(pokemon_info.名称).length > 0">
-                    <div v-for="(item, idx) in getAppearAreas(pokemon_info.名称)" :key="idx" class="method-text">
+                <template v-if="appearAreas.length > 0">
+                    <div v-for="(item, idx) in appearAreas" :key="idx" class="method-text">
                         <span @click="handleAreaJump(item.area)">{{ item.area }}</span>
                     </div>
                 </template>
@@ -149,8 +149,10 @@
                 <div class="evolution-step" v-for="(evolve, index) in evolves" :key="index">
                     <div class="evolution-container" v-show="evolve.condition !== 'trade'">
                         <!-- 当前形态 -->
-                        <div class="pokemon-card">
-                            <img class="pokemon-image" :src="getImageSrc(pokemonStore.getPokemonIdByName(evolve.pokemonName))" :alt="pokemon_info.名称">
+                        <div class="pokemon-card" @click="handleNextStageInfo(evolve.pokemonName)">
+                            <img class="pokemon-image"
+                                :src="getImageSrc(pokemonStore.getPokemonIdByName(evolve.pokemonName))"
+                                :alt="pokemon_info.名称">
                             <p class="pokemon-name">{{ evolve.pokemonName }}</p>
                         </div>
 
@@ -200,7 +202,15 @@
             </div>
         </div>
         <div class="pokemon-moves">
-            <div class="moves-header">可用招式</div>
+            <div style="position: relative; text-align: center;">
+                <div class="moves-header">{{ movesTitle }}</div>
+                <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); cursor: pointer;"
+                    @click="toggleEggMoves">
+                    <SvgIcon name="toggle" height="30px" width="30px" :color="isEggMoves ? '#ff6b6b' : '#00bfff'">
+                    </SvgIcon>
+                </div>
+            </div>
+
             <div class="moves-content">
                 <div v-for="(item, index) in moves" :key="index" class="moves-item" :class="{
                     'moves-item-early': parseInt(item.level) <= 10,
@@ -296,7 +306,7 @@ let RaceValue = ref(['HP',
     'SP'])
 // 等级性格
 let RankCharacter = reactive({
-    grade: 50,
+    grade: 100,
     nature: '勤奋'
 })
 
@@ -589,22 +599,52 @@ watch(
     { deep: true }
 );
 
+let movesTitle = ref<string>('可用招式');
+const isEggMoves = ref(false)
+const toggleEggMoves = () => {
+    isEggMoves.value = !isEggMoves.value
+    movesTitle.value = isEggMoves.value ? '蛋招式' : '可用招式'
+    if(isEggMoves.value) {
+        getEggMoves()
+    } else {
+        getMoves()
+    }
+}
+
 let moves: any = ref([])
+// 获取位置
+let appearAreas:any = ref([])
 onMounted(() => {
     // 初始化
     updateAllAbilities();
     // 计算属性相性
     attributeList1();
 
+    getMoves();
+    
+    pokemon_info.old_pokemon_name = pokemon_info.名称
+    pokemon_info.名称 = processPokemonName(pokemon_info.名称)
+    // 精灵捕获位置
+    appearAreas = getAppearAreas(pokemon_info.old_pokemon_name);
+});
+
+const getMoves = () => {
     if (!isNaN(Number(pokemon_info.编号)) && !pokemon_info.编号.includes('_')) {
         moves.value = pokemonStore.getPokemonMovesByNumber(String(Number(pokemon_info.编号)))
     } else {
         // 保持原编号
         moves.value = pokemonStore.getPokemonMovesByNumber(pokemon_info.编号);
     }
+}
 
-    pokemon_info.名称 = processPokemonName(pokemon_info.名称)
-});
+const getEggMoves = () => { 
+    if (!isNaN(Number(pokemon_info.编号)) && !pokemon_info.编号.includes('_')) {
+        moves.value = pokemonStore.getEggMovesByNumber(String(Number(pokemon_info.编号)))
+    } else {
+        // 保持原编号
+        moves.value = pokemonStore.getEggMovesByNumber(pokemon_info.编号);
+    }
+}
 
 // 名称问题解决 
 // 特殊形态的映射表
@@ -621,7 +661,7 @@ const specialForms: Record<string, string[]> = {
     '美洛耶塔': ['舞步形态'],
     '酋雷姆': ['焰白', '暗黑'],
     '凯路迪欧': ['觉悟形态'],
-    '龙卷云': ['灵兽形态'],
+    '毒卷云': ['灵兽形态'],
     '雷电云': ['灵兽形态'],
     '土地云': ['灵兽形态'],
     '超能妙喵': ['雌性'],
@@ -1471,6 +1511,7 @@ const handleAreaJump = (areaName: string) => {
     padding: 3px;
     object-fit: contain;
     border: 4px solid transparent;
+    z-index: 1;
     border-radius: 50%;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;

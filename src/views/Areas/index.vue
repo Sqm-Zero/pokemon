@@ -21,6 +21,7 @@
 </template>
 
 <script setup lang="ts">
+import { onMounted, onBeforeUnmount, onActivated, nextTick } from 'vue'
 import { useRouter } from 'vue-router';
 import { getAreas } from '@/apis/areas/index.ts'
 import { useAreaStore } from '@/store/modules/area'
@@ -51,6 +52,27 @@ const getImageSrc = (area_name: string) => {
     }
     return new URL(`/src/assets/images/Areas_images/${englishName}.png`, import.meta.url).href;
 };
+
+// 滚动位置保存与恢复（使用窗口滚动）
+const saveScroll = () => {
+    const top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
+    areaStore.scrollPosition = Math.max(0, top)
+}
+
+onMounted(() => {
+    window.addEventListener('scroll', saveScroll, { passive: true })
+})
+
+onBeforeUnmount(() => {
+    window.removeEventListener('scroll', saveScroll)
+})
+
+onActivated(async () => {
+    await nextTick()
+    setTimeout(() => {
+        window.scrollTo({ top: areaStore.scrollPosition || 0, behavior: 'auto' })
+    }, 50)
+})
 
 </script>
 

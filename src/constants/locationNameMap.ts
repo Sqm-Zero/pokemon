@@ -77,7 +77,11 @@ export const locationNameMap = {
   'stone_cave': '石之洞窟',
   'awakening_shrine': '觉醒祠堂',
   'mt_ember': '送火山',
-  'ao_tu_mountain': '凹凸山道'
+  'ao_tu_mountain': '凹凸山道',
+  'phantom_mountains': '幻影山脉',
+  'phantom_island': '幻影岛屿',
+  'phantom_forest': '幻影森林',
+  'phantom_cave': '幻影洞窟'
 };
 
 // 反向映射

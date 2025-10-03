@@ -10,7 +10,7 @@
 
             <div class="pokemon-list">
                 <div class="pokemon-card" v-for="(p, i) in battle.pokemons" :key="i" @click="handlePokemonInfo(p)">
-                    
+
                     <div class="poke-flex">
                         <div class="pokemon-avatar">
                             <img :src="getImageSrc(p.name)" :alt="p.name" class="pokemon-image" />
@@ -23,7 +23,8 @@
                             <span class="poke-item" v-if="p.item">@ {{ p.item }}</span>
                         </div>
                         <div class="poke-moves-grid">
-                            <span class="move" v-for="(m, j) in p.moves" :key="j" @click.stop="handleMoveInfo(m)">{{ m }}</span>
+                            <span class="move" v-for="(m, j) in p.moves" :key="j" @click.stop="handleMoveInfo(m)">{{ m
+                                }}</span>
                         </div>
                     </div>
                 </div>
@@ -36,7 +37,7 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { onMounted, ref } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { reqNPC, reqYHNPC } from '@/apis/npc'
 import { usePokemonStore } from '@/store/modules/pokemon'
 
@@ -44,12 +45,14 @@ const route = useRoute()
 const $router = useRouter()
 const pokemonStore = usePokemonStore()
 const groupName = decodeURIComponent(route.params.groupName as string)
-const version = route.query.version as string || 'normal' // 获取版本参数，默认为normal
+const version = computed<'normal' | 'hardcore'>(() => {
+    return route.query.version === 'hardcore' ? 'hardcore' : 'normal'
+})
 
 const battles = ref<any[]>([])
 
 onMounted(() => {
-    const allData: any = version === 'hardcore'
+    const allData: any = version.value === 'hardcore'
         ? reqYHNPC()
         : reqNPC()
     battles.value = allData[groupName] || []
@@ -59,23 +62,25 @@ onMounted(() => {
 const specialForms: Record<string, string[]> = {
     '代欧奇希斯': ['攻击', '防御', '速度'],
     '结草贵妇': ['砂土蓑衣', '垃圾蓑衣'],
-    '谢米': ['天空形态'],
-    '骑拉帝纳': ['起源形态'],
+    '谢米': ['天空'],
+    '骑拉帝纳': ['起源'],
     '洛托姆': ['加热', '清洗', '结冰', '旋转', '切割'],
     '飘浮泡泡': ['太阳', '雨天', '雪天'],
     '樱花儿': ['晴天形态'],
     '野蛮鲈鱼': ['蓝条纹的样子'],
     '达摩狒狒': ['达摩模式'],
-    '美洛耶塔': ['舞步形态'],
+    '美洛耶塔': ['舞步'],
     '酋雷姆': ['焰白', '暗黑'],
-    '凯路迪欧': ['觉悟形态'],
-    '龙卷云': ['灵兽形态'],
-    '雷电云': ['灵兽形态'],
-    '土地云': ['灵兽形态'],
+    '凯路迪欧': ['觉醒'],
+    '毒卷云': ['灵兽', ''],
+    '雷电云': ['灵兽', ''],
+    '土地云': ['灵兽', ''],
     '超能妙喵': ['雌性'],
     '花叶蒂': ['', '', '', '', '永恒之花'],
-    '皮卡丘': ['摇滚巨星', '贵妇', '流行偶像', '博士', '面罩摔角手', '智皮'],
-    '胡帕': ['解放形态']
+    '皮卡丘': ['摇滚', '贵妇', '流行偶像', '博士', '面罩摔角手', '赤皮'],
+    '胡帕': ['解放'],
+    '固拉多': ['原始'],
+    '盖欧卡': ['原始']
 };
 const processPokemonName = (name: string): string => {
     // 首先检查是否是特殊形态的宝可梦
@@ -104,15 +109,22 @@ const restorePokemonRawName = (displayName: string): string => {
         const baseName = match[1]
         const form = match[2]
         if (specialForms[baseName]) {
-            const idx = specialForms[baseName].indexOf(form)
-            if (idx !== -1) { 
-                return baseName + ' ' + (idx + 1)
+            const formsList = specialForms[baseName];
+            for (let i = 0; i < formsList.length; i++) {
+                const candidate = formsList[i];
+                // 模糊匹配：互相包含即视为匹配
+                if (
+                    form.includes(candidate) ||
+                    candidate.includes(form)
+                ) {
+                    return baseName + ' ' + (i + 1);
+                }
             }
         }
     }
     // 匹配“超级xxx”
-    if (displayName.startsWith('Mega')) {
-        return displayName.replace('Mega', '') + ' 1'
+    if (displayName.startsWith('M') && displayName !== 'M甲贺忍蛙') {
+        return displayName.replace('M', '') + ' 1'
     }
     return displayName
 }
@@ -197,14 +209,16 @@ const handleMoveInfo = (moveName: string) => {
     align-items: center;
     cursor: pointer;
     position: relative;
-    box-shadow: 0 6px 24px 0 rgba(64,158,255,0.10);
+    box-shadow: 0 6px 24px 0 rgba(64, 158, 255, 0.10);
     margin-bottom: 18px;
     min-height: 160px;
     transition: box-shadow 0.2s;
 }
+
 .pokemon-card:hover {
-    box-shadow: 0 10px 32px 0 rgba(64,158,255,0.16);
+    box-shadow: 0 10px 32px 0 rgba(64, 158, 255, 0.16);
 }
+
 .poke-flex {
     display: flex;
     align-items: center;
@@ -223,9 +237,10 @@ const handleMoveInfo = (moveName: string) => {
     background: linear-gradient(135deg, #eaf6ff 60%, #f0f7ff 100%);
     border-radius: 50%;
     border: 3px solid #b3d8ff;
-    box-shadow: 0 4px 18px 0 rgba(64,158,255,0.13);
+    box-shadow: 0 4px 18px 0 rgba(64, 158, 255, 0.13);
     margin-right: 16px;
 }
+
 .pokemon-image {
     width: 116px;
     height: 116px;
@@ -233,8 +248,9 @@ const handleMoveInfo = (moveName: string) => {
     background: #fff;
     border-radius: 50%;
     border: 2.5px solid #e3e9f6;
-    box-shadow: 0 2px 12px 0 rgba(64,158,255,0.10);
+    box-shadow: 0 2px 12px 0 rgba(64, 158, 255, 0.10);
 }
+
 .poke-info-vertical {
     display: flex;
     flex-direction: column;
@@ -245,11 +261,12 @@ const handleMoveInfo = (moveName: string) => {
     border-radius: 16px;
     padding: 16px 24px 14px 24px;
     border: 1.5px solid #b3d8ff;
-    box-shadow: 0 2px 8px 0 rgba(64,158,255,0.08);
+    box-shadow: 0 2px 8px 0 rgba(64, 158, 255, 0.08);
     font-weight: 600;
     margin: 0 12px 0 0;
     position: relative;
 }
+
 .poke-level-row {
     display: flex;
     align-items: center;
@@ -259,12 +276,14 @@ const handleMoveInfo = (moveName: string) => {
     letter-spacing: 0.5px;
     margin-bottom: 10px;
 }
+
 .poke-level {
     font-size: 18px;
     color: #3366cc;
     font-weight: 700;
     margin-right: 8px;
 }
+
 .poke-ability {
     font-size: 16px;
     color: #2d3a4b;
@@ -272,6 +291,7 @@ const handleMoveInfo = (moveName: string) => {
     word-break: break-all;
     margin-bottom: 10px;
 }
+
 .poke-item {
     display: inline-block;
     margin-top: 0;
@@ -281,12 +301,13 @@ const handleMoveInfo = (moveName: string) => {
     background: linear-gradient(90deg, #6ec6ff 0%, #409eff 100%);
     border-radius: 12px;
     padding: 3px 16px;
-    box-shadow: 0 2px 6px 0 rgba(64,158,255,0.10);
+    box-shadow: 0 2px 6px 0 rgba(64, 158, 255, 0.10);
     letter-spacing: 0.5px;
     min-width: 40px;
     text-align: center;
     border: none;
 }
+
 .poke-moves-grid {
     margin-top: 0;
     display: grid;
@@ -297,10 +318,11 @@ const handleMoveInfo = (moveName: string) => {
     padding: 18px 18px;
     width: 240px;
     border: 1.5px solid #b3d8ff;
-    box-shadow: 0 2px 12px 0 rgba(64,158,255,0.10);
+    box-shadow: 0 2px 12px 0 rgba(64, 158, 255, 0.10);
     font-weight: 600;
     align-items: center;
 }
+
 .move {
     background: linear-gradient(135deg, #e6f0ff 60%, #d6eaff 100%);
     padding: 15px 0;
@@ -310,45 +332,53 @@ const handleMoveInfo = (moveName: string) => {
     cursor: pointer;
     text-align: center;
     margin-bottom: 0;
-    box-shadow: 0 2px 8px 0 rgba(64,158,255,0.10);
+    box-shadow: 0 2px 8px 0 rgba(64, 158, 255, 0.10);
     border: 1.5px solid #b3d8ff;
     font-weight: 700;
     letter-spacing: 0.5px;
     transition: background 0.2s, box-shadow 0.2s;
 }
+
 .move:active {
     background: #b3d8ff;
-    box-shadow: 0 1px 2px 0 rgba(64,158,255,0.10);
+    box-shadow: 0 1px 2px 0 rgba(64, 158, 255, 0.10);
 }
+
 .empty-msg {
     text-align: center;
     padding: 40px 0;
     color: #999;
     font-size: 15px;
 }
+
 @media (max-width: 600px) {
     .group-detail {
         max-width: 100vw;
         padding-bottom: 12px;
     }
+
     .battle-card {
         width: 98%;
         padding: 10px;
     }
+
     .pokemon-card {
         padding: 8px 2px 8px 2px;
         min-height: 110px;
         margin-bottom: 10px;
     }
+
     .pokemon-avatar {
         width: 84px;
         height: 84px;
         margin-right: 10px;
     }
+
     .pokemon-image {
         width: 74px;
         height: 74px;
     }
+
     .poke-info-vertical {
         min-width: 100px;
         max-width: 100%;
@@ -356,17 +386,21 @@ const handleMoveInfo = (moveName: string) => {
         border-radius: 10px;
         margin: 0 8px 0 0;
     }
+
     .poke-level-row {
         font-size: 14px;
         margin-bottom: 2px;
     }
+
     .poke-level {
         font-size: 14px;
     }
+
     .poke-ability {
         font-size: 12.5px;
         margin-bottom: 4px;
     }
+
     .poke-moves-grid {
         width: 80vw;
         max-width: 100%;
@@ -374,11 +408,13 @@ const handleMoveInfo = (moveName: string) => {
         gap: 14px 12px;
         border-radius: 12px;
     }
+
     .move {
         font-size: 14px;
         padding: 8px 0;
         border-radius: 12px;
     }
+
     .poke-item {
         font-size: 11.5px;
         padding: 2px 8px;

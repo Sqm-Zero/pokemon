@@ -23,45 +23,111 @@ let title = import.meta.env.VITE_Pokemon_Title
 .home_container {
   height: 100vh;
   width: 100%;
-  background: linear-gradient(to bottom, #54d6db, #caf0fe, #0056d6);
+  background: linear-gradient(135deg, #54d6db, #caf0fe, #0056d6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  // 为 fixed 标题预留顶部空间
+  padding-top: 80px; // 根据标题高度调整
 
   .title {
     position: fixed;
-    margin: 0 auto;
+    top: 0;
+    left: 0;
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background: radial-gradient(at 72.72211768092328% 42.83681399438808%, hsla(165, 80.48780487804878%, 67.84313725490196%, 1) 0%, hsla(165, 80.48780487804878%, 67.84313725490196%, 0) 100%), radial-gradient(at 19.0949269145557% 13.427974277640331%, hsla(240.78602620087332, 100%, 55.09803921568628%, 1) 0%, hsla(240.78602620087332, 100%, 55.09803921568628%, 0) 100%), radial-gradient(at 77.31948969476554% 71.73320898669479%, hsla(232.83018867924528, 88.82681564245813%, 64.90196078431373%, 1) 0%, hsla(232.83018867924528, 88.82681564245813%, 64.90196078431373%, 0) 100%), radial-gradient(at 23.873352541680283% 85.21449191849379%, hsla(165, 80.48780487804878%, 67.84313725490196%, 1) 0%, hsla(165, 80.48780487804878%, 67.84313725490196%, 0) 100%), radial-gradient(at 63.94871849560857% 8.657258621326536%, hsla(240.78602620087332, 100%, 55.09803921568628%, 1) 0%, hsla(240.78602620087332, 100%, 55.09803921568628%, 0) 100%), radial-gradient(at 62.90956700488586% 87.01821271111223%, hsla(232.83018867924528, 88.82681564245813%, 64.90196078431373%, 1) 0%, hsla(232.83018867924528, 88.82681564245813%, 64.90196078431373%, 0) 100%), radial-gradient(at 75.44570214827773% 2.6279076304641436%, hsla(165, 80.48780487804878%, 67.84313725490196%, 1) 0%, hsla(165, 80.48780487804878%, 67.84313725490196%, 0) 100%);
-    box-shadow: 3px 3px 5px #888888;
+    align-items: center;
+    height: 60px; // 固定高度
+    background: rgba(0, 0, 0, 0.1); // 轻微毛玻璃底（可选）
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 10;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    padding: 0 16px;
+    box-sizing: border-box;
 
     .artboard {
-      font-size: 2em;
-      font-family: "Times New Roman", Times, serif;
-      font-weight: bold;
-      line-height: 1.5;
+      font-size: 1.8em;
+      font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", sans-serif;
+      font-weight: 800;
+      line-height: 1.3;
       color: white;
-
+      text-shadow:
+        1px 1px 0 rgba(0, 30, 60, 0.4),
+        2px 2px 0 rgba(255, 80, 40, 0.3);
+      letter-spacing: 1px;
+      -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
+      margin: 0;
+      text-align: center;
     }
   }
 
   .bg_title {
-    position: relative;
-    top: 3%; // 调整这个值来控制下移的距离
-    height: 400px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 10px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 24px;
 
     img {
       width: 100%;
-      border-radius: 10px;
+      max-height: 320px;
+      object-fit: contain;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      background: white;
     }
   }
 
   .bg {
-    margin-top: 5%;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 0;
+  }
+}
+
+/* 小屏适配 */
+@media screen and (max-width: 390px) {
+  .home_container {
+    padding: 0 12px;
+    padding-top: 70px;
+  }
+
+  .title {
+    height: 50px;
+  }
+
+  .title .artboard {
+    font-size: 1.6em;
+  }
+
+  .bg_title img {
+    max-height: 280px;
+    border-radius: 14px;
+  }
+}
+
+/* 超小屏 */
+@media screen and (max-width: 320px) {
+  .home_container {
+    padding-top: 60px;
+  }
+
+  .title {
+    height: 45px;
+  }
+
+  .title .artboard {
+    font-size: 1.5em;
+    letter-spacing: 0.5px;
+  }
+
+  .bg_title img {
+    max-height: 240px;
+    border-radius: 12px;
   }
 }
 </style>

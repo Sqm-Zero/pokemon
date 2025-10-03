@@ -1,8 +1,9 @@
 <template>
     <div class="m_move">
-        <Top title="技能列表" icon="pokemon" @icon_func="showTypeFilter = true" color="linear-gradient(90deg, #ffffff, #562af4, #f59e24)"></Top>
+        <Top title="技能列表" icon="pokemon" @icon_func="showTypeFilter = true"
+            color="linear-gradient(90deg, #ffffff, #562af4, #f59e24)"></Top>
         <Search @search="handleSearch"></Search>
-        <div class="move_header">
+        <div class="move_header" ref="scrollContainer">
             <div class="move_item" @click="handleMoveInfo(item)" v-for="(item, index) in filteredMoveList" :key="index">
                 <div class="index">{{ index + 1 }}</div>
                 <div class="move_name">{{ item.move }}</div>
@@ -27,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted, onActivated, onBeforeUnmount, nextTick } from 'vue';
 import { reqMoves } from '@/apis/moves';
 import type { Move } from '@/apis/pokemon/type';
 import { usePokemonStore } from '@/store/modules/pokemon';
@@ -41,11 +42,12 @@ const selectedTypes = ref<string[]>([]);
 
 // 获取所有可用的宝可梦属性
 const pokemonTypes = [
-    '一般', '格斗', '飞行', '毒', '地面', '岩石', 
-    '虫', '幽灵', '钢', '火', '水', '草', 
+    '一般', '格斗', '飞行', '毒', '地面', '岩石',
+    '虫', '幽灵', '钢', '火', '水', '草',
     '电', '超能力', '冰', '龙', '恶', '妖精'
 ];
-
+// 记录滚动位置
+const scrollContainer = ref<HTMLElement | null>(null);
 const getColor = (type: any) => colorMap[type] || '#BBBBAA';
 
 const query = ref('');
@@ -73,14 +75,14 @@ const toggleType = (type: string) => {
 // 过滤技能列表
 const filteredMoveList = computed(() => {
     let filtered = MoveList;
-    
+
     // 应用属性筛选
     if (selectedTypes.value.length > 0) {
-        filtered = filtered.filter(move => 
+        filtered = filtered.filter(move =>
             selectedTypes.value.includes(move.type)
         );
     }
-    
+
     // 应用搜索筛选
     if (query.value) {
         filtered = filtered.filter(move =>
@@ -89,7 +91,7 @@ const filteredMoveList = computed(() => {
             move.category.toLowerCase().includes(query.value.toLowerCase())
         );
     }
-    
+
     return filtered;
 });
 
@@ -104,9 +106,36 @@ const getAttributeStyle = (item: string) => {
 };
 
 const handleMoveInfo = (item: Move) => {
+    // 进入详情前保存当前滚动位置（窗口级）
+    const top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    pokemonStore.scrollPosition = Math.max(0, top);
     pokemonStore.Move = item;
     $router.push('/move/move_info');
 };
+
+// 使用 onActivated 代替 onMounted，因为使用了 keep-alive
+onActivated(async () => {
+    await nextTick();
+    setTimeout(() => {
+        window.scrollTo({ top: pokemonStore.scrollPosition || 0, behavior: 'auto' });
+    }, 50)
+});
+
+// 监听滚动事件，实时保存滚动位置
+let _scrollHandler: any = null;
+onMounted(() => {
+    _scrollHandler = () => {
+        const top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        pokemonStore.scrollPosition = Math.max(0, top);
+    };
+    window.addEventListener('scroll', _scrollHandler, { passive: true });
+});
+
+onBeforeUnmount(() => {
+    if (_scrollHandler) {
+        window.removeEventListener('scroll', _scrollHandler);
+    }
+});
 </script>
 
 <style scoped lang="scss">
@@ -114,7 +143,7 @@ const handleMoveInfo = (item: Move) => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100vh;
+    /* height: 100vh;  改为由页面滚动 */
     width: 100%;
     background-color: #f8f9fa;
     font-family: Arial, sans-serif;
@@ -122,9 +151,9 @@ const handleMoveInfo = (item: Move) => {
     .move_header {
         width: 90%;
         max-width: 800px;
-        flex-grow: 1;
-        overflow-y: auto; // 如果内容太多可以滚动
-        scrollbar-width: none; // Firefox
+        /* flex-grow: 1;  交由页面高度撑开 */
+        /* overflow-y: auto; // 改为窗口滚动 */
+        /* scrollbar-width: none; // Firefox */
 
         .move_item {
             display: flex;
@@ -205,12 +234,12 @@ const handleMoveInfo = (item: Move) => {
         font-weight: bold;
         cursor: pointer;
         transition: all 0.3s ease;
-        
+
         &.active {
             transform: scale(0.95);
             box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
         }
-        
+
         &:hover {
             opacity: 0.8;
         }
@@ -234,7 +263,7 @@ const handleMoveInfo = (item: Move) => {
 @media screen and (max-width: 480px) {
     .search-container {
         flex-direction: column;
-        
+
         .filter-btn {
             width: 100%;
         }

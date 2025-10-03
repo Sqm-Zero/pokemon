@@ -161,7 +161,7 @@ export const reqMethod = (): Method[] => {
         },
         {
             "pokemonName": "换装皮卡丘",
-            "捕捉方式": null,
+            "捕捉方式": "冠军之路",
             "进化等级": null,
             "特殊说明": "需要捕捉赤皮 然后去华丽大赛更衣橱换装"
         },
@@ -4361,6 +4361,12 @@ export const reqEvolve = (): Evolve[] => {
             "condition": "level_up"
         },
         {
+            "pokemonName": "喷火龙",
+            "item": "龙之石板",
+            "NextStage": "破天炎",
+            "condition": "level_up_holding_item"
+        },
+        {
             "pokemonName": "杰尼龟",
             "level": "16",
             "NextStage": "卡咪龟",
@@ -4380,7 +4386,7 @@ export const reqEvolve = (): Evolve[] => {
         },
         {
             "pokemonName": "绿毛虫",
-            "item": "龙之石板",
+            "item": "蓝天石板",
             "NextStage": "烈空坐",
             "condition": "level_up_holding_item"
         },
@@ -4901,6 +4907,12 @@ export const reqEvolve = (): Evolve[] => {
             "condition": "use_item"
         },
         {
+            "pokemonName": "超梦",
+            "item": "神奇石板",
+            "NextStage": "幻梦",
+            "condition": "level_up_holding_item"
+        },
+        {
             "pokemonName": "菊草叶",
             "level": "16",
             "NextStage": "月桂叶",
@@ -5135,6 +5147,30 @@ export const reqEvolve = (): Evolve[] => {
             "condition": "level_up"
         },
         {
+            "pokemonName": "多边兽II",
+            "item": "觉醒之石",
+            "NextStage": "多边兽Z",
+            "condition": "use_item"
+        },
+        {
+            "pokemonName": "无畏小子",
+            "move": "音速拳",
+            "NextStage": "快拳郎",
+            "condition": "learn_move"
+        },
+        {
+            "pokemonName": "无畏小子",
+            "move": "飞踢",
+            "NextStage": "飞腿郎",
+            "condition": "learn_move"
+        },
+        {
+            "pokemonName": "无畏小子",
+            "move": "高速旋转",
+            "NextStage": "战舞郎",
+            "condition": "learn_move"
+        },
+        {
             "pokemonName": "迷唇娃",
             "item": "光之石",
             "NextStage": "迷唇姐",
@@ -5299,7 +5335,7 @@ export const reqEvolve = (): Evolve[] => {
         {
             "pokemonName": "过动猿",
             "level": "60",
-            "NextStage": "请假王",
+            "NextStage": "加班王",
             "condition": "level_up"
         },
         {
@@ -5322,9 +5358,8 @@ export const reqEvolve = (): Evolve[] => {
         },
         {
             "pokemonName": "露力丽",
-            "level": "15",
             "NextStage": "玛力露",
-            "condition": "level_up"
+            "condition": "friendship"
         },
         {
             "pokemonName": "朝北鼻",
@@ -6383,12 +6418,6 @@ export const reqEvolve = (): Evolve[] => {
             "condition": "level_up"
         },
         {
-            "pokemonName": "龟脚脚",
-            "level": "39",
-            "NextStage": "龟足巨铠",
-            "condition": "level_up"
-        },
-        {
             "pokemonName": "垃垃藻",
             "level": "48",
             "NextStage": "毒藻龙",
@@ -6459,24 +6488,6 @@ export const reqEvolve = (): Evolve[] => {
             "level": "48",
             "NextStage": "音波龙",
             "condition": "level_up"
-        },
-        {
-            "pokemonName": "无畏小子",
-            "item": "攻击小于防御，等级大于20时",
-            "NextStage": "快拳郎",
-            "condition": "special"
-        },
-        {
-            "pokemonName": "无畏小子",
-            "item": "攻击大于防御，等级大于20时",
-            "NextStage": "飞腿郎",
-            "condition": "special"
-        },
-        {
-            "pokemonName": "无畏小子",
-            "item": "攻击等于防御，等级大于20时",
-            "NextStage": "战舞郎",
-            "condition": "special"
         }
     ]
 }

@@ -1997,7 +1997,7 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "10%",
-                    "name": "龟足巨铠",
+                    "name": "太阳珊瑚",
                     "level": 40,
                     "forme": 0
                 },
@@ -3511,13 +3511,13 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "10%",
-                    "name": "惊角鹿",
+                    "name": "尾立",
                     "level": 10,
                     "forme": 0
                 },
                 {
                     "rate": "10%",
-                    "name": "尾立",
+                    "name": "惊角鹿",
                     "level": 10,
                     "forme": 0
                 },
@@ -3595,7 +3595,7 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "10%",
-                    "name": "咚咚鼠",
+                    "name": "玛力露",
                     "level": 18,
                     "forme": 0
                 },
@@ -3891,19 +3891,19 @@ export const getAreas: () => LocationData = () => {
             "Swarm": [
                 {
                     "rate": "?%",
-                    "name": "龙卷云",
+                    "name": "毒卷云",
                     "level": 45,
                     "forme": 0
                 },
                 {
                     "rate": "?%",
-                    "name": "龙卷云",
+                    "name": "毒卷云",
                     "level": 45,
                     "forme": 0
                 },
                 {
                     "rate": "?%",
-                    "name": "龙卷云",
+                    "name": "毒卷云",
                     "level": 45,
                     "forme": 0
                 }
@@ -4683,7 +4683,13 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "10%",
-                    "name": "勾魂眼",
+                    "name": "秃鹰娜",
+                    "level": 41,
+                    "forme": 0
+                },
+                {
+                    "rate": "10%",
+                    "name": "秃鹰娜",
                     "level": 41,
                     "forme": 0
                 },
@@ -4701,13 +4707,7 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "10%",
-                    "name": "花岩怪",
-                    "level": 41,
-                    "forme": 0
-                },
-                {
-                    "rate": "10%",
-                    "name": "勾魂眼",
+                    "name": "黑鲁加",
                     "level": 41,
                     "forme": 0
                 },
@@ -6735,7 +6735,7 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "10%",
-                    "name": "爆炸头水牛",
+                    "name": "单首龙",
                     "level": 26,
                     "forme": 0
                 },
@@ -7410,19 +7410,19 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "5%",
-                    "name": "地幔岩",
+                    "name": "钳尾蝎",
                     "level": 12,
                     "forme": 0
                 },
                 {
                     "rate": "4%",
-                    "name": "地幔岩",
+                    "name": "钳尾蝎",
                     "level": 12,
                     "forme": 0
                 },
                 {
                     "rate": "1%",
-                    "name": "地幔岩",
+                    "name": "钳尾蝎",
                     "level": 12,
                     "forme": 0
                 }
@@ -7825,7 +7825,7 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "10%",
-                    "name": "钳尾蝎",
+                    "name": "粉蝶虫",
                     "level": 7,
                     "forme": 0
                 },
@@ -7843,13 +7843,13 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "4%",
-                    "name": "粉蝶虫",
+                    "name": "铁面忍者",
                     "level": 7,
                     "forme": 0
                 },
                 {
                     "rate": "1%",
-                    "name": "粉蝶虫",
+                    "name": "铁面忍者",
                     "level": 7,
                     "forme": 0
                 }
@@ -9514,188 +9514,7 @@ export const getAreas: () => LocationData = () => {
                     "forme": 0
                 }
             ],
-            "Swarm": [
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                },
-                {
-                    "rate": "?%",
-                    "name": "盖欧卡",
-                    "level": 45,
-                    "forme": 0
-                }
-            ],
+            "Swarm": [],
             "Old Rod": [
                 {
                     "rate": "60%",
@@ -10458,19 +10277,19 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "5%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 1",
                     "level": 20,
                     "forme": 6
                 },
                 {
                     "rate": "4%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 2",
                     "level": 20,
                     "forme": 6
                 },
                 {
                     "rate": "1%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 3",
                     "level": 20,
                     "forme": 6
                 },
@@ -10530,19 +10349,19 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "5%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 4",
                     "level": 20,
                     "forme": 6
                 },
                 {
                     "rate": "4%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 5",
                     "level": 20,
                     "forme": 6
                 },
                 {
                     "rate": "1%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 6",
                     "level": 20,
                     "forme": 6
                 },
@@ -10602,19 +10421,19 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "5%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 1",
                     "level": 20,
                     "forme": 6
                 },
                 {
                     "rate": "4%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 2",
                     "level": 20,
                     "forme": 6
                 },
                 {
                     "rate": "1%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 3",
                     "level": 20,
                     "forme": 6
                 }
@@ -10624,55 +10443,31 @@ export const getAreas: () => LocationData = () => {
             "Swarm": [
                 {
                     "rate": "?%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 4",
                     "level": 20,
                     "forme": 6
                 },
                 {
                     "rate": "?%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 5",
                     "level": 20,
                     "forme": 6
                 },
                 {
                     "rate": "?%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 6",
                     "level": 20,
                     "forme": 6
                 },
                 {
                     "rate": "?%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 6",
                     "level": 20,
                     "forme": 6
                 },
                 {
                     "rate": "?%",
-                    "name": "皮卡丘",
-                    "level": 20,
-                    "forme": 6
-                },
-                {
-                    "rate": "?%",
-                    "name": "皮卡丘",
-                    "level": 20,
-                    "forme": 6
-                },
-                {
-                    "rate": "?%",
-                    "name": "皮卡丘",
-                    "level": 20,
-                    "forme": 6
-                },
-                {
-                    "rate": "?%",
-                    "name": "皮卡丘",
-                    "level": 20,
-                    "forme": 6
-                },
-                {
-                    "rate": "?%",
-                    "name": "皮卡丘",
+                    "name": "皮卡丘 6",
                     "level": 20,
                     "forme": 6
                 }
@@ -13051,7 +12846,7 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "10%",
-                    "name": "代欧奇希斯",
+                    "name": "哲尔尼亚斯",
                     "level": 20,
                     "forme": 0
                 },
@@ -13164,19 +12959,19 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "10%",
-                    "name": "土居忍士",
+                    "name": "勾魂眼",
                     "level": 57,
                     "forme": 0
                 },
                 {
                     "rate": "10%",
-                    "name": "土居忍士",
+                    "name": "勾魂眼",
                     "level": 55,
                     "forme": 0
                 },
                 {
                     "rate": "10%",
-                    "name": "土居忍士",
+                    "name": "勾魂眼",
                     "level": 54,
                     "forme": 0
                 },
@@ -13434,19 +13229,19 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "10%",
-                    "name": "向日种子",
+                    "name": "铁面忍者",
                     "level": 57,
                     "forme": 0
                 },
                 {
                     "rate": "10%",
-                    "name": "向日种子",
+                    "name": "铁面忍者",
                     "level": 55,
                     "forme": 0
                 },
                 {
                     "rate": "10%",
-                    "name": "向日种子",
+                    "name": "铁面忍者",
                     "level": 54,
                     "forme": 0
                 },
@@ -15045,7 +14840,7 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "15%",
-                    "name": "龟脚脚",
+                    "name": "隆隆石",
                     "level": 55,
                     "forme": 0
                 },
@@ -15075,7 +14870,7 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "15%",
-                    "name": "龟脚脚",
+                    "name": "隆隆石",
                     "level": 55,
                     "forme": 0
                 },
@@ -15780,15 +15575,15 @@ export const getAreas: () => LocationData = () => {
                 },
                 {
                     "rate": "35%",
-                    "name": "花叶蒂",
+                    "name": "幽魂花",
                     "level": 20,
-                    "forme": 5
+                    "forme": 0
                 },
                 {
                     "rate": "5%",
-                    "name": "花叶蒂",
+                    "name": "幽魂花",
                     "level": 20,
-                    "forme": 5
+                    "forme": 0
                 }
             ],
             "Super Rod": [
@@ -15814,7 +15609,7 @@ export const getAreas: () => LocationData = () => {
             "Surf": [
                 {
                     "rate": "50%",
-                    "name": "哲尔尼亚斯",
+                    "name": "盖欧卡",
                     "level": 20,
                     "forme": 0
                 },
@@ -15897,7 +15692,7 @@ export const getAreas: () => LocationData = () => {
                 {
                     "rate": "10%",
                     "name": "勇基拉",
-                    "level": 41,
+                    "level": 40,
                     "forme": 0
                 },
                 {
@@ -15969,7 +15764,7 @@ export const getAreas: () => LocationData = () => {
                 {
                     "rate": "10%",
                     "name": "大奶罐",
-                    "level": 41,
+                    "level": 40,
                     "forme": 0
                 },
                 {
@@ -16041,7 +15836,7 @@ export const getAreas: () => LocationData = () => {
                 {
                     "rate": "10%",
                     "name": "大舌舔",
-                    "level": 41,
+                    "level": 40,
                     "forme": 0
                 },
                 {
@@ -16113,7 +15908,7 @@ export const getAreas: () => LocationData = () => {
                 {
                     "rate": "10%",
                     "name": "肯泰罗",
-                    "level": 41,
+                    "level": 40,
                     "forme": 0
                 },
                 {
@@ -16187,7 +15982,7 @@ export const getAreas: () => LocationData = () => {
                 {
                     "rate": "10%",
                     "name": "勇基拉",
-                    "level": 41,
+                    "level": 40,
                     "forme": 0
                 },
                 {
@@ -16259,7 +16054,7 @@ export const getAreas: () => LocationData = () => {
                 {
                     "rate": "10%",
                     "name": "大奶罐",
-                    "level": 41,
+                    "level": 40,
                     "forme": 0
                 },
                 {
@@ -16331,7 +16126,7 @@ export const getAreas: () => LocationData = () => {
                 {
                     "rate": "10%",
                     "name": "大舌舔",
-                    "level": 41,
+                    "level": 40,
                     "forme": 0
                 },
                 {
@@ -16403,7 +16198,7 @@ export const getAreas: () => LocationData = () => {
                 {
                     "rate": "10%",
                     "name": "肯泰罗",
-                    "level": 41,
+                    "level": 40,
                     "forme": 0
                 },
                 {
