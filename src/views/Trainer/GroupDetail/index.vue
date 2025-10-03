@@ -10,22 +10,25 @@
 
             <div class="pokemon-list">
                 <div class="pokemon-card" v-for="(p, i) in battle.pokemons" :key="i" @click="handlePokemonInfo(p)">
-
-                    <div class="poke-flex">
+                    <!-- 头像 + 基础信息 -->
+                    <div class="poke-header">
                         <div class="pokemon-avatar">
                             <img :src="getImageSrc(p.name)" :alt="p.name" class="pokemon-image" />
                         </div>
-                        <div class="poke-info-vertical">
-                            <div class="poke-level-row">
+                        <div class="poke-info">
+                            <div class="poke-name-row">
                                 <span class="poke-level">Lv.{{ p.level }}</span>
+                                <span class="poke-name">{{ processPokemonName(p.name) }}</span>
                             </div>
                             <div class="poke-ability">特性：{{ p.ability }}</div>
-                            <span class="poke-item" v-if="p.item">@ {{ p.item }}</span>
+                            <span v-if="p.item" class="poke-item">@ {{ p.item }}</span>
                         </div>
-                        <div class="poke-moves-grid">
-                            <span class="move" v-for="(m, j) in p.moves" :key="j" @click.stop="handleMoveInfo(m)">{{ m
-                                }}</span>
-                        </div>
+                    </div>
+
+                    <!-- 技能独占一行 -->
+                    <div class="poke-moves">
+                        <span class="move" v-for="(m, j) in p.moves" :key="j" @click.stop="handleMoveInfo(m)">{{ m
+                        }}</span>
                     </div>
                 </div>
             </div>
@@ -158,268 +161,188 @@ const handleMoveInfo = (moveName: string) => {
 
 <style scoped>
 .group-detail {
-    background: #f8f9fa;
+    background: #f9fbfd;
     min-height: 100vh;
-    max-width: 420px;
     margin: 0 auto;
-    padding-bottom: 24px;
 }
 
 .battle-card {
     background: #ffffff;
-    border-radius: 12px;
-    /* 去除阴影 */
-    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06); */
-    padding: 16px;
-    margin-bottom: 18px;
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1.2px solid #e3e9f6;
+    border-radius: 14px;
+    padding: 18px;
+    margin: 18px auto;
+    width: 96%;
+    border: 1px solid #dbe9ff;
+    box-shadow: 0 3px 8px rgba(64, 158, 255, 0.06);
 }
 
 .battle-header {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
-    font-weight: bold;
-    color: #2d3a4b;
-    font-size: 15px;
+    margin-bottom: 14px;
+    font-weight: 700;
+    color: #1a2b4d;
+    font-size: 16px;
+    letter-spacing: 0.3px;
 }
 
 .battle-type {
     color: #409eff;
-    font-weight: normal;
+    font-weight: 600;
+    font-size: 14px;
 }
 
 .pokemon-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 16px;
 }
 
 .pokemon-card {
-    background: linear-gradient(135deg, #fafdff 60%, #e3e9f6 100%);
-    border-radius: 20px;
-    padding: 22px 18px 22px 18px;
-    font-size: 15px;
-    color: #444;
-    border: 1.5px solid #e3e9f6;
     display: flex;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-    box-shadow: 0 6px 24px 0 rgba(64, 158, 255, 0.10);
-    margin-bottom: 18px;
-    min-height: 160px;
-    transition: box-shadow 0.2s;
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    background: #f8fbff;
+    border-radius: 12px;
+    border: 1px solid #e6f0ff;
 }
 
-.pokemon-card:hover {
-    box-shadow: 0 10px 32px 0 rgba(64, 158, 255, 0.16);
-}
-
-.poke-flex {
+/* 头像 + 文字信息 */
+.poke-header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-    gap: 8px;
+    align-items: flex-start;
+    gap: 14px;
 }
 
 .pokemon-avatar {
-    width: 130px;
-    height: 130px;
+    width: 68px;
+    height: 68px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #eaf6ff 60%, #f0f7ff 100%);
+    background: linear-gradient(135deg, #e6f4ff, #f0f9ff);
     border-radius: 50%;
-    border: 3px solid #b3d8ff;
-    box-shadow: 0 4px 18px 0 rgba(64, 158, 255, 0.13);
-    margin-right: 16px;
+    border: 2px solid #cce6ff;
 }
 
 .pokemon-image {
-    width: 116px;
-    height: 116px;
+    width: 58px;
+    height: 58px;
     object-fit: contain;
-    background: #fff;
+    background: white;
     border-radius: 50%;
-    border: 2.5px solid #e3e9f6;
-    box-shadow: 0 2px 12px 0 rgba(64, 158, 255, 0.10);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-.poke-info-vertical {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 170px;
-    max-width: 200px;
-    background: #f4f8ff;
-    border-radius: 16px;
-    padding: 16px 24px 14px 24px;
-    border: 1.5px solid #b3d8ff;
-    box-shadow: 0 2px 8px 0 rgba(64, 158, 255, 0.08);
-    font-weight: 600;
-    margin: 0 12px 0 0;
-    position: relative;
+.poke-info {
+    flex: 1;
+    min-width: 0;
+    font-size: 14px;
+    color: #2c3e50;
+    line-height: 1.4;
 }
 
-.poke-level-row {
+.poke-name-row {
     display: flex;
     align-items: center;
-    font-size: 18px;
-    color: #3366cc;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    margin-bottom: 10px;
+    gap: 8px;
+    margin-bottom: 4px;
 }
 
 .poke-level {
-    font-size: 18px;
+    font-size: 15px;
     color: #3366cc;
     font-weight: 700;
-    margin-right: 8px;
+    background: #e6f0ff;
+    padding: 2px 8px;
+    border-radius: 6px;
+    min-width: 50px;
+    text-align: center;
+}
+
+.poke-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a2b4d;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .poke-ability {
-    font-size: 16px;
-    color: #2d3a4b;
+    font-size: 13px;
+    color: #5a6b82;
+    margin-bottom: 4px;
     font-weight: 500;
-    word-break: break-all;
-    margin-bottom: 10px;
 }
 
 .poke-item {
     display: inline-block;
-    margin-top: 0;
-    font-size: 13.5px;
-    color: #fff;
+    font-size: 12px;
+    color: white;
+    background: linear-gradient(90deg, #53b1ff, #2d8cf0);
+    padding: 3px 10px;
+    border-radius: 8px;
     font-weight: 600;
-    background: linear-gradient(90deg, #6ec6ff 0%, #409eff 100%);
-    border-radius: 12px;
-    padding: 3px 16px;
-    box-shadow: 0 2px 6px 0 rgba(64, 158, 255, 0.10);
     letter-spacing: 0.5px;
-    min-width: 40px;
-    text-align: center;
-    border: none;
 }
 
-.poke-moves-grid {
-    margin-top: 0;
+/* 技能整行 */
+.poke-moves {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px 28px;
-    background: #fafdff;
-    border-radius: 18px;
-    padding: 18px 18px;
-    width: 240px;
-    border: 1.5px solid #b3d8ff;
-    box-shadow: 0 2px 12px 0 rgba(64, 158, 255, 0.10);
-    font-weight: 600;
-    align-items: center;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    width: 100%;
+    margin-top: 4px;
 }
 
 .move {
-    background: linear-gradient(135deg, #e6f0ff 60%, #d6eaff 100%);
-    padding: 15px 0;
-    border-radius: 22px;
-    font-size: 19px;
-    color: #3366cc;
+    background: #f0f7ff;
+    color: #2d8cf0;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 9px 6px;
+    border-radius: 10px;
+    text-align: center;
+    border: 1px solid #d0e4ff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
     cursor: pointer;
-    text-align: center;
-    margin-bottom: 0;
-    box-shadow: 0 2px 8px 0 rgba(64, 158, 255, 0.10);
-    border: 1.5px solid #b3d8ff;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    transition: background 0.2s, box-shadow 0.2s;
+    font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
 }
 
-.move:active {
-    background: #b3d8ff;
-    box-shadow: 0 1px 2px 0 rgba(64, 158, 255, 0.10);
-}
-
-.empty-msg {
-    text-align: center;
-    padding: 40px 0;
-    color: #999;
-    font-size: 15px;
-}
-
-@media (max-width: 600px) {
+/* 超小屏优化 */
+@media (max-width: 360px) {
     .group-detail {
-        max-width: 100vw;
-        padding-bottom: 12px;
-    }
-
-    .battle-card {
-        width: 98%;
-        padding: 10px;
-    }
-
-    .pokemon-card {
-        padding: 8px 2px 8px 2px;
-        min-height: 110px;
-        margin-bottom: 10px;
+        padding: 12px 8px 70px;
     }
 
     .pokemon-avatar {
-        width: 84px;
-        height: 84px;
-        margin-right: 10px;
+        width: 64px;
+        height: 64px;
     }
 
     .pokemon-image {
-        width: 74px;
-        height: 74px;
+        width: 54px;
+        height: 54px;
     }
 
-    .poke-info-vertical {
-        min-width: 100px;
-        max-width: 100%;
-        padding: 8px 12px 8px 12px;
-        border-radius: 10px;
-        margin: 0 8px 0 0;
-    }
-
-    .poke-level-row {
-        font-size: 14px;
-        margin-bottom: 2px;
-    }
-
-    .poke-level {
-        font-size: 14px;
-    }
-
-    .poke-ability {
-        font-size: 12.5px;
-        margin-bottom: 4px;
-    }
-
-    .poke-moves-grid {
-        width: 80vw;
-        max-width: 100%;
-        padding: 14px 18px;
-        gap: 14px 12px;
-        border-radius: 12px;
+    .poke-name {
+        font-size: 15px;
     }
 
     .move {
-        font-size: 14px;
-        padding: 8px 0;
-        border-radius: 12px;
+        font-size: 12px;
+        padding: 8px 4px;
+        border-radius: 9px;
     }
 
-    .poke-item {
-        font-size: 11.5px;
-        padding: 2px 8px;
-        min-width: 28px;
-        border-radius: 8px;
+    .battle-card {
+        padding: 16px;
     }
 }
 </style>
