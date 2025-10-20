@@ -1,228 +1,237 @@
 <template>
     <Top title="宝可梦介绍" icon="pokemon" router="/pokemon" :color="getColor(pokemon_info.属性[0])"></Top>
     <div class="pokemon-info" :style="gradientHttp" @touchstart="handleTouchStart" @touchmove="handleTouchMove"
-        @touchend="handleTouchEnd">
-        <div class="pokemon-title" :style="gradientStyle">
-            <div class="pokemon-title-left">
-                <div class="pokemon-name">
-                    <p class="title">{{ pokemon_info.名称 }}</p>
-                    <div style="display: flex;">
-                        <p class="subtitle" v-for="(item, index) in pokemon_info.蛋群" :key="item">
-                            {{ item }}<span v-if="index < pokemon_info.蛋群.length - 1">, </span>
-                        </p>
+        @touchend="handleTouchEnd" @mousedown="handleMouseDown" @mousemove="handleMouseMove" @mouseup="handleMouseUp"
+        @mouseleave="handleMouseUp">
+        <!-- 翻页动画容器 -->
+        <div class="page-container" :style="pageContainerStyle">
+            <div class="page-content" :style="pageContentStyle">
+                <div class="pokemon-title" :style="gradientStyle">
+                    <div class="pokemon-title-left">
+                        <div class="pokemon-name">
+                            <p class="title">{{ pokemon_info.名称 }}</p>
+                            <div style="display: flex;">
+                                <p class="subtitle" v-for="(item, index) in pokemon_info.蛋群" :key="item">
+                                    {{ item }}<span v-if="index < pokemon_info.蛋群.length - 1">, </span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="pokemon-type">
+                            <div class="type">
+                                <div class="type1" v-for="item in pokemon_info.属性" :key="item"
+                                    :style="{ backgroundColor: getColor(item) }">{{
+                                        item }}</div>
+                            </div>
+                            <div class="ability">
+                                <div v-if="pokemon_info.特性.length < 3" class="ability-box"
+                                    v-for="item in pokemon_info.特性" :key="item">
+                                    {{ item }}
+                                </div>
+                                <template v-else>
+                                    <div class="ability-box" @click="abilityDrawer = true">
+                                        {{ pokemon_info.特性[0] }}
+                                        <br>
+                                        {{ pokemon_info.特性[1] }}
+                                    </div>
+                                    <div class="ability-box" @click="showHiddenAbility(pokemon_info.特性[2])">
+                                        {{ pokemon_info.特性[2] }}
+                                        <p>隐藏特性</p>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pokemon-title-right">
+                        <img :src="getImageSrc(pokemon_info.编号)" alt="">
                     </div>
                 </div>
-                <div class="pokemon-type">
-                    <div class="type">
-                        <div class="type1" v-for="item in pokemon_info.属性" :key="item"
-                            :style="{ backgroundColor: getColor(item) }">{{
-                                item }}</div>
-                    </div>
-                    <div class="ability">
-                        <div v-if="pokemon_info.特性.length < 3" class="ability-box" v-for="item in pokemon_info.特性"
-                            :key="item">
-                            {{ item }}
+                <div class="details" :style="{ background: getColor(pokemon_info.属性[0]) }">
+                    <div class="pokemon-header">
+                        <div class="grade">
+                            <p>等级</p>
+                            <el-input class="input" v-model="RankCharacter.grade"></el-input>
                         </div>
-                        <template v-else>
-                            <div class="ability-box" @click="abilityDrawer = true">
-                                {{ pokemon_info.特性[0] }}
-                                <br>
-                                {{ pokemon_info.特性[1] }}
+                        <div class="nature">
+                            <p>性格</p>
+                            <el-button @click="drawer = true">
+                                {{ RankCharacter.nature }}
+                            </el-button>
+                        </div>
+                    </div>
+                    <div class="pokemon-stats-container">
+                        <div class="pokemon-base-stats">
+                            <p>种族值</p>
+                            <div v-for="(item, index) in pokemon_info.种族值" :key="index">
+                                <div>{{ RaceValue[index] }}:{{ item }}</div>
                             </div>
-                            <div class="ability-box" @click="showHiddenAbility(pokemon_info.特性[2])">
-                                {{ pokemon_info.特性[2] }}
-                                <p>隐藏特性</p>
+                            <div>
+                                总种族值<br />
+                                {{ pokemon_info.总种族值 }}
+                            </div>
+                        </div>
+
+                        <div class="pokemon-individual-values">
+                            <p>个体值</p>
+                            <div class="input-container" v-for="(item, index) in IndividualValue" :key="index">
+                                <div class="editable-div" @input="updateIndividual($event, index)"
+                                    contenteditable="true" v-html="item">
+                                </div>
+                            </div>
+                            <div>
+                                <span v-if="pokemon_info.canUseEvolutionStone" style="color: red;">
+                                    可用<br />进化奇石
+                                </span>
+                                <span v-else>
+                                    进化阶段<br />
+                                    {{ pokemon_info.进化阶段 }}
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="pokemon-effort-values">
+                            <p>努力值</p>
+                            <div class="input-container" v-for="(item, index) in EffortValue" :key="index">
+                                <div class="editable-div" v-html="item" @input="updateEffort($event, index)"
+                                    contenteditable="true">
+                                </div>
+                            </div>
+                            <div>
+                                孵蛋速度<br />
+                                {{ pokemon_info.蛋群[0] == "未发现" ? "不可孵蛋" : pokemon_info.孵蛋周期 }}
+                            </div>
+                        </div>
+
+                        <div class="pokemon-ability-values">
+                            <p>能力值</p>
+                            <div class="input-container" v-for="(item, index) in AbilityValue" :key="index">
+                                <div>{{ item }}</div>
+                            </div>
+                            <div>
+                                满级经验<br />
+                                {{ pokemon_info.经验值累积速度 }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="weaknesses-container">
+                    <div class="weaknesses-header">属性相性</div>
+                    <div class="weaknesses-content">
+                        <div class="weaknesses-grid">
+                            <div v-for="(item, index) in attributeList" :key="index" class="weaknesses-item">
+                                <div class="weaknesses-type" :style="{ backgroundColor: colorMap[item] }">
+                                    {{ item == "超能力" ? "超能" : item }}
+                                </div>
+                                <div class="weaknesses-value">
+                                    <template v-if="shuxing[index - 1] > 1">
+                                        <span class="text-red-500"> {{ shuxing[index - 1] }}</span>
+                                    </template>
+                                    <template v-else-if="shuxing[index - 1] < 1">
+                                        <span class="text-green-500"> {{ shuxing[index - 1] }}</span>
+                                    </template>
+                                    <template v-else>
+                                        <span class="text-gray-500"> {{ shuxing[index - 1] }}</span>
+                                    </template>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pokemon-method" v-if="appearAreas.length > 0">
+                    <div class="method-header">精灵分布</div>
+                    <div class="method-content">
+                        <template v-if="appearAreas.length > 0">
+                            <div v-for="(item, idx) in appearAreas" :key="idx" class="method-text">
+                                <span @click="handleAreaJump(item.area)">{{ item.area }}</span>
                             </div>
                         </template>
+                        <div v-else class="method-text">暂无分布信息</div>
                     </div>
                 </div>
-            </div>
-            <div class="pokemon-title-right">
-                <img :src="getImageSrc(pokemon_info.编号)" alt="">
-            </div>
-        </div>
-        <div class="details" :style="{ background: getColor(pokemon_info.属性[0]) }">
-            <div class="pokemon-header">
-                <div class="grade">
-                    <p>等级</p>
-                    <el-input class="input" v-model="RankCharacter.grade"></el-input>
-                </div>
-                <div class="nature">
-                    <p>性格</p>
-                    <el-button @click="drawer = true">
-                        {{ RankCharacter.nature }}
-                    </el-button>
-                </div>
-            </div>
-            <div class="pokemon-stats-container">
-                <div class="pokemon-base-stats">
-                    <p>种族值</p>
-                    <div v-for="(item, index) in pokemon_info.种族值" :key="index">
-                        <div>{{ RaceValue[index] }}:{{ item }}</div>
-                    </div>
-                    <div>
-                        总种族值<br />
-                        {{ pokemon_info.总种族值 }}
+                <div class="pokemon-method" v-if="evolves.length">
+                    <div class="method-header">进化方式</div>
+                    <div class="evolution-steps">
+                        <div class="evolution-step" v-for="(evolve, index) in evolves" :key="index">
+                            <div class="evolution-container" v-show="evolve.condition !== 'trade'">
+                                <!-- 当前形态 -->
+                                <div class="pokemon-card" @click="handleNextStageInfo(evolve.pokemonName)">
+                                    <img class="pokemon-image"
+                                        :src="getImageSrc(pokemonStore.getPokemonIdByName(evolve.pokemonName))"
+                                        :alt="pokemon_info.名称">
+                                    <p class="pokemon-name">{{ evolve.pokemonName }}</p>
+                                </div>
+
+                                <!-- 进化条件 -->
+                                <div class="evolution-condition">
+                                    <div class="condition-bubble" v-if="evolve.condition === 'level_up'">
+                                        <i class="fas fa-level-up-alt"></i> Lv. {{ evolve.level }} 进化
+                                    </div>
+                                    <div class="condition-bubble" v-if="evolve.condition === 'use_item'">
+                                        <i class="fas fa-potion"></i> 使用 {{ evolve.item }} 进化
+                                    </div>
+                                    <div class="condition-bubble" v-if="evolve.condition === 'learn_move'">
+                                        <i class="fas fa-potion"></i> 学会{{ evolve.move }} 后提升等级进化
+                                    </div>
+                                    <div class="condition-bubble" v-if="evolve.condition === 'level_up_holding_item'">
+                                        <i class="fas fa-level-up-alt"></i> 携带 {{ evolve.item }} 进化
+                                    </div>
+                                    <div class="condition-bubble" v-if="evolve.condition === 'friendship'">
+                                        <i class="fas fa-level-up-alt"></i> 友好度进化
+                                    </div>
+                                    <div class="condition-bubble" v-if="evolve.condition === 'special'">
+                                        <i class="fas fa-level-up-alt"></i> {{ evolve.item }}
+                                    </div>
+                                    <div class="evolution-arrow">
+                                        <i class="fas fa-long-arrow-alt-right"></i>
+                                    </div>
+                                </div>
+
+                                <!-- 进化后形态 -->
+                                <div class="pokemon-card" style="cursor:pointer"
+                                    @click="handleNextStageInfo(evolve.NextStage)">
+                                    <img class="pokemon-image"
+                                        :src="getImageSrc(pokemonStore.getPokemonIdByName(evolve.NextStage))"
+                                        :alt="evolve.NextStage">
+                                    <p class="pokemon-name">{{ evolve.NextStage }}</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <div class="pokemon-individual-values">
-                    <p>个体值</p>
-                    <div class="input-container" v-for="(item, index) in IndividualValue" :key="index">
-                        <div class="editable-div" @input="updateIndividual($event, index)" contenteditable="true"
-                            v-html="item">
-                        </div>
-                    </div>
-                    <div>
-                        <span v-if="pokemon_info.canUseEvolutionStone" style="color: red;">
-                            可用<br />进化奇石
-                        </span>
-                        <span v-else>
-                            进化阶段<br />
-                            {{ pokemon_info.进化阶段 }}
-                        </span>
-                    </div>
-                </div>
-
-                <div class="pokemon-effort-values">
-                    <p>努力值</p>
-                    <div class="input-container" v-for="(item, index) in EffortValue" :key="index">
-                        <div class="editable-div" v-html="item" @input="updateEffort($event, index)"
-                            contenteditable="true">
-                        </div>
-                    </div>
-                    <div>
-                        孵蛋速度<br />
-                        {{ pokemon_info.蛋群[0] == "未发现" ? "不可孵蛋" : pokemon_info.孵蛋周期 }}
-                    </div>
-                </div>
-
-                <div class="pokemon-ability-values">
-                    <p>能力值</p>
-                    <div class="input-container" v-for="(item, index) in AbilityValue" :key="index">
-                        <div>{{ item }}</div>
-                    </div>
-                    <div>
-                        满级经验<br />
-                        {{ pokemon_info.经验值累积速度 }}
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="weaknesses-container">
-            <div class="weaknesses-header">属性相性</div>
-            <div class="weaknesses-content">
-                <div class="weaknesses-grid">
-                    <div v-for="(item, index) in attributeList" :key="index" class="weaknesses-item">
-                        <div class="weaknesses-type" :style="{ backgroundColor: colorMap[item] }">
-                            {{ item == "超能力" ? "超能" : item }}
-                        </div>
-                        <div class="weaknesses-value">
-                            <template v-if="shuxing[index - 1] > 1">
-                                <span class="text-red-500"> {{ shuxing[index - 1] }}</span>
-                            </template>
-                            <template v-else-if="shuxing[index - 1] < 1">
-                                <span class="text-green-500"> {{ shuxing[index - 1] }}</span>
-                            </template>
-                            <template v-else>
-                                <span class="text-gray-500"> {{ shuxing[index - 1] }}</span>
-                            </template>
+                <div class="pokemon-belongings" v-if="pokemon_info.可能携带的物品.length !== 0">
+                    <div class="belongings-header">携带物品</div>
+                    <div class="belongings-content">
+                        <div v-for="(item, index) in pokemon_info.可能携带的物品" :key="index" class="belongings-item">
+                            <div class="belongings-name">{{ item.物品 }} {{ item.概率 }}%</div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="pokemon-method" v-if="appearAreas.length > 0">
-            <div class="method-header">精灵分布</div>
-            <div class="method-content">
-                <template v-if="appearAreas.length > 0">
-                    <div v-for="(item, idx) in appearAreas" :key="idx" class="method-text">
-                        <span @click="handleAreaJump(item.area)">{{ item.area }}</span>
+                <div class="pokemon-moves">
+                    <div style="position: relative; text-align: center;">
+                        <div class="moves-header">{{ movesTitle }}</div>
+                        <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); cursor: pointer;"
+                            @click="toggleEggMoves">
+                            <SvgIcon name="toggle" height="30px" width="30px"
+                                :color="isEggMoves ? '#ff6b6b' : '#00bfff'">
+                            </SvgIcon>
+                        </div>
                     </div>
-                </template>
-                <div v-else class="method-text">暂无分布信息</div>
-            </div>
-        </div>
-        <div class="pokemon-method" v-if="evolves.length">
-            <div class="method-header">进化方式</div>
-            <div class="evolution-steps">
-                <div class="evolution-step" v-for="(evolve, index) in evolves" :key="index">
-                    <div class="evolution-container" v-show="evolve.condition !== 'trade'">
-                        <!-- 当前形态 -->
-                        <div class="pokemon-card" @click="handleNextStageInfo(evolve.pokemonName)">
-                            <img class="pokemon-image"
-                                :src="getImageSrc(pokemonStore.getPokemonIdByName(evolve.pokemonName))"
-                                :alt="pokemon_info.名称">
-                            <p class="pokemon-name">{{ evolve.pokemonName }}</p>
-                        </div>
 
-                        <!-- 进化条件 -->
-                        <div class="evolution-condition">
-                            <div class="condition-bubble" v-if="evolve.condition === 'level_up'">
-                                <i class="fas fa-level-up-alt"></i> Lv. {{ evolve.level }} 进化
-                            </div>
-                            <div class="condition-bubble" v-if="evolve.condition === 'use_item'">
-                                <i class="fas fa-potion"></i> 使用 {{ evolve.item }} 进化
-                            </div>
-                            <div class="condition-bubble" v-if="evolve.condition === 'learn_move'">
-                                <i class="fas fa-potion"></i> 学会{{ evolve.move }} 后提升等级进化
-                            </div>
-                            <div class="condition-bubble" v-if="evolve.condition === 'level_up_holding_item'">
-                                <i class="fas fa-level-up-alt"></i> 携带 {{ evolve.item }} 进化
-                            </div>
-                            <div class="condition-bubble" v-if="evolve.condition === 'friendship'">
-                                <i class="fas fa-level-up-alt"></i> 友好度进化
-                            </div>
-                            <div class="condition-bubble" v-if="evolve.condition === 'special'">
-                                <i class="fas fa-level-up-alt"></i> {{ evolve.item }}
-                            </div>
-                            <div class="evolution-arrow">
-                                <i class="fas fa-long-arrow-alt-right"></i>
-                            </div>
-                        </div>
-
-                        <!-- 进化后形态 -->
-                        <div class="pokemon-card" style="cursor:pointer" @click="handleNextStageInfo(evolve.NextStage)">
-                            <img class="pokemon-image"
-                                :src="getImageSrc(pokemonStore.getPokemonIdByName(evolve.NextStage))"
-                                :alt="evolve.NextStage">
-                            <p class="pokemon-name">{{ evolve.NextStage }}</p>
+                    <div class="moves-content">
+                        <div v-for="(item, index) in moves" :key="index" class="moves-item" :class="{
+                            'moves-item-early': parseInt(item.level) <= 10,
+                            'moves-item-mid': parseInt(item.level) > 10 && parseInt(item.level) <= 50,
+                            'moves-item-late': parseInt(item.level) > 50,
+                            'moves-item-lates': parseInt(item.level) == 100
+                        }" @click="handleMoveInfo(item)">
+                            <div class="moves-type">Lv. {{ item.level }}</div>
+                            <div class="moves-name">{{ item.skill_name }}</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="pokemon-belongings" v-if="pokemon_info.可能携带的物品.length !== 0">
-            <div class="belongings-header">携带物品</div>
-            <div class="belongings-content">
-                <div v-for="(item, index) in pokemon_info.可能携带的物品" :key="index" class="belongings-item">
-                    <div class="belongings-name">{{ item.物品 }} {{ item.概率 }}%</div>
-                </div>
-            </div>
-        </div>
-        <div class="pokemon-moves">
-            <div style="position: relative; text-align: center;">
-                <div class="moves-header">{{ movesTitle }}</div>
-                <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); cursor: pointer;"
-                    @click="toggleEggMoves">
-                    <SvgIcon name="toggle" height="30px" width="30px" :color="isEggMoves ? '#ff6b6b' : '#00bfff'">
-                    </SvgIcon>
-                </div>
-            </div>
-
-            <div class="moves-content">
-                <div v-for="(item, index) in moves" :key="index" class="moves-item" :class="{
-                    'moves-item-early': parseInt(item.level) <= 10,
-                    'moves-item-mid': parseInt(item.level) > 10 && parseInt(item.level) <= 50,
-                    'moves-item-late': parseInt(item.level) > 50,
-                    'moves-item-lates': parseInt(item.level) == 100
-                }" @click="handleMoveInfo(item)">
-                    <div class="moves-type">Lv. {{ item.level }}</div>
-                    <div class="moves-name">{{ item.skill_name }}</div>
-                </div>
-            </div>
-        </div>
         <el-drawer v-model="drawer" direction="btt" size="60%">
             <el-table :data="natureList" style="width: 100%" @row-click="optionNature">
                 <el-table-column prop="name" width="180" />
@@ -239,11 +248,17 @@
                 <div class="ability-content">{{ pokemon_info.特性[1] }}</div>
             </div>
         </el-drawer>
+
+        <!-- 翻页指示器 -->
+        <div class="page-indicator" v-if="isDragging">
+            <div class="indicator-dot" :class="{ active: dragDirection === 'left' }"></div>
+            <div class="indicator-dot" :class="{ active: dragDirection === 'right' }"></div>
+        </div>
     </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed, watch, nextTick, onMounted } from 'vue';
+import { ref, reactive, computed, watch, nextTick, onMounted, onUnmounted } from 'vue';
 import { usePokemonStore } from '@/store/modules/pokemon';
 import { useRouter } from 'vue-router';
 import { getAreas } from '@/apis/areas/index.ts'
@@ -604,7 +619,7 @@ const isEggMoves = ref(false)
 const toggleEggMoves = () => {
     isEggMoves.value = !isEggMoves.value
     movesTitle.value = isEggMoves.value ? '蛋招式' : '可用招式'
-    if(isEggMoves.value) {
+    if (isEggMoves.value) {
         getEggMoves()
     } else {
         getMoves()
@@ -613,7 +628,7 @@ const toggleEggMoves = () => {
 
 let moves: any = ref([])
 // 获取位置
-let appearAreas:any = ref([])
+let appearAreas: any = ref([])
 onMounted(() => {
     // 初始化
     updateAllAbilities();
@@ -621,11 +636,28 @@ onMounted(() => {
     attributeList1();
 
     getMoves();
-    
+
     pokemon_info.old_pokemon_name = pokemon_info.名称
     pokemon_info.名称 = processPokemonName(pokemon_info.名称)
     // 精灵捕获位置
     appearAreas = getAppearAreas(pokemon_info.old_pokemon_name);
+
+    // 添加键盘事件监听
+    document.addEventListener('keydown', handleKeyDown);
+});
+
+// 键盘事件处理
+const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === 'ArrowLeft') {
+        loadPreviousPokemonPage();
+    } else if (event.key === 'ArrowRight') {
+        loadNextPokemonPage();
+    }
+};
+
+// 组件卸载时清理事件监听器
+onUnmounted(() => {
+    document.removeEventListener('keydown', handleKeyDown);
 });
 
 const getMoves = () => {
@@ -637,7 +669,7 @@ const getMoves = () => {
     }
 }
 
-const getEggMoves = () => { 
+const getEggMoves = () => {
     if (!isNaN(Number(pokemon_info.编号)) && !pokemon_info.编号.includes('_')) {
         moves.value = pokemonStore.getEggMovesByNumber(String(Number(pokemon_info.编号)))
     } else {
@@ -719,8 +751,10 @@ const updateIndividual = (event: any, index: number) => {
     const range = selection.getRangeAt(0);
     const cursorPosition = range.startOffset;
 
-    // 如果是空值，直接设置为0
+    // 如果是空值，设置为0
     if (!value) {
+        event.target.innerText = '';
+        // IndividualValue.value[index] = 0;
         return;
     }
 
@@ -757,8 +791,9 @@ const updateEffort = (event: any, index: number) => {
     const range = selection.getRangeAt(0);
     const cursorPosition = range.startOffset;
 
-    // 如果是空值，直接设置为0
+    // 如果是空值，设置为0
     if (!value) {
+        event.target.innerText = '';
         EffortValue.value[index] = 0;
         return;
     }
@@ -883,41 +918,142 @@ const showHiddenAbility = (abilityName: string) => {
     $router.push('/ability/ability_info')
 }
 
-// 触摸事件
+// 拖拽翻页事件
 let startX = 0; // 起始触摸点的 X 坐标
 let endX = 0;   // 结束触摸点的 X 坐标
-let isDragging = false; // 是否正在进行拖动
+let isDragging = ref(false); // 是否正在进行拖动
+let dragDirection = ref(''); // 拖拽方向
+let dragOffset = ref(0); // 拖拽偏移量
+let isMouseDown = ref(false); // 鼠标按下状态
 
-const MIN_SWIPE_DISTANCE = 150; // 设置最小滑动距离，单位为像素
+const MIN_SWIPE_DISTANCE = 50; // 设置最小滑动距离，单位为像素
+const MAX_DRAG_OFFSET = 200; // 最大拖拽偏移量
 
+// 页面容器样式
+const pageContainerStyle = computed(() => ({
+    transform: `translateX(${dragOffset.value}px)`,
+    transition: isDragging.value ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+    opacity: isDragging.value ? Math.max(0.7, 1 - Math.abs(dragOffset.value) / 300) : 1
+}));
+
+const pageContentStyle = computed(() => ({
+    transform: `scale(${isDragging.value ? Math.max(0.95, 1 - Math.abs(dragOffset.value) / 1000) : 1})`,
+    transition: isDragging.value ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+}));
+
+let startY = 0;
 // 触摸开始
 const handleTouchStart = (event: TouchEvent) => {
-    startX = event.touches[0].clientX; // 获取触摸起点
-    isDragging = false; // 初始化拖动状态
+    if ((event.target as HTMLElement).closest('.editable-div')) {
+        return;
+    }
+    startX = event.touches[0].clientX;
+    startY = event.touches[0].clientY; 
+    isDragging.value = false;
+    dragOffset.value = 0;
+    dragDirection.value = '';
 };
 
 // 触摸移动
 const handleTouchMove = (event: TouchEvent) => {
-    endX = event.touches[0].clientX; // 获取触摸移动时的终点
-    const deltaX = endX - startX; // 计算滑动距离
-    if (Math.abs(deltaX) > MIN_SWIPE_DISTANCE) {
-        isDragging = true; // 标记正在拖动
+    const currentX = event.touches[0].clientX;
+    const currentY = event.touches[0].clientY;
+    const deltaX = currentX - startX;
+    const deltaY = currentY - startY;
+
+    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        return;
+    }
+
+    if (!isDragging.value && Math.abs(deltaX) > 10) {
+        isDragging.value = true;
+    }
+
+    if (isDragging.value) {
+        endX = currentX;
+        // 限制拖拽范围
+        dragOffset.value = Math.max(-MAX_DRAG_OFFSET, Math.min(MAX_DRAG_OFFSET, deltaX));
+        dragDirection.value = deltaX > 0 ? 'right' : 'left';
     }
 };
 
 const handleTouchEnd = () => {
-    if (!isDragging) return; // 如果没有发生拖动，则直接返回
+    if (!isDragging.value) return;
 
-    const deltaX = endX - startX; // 计算滑动距离
-    if (deltaX < -MIN_SWIPE_DISTANCE) { // 左滑
-        console.log('检测到左滑事件');
-        loadNextPokemonPage(); // 加载下一页
-    } else if (deltaX > MIN_SWIPE_DISTANCE) { // 右滑
-        console.log('检测到右滑事件');
-        loadPreviousPokemonPage(); // 加载上一页
+    const deltaX = endX - startX;
+
+    if (Math.abs(deltaX) > MIN_SWIPE_DISTANCE) {
+        if (deltaX < 0) { // 左滑 - 下一页
+            loadNextPokemonPage();
+        } else { // 右滑 - 上一页
+            loadPreviousPokemonPage();
+        }
     }
 
-    isDragging = false; // 重置拖动状态
+    // 重置状态
+    isDragging.value = false;
+    dragOffset.value = 0;
+    dragDirection.value = '';
+};
+
+// 鼠标事件处理
+const handleMouseDown = (event: MouseEvent) => {
+    // 如果点击的是可编辑区域，不阻止默认行为
+    if ((event.target as HTMLElement).closest('.editable-div')) {
+        return;
+    }
+    startX = event.clientX;
+    startY = event.clientY;
+    isMouseDown.value = true;
+    isDragging.value = false;
+    dragOffset.value = 0;
+    dragDirection.value = '';
+    event.preventDefault(); // 只对非编辑区域阻止默认行为
+};
+
+const handleMouseMove = (event: MouseEvent) => {
+    if (!isMouseDown.value) return;
+
+    const currentX = event.clientX;
+    const currentY = event.clientY;
+    const deltaX = currentX - startX;
+    const deltaY = currentY - startY;
+    
+    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+        return;
+    }
+
+    if (!isDragging.value && Math.abs(deltaX) > 10) {
+        isDragging.value = true;
+    }
+
+    if (isDragging.value) {
+        endX = currentX;
+        dragOffset.value = Math.max(-MAX_DRAG_OFFSET, Math.min(MAX_DRAG_OFFSET, deltaX));
+        dragDirection.value = deltaX > 0 ? 'right' : 'left';
+    }
+};
+
+const handleMouseUp = () => {
+    if (!isMouseDown.value) return;
+
+    if (isDragging.value) {
+        const deltaX = endX - startX;
+
+        if (Math.abs(deltaX) > MIN_SWIPE_DISTANCE) {
+            if (deltaX < 0) { // 左拖 - 下一页
+                loadNextPokemonPage();
+            } else { // 右拖 - 上一页
+                loadPreviousPokemonPage();
+            }
+        }
+    }
+
+    // 重置状态
+    isMouseDown.value = false;
+    isDragging.value = false;
+    dragOffset.value = 0;
+    dragDirection.value = '';
 };
 
 function loadNextPokemonPage() {
@@ -940,15 +1076,41 @@ function loadPreviousPokemonPage() {
 
 // 翻页更新数据
 const handlePageChange = (page: number) => {
+    // 重置拖拽状态
+    isDragging.value = false;
+    dragOffset.value = 0;
+    dragDirection.value = '';
+
+    // 更新宝可梦信息
     pokemon_info = pokemonStore.getPokemonByName(page);
+
+    // 重置个体值和努力值
+    IndividualValue.value = [31, 31, 31, 31, 31, 31];
+    EffortValue.value = [0, 0, 0, 0, 0, 0];
+
+    // 重新计算属性相性
+    attributeList1();
+
     // 同步更新moves
     if (!isNaN(Number(pokemon_info.编号)) && !pokemon_info.编号.includes('_')) {
         moves.value = pokemonStore.getPokemonMovesByNumber(String(Number(pokemon_info.编号)))
     } else {
         moves.value = pokemonStore.getPokemonMovesByNumber(pokemon_info.编号);
     }
-    // 新增：同步更新methods和evolves
-    evolves = pokemonStore.getEvolveByName(pokemon_info.名称)
+
+    // 同步更新evolves
+    evolves = pokemonStore.getEvolveByName(pokemon_info.名称);
+
+    // 更新精灵捕获位置
+    appearAreas = getAppearAreas(pokemon_info.old_pokemon_name || pokemon_info.名称);
+
+    // 更新进化奇石状态
+    pokemon_info.canUseEvolutionStone = canUseStoneFinalForms.includes(pokemon_info.名称.replace(/（.*）/, '').trim());
+
+    // 重新计算能力值
+    nextTick(() => {
+        updateAllAbilities();
+    });
 }
 // 跳转进化后形态
 const handleNextStageInfo = (nextStageName: string | undefined) => {
@@ -1004,6 +1166,112 @@ const handleAreaJump = (areaName: string) => {
     align-items: center;
     background-color: #f5f5f5;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+}
+
+.page-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    will-change: transform;
+}
+
+.page-content {
+    width: 100%;
+    height: 100%;
+    will-change: transform;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page-indicator {
+    position: fixed;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.indicator-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.indicator-dot.active {
+    background-color: #3498db;
+    border-color: #2980b9;
+    transform: scale(1.2);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.4);
+}
+
+/* 拖拽时的视觉反馈 */
+.pokemon-info:active {
+    cursor: grabbing;
+}
+
+.pokemon-info {
+    cursor: grab;
+}
+
+/* 拖拽时的阴影效果 */
+.page-container {
+    filter: drop-shadow(0 0 0 transparent);
+    transition: filter 0.3s ease;
+}
+
+.page-container.dragging {
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+/* 确保所有容器都有正确的对齐 */
+.pokemon-title,
+.details,
+.weaknesses-container,
+.pokemon-method,
+.pokemon-belongings,
+.pokemon-moves {
+    box-sizing: border-box;
+    display: block;
+}
+
+/* 响应式优化 */
+@media (max-width: 768px) {
+
+    .pokemon-title,
+    .details,
+    .weaknesses-container,
+    .pokemon-method,
+    .pokemon-belongings,
+    .pokemon-moves {
+        width: 98%;
+        margin: 10px auto;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .pokemon-title,
+    .details,
+    .weaknesses-container,
+    .pokemon-method,
+    .pokemon-belongings,
+    .pokemon-moves {
+        width: 100%;
+        margin: 5px auto;
+        padding: 15px;
+    }
 }
 
 .pokemon-title {
@@ -1015,7 +1283,8 @@ const handleAreaJump = (areaName: string) => {
     padding: 20px;
     justify-content: space-between;
     align-items: center;
-    margin-top: 3%;
+    margin: 3% auto 0;
+    position: relative;
 
     .pokemon-title-left {
         display: flex;
@@ -1083,6 +1352,7 @@ const handleAreaJump = (areaName: string) => {
     margin: 10px auto;
     padding: 15px;
     transition: background-color 0.3s ease;
+    position: relative;
 
     .pokemon-header {
         display: flex;
@@ -1172,10 +1442,20 @@ const handleAreaJump = (areaName: string) => {
                 &.editable-div {
                     cursor: text;
                     transition: background-color 0.2s;
+                    /* user-select: text;
+                    -webkit-user-select: text;
+                    -moz-user-select: text;
+                    -ms-user-select: text;
+                    pointer-events: auto; */
+                    /* 确保可以点击和输入 */
 
                     &:focus {
                         background-color: #e8e8e8;
                         outline: none;
+                    }
+
+                    &:hover {
+                        background-color: #f5f5f5;
                     }
                 }
             }
@@ -1220,14 +1500,15 @@ const handleAreaJump = (areaName: string) => {
 }
 
 .weaknesses-container {
-    width: 90%;
+    width: 95%;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-top: 20px;
+    margin: 10px auto;
     font-size: 0.9em;
     color: #333;
+    position: relative;
 
     .weaknesses-header {
         padding-bottom: 10px;
@@ -1273,12 +1554,13 @@ const handleAreaJump = (areaName: string) => {
 }
 
 .pokemon-method {
-    width: 90%;
+    width: 95%;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin: 20px;
+    margin: 10px auto;
+    position: relative;
 
     .method-header {
         padding-bottom: 10px;
@@ -1317,12 +1599,13 @@ const handleAreaJump = (areaName: string) => {
 }
 
 .pokemon-belongings {
-    width: 90%;
+    width: 95%;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin: 20px;
+    margin: 10px auto;
+    position: relative;
 
     .belongings-header {
         padding-bottom: 10px;
@@ -1361,12 +1644,13 @@ const handleAreaJump = (areaName: string) => {
 }
 
 .pokemon-moves {
-    width: 90%;
+    width: 95%;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin: 20px;
+    margin: 10px auto;
+    position: relative;
 
     .moves-header {
         padding-bottom: 10px;
