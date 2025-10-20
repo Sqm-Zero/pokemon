@@ -253,6 +253,26 @@ export const usePokemonStore = defineStore('counter', {
             // 如果找到，返回技能列表；否则返回空数组
             return pokemonMoves ? pokemonMoves.SkillList : []
         },
+        // 根据技能名称查询能学会该技能蛋招式的列表
+        getPokemonByEggMoveName(moveName: string) {
+            // 1. 首先过滤出所有包含该招式的宝可梦
+            const pokemonWithMove = reqEggMoves().filter(pokemon =>
+                pokemon.SkillList?.some(skill => skill.skill_name === moveName)
+            );
+
+            // 2. 映射结果并过滤无效数据
+            const result = pokemonWithMove
+                .map(pokemon => {
+                    if (!pokemon.序号 || !pokemon.name) return null;
+                    return {
+                        id: pokemon.序号,
+                        name: pokemon.name,
+                        learnLevel: null
+                    }
+                })
+                .filter(Boolean);
+            return result;
+        },
         // 根据技能名称查询可以学会的精灵信息
         getPokemonByMoveName(moveName: string) {
             // 1. 首先过滤出所有包含该招式的宝可梦

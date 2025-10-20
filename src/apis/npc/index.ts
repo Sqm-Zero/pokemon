@@ -1,9 +1,12 @@
-export const reqNPC = (): object => {
+import { BattleData } from "./type"
+
+export const reqNPC = ():BattleData => {
     return {
         "海洋队 重要战斗 阵容": [
             {
                 "title": "反派 海洋队精英（橙华森林）",
                 "battle_type": "单打",
+                "item": "全能爆发*2",
                 "pokemons": [
                     {
                         "name": "酷豹",
@@ -55,6 +58,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派 海洋队精英（卡绿隧道）",
                 "battle_type": "双打",
+                "item": "全能爆发*4",
                 "pokemons": [
                     {
                         "name": "黑暗鸦",
@@ -109,6 +113,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派 海洋队精英（凯那市博物馆）",
                 "battle_type": "双打",
+                "item": "全能爆发*4",
                 "pokemons": [
                     {
                         "name": "尼多王",
@@ -163,6 +168,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派 海洋队精英（凯那市博物馆）",
                 "battle_type": "双打",
+                "item": "全能爆发*4",
                 "pokemons": [
                     {
                         "name": "叉字蝠",
@@ -215,8 +221,9 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "海洋队干部 海洋队-泉（流星瀑布-坑爹双打）",
+                "title": "海洋队干部 海洋队-泉（流星瀑布-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发2*2",
                 "pokemons": [
                     {
                         "name": "小黑子",
@@ -268,8 +275,9 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "反派 海洋队骨干（流星瀑布-坑爹双打）",
+                "title": "反派 海洋队骨干（流星瀑布-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发2*2",
                 "pokemons": [
                     {
                         "name": "电灯怪",
@@ -324,6 +332,7 @@ export const reqNPC = (): object => {
             {
                 "title": "海洋队干部 海洋队-泉（烟囱山）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "耿鬼",
@@ -399,8 +408,9 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "反派首领 海洋队-水梧桐（烟囱山一番战）",
-                "battle_type": "双打",
+                "title": "反派首领 海洋队-水梧桐（烟囱山",
+                "battle_type": "一番战",
+                "item": "双打，全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "毒卷云",
@@ -477,8 +487,9 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "反派干部 海洋队-潮（未知小岛-坑爹双打）",
+                "title": "反派干部 海洋队-潮（未知小岛-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发2*2",
                 "pokemons": [
                     {
                         "name": "美纳斯",
@@ -531,8 +542,9 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "反派 海洋队骨干（未知小岛-坑爹双打）",
+                "title": "反派 海洋队骨干（未知小岛-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发2*2",
                 "pokemons": [
                     {
                         "name": "火炎狮",
@@ -585,6 +597,7 @@ export const reqNPC = (): object => {
             {
                 "title": "海洋队干部 海洋队-泉（天气预测馆）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "拉普拉斯",
@@ -663,6 +676,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派干部 海洋队-潮（送火山）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "皮卡丘（博士）",
@@ -741,6 +755,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派 海洋队精英（凯那市船厂）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "炎武王",
@@ -795,6 +810,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派 海洋队精英（凯那市船厂）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "耿鬼",
@@ -831,24 +847,13 @@ export const reqNPC = (): object => {
                             "暗黑连击",
                             "嬉闹"
                         ]
-                    },
-                    {
-                        "name": "巨牙鲨",
-                        "level": 68,
-                        "item": "巨牙鲨进化石",
-                        "ability": "加速",
-                        "moves": [
-                            "强力腮咬",
-                            "咬碎",
-                            "近身战",
-                            "突袭"
-                        ]
                     }
                 ]
             },
             {
                 "title": "反派 海洋队精英们（一周目）",
                 "battle_type": "群战",
+                "item": "全能爆发2*3",
                 "pokemons": [
                     {
                         "name": "风速狗",
@@ -909,6 +914,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派干部 海洋队-潮（海洋队基地）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "哈克龙",
@@ -987,6 +993,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派首领 海洋队-水梧桐（海底洞窟二番战）",
                 "battle_type": "双打",
+                "item": "全能爆发3*4",
                 "pokemons": [
                     {
                         "name": "毒卷云",
@@ -1065,6 +1072,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派干部 海洋队-潮（二周目-橙华市）",
                 "battle_type": "双打",
+                "item": "全能爆发3*3",
                 "pokemons": [
                     {
                         "name": "呆呆王",
@@ -1143,6 +1151,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派 海洋队骨干（二周目-卡那兹市）",
                 "battle_type": "单打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "秃鹰娜",
@@ -1209,6 +1218,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派 海洋队骨干（二周目-卡那兹市）",
                 "battle_type": "单打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "勾魂眼",
@@ -1275,6 +1285,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派 海洋队骨干（二周目-卡那兹市）",
                 "battle_type": "单打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "爆音怪",
@@ -1338,6 +1349,7 @@ export const reqNPC = (): object => {
             {
                 "title": "反派 海洋队精英们（二周目）",
                 "battle_type": "群战",
+                "item": "全能爆发2*3",
                 "pokemons": [
                     {
                         "name": "风速狗",
@@ -1403,8 +1415,9 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "反派干部 海洋队-潮（绿岭市-坑爹双打）",
+                "title": "反派干部 海洋队-潮（绿岭市-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发3*2",
                 "pokemons": [
                     {
                         "name": "雷电云（灵兽）",
@@ -1469,8 +1482,9 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "反派 海洋队骨干（绿岭市-坑爹双打）",
+                "title": "反派 海洋队骨干（绿岭市-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发3*2",
                 "pokemons": [
                     {
                         "name": "毒卷云（灵兽）",
@@ -1539,6 +1553,7 @@ export const reqNPC = (): object => {
             {
                 "title": "宝可梦训练家 祐树/小遥（二番战）",
                 "battle_type": "双打",
+                "item": "全能爆发*4",
                 "pokemons": [
                     {
                         "name": "念力土偶",
@@ -1617,6 +1632,7 @@ export const reqNPC = (): object => {
             {
                 "title": "宝可梦训练家 祐树/小遥（三番战）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "河马兽",
@@ -1695,6 +1711,7 @@ export const reqNPC = (): object => {
             {
                 "title": "宝可梦训练家 祐树/小遥（四番战）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "超甲龙犀",
@@ -1771,8 +1788,9 @@ export const reqNPC = (): object => {
                 ]
             },
             {
-                "title": "宝可梦训练家 满充（一番战）",
-                "battle_type": "单打",
+                "title": "宝可梦训练家 满充",
+                "battle_type": "一番战",
+                "item": "单打，全能秘药*4",
                 "pokemons": [
                     {
                         "name": "盔甲鸟",
@@ -1850,6 +1868,7 @@ export const reqNPC = (): object => {
             {
                 "title": "宝可梦训练家 满充（二番战）",
                 "battle_type": "三打",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "沙漠蜻蜓",
@@ -1930,6 +1949,7 @@ export const reqNPC = (): object => {
             {
                 "title": "道馆馆主 杜娟（岩石）",
                 "battle_type": "双打",
+                "item": "神奇秘药*2，盾之秘药*2",
                 "pokemons": [
                     {
                         "name": "超甲龙犀",
@@ -2008,6 +2028,7 @@ export const reqNPC = (): object => {
             {
                 "title": "道馆馆主 藤树（格斗）",
                 "battle_type": "双打",
+                "item": "盾之秘药*2，矛之秘药*2",
                 "pokemons": [
                     {
                         "name": "电击魔兽",
@@ -2086,6 +2107,7 @@ export const reqNPC = (): object => {
             {
                 "title": "道馆馆主 铁旋（电）",
                 "battle_type": "双打",
+                "item": "矛之秘药*2，全能秘药*2",
                 "pokemons": [
                     {
                         "name": "雷电云（灵兽）",
@@ -2163,6 +2185,7 @@ export const reqNPC = (): object => {
             {
                 "title": "道馆馆主 亚莎（火）",
                 "battle_type": "双打",
+                "item": "全能秘药*4",
                 "pokemons": [
                     {
                         "name": "破天炎",
@@ -2241,6 +2264,7 @@ export const reqNPC = (): object => {
             {
                 "title": "道馆馆主 千里（一般）",
                 "battle_type": "双打",
+                "item": "全能秘药*2，大师秘药*2",
                 "pokemons": [
                     {
                         "name": "美洛耶塔",
@@ -2319,6 +2343,7 @@ export const reqNPC = (): object => {
             {
                 "title": "道馆馆主 娜琪（飞行）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "洛奇亚",
@@ -2397,6 +2422,7 @@ export const reqNPC = (): object => {
             {
                 "title": "道馆馆主 枫与南（超能）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "代欧奇希斯（防御）",
@@ -2423,7 +2449,7 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "M超梦",
+                        "name": "超梦",
                         "level": 78,
                         "item": "超梦进化石X",
                         "ability": "魔法防守",
@@ -2475,6 +2501,7 @@ export const reqNPC = (): object => {
             {
                 "title": "道馆馆主 米可利（水）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "盖欧卡",
@@ -2555,6 +2582,7 @@ export const reqNPC = (): object => {
             {
                 "title": "四天王 花月（一周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "M甲贺忍蛙",
@@ -2633,6 +2661,7 @@ export const reqNPC = (): object => {
             {
                 "title": "四天王 芙蓉（一周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "胡帕",
@@ -2710,6 +2739,7 @@ export const reqNPC = (): object => {
             {
                 "title": "四天王 波妮（一周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "帝牙海狮",
@@ -2786,6 +2816,7 @@ export const reqNPC = (): object => {
             {
                 "title": "四天王 源治（一周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "莱希拉姆",
@@ -2864,6 +2895,7 @@ export const reqNPC = (): object => {
             {
                 "title": "冠军 大吾（一周目）",
                 "battle_type": "三打",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "基拉祈",
@@ -2942,6 +2974,7 @@ export const reqNPC = (): object => {
             {
                 "title": "四天王 花月（二周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "波尔凯尼恩",
@@ -3020,6 +3053,7 @@ export const reqNPC = (): object => {
             {
                 "title": "四天王 芙蓉（二周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "代拉基翁",
@@ -3070,7 +3104,7 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "酋雷姆（暗黑）",
+                        "name": "酋雷姆 （暗黑）",
                         "level": 97,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -3082,7 +3116,7 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "酋雷姆（焰白）",
+                        "name": "酋雷姆 （焰白）",
                         "level": 97,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -3098,6 +3132,7 @@ export const reqNPC = (): object => {
             {
                 "title": "四天王 波妮（二周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "达克莱伊",
@@ -3176,6 +3211,7 @@ export const reqNPC = (): object => {
             {
                 "title": "四天王 源治（二周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "代欧奇希斯（防御）",
@@ -3252,6 +3288,7 @@ export const reqNPC = (): object => {
             {
                 "title": "冠军 大吾（二周目）",
                 "battle_type": "群战",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "闪电鸟",
@@ -3278,7 +3315,7 @@ export const reqNPC = (): object => {
                         ]
                     },
                     {
-                        "name": "M超梦",
+                        "name": "超梦",
                         "level": 100,
                         "item": "超梦进化石X",
                         "ability": "魔法防守",
@@ -3325,319 +3362,11 @@ export const reqNPC = (): object => {
                 ]
             }
         ],
-        "连胜家族（紫堇市上方）": [
-            {
-                "title": "连胜家族 晴彦",
-                "battle_type": "双打",
-                "pokemons": [
-                    {
-                        "name": "向日花怪",
-                        "level": 75,
-                        "item": "炽热岩石",
-                        "ability": "日照",
-                        "moves": [
-                            "热风",
-                            "阳光烈焰",
-                            "光合作用",
-                            "大地之力"
-                        ]
-                    },
-                    {
-                        "name": "叶伊布",
-                        "level": 75,
-                        "item": "气势披带",
-                        "ability": "太阳驱动",
-                        "moves": [
-                            "刃叶斩",
-                            "生长",
-                            "水尾连击",
-                            "十字剪"
-                        ]
-                    },
-                    {
-                        "name": "黑鲁加",
-                        "level": 75,
-                        "item": "黑鲁加进化石",
-                        "ability": "日照",
-                        "moves": [
-                            "恶之波动",
-                            "热风",
-                            "大地之力",
-                            "阳光烈焰"
-                        ]
-                    },
-                    {
-                        "name": "风速狗",
-                        "level": 75,
-                        "item": "生命宝珠",
-                        "ability": "坚硬脑袋",
-                        "moves": [
-                            "疯狂伏特",
-                            "闪焰冲锋",
-                            "地狱翻滚",
-                            "神速"
-                        ]
-                    },
-                    {
-                        "name": "妙蛙花",
-                        "level": 75,
-                        "item": "吃剩的东西",
-                        "ability": "太阳驱动",
-                        "moves": [
-                            "终极吸取",
-                            "生长",
-                            "污泥波",
-                            "庆祝"
-                        ]
-                    },
-                    {
-                        "name": "炎武王",
-                        "level": 75,
-                        "item": "吃剩的东西",
-                        "ability": "威吓",
-                        "moves": [
-                            "击掌奇袭",
-                            "拍落",
-                            "高温重压",
-                            "抛下狠话"
-                        ]
-                    }
-                ]
-            },
-            {
-                "title": "连胜家族 安江",
-                "battle_type": "双打",
-                "pokemons": [
-                    {
-                        "name": "哈克龙",
-                        "level": 75,
-                        "item": "进化奇石",
-                        "ability": "降雨",
-                        "moves": [
-                            "活活气泡",
-                            "庆祝",
-                            "电磁波",
-                            "冰冻光束"
-                        ]
-                    },
-                    {
-                        "name": "镰刀盔",
-                        "level": 75,
-                        "item": "潮湿岩石",
-                        "ability": "悠游自如",
-                        "moves": [
-                            "虫突",
-                            "十字剪",
-                            "波动冲",
-                            "岩崩"
-                        ]
-                    },
-                    {
-                        "name": "快泳蛙",
-                        "level": 75,
-                        "item": "回复果",
-                        "ability": "悠游自如",
-                        "moves": [
-                            "吸取拳",
-                            "波动冲",
-                            "冰冻拳",
-                            "腹鼓"
-                        ]
-                    },
-                    {
-                        "name": "暴鲤龙",
-                        "level": 75,
-                        "item": "暴鲤龙进化石",
-                        "ability": "强壮之颚",
-                        "moves": [
-                            "咬碎",
-                            "强力腮咬",
-                            "冰冻牙",
-                            "龙之舞"
-                        ]
-                    },
-                    {
-                        "name": "刺龙王",
-                        "level": 75,
-                        "item": "生命宝珠",
-                        "ability": "强行",
-                        "moves": [
-                            "墨汁炮",
-                            "暴狂龙卷",
-                            "冰冻光束",
-                            "龙之舞"
-                        ]
-                    },
-                    {
-                        "name": "海兔兽",
-                        "level": 75,
-                        "item": "吃剩的东西",
-                        "ability": "引水",
-                        "moves": [
-                            "求雨",
-                            "热水",
-                            "大地之力",
-                            "剧毒"
-                        ]
-                    }
-                ]
-            },
-            {
-                "title": "76 - 连胜家族 小雪",
-                "battle_type": "双打",
-                "pokemons": [
-                    {
-                        "name": "小黑子",
-                        "level": 75,
-                        "item": "气势披带",
-                        "ability": "降雪",
-                        "moves": [
-                            "活活气泡",
-                            "冰冻之风",
-                            "冷冻干燥",
-                            "暴风雪"
-                        ]
-                    },
-                    {
-                        "name": "雪妖女",
-                        "level": 75,
-                        "item": "冰冷岩石",
-                        "ability": "天恩",
-                        "moves": [
-                            "暴风雪",
-                            "妖精之风"
-                        ]
-                    },
-                    {
-                        "name": "暴雪王",
-                        "level": 75,
-                        "item": "暴雪王进化石",
-                        "ability": "降雪",
-                        "moves": [
-                            "暴风雪",
-                            "终极吸取",
-                            "真气弹",
-                            "冰砾"
-                        ]
-                    },
-                    {
-                        "name": "象牙猪",
-                        "level": 75,
-                        "item": "吃剩的东西",
-                        "ability": "毛皮大衣",
-                        "moves": [
-                            "冰砾",
-                            "雪崩",
-                            "十万马力",
-                            "岩崩"
-                        ]
-                    },
-                    {
-                        "name": "冰伊布",
-                        "level": 75,
-                        "item": "突击背心",
-                        "ability": "单纯",
-                        "moves": [
-                            "暴风雪",
-                            "大地之力",
-                            "极光束",
-                            "冥想"
-                        ]
-                    },
-                    {
-                        "name": "冰岩怪",
-                        "level": 75,
-                        "item": "气势披带",
-                        "ability": "冰冻皮肤",
-                        "moves": [
-                            "大爆炸"
-                        ]
-                    }
-                ]
-            },
-            {
-                "title": "578 - 连胜家族 光代",
-                "battle_type": "双打",
-                "pokemons": [
-                    {
-                        "name": "雄牙象",
-                        "level": 80,
-                        "item": "沙沙岩石",
-                        "ability": "拨沙",
-                        "moves": [
-                            "超级角击",
-                            "突飞猛扑",
-                            "健美",
-                            "近身战"
-                        ]
-                    },
-                    {
-                        "name": "庞岩怪",
-                        "level": 80,
-                        "item": "吃剩的东西",
-                        "ability": "扬沙",
-                        "moves": [
-                            "广域防守",
-                            "岩崩",
-                            "冲岩",
-                            "庆祝"
-                        ]
-                    },
-                    {
-                        "name": "烈咬陆鲨",
-                        "level": 80,
-                        "item": "抗冰果",
-                        "ability": "沙隐",
-                        "moves": [
-                            "双龙切",
-                            "突飞猛扑",
-                            "磨爪",
-                            "火焰牙"
-                        ]
-                    },
-                    {
-                        "name": "班基拉斯",
-                        "level": 80,
-                        "item": "抗斗果",
-                        "ability": "扬沙",
-                        "moves": [
-                            "岩崩",
-                            "十万马力",
-                            "暗黑连击",
-                            "冰冻牙"
-                        ]
-                    },
-                    {
-                        "name": "波士可多拉",
-                        "level": 80,
-                        "item": "波士可多拉进化石",
-                        "ability": "结实",
-                        "moves": [
-                            "金属爆炸",
-                            "重磅冲撞",
-                            "广域防守",
-                            "龙尾"
-                        ]
-                    },
-                    {
-                        "name": "超甲龙犀",
-                        "level": 80,
-                        "item": "突击背心",
-                        "ability": "扬沙",
-                        "moves": [
-                            "大地之力",
-                            "岩石巨炮",
-                            "天龙之息",
-                            "十万伏特"
-                        ]
-                    }
-                ]
-            }
-        ],
         "隐藏五天王": [
             {
                 "title": "格兰德（地面天王）",
                 "battle_type": "三打",
+                "item": "大师秘药*4   凹凸山道",
                 "pokemons": [
                     {
                         "name": "土地云（灵兽）",
@@ -3716,6 +3445,7 @@ export const reqNPC = (): object => {
             {
                 "title": "波伊森（毒系天王）",
                 "battle_type": "三打",
+                "item": "大师秘药*4  二周目船票",
                 "pokemons": [
                     {
                         "name": "M妙蛙花",
@@ -3794,6 +3524,7 @@ export const reqNPC = (): object => {
             {
                 "title": "巴格（虫系天王）",
                 "battle_type": "三打",
+                "item": "大师秘药*4 120号道路",
                 "pokemons": [
                     {
                         "name": "M赫拉克罗斯",
@@ -3872,6 +3603,7 @@ export const reqNPC = (): object => {
             {
                 "title": "格拉斯（草系天王）",
                 "battle_type": "三打",
+                "item": "大师秘药*4 105号水路",
                 "pokemons": [
                     {
                         "name": "时拉比",
@@ -3950,6 +3682,7 @@ export const reqNPC = (): object => {
             {
                 "title": "菲里（妖精天王）",
                 "battle_type": "三打",
+                "item": "大师秘药*4  123号道路",
                 "pokemons": [
                     {
                         "name": "幻梦",
@@ -4028,8 +3761,9 @@ export const reqNPC = (): object => {
         ],
         "二周目 重要战斗": [
             {
-                "title": "898 - 宝可梦训练家 希嘉娜（一番战）",
-                "battle_type": "双打",
+                "title": "898 - 宝可梦训练家 希嘉娜",
+                "battle_type": "一番战",
+                "item": "双打，大师秘药*3",
                 "pokemons": [
                     {
                         "name": "拉帝亚斯",
@@ -4108,6 +3842,7 @@ export const reqNPC = (): object => {
             {
                 "title": "943 - 琉璃市居民 米可利（二周目-天空之柱）",
                 "battle_type": "群战",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "M巨沼怪",
@@ -4186,6 +3921,7 @@ export const reqNPC = (): object => {
             {
                 "title": "713 - 传承者 希嘉娜（二番战）",
                 "battle_type": "三打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "帕路奇亚",
@@ -4262,10 +3998,324 @@ export const reqNPC = (): object => {
                 ]
             }
         ],
+        "连胜家族（紫堇市上方）": [
+            {
+                "title": "连胜家族 晴彦",
+                "battle_type": "双打",
+                "item": "",
+                "pokemons": [
+                    {
+                        "name": "向日花怪",
+                        "level": 75,
+                        "item": "炽热岩石",
+                        "ability": "日照",
+                        "moves": [
+                            "热风",
+                            "阳光烈焰",
+                            "光合作用",
+                            "大地之力"
+                        ]
+                    },
+                    {
+                        "name": "叶伊布",
+                        "level": 75,
+                        "item": "气势披带",
+                        "ability": "太阳驱动",
+                        "moves": [
+                            "刃叶斩",
+                            "生长",
+                            "水尾连击",
+                            "十字剪"
+                        ]
+                    },
+                    {
+                        "name": "黑鲁加",
+                        "level": 75,
+                        "item": "黑鲁加进化石",
+                        "ability": "日照",
+                        "moves": [
+                            "恶之波动",
+                            "热风",
+                            "大地之力",
+                            "阳光烈焰"
+                        ]
+                    },
+                    {
+                        "name": "风速狗",
+                        "level": 75,
+                        "item": "生命宝珠",
+                        "ability": "坚硬脑袋",
+                        "moves": [
+                            "疯狂伏特",
+                            "闪焰冲锋",
+                            "地狱翻滚",
+                            "神速"
+                        ]
+                    },
+                    {
+                        "name": "妙蛙花",
+                        "level": 75,
+                        "item": "吃剩的东西",
+                        "ability": "太阳驱动",
+                        "moves": [
+                            "终极吸取",
+                            "生长",
+                            "污泥波",
+                            "庆祝"
+                        ]
+                    },
+                    {
+                        "name": "炎武王",
+                        "level": 75,
+                        "item": "吃剩的东西",
+                        "ability": "威吓",
+                        "moves": [
+                            "击掌奇袭",
+                            "拍落",
+                            "高温重压",
+                            "抛下狠话"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "连胜家族 安江",
+                "battle_type": "双打",
+                "item": "",
+                "pokemons": [
+                    {
+                        "name": "哈克龙",
+                        "level": 75,
+                        "item": "进化奇石",
+                        "ability": "降雨",
+                        "moves": [
+                            "活活气泡",
+                            "庆祝",
+                            "电磁波",
+                            "冰冻光束"
+                        ]
+                    },
+                    {
+                        "name": "镰刀盔",
+                        "level": 75,
+                        "item": "潮湿岩石",
+                        "ability": "悠游自如",
+                        "moves": [
+                            "虫突",
+                            "十字剪",
+                            "波动冲",
+                            "岩崩"
+                        ]
+                    },
+                    {
+                        "name": "快泳蛙",
+                        "level": 75,
+                        "item": "回复果",
+                        "ability": "悠游自如",
+                        "moves": [
+                            "吸取拳",
+                            "波动冲",
+                            "冰冻拳",
+                            "腹鼓"
+                        ]
+                    },
+                    {
+                        "name": "暴鲤龙",
+                        "level": 75,
+                        "item": "暴鲤龙进化石",
+                        "ability": "强壮之颚",
+                        "moves": [
+                            "咬碎",
+                            "强力腮咬",
+                            "冰冻牙",
+                            "龙之舞"
+                        ]
+                    },
+                    {
+                        "name": "刺龙王",
+                        "level": 75,
+                        "item": "生命宝珠",
+                        "ability": "强行",
+                        "moves": [
+                            "墨汁炮",
+                            "暴狂龙卷",
+                            "冰冻光束",
+                            "龙之舞"
+                        ]
+                    },
+                    {
+                        "name": "海兔兽",
+                        "level": 75,
+                        "item": "吃剩的东西",
+                        "ability": "引水",
+                        "moves": [
+                            "求雨",
+                            "热水",
+                            "大地之力",
+                            "剧毒"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "76 - 连胜家族 小雪",
+                "battle_type": "双打",
+                "item": "",
+                "pokemons": [
+                    {
+                        "name": "小黑子",
+                        "level": 75,
+                        "item": "气势披带",
+                        "ability": "降雪",
+                        "moves": [
+                            "活活气泡",
+                            "冰冻之风",
+                            "冷冻干燥",
+                            "暴风雪"
+                        ]
+                    },
+                    {
+                        "name": "雪妖女",
+                        "level": 75,
+                        "item": "冰冷岩石",
+                        "ability": "天恩",
+                        "moves": [
+                            "暴风雪",
+                            "妖精之风"
+                        ]
+                    },
+                    {
+                        "name": "暴雪王",
+                        "level": 75,
+                        "item": "暴雪王进化石",
+                        "ability": "降雪",
+                        "moves": [
+                            "暴风雪",
+                            "终极吸取",
+                            "真气弹",
+                            "冰砾"
+                        ]
+                    },
+                    {
+                        "name": "象牙猪",
+                        "level": 75,
+                        "item": "吃剩的东西",
+                        "ability": "毛皮大衣",
+                        "moves": [
+                            "冰砾",
+                            "雪崩",
+                            "十万马力",
+                            "岩崩"
+                        ]
+                    },
+                    {
+                        "name": "冰伊布",
+                        "level": 75,
+                        "item": "突击背心",
+                        "ability": "单纯",
+                        "moves": [
+                            "暴风雪",
+                            "大地之力",
+                            "极光束",
+                            "冥想"
+                        ]
+                    },
+                    {
+                        "name": "冰岩怪",
+                        "level": 75,
+                        "item": "气势披带",
+                        "ability": "冰冻皮肤",
+                        "moves": [
+                            "大爆炸"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "578 - 连胜家族 光代",
+                "battle_type": "双打",
+                "item": "",
+                "pokemons": [
+                    {
+                        "name": "雄牙象",
+                        "level": 80,
+                        "item": "沙沙岩石",
+                        "ability": "拨沙",
+                        "moves": [
+                            "超级角击",
+                            "突飞猛扑",
+                            "健美",
+                            "近身战"
+                        ]
+                    },
+                    {
+                        "name": "庞岩怪",
+                        "level": 80,
+                        "item": "吃剩的东西",
+                        "ability": "扬沙",
+                        "moves": [
+                            "广域防守",
+                            "岩崩",
+                            "冲岩",
+                            "庆祝"
+                        ]
+                    },
+                    {
+                        "name": "烈咬陆鲨",
+                        "level": 80,
+                        "item": "抗冰果",
+                        "ability": "沙隐",
+                        "moves": [
+                            "双龙切",
+                            "突飞猛扑",
+                            "磨爪",
+                            "火焰牙"
+                        ]
+                    },
+                    {
+                        "name": "班基拉斯",
+                        "level": 80,
+                        "item": "抗斗果",
+                        "ability": "扬沙",
+                        "moves": [
+                            "岩崩",
+                            "十万马力",
+                            "暗黑连击",
+                            "冰冻牙"
+                        ]
+                    },
+                    {
+                        "name": "波士可多拉",
+                        "level": 80,
+                        "item": "波士可多拉进化石",
+                        "ability": "结实",
+                        "moves": [
+                            "金属爆炸",
+                            "重磅冲撞",
+                            "广域防守",
+                            "龙尾"
+                        ]
+                    },
+                    {
+                        "name": "超甲龙犀",
+                        "level": 80,
+                        "item": "突击背心",
+                        "ability": "扬沙",
+                        "moves": [
+                            "大地之力",
+                            "岩石巨炮",
+                            "天龙之息",
+                            "十万伏特"
+                        ]
+                    }
+                ]
+            }
+        ],
         "最终挑战！游戏作者（茵郁市右下角树屋）": [
             {
                 "title": "856 - 游戏作者 阿布（一周目）",
                 "battle_type": "群战",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "雷皇",
@@ -4344,6 +4394,7 @@ export const reqNPC = (): object => {
             {
                 "title": "857 - 游戏作者 阿布（二周目）",
                 "battle_type": "群战",
+                "item": "传奇圣药*4",
                 "pokemons": [
                     {
                         "name": "代欧奇希斯（攻击）",
@@ -4420,12 +4471,13 @@ export const reqNPC = (): object => {
     }
 }
 
-export const reqYHNPC = () => {
+export const reqYHNPC = ():BattleData => {
     return {
         "海洋队 重要战斗 阵容": [
             {
                 "title": "反派 海洋队精英（橙华森林）",
                 "battle_type": "单打",
+                "item": "全能爆发*2",
                 "pokemons": [
                     {
                         "name": "酷豹",
@@ -4478,6 +4530,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派 海洋队精英（卡绿隧道）",
                 "battle_type": "双打",
+                "item": "全能爆发*4",
                 "pokemons": [
                     {
                         "name": "黑暗鸦",
@@ -4532,6 +4585,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派 海洋队精英（凯那市博物馆）",
                 "battle_type": "双打",
+                "item": "全能爆发*4",
                 "pokemons": [
                     {
                         "name": "尼多王",
@@ -4586,6 +4640,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派 海洋队精英（凯那市博物馆）",
                 "battle_type": "双打",
+                "item": "全能爆发*4",
                 "pokemons": [
                     {
                         "name": "叉字蝠",
@@ -4638,8 +4693,9 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "海洋队干部 海洋队-泉（流星瀑布-坑爹双打）",
+                "title": "海洋队干部 海洋队-泉（流星瀑布-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发2*2",
                 "pokemons": [
                     {
                         "name": "水君",
@@ -4692,8 +4748,9 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "反派 海洋队骨干（流星瀑布-坑爹双打）",
+                "title": "反派 海洋队骨干（流星瀑布-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发2*2",
                 "pokemons": [
                     {
                         "name": "雷皇",
@@ -4748,6 +4805,7 @@ export const reqYHNPC = () => {
             {
                 "title": "海洋队干部 海洋队-泉（烟囱山）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "M耿鬼",
@@ -4823,8 +4881,9 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "反派首领 海洋队-水梧桐（烟囱山一番战）",
-                "battle_type": "双打",
+                "title": "反派首领 海洋队-水梧桐（烟囱山",
+                "battle_type": "一番战",
+                "item": "双打，全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "毒卷云",
@@ -4901,8 +4960,9 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "反派干部 海洋队-潮（未知小岛-坑爹双打）",
+                "title": "反派干部 海洋队-潮（未知小岛-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发2*2",
                 "pokemons": [
                     {
                         "name": "美纳斯",
@@ -4967,8 +5027,9 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "反派 海洋队骨干（未知小岛-坑爹双打）",
+                "title": "反派 海洋队骨干（未知小岛-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发2*2",
                 "pokemons": [
                     {
                         "name": "火炎狮",
@@ -5033,6 +5094,7 @@ export const reqYHNPC = () => {
             {
                 "title": "海洋队干部 海洋队-泉（天气预测馆）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "拉普拉斯",
@@ -5111,6 +5173,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派干部 海洋队-潮（送火山）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "皮卡丘（博士）",
@@ -5189,6 +5252,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派 海洋队精英（凯那市船厂）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "炎武王",
@@ -5255,6 +5319,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派 海洋队精英（凯那市船厂）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "M耿鬼",
@@ -5321,6 +5386,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派 海洋队精英们（一周目）",
                 "battle_type": "群战",
+                "item": "全能爆发2*3",
                 "pokemons": [
                     {
                         "name": "风速狗",
@@ -5381,6 +5447,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派干部 海洋队-潮（海洋队基地）",
                 "battle_type": "双打",
+                "item": "全能爆发3*4",
                 "pokemons": [
                     {
                         "name": "哈克龙",
@@ -5459,9 +5526,10 @@ export const reqYHNPC = () => {
             {
                 "title": "反派首领 海洋队-水梧桐（海底洞窟二番战）",
                 "battle_type": "双打",
+                "item": "全能爆发3*2，全能爆发6*2",
                 "pokemons": [
                     {
-                        "name": "毒卷云",
+                        "name": "毒卷云（化身）",
                         "level": 99,
                         "item": "黑色污泥",
                         "ability": "疾风之翼",
@@ -5537,6 +5605,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派干部 海洋队-潮（二周目-橙华市）",
                 "battle_type": "双打",
+                "item": "全能爆发3*3",
                 "pokemons": [
                     {
                         "name": "呆呆王",
@@ -5615,6 +5684,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派 海洋队骨干（二周目-卡那兹市）",
                 "battle_type": "单打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "秃鹰娜",
@@ -5693,6 +5763,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派 海洋队骨干（二周目-卡那兹市）",
                 "battle_type": "单打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "勾魂眼",
@@ -5768,6 +5839,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派 海洋队骨干（二周目-卡那兹市）",
                 "battle_type": "单打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "双弹瓦斯",
@@ -5843,6 +5915,7 @@ export const reqYHNPC = () => {
             {
                 "title": "反派 海洋队精英们（二周目）",
                 "battle_type": "群战",
+                "item": "全能爆发2*3",
                 "pokemons": [
                     {
                         "name": "风速狗",
@@ -5908,8 +5981,9 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "反派干部 海洋队-潮（绿岭市-坑爹双打）",
+                "title": "反派干部 海洋队-潮（绿岭市-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发3*2",
                 "pokemons": [
                     {
                         "name": "雷电云（灵兽）",
@@ -5974,8 +6048,9 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "反派 海洋队骨干（绿岭市-坑爹双打）",
+                "title": "反派 海洋队骨干（绿岭市-坑爹",
                 "battle_type": "双打",
+                "item": "双打，全能爆发3*2",
                 "pokemons": [
                     {
                         "name": "毒卷云（灵兽）",
@@ -6044,6 +6119,7 @@ export const reqYHNPC = () => {
             {
                 "title": "宝可梦训练家 祐树/小遥（二番战）",
                 "battle_type": "双打",
+                "item": "全能爆发*4",
                 "pokemons": [
                     {
                         "name": "念力土偶",
@@ -6122,6 +6198,7 @@ export const reqYHNPC = () => {
             {
                 "title": "宝可梦训练家 祐树/小遥（三番战）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "河马兽",
@@ -6200,6 +6277,7 @@ export const reqYHNPC = () => {
             {
                 "title": "宝可梦训练家 祐树/小遥（四番战）",
                 "battle_type": "双打",
+                "item": "全能爆发2*4",
                 "pokemons": [
                     {
                         "name": "超甲龙犀",
@@ -6226,7 +6304,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "M蒂安希",
+                        "name": "（女）M蒂安希",
                         "level": 88,
                         "item": "抗钢果",
                         "ability": "魔法反射",
@@ -6238,7 +6316,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "盖诺赛克特",
+                        "name": "（男）盖诺赛克特",
                         "level": 88,
                         "item": "水流卡带",
                         "ability": "引火",
@@ -6288,8 +6366,9 @@ export const reqYHNPC = () => {
                 ]
             },
             {
-                "title": "宝可梦训练家 满充（一番战）",
-                "battle_type": "单打",
+                "title": "宝可梦训练家 满充",
+                "battle_type": "一番战",
+                "item": "单打，全能秘药*4",
                 "pokemons": [
                     {
                         "name": "盔甲鸟",
@@ -6368,6 +6447,7 @@ export const reqYHNPC = () => {
             {
                 "title": "宝可梦训练家 满充（二番战）",
                 "battle_type": "群战",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "M七夕青鸟",
@@ -6448,6 +6528,7 @@ export const reqYHNPC = () => {
             {
                 "title": "道馆馆主 杜娟（岩石）",
                 "battle_type": "双打",
+                "item": "神奇秘药*2，盾之秘药*2",
                 "pokemons": [
                     {
                         "name": "雷吉洛克",
@@ -6526,9 +6607,10 @@ export const reqYHNPC = () => {
             {
                 "title": "道馆馆主 藤树（格斗）",
                 "battle_type": "双打",
+                "item": "盾之秘药*2，矛之秘药*2",
                 "pokemons": [
                     {
-                        "name": "美洛耶塔（舞步）",
+                        "name": "美洛耶塔 （舞步）",
                         "level": 48,
                         "item": "气势披带",
                         "ability": "轻装",
@@ -6604,6 +6686,7 @@ export const reqYHNPC = () => {
             {
                 "title": "道馆馆主 铁旋（电）",
                 "battle_type": "双打",
+                "item": "矛之秘药*2，全能秘药*2",
                 "pokemons": [
                     {
                         "name": "雷电云（灵兽）",
@@ -6682,6 +6765,7 @@ export const reqYHNPC = () => {
             {
                 "title": "道馆馆主 亚莎（火）",
                 "battle_type": "双打",
+                "item": "全能秘药*4",
                 "pokemons": [
                     {
                         "name": "凤王",
@@ -6741,7 +6825,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "酋雷姆（焰白）",
+                        "name": "焰白酋雷姆",
                         "level": 68,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -6757,6 +6841,7 @@ export const reqYHNPC = () => {
             {
                 "title": "道馆馆主 千里（一般）",
                 "battle_type": "双打",
+                "item": "全能秘药*2，大师秘药*2",
                 "pokemons": [
                     {
                         "name": "美洛耶塔",
@@ -6835,6 +6920,7 @@ export const reqYHNPC = () => {
             {
                 "title": "道馆馆主 娜琪（飞行）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "暗黑洛奇亚",
@@ -6913,6 +6999,7 @@ export const reqYHNPC = () => {
             {
                 "title": "道馆馆主 枫与南（超能）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "克雷色利亚",
@@ -6939,7 +7026,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "M超梦",
+                        "name": "M超梦X",
                         "level": 96,
                         "item": "气势披带",
                         "ability": "加速",
@@ -6991,6 +7078,7 @@ export const reqYHNPC = () => {
             {
                 "title": "道馆馆主 米可利（水）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "盖欧卡（原始）",
@@ -7071,6 +7159,7 @@ export const reqYHNPC = () => {
             {
                 "title": "四天王 花月（一周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "达克莱伊",
@@ -7149,6 +7238,7 @@ export const reqYHNPC = () => {
             {
                 "title": "四天王 芙蓉（一周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "胡帕（解放）",
@@ -7226,6 +7316,7 @@ export const reqYHNPC = () => {
             {
                 "title": "四天王 波妮（一周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "帝牙海狮",
@@ -7301,6 +7392,7 @@ export const reqYHNPC = () => {
             {
                 "title": "四天王 源治（一周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "捷克罗姆",
@@ -7379,6 +7471,7 @@ export const reqYHNPC = () => {
             {
                 "title": "冠军 大吾（一周目）",
                 "battle_type": "群战",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "帝牙卢卡",
@@ -7453,6 +7546,7 @@ export const reqYHNPC = () => {
             {
                 "title": "四天王 花月（二周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "波尔凯尼恩",
@@ -7531,6 +7625,7 @@ export const reqYHNPC = () => {
             {
                 "title": "四天王 芙蓉（二周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "凯路迪欧（觉醒）",
@@ -7581,7 +7676,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "酋雷姆（暗黑）",
+                        "name": "暗黑酋雷姆",
                         "level": 100,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -7593,7 +7688,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "酋雷姆（焰白）",
+                        "name": "焰白酋雷姆",
                         "level": 100,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -7609,6 +7704,7 @@ export const reqYHNPC = () => {
             {
                 "title": "四天王 波妮（二周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "达克莱伊",
@@ -7687,6 +7783,7 @@ export const reqYHNPC = () => {
             {
                 "title": "四天王 源治（二周目）",
                 "battle_type": "双打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "代欧奇希斯（防御）",
@@ -7765,6 +7862,7 @@ export const reqYHNPC = () => {
             {
                 "title": "冠军 大吾（二周目）",
                 "battle_type": "群战",
+                "item": "传奇圣药*4",
                 "pokemons": [
                     {
                         "name": "闪电鸟",
@@ -7791,7 +7889,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "M超梦",
+                        "name": "M超梦X",
                         "level": 100,
                         "item": "气势披带",
                         "ability": "加速",
@@ -7838,319 +7936,11 @@ export const reqYHNPC = () => {
                 ]
             }
         ],
-        "连胜家族（紫堇市上方）": [
-            {
-                "title": "连胜家族 晴彦",
-                "battle_type": "双打",
-                "pokemons": [
-                    {
-                        "name": "向日花怪",
-                        "level": 85,
-                        "item": "炽热岩石",
-                        "ability": "日照",
-                        "moves": [
-                            "热风",
-                            "阳光烈焰",
-                            "光合作用",
-                            "大地之力"
-                        ]
-                    },
-                    {
-                        "name": "叶伊布",
-                        "level": 85,
-                        "item": "气势披带",
-                        "ability": "太阳驱动",
-                        "moves": [
-                            "刃叶斩",
-                            "生长",
-                            "水尾连击",
-                            "十字剪"
-                        ]
-                    },
-                    {
-                        "name": "黑鲁加",
-                        "level": 85,
-                        "item": "黑鲁加进化石",
-                        "ability": "日照",
-                        "moves": [
-                            "恶之波动",
-                            "热风",
-                            "大地之力",
-                            "阳光烈焰"
-                        ]
-                    },
-                    {
-                        "name": "风速狗",
-                        "level": 85,
-                        "item": "生命宝珠",
-                        "ability": "坚硬脑袋",
-                        "moves": [
-                            "疯狂伏特",
-                            "闪焰冲锋",
-                            "地狱翻滚",
-                            "神速"
-                        ]
-                    },
-                    {
-                        "name": "妙蛙花",
-                        "level": 85,
-                        "item": "吃剩的东西",
-                        "ability": "太阳驱动",
-                        "moves": [
-                            "终极吸取",
-                            "生长",
-                            "污泥波",
-                            "庆祝"
-                        ]
-                    },
-                    {
-                        "name": "炎武王",
-                        "level": 85,
-                        "item": "吃剩的东西",
-                        "ability": "威吓",
-                        "moves": [
-                            "击掌奇袭",
-                            "拍落",
-                            "高温重压",
-                            "抛下狠话"
-                        ]
-                    }
-                ]
-            },
-            {
-                "title": "连胜家族 安江",
-                "battle_type": "双打",
-                "pokemons": [
-                    {
-                        "name": "哈克龙",
-                        "level": 85,
-                        "item": "进化奇石",
-                        "ability": "降雨",
-                        "moves": [
-                            "活活气泡",
-                            "庆祝",
-                            "电磁波",
-                            "冰冻光束"
-                        ]
-                    },
-                    {
-                        "name": "镰刀盔",
-                        "level": 85,
-                        "item": "潮湿岩石",
-                        "ability": "悠游自如",
-                        "moves": [
-                            "虫突",
-                            "十字剪",
-                            "波动冲",
-                            "岩崩"
-                        ]
-                    },
-                    {
-                        "name": "快泳蛙",
-                        "level": 85,
-                        "item": "回复果",
-                        "ability": "悠游自如",
-                        "moves": [
-                            "吸取拳",
-                            "波动冲",
-                            "冰冻拳",
-                            "腹鼓"
-                        ]
-                    },
-                    {
-                        "name": "暴鲤龙",
-                        "level": 85,
-                        "item": "暴鲤龙进化石",
-                        "ability": "威吓",
-                        "moves": [
-                            "龙神俯冲",
-                            "波动冲",
-                            "龙之舞",
-                            "咬碎"
-                        ]
-                    },
-                    {
-                        "name": "刺龙王",
-                        "level": 85,
-                        "item": "生命宝珠",
-                        "ability": "强行",
-                        "moves": [
-                            "墨汁炮",
-                            "暴狂龙卷",
-                            "冰冻光束",
-                            "龙之舞"
-                        ]
-                    },
-                    {
-                        "name": "海兔兽",
-                        "level": 85,
-                        "item": "吃剩的东西",
-                        "ability": "引水",
-                        "moves": [
-                            "求雨",
-                            "热水",
-                            "大地之力",
-                            "剧毒"
-                        ]
-                    }
-                ]
-            },
-            {
-                "title": "76 - 连胜家族 小雪",
-                "battle_type": "双打",
-                "pokemons": [
-                    {
-                        "name": "小黑子",
-                        "level": 85,
-                        "item": "气势披带",
-                        "ability": "降雪",
-                        "moves": [
-                            "活活气泡",
-                            "冰冻之风",
-                            "冷冻干燥",
-                            "暴风雪"
-                        ]
-                    },
-                    {
-                        "name": "雪妖女",
-                        "level": 85,
-                        "item": "冰冷岩石",
-                        "ability": "天恩",
-                        "moves": [
-                            "暴风雪",
-                            "妖精之风"
-                        ]
-                    },
-                    {
-                        "name": "暴雪王",
-                        "level": 85,
-                        "item": "暴雪王进化石",
-                        "ability": "降雪",
-                        "moves": [
-                            "暴风雪",
-                            "终极吸取",
-                            "真气弹",
-                            "冰砾"
-                        ]
-                    },
-                    {
-                        "name": "象牙猪",
-                        "level": 85,
-                        "item": "吃剩的东西",
-                        "ability": "毛皮大衣",
-                        "moves": [
-                            "冰砾",
-                            "雪崩",
-                            "十万马力",
-                            "岩崩"
-                        ]
-                    },
-                    {
-                        "name": "冰伊布",
-                        "level": 85,
-                        "item": "突击背心",
-                        "ability": "单纯",
-                        "moves": [
-                            "暴风雪",
-                            "大地之力",
-                            "极光束",
-                            "冥想"
-                        ]
-                    },
-                    {
-                        "name": "冰岩怪",
-                        "level": 85,
-                        "item": "气势披带",
-                        "ability": "冰冻皮肤",
-                        "moves": [
-                            "大爆炸"
-                        ]
-                    }
-                ]
-            },
-            {
-                "title": "578 - 连胜家族 光代",
-                "battle_type": "双打",
-                "pokemons": [
-                    {
-                        "name": "雄牙象",
-                        "level": 90,
-                        "item": "沙沙岩石",
-                        "ability": "拨沙",
-                        "moves": [
-                            "超级角击",
-                            "突飞猛扑",
-                            "健美",
-                            "近身战"
-                        ]
-                    },
-                    {
-                        "name": "庞岩怪",
-                        "level": 90,
-                        "item": "吃剩的东西",
-                        "ability": "扬沙",
-                        "moves": [
-                            "广域防守",
-                            "岩崩",
-                            "庆祝",
-                            "冲岩"
-                        ]
-                    },
-                    {
-                        "name": "烈咬陆鲨",
-                        "level": 90,
-                        "item": "抗冰果",
-                        "ability": "沙隐",
-                        "moves": [
-                            "双龙切",
-                            "突飞猛扑",
-                            "磨爪",
-                            "火焰牙"
-                        ]
-                    },
-                    {
-                        "name": "班基拉斯",
-                        "level": 90,
-                        "item": "抗斗果",
-                        "ability": "扬沙",
-                        "moves": [
-                            "岩崩",
-                            "十万马力",
-                            "暗黑连击",
-                            "冰冻牙"
-                        ]
-                    },
-                    {
-                        "name": "波士可多拉",
-                        "level": 90,
-                        "item": "波士可多拉进化石",
-                        "ability": "结实",
-                        "moves": [
-                            "重磅冲撞",
-                            "金属爆炸",
-                            "龙尾",
-                            "广域防守"
-                        ]
-                    },
-                    {
-                        "name": "超甲龙犀",
-                        "level": 90,
-                        "item": "突击背心",
-                        "ability": "扬沙",
-                        "moves": [
-                            "大地之力",
-                            "岩石巨炮",
-                            "天龙之息",
-                            "十万伏特"
-                        ]
-                    }
-                ]
-            }
-        ],
         "隐藏五天王": [
             {
                 "title": "格兰德（地面天王）",
                 "battle_type": "三打",
+                "item": "大师秘药*4   凹凸山道",
                 "pokemons": [
                     {
                         "name": "土地云（灵兽）",
@@ -8229,6 +8019,7 @@ export const reqYHNPC = () => {
             {
                 "title": "波伊森（毒系天王）",
                 "battle_type": "三打",
+                "item": "大师秘药*4  二周目船票",
                 "pokemons": [
                     {
                         "name": "M妙蛙花",
@@ -8307,6 +8098,7 @@ export const reqYHNPC = () => {
             {
                 "title": "巴格（虫系天王）",
                 "battle_type": "三打",
+                "item": "大师秘药*4 120号道路",
                 "pokemons": [
                     {
                         "name": "M赫拉克罗斯",
@@ -8385,6 +8177,7 @@ export const reqYHNPC = () => {
             {
                 "title": "格拉斯（草系天王）",
                 "battle_type": "三打",
+                "item": "大师秘药*4 105号水路",
                 "pokemons": [
                     {
                         "name": "时拉比",
@@ -8463,6 +8256,7 @@ export const reqYHNPC = () => {
             {
                 "title": "菲里（妖精天王）",
                 "battle_type": "三打",
+                "item": "大师秘药*4  123号道路",
                 "pokemons": [
                     {
                         "name": "幻梦",
@@ -8541,8 +8335,9 @@ export const reqYHNPC = () => {
         ],
         "二周目 重要战斗": [
             {
-                "title": "898 - 宝可梦训练家 希嘉娜（一番战）",
-                "battle_type": "双打",
+                "title": "898 - 宝可梦训练家 希嘉娜",
+                "battle_type": "一番战",
+                "item": "双打，大师秘药*3",
                 "pokemons": [
                     {
                         "name": "M拉帝亚斯",
@@ -8621,6 +8416,7 @@ export const reqYHNPC = () => {
             {
                 "title": "943 - 琉璃市居民 米可利（二周目-天空之柱）",
                 "battle_type": "群战",
+                "item": "大师秘药*3",
                 "pokemons": [
                     {
                         "name": "帕路奇亚",
@@ -8698,6 +8494,7 @@ export const reqYHNPC = () => {
             {
                 "title": "713 - 传承者 希嘉娜（二番战）",
                 "battle_type": "三打",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "帕路奇亚",
@@ -8736,7 +8533,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "酋雷姆（焰白）",
+                        "name": "焰白酋雷姆",
                         "level": 100,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -8748,7 +8545,7 @@ export const reqYHNPC = () => {
                         ]
                     },
                     {
-                        "name": "酋雷姆（暗黑）",
+                        "name": "暗黑酋雷姆",
                         "level": 100,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -8774,10 +8571,324 @@ export const reqYHNPC = () => {
                 ]
             }
         ],
+        "连胜家族（紫堇市上方）": [
+            {
+                "title": "连胜家族 晴彦",
+                "battle_type": "双打",
+                "item": "",
+                "pokemons": [
+                    {
+                        "name": "向日花怪",
+                        "level": 85,
+                        "item": "炽热岩石",
+                        "ability": "日照",
+                        "moves": [
+                            "热风",
+                            "阳光烈焰",
+                            "光合作用",
+                            "大地之力"
+                        ]
+                    },
+                    {
+                        "name": "叶伊布",
+                        "level": 85,
+                        "item": "气势披带",
+                        "ability": "太阳驱动",
+                        "moves": [
+                            "刃叶斩",
+                            "生长",
+                            "水尾连击",
+                            "十字剪"
+                        ]
+                    },
+                    {
+                        "name": "黑鲁加",
+                        "level": 85,
+                        "item": "黑鲁加进化石",
+                        "ability": "日照",
+                        "moves": [
+                            "恶之波动",
+                            "热风",
+                            "大地之力",
+                            "阳光烈焰"
+                        ]
+                    },
+                    {
+                        "name": "风速狗",
+                        "level": 85,
+                        "item": "生命宝珠",
+                        "ability": "坚硬脑袋",
+                        "moves": [
+                            "疯狂伏特",
+                            "闪焰冲锋",
+                            "地狱翻滚",
+                            "神速"
+                        ]
+                    },
+                    {
+                        "name": "妙蛙花",
+                        "level": 85,
+                        "item": "吃剩的东西",
+                        "ability": "太阳驱动",
+                        "moves": [
+                            "终极吸取",
+                            "生长",
+                            "污泥波",
+                            "庆祝"
+                        ]
+                    },
+                    {
+                        "name": "炎武王",
+                        "level": 85,
+                        "item": "吃剩的东西",
+                        "ability": "威吓",
+                        "moves": [
+                            "击掌奇袭",
+                            "拍落",
+                            "高温重压",
+                            "抛下狠话"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "连胜家族 安江",
+                "battle_type": "双打",
+                "item": "",
+                "pokemons": [
+                    {
+                        "name": "哈克龙",
+                        "level": 85,
+                        "item": "进化奇石",
+                        "ability": "降雨",
+                        "moves": [
+                            "活活气泡",
+                            "庆祝",
+                            "电磁波",
+                            "冰冻光束"
+                        ]
+                    },
+                    {
+                        "name": "镰刀盔",
+                        "level": 85,
+                        "item": "潮湿岩石",
+                        "ability": "悠游自如",
+                        "moves": [
+                            "虫突",
+                            "十字剪",
+                            "波动冲",
+                            "岩崩"
+                        ]
+                    },
+                    {
+                        "name": "快泳蛙",
+                        "level": 85,
+                        "item": "回复果",
+                        "ability": "悠游自如",
+                        "moves": [
+                            "吸取拳",
+                            "波动冲",
+                            "冰冻拳",
+                            "腹鼓"
+                        ]
+                    },
+                    {
+                        "name": "暴鲤龙",
+                        "level": 85,
+                        "item": "暴鲤龙进化石",
+                        "ability": "威吓",
+                        "moves": [
+                            "龙神俯冲",
+                            "波动冲",
+                            "龙之舞",
+                            "咬碎"
+                        ]
+                    },
+                    {
+                        "name": "刺龙王",
+                        "level": 85,
+                        "item": "生命宝珠",
+                        "ability": "强行",
+                        "moves": [
+                            "墨汁炮",
+                            "暴狂龙卷",
+                            "冰冻光束",
+                            "龙之舞"
+                        ]
+                    },
+                    {
+                        "name": "海兔兽",
+                        "level": 85,
+                        "item": "吃剩的东西",
+                        "ability": "引水",
+                        "moves": [
+                            "求雨",
+                            "热水",
+                            "大地之力",
+                            "剧毒"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "76 - 连胜家族 小雪",
+                "battle_type": "双打",
+                "item": "",
+                "pokemons": [
+                    {
+                        "name": "小黑子",
+                        "level": 85,
+                        "item": "气势披带",
+                        "ability": "降雪",
+                        "moves": [
+                            "活活气泡",
+                            "冰冻之风",
+                            "冷冻干燥",
+                            "暴风雪"
+                        ]
+                    },
+                    {
+                        "name": "雪妖女",
+                        "level": 85,
+                        "item": "冰冷岩石",
+                        "ability": "天恩",
+                        "moves": [
+                            "暴风雪",
+                            "妖精之风"
+                        ]
+                    },
+                    {
+                        "name": "暴雪王",
+                        "level": 85,
+                        "item": "暴雪王进化石",
+                        "ability": "降雪",
+                        "moves": [
+                            "暴风雪",
+                            "终极吸取",
+                            "真气弹",
+                            "冰砾"
+                        ]
+                    },
+                    {
+                        "name": "象牙猪",
+                        "level": 85,
+                        "item": "吃剩的东西",
+                        "ability": "毛皮大衣",
+                        "moves": [
+                            "冰砾",
+                            "雪崩",
+                            "十万马力",
+                            "岩崩"
+                        ]
+                    },
+                    {
+                        "name": "冰伊布",
+                        "level": 85,
+                        "item": "突击背心",
+                        "ability": "单纯",
+                        "moves": [
+                            "暴风雪",
+                            "大地之力",
+                            "极光束",
+                            "冥想"
+                        ]
+                    },
+                    {
+                        "name": "冰岩怪",
+                        "level": 85,
+                        "item": "气势披带",
+                        "ability": "冰冻皮肤",
+                        "moves": [
+                            "大爆炸"
+                        ]
+                    }
+                ]
+            },
+            {
+                "title": "578 - 连胜家族 光代",
+                "battle_type": "双打",
+                "item": "",
+                "pokemons": [
+                    {
+                        "name": "雄牙象",
+                        "level": 90,
+                        "item": "沙沙岩石",
+                        "ability": "拨沙",
+                        "moves": [
+                            "超级角击",
+                            "突飞猛扑",
+                            "健美",
+                            "近身战"
+                        ]
+                    },
+                    {
+                        "name": "庞岩怪",
+                        "level": 90,
+                        "item": "吃剩的东西",
+                        "ability": "扬沙",
+                        "moves": [
+                            "广域防守",
+                            "岩崩",
+                            "庆祝",
+                            "冲岩"
+                        ]
+                    },
+                    {
+                        "name": "烈咬陆鲨",
+                        "level": 90,
+                        "item": "抗冰果",
+                        "ability": "沙隐",
+                        "moves": [
+                            "双龙切",
+                            "突飞猛扑",
+                            "磨爪",
+                            "火焰牙"
+                        ]
+                    },
+                    {
+                        "name": "班基拉斯",
+                        "level": 90,
+                        "item": "抗斗果",
+                        "ability": "扬沙",
+                        "moves": [
+                            "岩崩",
+                            "十万马力",
+                            "暗黑连击",
+                            "冰冻牙"
+                        ]
+                    },
+                    {
+                        "name": "波士可多拉",
+                        "level": 90,
+                        "item": "波士可多拉进化石",
+                        "ability": "结实",
+                        "moves": [
+                            "重磅冲撞",
+                            "金属爆炸",
+                            "龙尾",
+                            "广域防守"
+                        ]
+                    },
+                    {
+                        "name": "超甲龙犀",
+                        "level": 90,
+                        "item": "突击背心",
+                        "ability": "扬沙",
+                        "moves": [
+                            "大地之力",
+                            "岩石巨炮",
+                            "天龙之息",
+                            "十万伏特"
+                        ]
+                    }
+                ]
+            }
+        ],
         "最终挑战！游戏作者（茵郁市右下角树屋）": [
             {
                 "title": "856 - 游戏作者 阿布（一周目）",
                 "battle_type": "群战",
+                "item": "大师秘药*4",
                 "pokemons": [
                     {
                         "name": "雷皇",
@@ -8856,6 +8967,7 @@ export const reqYHNPC = () => {
             {
                 "title": "857 - 游戏作者 阿布（二周目）",
                 "battle_type": "群战",
+                "item": "传奇圣药*4",
                 "pokemons": [
                     {
                         "name": "M蒂安希",

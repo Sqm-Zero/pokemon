@@ -1,5 +1,6 @@
 <template>
     <Top title="技能信息" router="/move" icon="info" color="linear-gradient(90deg, #ffffff, #562af4, #f59e24)"></Top>
+
     <div class="m_move_info" :style="{ background: getColor(move.type) }" @touchstart="handleTouchStart"
         @touchmove="handleTouchMove" @touchend="handleTouchEnd">
         <div v-if="move" class="move-container">
@@ -23,13 +24,13 @@
                 <div class="power_info">
                     <p class="label">威力</p>
                     <div class="value type-badge" style="color: black;">
-                        {{ move.power }}
+                        {{ move.power || '——' }}
                     </div>
                 </div>
                 <div class="accuracy_info">
                     <p class="label">命中率</p>
                     <div class="value type-badge" style="color: black;">
-                        {{ move.accuracy == '101'?'——' : move.accuracy }}
+                        {{ move.accuracy == '101' ? '——' : move.accuracy }}
                     </div>
                 </div>
             </div>
@@ -38,21 +39,34 @@
             <p>加载中...</p>
         </div>
     </div>
+
+    <!-- 切换标签 -->
+    <div class="tab-container">
+        <div class="tab" :class="{ active: currentTab === 'level' }" @click="currentTab = 'level'">
+            等级学习
+        </div>
+        <div class="tab" :class="{ active: currentTab === 'egg' }" @click="currentTab = 'egg'">
+            蛋招式
+        </div>
+    </div>
+
+    <!-- 宝可梦列表 -->
     <div class="pokemon-list-container">
         <div class="pokemon-list-header">
             <h3>可学习该技能的宝可梦</h3>
         </div>
         <div class="pokemon-list">
-            <div class="pokemon-item" v-for="pokemon in pokemon_list" @click="handlePokemonInfo(pokemon)"
+            <div class="pokemon-item" v-for="pokemon in currentPokemonList" @click="handlePokemonInfo(pokemon)"
                 :key="pokemon.id">
                 <div class="pokemon-avatar">
-                    <img :src="getImageSrc(pokemon.id)" :alt="pokemon.name" class="pokemon-image">
+                    <img :src="getImageSrc(pokemon.id)" :alt="pokemon.name" class="pokemon-image" />
                 </div>
                 <div class="pokemon-info">
                     <span class="pokemon-name">{{ processPokemonName(pokemon.name) }}</span>
-                    <div class="pokemon-level-badge">
+                    <div v-if="currentTab === 'level'" class="pokemon-level-badge">
                         Lv.{{ pokemon.learnLevel }}
                     </div>
+                    <div v-else class="pokemon-egg-badge">蛋招</div>
                 </div>
             </div>
         </div>
@@ -62,7 +76,7 @@
 <script setup lang="ts">
 import { usePokemonStore } from '@/store/modules/pokemon';
 import { useRouter } from 'vue-router';
-import { reactive,ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
 // 获取精灵仓库
 const pokemonStore = usePokemonStore();
 // 定义响应式数据
@@ -111,6 +125,17 @@ const specialForms: Record<string, string[]> = {
     '超能妙喵': ['雌性'],
     '花叶蒂': ['', '', '', '', '永恒之花']
 };
+
+// 在顶部导入后添加
+const currentTab = ref<'level' | 'egg'>('level');
+
+// 计算当前显示的列表
+const currentPokemonList = computed<any[]>(() => {
+    if (!move.move) return [];
+    return currentTab.value === 'level'
+        ? pokemonStore.getPokemonByMoveName(move.move)
+        : pokemonStore.getPokemonByEggMoveName(move.move);
+});
 const processPokemonName = (name: string): string => {
     // 首先检查是否是特殊形态的宝可梦
     const baseName = name.replace(/\s+\d+$/, ''); // 去掉末尾的数字
@@ -201,71 +226,72 @@ function loadPreviousPokemonPage() {
     padding: 20px;
     background-color: #ffffff;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    margin: 20px;
-    border-style: solid;
-    border-color: #2c3e50;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    margin: 16px;
+    border: 1px solid #e0e6f0;
 
     .move-title {
-        font-size: 24px;
-        font-weight: 600;
-        color: #2c3e50;
-        margin-bottom: 24px;
+        font-size: 22px;
+        font-weight: 700;
+        color: #1a2b4d;
+        margin-bottom: 20px;
         text-align: center;
+        letter-spacing: 0.5px;
     }
 
     .move_info {
-        background-color: #f8f9fa;
-        padding: 16px 24px;
-        border-radius: 10px;
-        margin: 20px;
+        background-color: #f8fbff;
+        padding: 16px;
+        border-radius: 12px;
+        margin: 16px 0;
+        font-size: 15px;
+        color: #333;
+        line-height: 1.5;
     }
 
     .move-info,
     .move_header {
         display: flex;
-        gap: 20px;
+        gap: 16px;
         justify-content: center;
-
+        flex-wrap: wrap;
 
         .accuracy_info,
         .power_info,
         .info-card {
-            background: #f8f9fa;
-            padding: 16px 24px;
+            background: #f8fbff;
+            padding: 14px 18px;
             border-radius: 12px;
-            min-width: 120px;
+            min-width: 110px;
             text-align: center;
-            transition: transform 0.2s;
-
-            &:hover {
-                transform: translateY(-2px);
-            }
+            border: 1px solid #e6f0ff;
 
             .label {
-                font-size: 14px;
+                font-size: 13px;
                 color: #6c757d;
-                margin-bottom: 8px;
-                font-weight: 500;
+                margin-bottom: 6px;
+                font-weight: 600;
             }
 
             .value {
                 font-size: 16px;
-                font-weight: 600;
+                font-weight: 700;
 
                 &.type-badge {
                     color: white;
-                    padding: 6px 12px;
+                    padding: 5px 12px;
                     border-radius: 20px;
                     display: inline-block;
+                    min-width: 60px;
                 }
 
                 &.category-badge {
                     color: #2c3e50;
-                    padding: 6px 12px;
+                    padding: 5px 12px;
                     border-radius: 20px;
                     background: #e9ecef;
                     display: inline-block;
+                    min-width: 60px;
                 }
             }
         }
@@ -279,58 +305,85 @@ function loadPreviousPokemonPage() {
     }
 }
 
-.pokemon-list-container {
-    background-color: #f4f4f4;
+/* 切换标签 */
+.tab-container {
+    display: flex;
+    justify-content: center;
+    gap: 2px;
+    margin: 12px auto;
+    max-width: 420px;
+    background: #f0f5ff;
     border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 4px;
+    width: fit-content;
+}
+
+.tab {
+    padding: 8px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #5a6b82;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: none;
+    user-select: none;
+}
+
+.tab.active {
+    background: #409eff;
+    color: white;
+    box-shadow: 0 2px 6px rgba(64, 158, 255, 0.2);
+}
+
+.pokemon-list-container {
+    background-color: #f9fbfd;
+    border-radius: 12px;
+    padding: 16px;
+    margin: 0 16px 20px;
 
     .pokemon-list-header {
         text-align: center;
-        margin-bottom: 20px;
+        margin-bottom: 16px;
 
         h3 {
-            color: #333;
-            font-size: 1.2rem;
-            font-weight: 600;
+            color: #1a2b4d;
+            font-size: 16px;
+            font-weight: 700;
         }
     }
 
     .pokemon-list {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-        gap: 15px;
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 14px;
     }
 
     .pokemon-item {
         background-color: white;
-        border-radius: 10px;
-        padding: 15px;
+        border-radius: 12px;
+        padding: 14px 8px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        transition: all 0.3s ease;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-        /*         &:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-        } */
+        border: 1px solid #eef4ff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
     }
 
     .pokemon-avatar {
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         border-radius: 50%;
         overflow: hidden;
-        margin-bottom: 10px;
-        border: 3px solid #e0e0e0;
+        margin-bottom: 8px;
+        border: 2px solid #e0eaff;
+        background: #f8fbff;
     }
 
     .pokemon-image {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        background: white;
     }
 
     .pokemon-info {
@@ -338,21 +391,31 @@ function loadPreviousPokemonPage() {
         flex-direction: column;
         align-items: center;
         width: 100%;
+        margin-top: 4px;
     }
 
     .pokemon-name {
-        font-weight: 500;
-        margin-bottom: 5px;
-        color: #333;
+        font-weight: 600;
+        font-size: 14px;
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 4px;
+        line-height: 1.3;
     }
 
-    .pokemon-level-badge {
-        background-color: #4CAF50;
+    .pokemon-level-badge,
+    .pokemon-egg-badge {
+        background-color: #409eff;
         color: white;
-        padding: 3px 8px;
+        padding: 3px 10px;
         border-radius: 20px;
-        font-size: 0.8rem;
+        font-size: 12px;
         font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    .pokemon-egg-badge {
+        background-color: #ff9800;
     }
 }
 </style>

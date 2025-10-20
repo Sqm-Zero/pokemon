@@ -5,6 +5,7 @@
         <div v-if="battles.length" class="battle-card" v-for="(battle, index) in battles" :key="index">
             <div class="battle-header">
                 <div class="battle-title">{{ battle.title }}</div>
+                <div class="battle-type">{{ battle.item }}</div>
                 <div class="battle-type">{{ battle.battle_type }}</div>
             </div>
 
