@@ -56,7 +56,7 @@ onMounted(() => {
     .pokemon {
         width: 100%;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
         gap: 16px;
         padding: 20px;
         max-width: 1200px;
@@ -64,19 +64,19 @@ onMounted(() => {
         
         // 响应式网格
         @media (max-width: 768px) {
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             gap: 12px;
             padding: 16px;
         }
         
         @media (max-width: 480px) {
-            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
             gap: 10px;
             padding: 12px;
         }
         
         @media (min-width: 1200px) {
-            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
             gap: 20px;
         }
     }
