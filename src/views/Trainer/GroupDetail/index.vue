@@ -22,11 +22,13 @@
                 :ref="el => battleRefs[index] = el as HTMLElement"
             >
                 <div class="battle-header" @click="toggleBattle(index)">
-                    <div class="battle-title">{{ battle.title }}</div>
-                    <div class="battle-info">
-                        <div class="battle-type">{{ battle.item }}</div>
-                        <div class="battle-type">{{ battle.battle_type }}</div>
-                        <div class="pokemon-count">{{ battle.pokemons.length }}只宝可梦</div>
+                    <div class="battle-content">
+                        <div class="battle-title">{{ battle.title }}</div>
+                        <div class="battle-meta">
+                            <span class="battle-type">{{ battle.item }}</span>
+                            <span class="battle-type">{{ battle.battle_type }}</span>
+                            <span class="pokemon-count">{{ battle.pokemons.length }}只</span>
+                        </div>
                     </div>
                     <div class="expand-icon" :class="{ expanded: expandedBattles.has(index) }">
                         ▼
@@ -39,10 +41,10 @@
                     :class="{ collapsed: !expandedBattles.has(index) }"
                 >
                     <div 
-                        class="pokemon-card" 
+                        class="pokemon-item" 
                         v-for="(p, i) in battle.pokemons" 
                         :key="i" 
-                        @click="handlePokemonInfo(p)"
+                        @click="handlePokemonInfo(p, index, i)"
                     >
                         <!-- 头像 + 基础信息 -->
                         <div class="poke-header">
@@ -54,12 +56,14 @@
                                     <span class="poke-level">Lv.{{ p.level }}</span>
                                     <span class="poke-name">{{ processPokemonName(p.name) }}</span>
                                 </div>
-                                <div class="poke-ability">特性：{{ p.ability }}</div>
-                                <span v-if="p.item" class="poke-item">@ {{ p.item }}</span>
+                                <div class="poke-details">
+                                    <span class="poke-ability">{{ p.ability }}</span>
+                                    <span v-if="p.item" class="poke-item">{{ p.item }}</span>
+                                </div>
                             </div>
                         </div>
 
-                        <!-- 技能独占一行 -->
+                        <!-- 技能横向排列 -->
                         <div class="poke-moves">
                             <span class="move" v-for="(m, j) in p.moves" :key="j" @click.stop="handleMoveInfo(m)">{{ m }}</span>
                         </div>
@@ -77,7 +81,7 @@
 
 <script setup lang="ts">
 import { useRoute, useRouter } from 'vue-router'
-import { onMounted, ref, computed } from 'vue'
+import { onMounted, ref, computed, nextTick } from 'vue'
 import { reqNPC, reqYHNPC } from '@/apis/npc'
 import { usePokemonStore } from '@/store/modules/pokemon'
 
@@ -92,6 +96,9 @@ const version = computed<'normal' | 'hardcore'>(() => {
 const battles = ref<any[]>([])
 const expandedBattles = ref(new Set<number>())
 const battleRefs = ref<HTMLElement[]>([])
+const scrollPosition = ref(0)
+const lastExpandedState = ref(new Set<number>())
+const clickedPokemonIndex = ref<{battleIndex: number, pokemonIndex: number} | null>(null)
 
 // 计算是否全部展开
 const allExpanded = computed(() => {
@@ -105,9 +112,42 @@ onMounted(() => {
         : reqNPC()
     battles.value = allData[groupName] || []
     
-    // 默认展开第一个战斗
-    if (battles.value.length > 0) {
-        expandedBattles.value.add(0)
+    // 恢复展开状态或默认展开所有战斗
+    if (lastExpandedState.value.size > 0) {
+        expandedBattles.value = new Set(lastExpandedState.value)
+    } else if (battles.value.length > 0) {
+        // 默认展开所有战斗
+        battles.value.forEach((_, index) => {
+            expandedBattles.value.add(index)
+        })
+    }
+
+    // 恢复滚动位置
+    if (scrollPosition.value > 0) {
+        nextTick(() => {
+            // 等待DOM更新完成后再滚动
+            setTimeout(() => {
+                // 如果有记录的点击精灵位置，尝试滚动到该精灵附近
+                if (clickedPokemonIndex.value) {
+                    const { battleIndex } = clickedPokemonIndex.value
+                    const battleElement = battleRefs.value[battleIndex]
+                    if (battleElement) {
+                        battleElement.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'start',
+                            inline: 'nearest'
+                        })
+                        return
+                    }
+                }
+                
+                // 否则使用保存的滚动位置
+                window.scrollTo({
+                    top: scrollPosition.value,
+                    behavior: 'smooth'
+                })
+            }, 200)
+        })
     }
 })
 
@@ -217,7 +257,11 @@ const getImageSrc = (name: string) => {
 }
 
 // 跳转到精灵详情
-const handlePokemonInfo = (pokemon: any) => {
+const handlePokemonInfo = (pokemon: any, battleIndex: number, pokemonIndex: number) => {
+    // 保存当前滚动位置和展开状态
+    scrollPosition.value = window.scrollY
+    lastExpandedState.value = new Set(expandedBattles.value)
+    clickedPokemonIndex.value = { battleIndex, pokemonIndex }
     const rawName = restorePokemonRawName(processPokemonName(pokemon.name))
     const num = String(Number(getPokemonNumberByName(rawName)))
     pokemonStore.Pokemon = pokemonStore.getPokemonByNumber(num)
@@ -295,31 +339,39 @@ const handleMoveInfo = (moveName: string) => {
 .battle-header {
     display: flex;
     align-items: center;
-    padding: 18px;
+    justify-content: space-between;
+    padding: 16px 18px;
     cursor: pointer;
     transition: all 0.3s ease;
     background: linear-gradient(135deg, #f8fbff 0%, #e6f4ff 100%);
+    border-bottom: 1px solid #e6f0ff;
 }
 
 .battle-header:hover {
     background: linear-gradient(135deg, #e6f4ff 0%, #d0e4ff 100%);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(64, 158, 255, 0.15);
+}
+
+.battle-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .battle-title {
-    flex: 1;
     font-weight: 700;
     color: #1a2b4d;
     font-size: 16px;
     letter-spacing: 0.3px;
-    margin-right: 12px;
 }
 
-.battle-info {
+.battle-meta {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 4px;
-    margin-right: 12px;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .pokemon-count {
@@ -344,14 +396,17 @@ const handleMoveInfo = (moveName: string) => {
 .battle-type {
     color: #409eff;
     font-weight: 600;
-    font-size: 14px;
+    font-size: 13px;
+    background: rgba(64, 158, 255, 0.1);
+    padding: 3px 8px;
+    border-radius: 6px;
 }
 
 .pokemon-list {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 18px;
+    gap: 6px;
+    padding: 12px;
     background: #fafbfc;
     transition: all 0.3s ease;
     max-height: 2000px;
@@ -364,38 +419,47 @@ const handleMoveInfo = (moveName: string) => {
     opacity: 0;
 }
 
-.pokemon-card {
+.pokemon-item {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    padding: 14px;
+    gap: 8px;
+    padding: 10px 12px;
+    background: white;
+    border-radius: 6px;
+    border-left: 3px solid #409eff;
+    margin-bottom: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pokemon-item:hover {
     background: #f8fbff;
-    border-radius: 12px;
-    border: 1px solid #e6f0ff;
+    border-left-color: #2d8cf0;
+    transform: translateX(2px);
 }
 
 /* 头像 + 文字信息 */
 .poke-header {
     display: flex;
     align-items: flex-start;
-    gap: 14px;
+    gap: 10px;
 }
 
 .pokemon-avatar {
-    width: 68px;
-    height: 68px;
+    width: 60px;
+    height: 60px;
     flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, #e6f4ff, #f0f9ff);
     border-radius: 50%;
-    border: 2px solid #cce6ff;
+    border: 1px solid #cce6ff;
 }
 
 .pokemon-image {
-    width: 58px;
-    height: 58px;
+    width: 52px;
+    height: 52px;
     object-fit: contain;
     background: white;
     border-radius: 50%;
@@ -438,11 +502,20 @@ const handleMoveInfo = (moveName: string) => {
     white-space: nowrap;
 }
 
+.poke-details {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
 .poke-ability {
     font-size: 13px;
     color: #5a6b82;
-    margin-bottom: 4px;
     font-weight: 500;
+    background: #f0f2f5;
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
 .poke-item {
@@ -456,29 +529,36 @@ const handleMoveInfo = (moveName: string) => {
     letter-spacing: 0.5px;
 }
 
-/* 技能整行 */
+/* 技能整行 - 移动端优化 */
 .poke-moves {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
     width: 100%;
-    margin-top: 4px;
+    margin-top: 8px;
 }
 
 .move {
     background: #f0f7ff;
     color: #2d8cf0;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
-    padding: 9px 6px;
-    border-radius: 10px;
+    padding: 6px 10px;
+    border-radius: 8px;
     text-align: center;
     border: 1px solid #d0e4ff;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
     cursor: pointer;
     font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+    flex: 0 0 auto;
+    min-width: fit-content;
+    transition: all 0.2s ease;
+}
+
+.move:hover {
+    background: #e6f4ff;
+    border-color: #409eff;
+    transform: translateY(-1px);
 }
 
 /* 超小屏优化 */
@@ -488,13 +568,13 @@ const handleMoveInfo = (moveName: string) => {
     }
 
     .pokemon-avatar {
-        width: 64px;
-        height: 64px;
+        width: 52px;
+        height: 52px;
     }
 
     .pokemon-image {
-        width: 54px;
-        height: 54px;
+        width: 44px;
+        height: 44px;
     }
 
     .poke-name {
@@ -502,9 +582,14 @@ const handleMoveInfo = (moveName: string) => {
     }
 
     .move {
-        font-size: 12px;
-        padding: 8px 4px;
-        border-radius: 9px;
+        font-size: 11px;
+        padding: 5px 8px;
+        border-radius: 6px;
+        margin-bottom: 4px;
+    }
+    
+    .poke-moves {
+        gap: 6px;
     }
 
     .battle-card {
@@ -563,6 +648,28 @@ const handleMoveInfo = (moveName: string) => {
     .control-btn {
         padding: 10px 20px;
         font-size: 13px;
+    }
+    
+    .poke-moves {
+        gap: 6px;
+    }
+    
+    .move {
+        font-size: 11px;
+        padding: 5px 8px;
+        border-radius: 6px;
+    }
+}
+
+/* 中等屏幕优化 */
+@media (max-width: 768px) {
+    .poke-moves {
+        gap: 7px;
+    }
+    
+    .move {
+        font-size: 12px;
+        padding: 6px 9px;
     }
 }
 </style>
