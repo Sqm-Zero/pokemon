@@ -989,11 +989,13 @@ const handleTouchMove = (event: TouchEvent) => {
     const deltaX = currentX - startX;
     const deltaY = currentY - startY;
 
-    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+    // 如果垂直滑动距离明显大于水平滑动，则忽略拖拽
+    if (Math.abs(deltaY) * 2 > Math.abs(deltaX)) {
         return;
     }
 
-    if (!isDragging.value && Math.abs(deltaX) > 10) {
+    // 只有水平滑动距离足够大时才启动拖拽
+    if (!isDragging.value && Math.abs(deltaX) > 15) {
         isDragging.value = true;
     }
 
@@ -1047,11 +1049,13 @@ const handleMouseMove = (event: MouseEvent) => {
     const deltaX = currentX - startX;
     const deltaY = currentY - startY;
     
-    if (Math.abs(deltaY) > Math.abs(deltaX)) {
+    // 如果垂直滑动距离明显大于水平滑动，则忽略拖拽
+    if (Math.abs(deltaY) * 2 > Math.abs(deltaX)) {
         return;
     }
 
-    if (!isDragging.value && Math.abs(deltaX) > 10) {
+    // 只有水平滑动距离足够大时才启动拖拽
+    if (!isDragging.value && Math.abs(deltaX) > 15) {
         isDragging.value = true;
     }
 
@@ -2243,51 +2247,7 @@ const handleAreaJump = (areaName: string) => {
     }
 }
 
-/* 页面加载动画 */
-@keyframes fadeInUp {
-    0% {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* 为各个卡片添加加载动画 */
-.pokemon-title,
-.details,
-.weaknesses-container,
-.pokemon-method,
-.pokemon-belongings,
-.pokemon-moves {
-    animation: fadeInUp 0.6s ease-out;
-}
-
-.pokemon-title {
-    animation-delay: 0.1s;
-}
-
-.details {
-    animation-delay: 0.2s;
-}
-
-.weaknesses-container {
-    animation-delay: 0.3s;
-}
-
-.pokemon-method {
-    animation-delay: 0.4s;
-}
-
-.pokemon-belongings {
-    animation-delay: 0.5s;
-}
-
-.pokemon-moves {
-    animation-delay: 0.6s;
-}
+/* 移除页面加载动画以优化移动端性能 */
 
 /* 属性流光边框颜色 */
 .pokemon-title {
