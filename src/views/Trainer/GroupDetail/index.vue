@@ -2,40 +2,76 @@
     <div class="group-detail">
         <Top :title="groupName" router="/trainer" color="#a2cfff" />
 
-        <div v-if="battles.length" class="battle-card" v-for="(battle, index) in battles" :key="index">
-            <div class="battle-header">
-                <div class="battle-title">{{ battle.title }}</div>
-                <div class="battle-type">{{ battle.item }}</div>
-                <div class="battle-type">{{ battle.battle_type }}</div>
+        <!-- 视图控制工具栏 -->
+        <div class="toolbar">
+            <div class="view-controls">
+                <button 
+                    @click="toggleAllBattles" 
+                    class="control-btn"
+                >
+                    {{ allExpanded ? '全部折叠' : '全部展开' }}
+                </button>
             </div>
+        </div>
 
-            <div class="pokemon-list">
-                <div class="pokemon-card" v-for="(p, i) in battle.pokemons" :key="i" @click="handlePokemonInfo(p)">
-                    <!-- 头像 + 基础信息 -->
-                    <div class="poke-header">
-                        <div class="pokemon-avatar">
-                            <img :src="getImageSrc(p.name)" :alt="p.name" class="pokemon-image" />
-                        </div>
-                        <div class="poke-info">
-                            <div class="poke-name-row">
-                                <span class="poke-level">Lv.{{ p.level }}</span>
-                                <span class="poke-name">{{ processPokemonName(p.name) }}</span>
-                            </div>
-                            <div class="poke-ability">特性：{{ p.ability }}</div>
-                            <span v-if="p.item" class="poke-item">@ {{ p.item }}</span>
-                        </div>
+        <div v-if="battles.length" class="battles-container">
+            <div 
+                class="battle-card" 
+                v-for="(battle, index) in battles" 
+                :key="index"
+                :ref="el => battleRefs[index] = el as HTMLElement"
+            >
+                <div class="battle-header" @click="toggleBattle(index)">
+                    <div class="battle-title">{{ battle.title }}</div>
+                    <div class="battle-info">
+                        <div class="battle-type">{{ battle.item }}</div>
+                        <div class="battle-type">{{ battle.battle_type }}</div>
+                        <div class="pokemon-count">{{ battle.pokemons.length }}只宝可梦</div>
                     </div>
+                    <div class="expand-icon" :class="{ expanded: expandedBattles.has(index) }">
+                        ▼
+                    </div>
+                </div>
 
-                    <!-- 技能独占一行 -->
-                    <div class="poke-moves">
-                        <span class="move" v-for="(m, j) in p.moves" :key="j" @click.stop="handleMoveInfo(m)">{{ m
-                        }}</span>
+                <div 
+                    class="pokemon-list" 
+                    v-show="expandedBattles.has(index)"
+                    :class="{ collapsed: !expandedBattles.has(index) }"
+                >
+                    <div 
+                        class="pokemon-card" 
+                        v-for="(p, i) in battle.pokemons" 
+                        :key="i" 
+                        @click="handlePokemonInfo(p)"
+                    >
+                        <!-- 头像 + 基础信息 -->
+                        <div class="poke-header">
+                            <div class="pokemon-avatar">
+                                <img :src="getImageSrc(p.name)" :alt="p.name" class="pokemon-image" />
+                            </div>
+                            <div class="poke-info">
+                                <div class="poke-name-row">
+                                    <span class="poke-level">Lv.{{ p.level }}</span>
+                                    <span class="poke-name">{{ processPokemonName(p.name) }}</span>
+                                </div>
+                                <div class="poke-ability">特性：{{ p.ability }}</div>
+                                <span v-if="p.item" class="poke-item">@ {{ p.item }}</span>
+                            </div>
+                        </div>
+
+                        <!-- 技能独占一行 -->
+                        <div class="poke-moves">
+                            <span class="move" v-for="(m, j) in p.moves" :key="j" @click.stop="handleMoveInfo(m)">{{ m }}</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div v-else class="empty-msg">未找到该分组的数据</div>
+        <div v-else class="empty-msg">
+            <div class="empty-icon">📋</div>
+            <div class="empty-text">暂无训练家数据</div>
+        </div>
     </div>
 </template>
 
@@ -54,13 +90,48 @@ const version = computed<'normal' | 'hardcore'>(() => {
 })
 
 const battles = ref<any[]>([])
+const expandedBattles = ref(new Set<number>())
+const battleRefs = ref<HTMLElement[]>([])
+
+// 计算是否全部展开
+const allExpanded = computed(() => {
+    return battles.value.length > 0 && 
+           battles.value.every((_, index) => expandedBattles.value.has(index))
+})
 
 onMounted(() => {
     const allData: any = version.value === 'hardcore'
         ? reqYHNPC()
         : reqNPC()
     battles.value = allData[groupName] || []
+    
+    // 默认展开第一个战斗
+    if (battles.value.length > 0) {
+        expandedBattles.value.add(0)
+    }
 })
+
+// 切换战斗展开/折叠状态
+const toggleBattle = (index: number) => {
+    if (expandedBattles.value.has(index)) {
+        expandedBattles.value.delete(index)
+    } else {
+        expandedBattles.value.add(index)
+    }
+}
+
+// 切换全部展开/折叠
+const toggleAllBattles = () => {
+    if (allExpanded.value) {
+        // 全部折叠
+        expandedBattles.value.clear()
+    } else {
+        // 全部展开
+        battles.value.forEach((_, index) => {
+            expandedBattles.value.add(index)
+        })
+    }
+}
 
 // 特殊形态映射
 const specialForms: Record<string, string[]> = {
@@ -167,24 +238,107 @@ const handleMoveInfo = (moveName: string) => {
     margin: 0 auto;
 }
 
+/* 工具栏样式 */
+.toolbar {
+    display: flex;
+    justify-content: center;
+    padding: 16px;
+    background: white;
+    border-bottom: 1px solid #e6f0ff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.view-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.control-btn {
+    padding: 12px 24px;
+    background: #f0f7ff;
+    border: 1px solid #d0e4ff;
+    border-radius: 25px;
+    font-size: 14px;
+    color: #409eff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+.control-btn:hover {
+    background: #e6f4ff;
+    border-color: #409eff;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(64, 158, 255, 0.2);
+}
+
+/* 战斗容器 */
+.battles-container {
+    padding: 0 16px 20px;
+}
+
 .battle-card {
     background: #ffffff;
     border-radius: 14px;
-    padding: 18px;
-    margin: 18px auto;
-    width: 96%;
+    padding: 0;
+    margin: 12px 0;
     border: 1px solid #dbe9ff;
     box-shadow: 0 3px 8px rgba(64, 158, 255, 0.06);
+    overflow: hidden;
+    transition: all 0.3s ease;
 }
 
 .battle-header {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 14px;
+    align-items: center;
+    padding: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(135deg, #f8fbff 0%, #e6f4ff 100%);
+}
+
+.battle-header:hover {
+    background: linear-gradient(135deg, #e6f4ff 0%, #d0e4ff 100%);
+}
+
+.battle-title {
+    flex: 1;
     font-weight: 700;
     color: #1a2b4d;
     font-size: 16px;
     letter-spacing: 0.3px;
+    margin-right: 12px;
+}
+
+.battle-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+    margin-right: 12px;
+}
+
+.pokemon-count {
+    font-size: 12px;
+    color: #909399;
+    background: #f0f2f5;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+.expand-icon {
+    font-size: 12px;
+    color: #409eff;
+    transition: transform 0.3s ease;
+    user-select: none;
+}
+
+.expand-icon.expanded {
+    transform: rotate(180deg);
 }
 
 .battle-type {
@@ -197,6 +351,17 @@ const handleMoveInfo = (moveName: string) => {
     display: flex;
     flex-direction: column;
     gap: 16px;
+    padding: 18px;
+    background: #fafbfc;
+    transition: all 0.3s ease;
+    max-height: 2000px;
+    overflow: hidden;
+}
+
+.pokemon-list.collapsed {
+    max-height: 0;
+    padding: 0 18px;
+    opacity: 0;
 }
 
 .pokemon-card {
@@ -344,6 +509,60 @@ const handleMoveInfo = (moveName: string) => {
 
     .battle-card {
         padding: 16px;
+    }
+}
+
+/* 空状态样式 */
+.empty-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    text-align: center;
+    background: white;
+    margin: 20px;
+    border-radius: 14px;
+    border: 1px solid #e6f0ff;
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 16px;
+    opacity: 0.6;
+}
+
+.empty-text {
+    font-size: 16px;
+    color: #606266;
+    margin-bottom: 20px;
+}
+
+.clear-btn {
+    padding: 10px 24px;
+    background: #409eff;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.clear-btn:hover {
+    background: #337ecc;
+    transform: translateY(-1px);
+}
+
+/* 响应式优化 */
+@media (max-width: 480px) {
+    .toolbar {
+        padding: 12px;
+    }
+    
+    .control-btn {
+        padding: 10px 20px;
+        font-size: 13px;
     }
 }
 </style>

@@ -3104,7 +3104,7 @@ export const reqNPC = ():BattleData => {
                         ]
                     },
                     {
-                        "name": "酋雷姆 （暗黑）",
+                        "name": "酋雷姆（暗黑）",
                         "level": 97,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -3116,7 +3116,7 @@ export const reqNPC = ():BattleData => {
                         ]
                     },
                     {
-                        "name": "酋雷姆 （焰白）",
+                        "name": "酋雷姆（焰白）",
                         "level": 97,
                         "item": "强力香草",
                         "ability": "双连击",
@@ -6304,7 +6304,7 @@ export const reqYHNPC = ():BattleData => {
                         ]
                     },
                     {
-                        "name": "（女）M蒂安希",
+                        "name": "M蒂安希",
                         "level": 88,
                         "item": "抗钢果",
                         "ability": "魔法反射",
@@ -6316,7 +6316,7 @@ export const reqYHNPC = ():BattleData => {
                         ]
                     },
                     {
-                        "name": "（男）盖诺赛克特",
+                        "name": "盖诺赛克特",
                         "level": 88,
                         "item": "水流卡带",
                         "ability": "引火",
@@ -6610,7 +6610,7 @@ export const reqYHNPC = ():BattleData => {
                 "item": "盾之秘药*2，矛之秘药*2",
                 "pokemons": [
                     {
-                        "name": "美洛耶塔 （舞步）",
+                        "name": "美洛耶塔（舞步）",
                         "level": 48,
                         "item": "气势披带",
                         "ability": "轻装",

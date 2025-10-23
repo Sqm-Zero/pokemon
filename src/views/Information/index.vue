@@ -6,7 +6,8 @@
         <!-- 翻页动画容器 -->
         <div class="page-container" :style="pageContainerStyle">
             <div class="page-content" :style="pageContentStyle">
-                <div class="pokemon-title" :style="gradientStyle">
+                <div class="pokemon-title-wrapper">
+                    <div class="pokemon-title" :style="{...gradientStyle, ...getBorderStyle()}" :class="getBorderColorClass()">
                     <div class="pokemon-title-left">
                         <div class="pokemon-name">
                             <p class="title">{{ pokemon_info.名称 }}</p>
@@ -44,8 +45,9 @@
                     <div class="pokemon-title-right">
                         <img :src="getImageSrc(pokemon_info.编号)" alt="">
                     </div>
+                    </div>
                 </div>
-                <div class="details" :style="{ background: getColor(pokemon_info.属性[0]) }">
+                <div class="details" :style="{ background: getColor(pokemon_info.属性[0]), ...getBorderStyle() }" :class="getBorderColorClass()">
                     <div class="pokemon-header">
                         <div class="grade">
                             <p>等级</p>
@@ -113,7 +115,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="weaknesses-container">
+                <div class="weaknesses-container" :style="getBorderStyle()" :class="getBorderColorClass()">
                     <div class="weaknesses-header">属性相性</div>
                     <div class="weaknesses-content">
                         <div class="weaknesses-grid">
@@ -136,7 +138,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pokemon-method" v-if="appearAreas.length > 0">
+                <div class="pokemon-method" v-if="appearAreas.length > 0" :style="getBorderStyle()" :class="getBorderColorClass()">
                     <div class="method-header">精灵分布</div>
                     <div class="method-content">
                         <template v-if="appearAreas.length > 0">
@@ -198,7 +200,7 @@
                     </div>
                 </div>
 
-                <div class="pokemon-belongings" v-if="pokemon_info.可能携带的物品.length !== 0">
+                <div class="pokemon-belongings" v-if="pokemon_info.可能携带的物品.length !== 0" :style="getBorderStyle()" :class="getBorderColorClass()">
                     <div class="belongings-header">携带物品</div>
                     <div class="belongings-content">
                         <div v-for="(item, index) in pokemon_info.可能携带的物品" :key="index" class="belongings-item">
@@ -206,7 +208,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pokemon-moves">
+                <div class="pokemon-moves" :style="getBorderStyle()" :class="getBorderColorClass()">
                     <div style="position: relative; text-align: center;">
                         <div class="moves-header">{{ movesTitle }}</div>
                         <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); cursor: pointer;"
@@ -734,6 +736,32 @@ const canUseStoneFinalForms = [
 pokemon_info.canUseEvolutionStone = canUseStoneFinalForms.includes(pokemon_info.名称.replace(/（.*）/, '').trim());
 // 获取 Pokemon 图片的 URL
 const getColor = (type: any) => colorMap[type] || '#BBBBAA'
+
+// 获取边框颜色类
+const getBorderColorClass = () => {
+    const primaryType = pokemon_info.属性[0]
+    const secondaryType = pokemon_info.属性[1] || pokemon_info.属性[0]
+    return `border-${primaryType}-${secondaryType}`
+}
+
+// 获取流光边框样式
+const getBorderStyle = () => {
+    const primaryColor = getColor(pokemon_info.属性[0])
+    const secondaryColor = getColor(pokemon_info.属性[1]) || primaryColor
+    
+    // 将十六进制颜色转换为rgba格式
+    const hexToRgba = (hex: string, alpha: number = 0.8) => {
+        const r = parseInt(hex.slice(1, 3), 16)
+        const g = parseInt(hex.slice(3, 5), 16)
+        const b = parseInt(hex.slice(5, 7), 16)
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`
+    }
+    
+    return {
+        '--primary-color': hexToRgba(primaryColor, 0.8),
+        '--secondary-color': hexToRgba(secondaryColor, 0.8)
+    }
+}
 
 const gradientStyle = computed(() => ({
     background: `linear-gradient(to bottom, ${getColor(pokemon_info.属性[0])}, #FFFFFF)`
@@ -1274,17 +1302,67 @@ const handleAreaJump = (areaName: string) => {
     }
 }
 
+.pokemon-title-wrapper {
+    width: 95%;
+    margin: 3% auto 0;
+    position: relative;
+    overflow: visible;
+}
+
 .pokemon-title {
     display: flex;
     flex-direction: row;
-    width: 95%;
+    width: 100%;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(58, 50, 50, 0.1);
     padding: 20px;
     justify-content: space-between;
     align-items: center;
-    margin: 3% auto 0;
     position: relative;
+    overflow: hidden;
+    
+    /* 流光边框效果 */
+    &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border-radius: 18px;
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 1)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 1)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 1)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 1)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
+        animation: rotate 2.5s linear infinite;
+        z-index: 1;
+    }
+    
+    /* 内层背景 */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px;
+        background: inherit;
+        z-index: 2;
+    }
+    
+    /* 确保内容在流光边框之上 */
+    > * {
+        position: relative;
+        z-index: 3;
+    }
 
     .pokemon-title-left {
         display: flex;
@@ -1325,6 +1403,9 @@ const handleAreaJump = (areaName: string) => {
                     color: #333;
                     padding: 5px 10px;
                     border-radius: 5px;
+                    transition: all 0.3s ease;
+                    
+                    /* 移除移动端点击放大效果 */
                 }
 
                 .ability-box {
@@ -1332,6 +1413,10 @@ const handleAreaJump = (areaName: string) => {
                     min-width: 84px;
                     padding: 10px;
                     border-radius: 5px;
+                    transition: all 0.3s ease;
+                    cursor: pointer;
+                    
+                    /* 移除移动端点击放大效果 */
                 }
             }
         }
@@ -1353,6 +1438,50 @@ const handleAreaJump = (areaName: string) => {
     padding: 15px;
     transition: background-color 0.3s ease;
     position: relative;
+    overflow: hidden;
+    
+    /* 流光边框效果 */
+    &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border-radius: 18px;
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 0.9)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.9)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 0.9)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.9)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
+        animation: rotate 2.5s linear infinite;
+        z-index: 1;
+    }
+    
+    /* 内层背景 */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px;
+        background: inherit;
+        z-index: 2;
+    }
+    
+    /* 确保内容在流光边框之上 */
+    > * {
+        position: relative;
+        z-index: 3;
+    }
 
     .pokemon-header {
         display: flex;
@@ -1509,6 +1638,50 @@ const handleAreaJump = (areaName: string) => {
     font-size: 0.9em;
     color: #333;
     position: relative;
+    overflow: hidden;
+    
+    /* 流光边框效果 */
+    &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border-radius: 18px;
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 0.8)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.8)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 0.8)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.8)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
+        animation: rotate 2.5s linear infinite;
+        z-index: 1;
+    }
+    
+    /* 内层背景 */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px;
+        background: inherit;
+        z-index: 2;
+    }
+    
+    /* 确保内容在流光边框之上 */
+    > * {
+        position: relative;
+        z-index: 3;
+    }
 
     .weaknesses-header {
         padding-bottom: 10px;
@@ -1534,6 +1707,10 @@ const handleAreaJump = (areaName: string) => {
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            
+            /* 移除移动端点击放大效果 */
 
             .weaknesses-type {
                 text-align: center;
@@ -1561,6 +1738,50 @@ const handleAreaJump = (areaName: string) => {
     padding: 20px;
     margin: 10px auto;
     position: relative;
+    overflow: hidden;
+    
+    /* 流光边框效果 */
+    &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border-radius: 18px;
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 0.7)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.7)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 0.7)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.7)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
+        animation: rotate 2.5s linear infinite;
+        z-index: 1;
+    }
+    
+    /* 内层背景 */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px;
+        background: inherit;
+        z-index: 2;
+    }
+    
+    /* 确保内容在流光边框之上 */
+    > * {
+        position: relative;
+        z-index: 3;
+    }
 
     .method-header {
         padding-bottom: 10px;
@@ -1606,6 +1827,50 @@ const handleAreaJump = (areaName: string) => {
     padding: 20px;
     margin: 10px auto;
     position: relative;
+    overflow: hidden;
+    
+    /* 流光边框效果 */
+    &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border-radius: 18px;
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
+        animation: rotate 2.5s linear infinite;
+        z-index: 1;
+    }
+    
+    /* 内层背景 */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px;
+        background: inherit;
+        z-index: 2;
+    }
+    
+    /* 确保内容在流光边框之上 */
+    > * {
+        position: relative;
+        z-index: 3;
+    }
 
     .belongings-header {
         padding-bottom: 10px;
@@ -1630,6 +1895,9 @@ const handleAreaJump = (areaName: string) => {
             overflow: hidden;
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            
+            /* 移除移动端点击放大效果 */
 
 
             .belongings-name {
@@ -1651,6 +1919,50 @@ const handleAreaJump = (areaName: string) => {
     padding: 20px;
     margin: 10px auto;
     position: relative;
+    overflow: hidden;
+    
+    /* 流光边框效果 */
+    &::before {
+        content: '';
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border-radius: 18px;
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
+        animation: rotate 2.5s linear infinite;
+        z-index: 1;
+    }
+    
+    /* 内层背景 */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 10px;
+        background: inherit;
+        z-index: 2;
+    }
+    
+    /* 确保内容在流光边框之上 */
+    > * {
+        position: relative;
+        z-index: 3;
+    }
 
     .moves-header {
         padding-bottom: 10px;
@@ -1675,11 +1987,9 @@ const handleAreaJump = (areaName: string) => {
             overflow: hidden;
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
 
-            /* &:hover {
-                transform: scale(1.05);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            } */
+            /* 移除移动端点击放大效果 */
 
             .moves-type {
                 background-color: #3498db;
@@ -1801,6 +2111,44 @@ const handleAreaJump = (areaName: string) => {
     background-origin: padding-box, border-box;
     background-image: linear-gradient(#fff, #fff),
         linear-gradient(to right, #f06, #4a90e2);
+    position: relative;
+    overflow: hidden;
+    
+    /* 流光边框效果 */
+    &::before {
+        content: '';
+        position: absolute;
+        top: -6px;
+        left: -6px;
+        right: -6px;
+        bottom: -6px;
+        border-radius: 50%;
+        background: conic-gradient(
+            from 0deg,
+            transparent,
+            rgba(78, 205, 78, 0.8),
+            rgba(34, 139, 34, 0.8),
+            transparent,
+            rgba(78, 205, 78, 0.8),
+            rgba(34, 139, 34, 0.8),
+            transparent
+        );
+        animation: rotate 3s linear infinite;
+        z-index: -1;
+    }
+    
+    /* 内层边框 */
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border-radius: 50%;
+        background: inherit;
+        z-index: 1;
+    }
 }
 
 .pokemon-name {
@@ -1850,5 +2198,350 @@ const handleAreaJump = (areaName: string) => {
 
 .area-jump-btn:hover {
     background: linear-gradient(90deg, #fc5948, #009fca, #313862);
+}
+
+/* 流光动画 */
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* 属性流光效果 */
+@keyframes typeShimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* 旋转动画 */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* 增强流光效果 */
+@keyframes shimmer {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* 页面加载动画 */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 为各个卡片添加加载动画 */
+.pokemon-title,
+.details,
+.weaknesses-container,
+.pokemon-method,
+.pokemon-belongings,
+.pokemon-moves {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+.pokemon-title {
+    animation-delay: 0.1s;
+}
+
+.details {
+    animation-delay: 0.2s;
+}
+
+.weaknesses-container {
+    animation-delay: 0.3s;
+}
+
+.pokemon-method {
+    animation-delay: 0.4s;
+}
+
+.pokemon-belongings {
+    animation-delay: 0.5s;
+}
+
+.pokemon-moves {
+    animation-delay: 0.6s;
+}
+
+/* 属性流光边框颜色 */
+.pokemon-title {
+    /* 草属性 */
+    &.border-草-草 {
+        --primary-color: rgba(78, 205, 78, 0.9);
+        --secondary-color: rgba(34, 139, 34, 0.9);
+    }
+    
+    &.border-草-毒 {
+        --primary-color: rgba(78, 205, 78, 0.9);
+        --secondary-color: rgba(128, 0, 128, 0.9);
+    }
+    
+    /* 火属性 */
+    &.border-火-火 {
+        --primary-color: rgba(255, 69, 0, 0.9);
+        --secondary-color: rgba(255, 140, 0, 0.9);
+    }
+    
+    &.border-火-飞行 {
+        --primary-color: rgba(255, 69, 0, 0.9);
+        --secondary-color: rgba(135, 206, 235, 0.9);
+    }
+    
+    /* 水属性 */
+    &.border-水-水 {
+        --primary-color: rgba(0, 191, 255, 0.9);
+        --secondary-color: rgba(0, 100, 200, 0.9);
+    }
+    
+    &.border-水-冰 {
+        --primary-color: rgba(0, 191, 255, 0.9);
+        --secondary-color: rgba(173, 216, 230, 0.9);
+    }
+    
+    /* 电属性 */
+    &.border-电-电 {
+        --primary-color: rgba(255, 255, 0, 0.9);
+        --secondary-color: rgba(255, 215, 0, 0.9);
+    }
+    
+    /* 超能力属性 */
+    &.border-超能力-超能力 {
+        --primary-color: rgba(186, 85, 211, 0.9);
+        --secondary-color: rgba(138, 43, 226, 0.9);
+    }
+    
+    /* 格斗属性 */
+    &.border-格斗-格斗 {
+        --primary-color: rgba(205, 92, 92, 0.9);
+        --secondary-color: rgba(220, 20, 60, 0.9);
+    }
+    
+    /* 毒属性 */
+    &.border-毒-毒 {
+        --primary-color: rgba(128, 0, 128, 0.9);
+        --secondary-color: rgba(75, 0, 130, 0.9);
+    }
+    
+    /* 地面属性 */
+    &.border-地面-地面 {
+        --primary-color: rgba(160, 82, 45, 0.9);
+        --secondary-color: rgba(139, 69, 19, 0.9);
+    }
+    
+    /* 飞行属性 */
+    &.border-飞行-飞行 {
+        --primary-color: rgba(135, 206, 235, 0.9);
+        --secondary-color: rgba(70, 130, 180, 0.9);
+    }
+    
+    /* 虫属性 */
+    &.border-虫-虫 {
+        --primary-color: rgba(154, 205, 50, 0.9);
+        --secondary-color: rgba(107, 142, 35, 0.9);
+    }
+    
+    /* 岩石属性 */
+    &.border-岩石-岩石 {
+        --primary-color: rgba(169, 169, 169, 0.9);
+        --secondary-color: rgba(105, 105, 105, 0.9);
+    }
+    
+    /* 幽灵属性 */
+    &.border-幽灵-幽灵 {
+        --primary-color: rgba(75, 0, 130, 0.9);
+        --secondary-color: rgba(25, 25, 112, 0.9);
+    }
+    
+    /* 龙属性 */
+    &.border-龙-龙 {
+        --primary-color: rgba(72, 61, 139, 0.9);
+        --secondary-color: rgba(25, 25, 112, 0.9);
+    }
+    
+    /* 恶属性 */
+    &.border-恶-恶 {
+        --primary-color: rgba(47, 79, 79, 0.9);
+        --secondary-color: rgba(25, 25, 25, 0.9);
+    }
+    
+    /* 钢属性 */
+    &.border-钢-钢 {
+        --primary-color: rgba(192, 192, 192, 0.9);
+        --secondary-color: rgba(169, 169, 169, 0.9);
+    }
+    
+    /* 妖精属性 */
+    &.border-妖精-妖精 {
+        --primary-color: rgba(255, 182, 193, 0.9);
+        --secondary-color: rgba(255, 105, 180, 0.9);
+    }
+    
+    /* 冰属性 */
+    &.border-冰-冰 {
+        --primary-color: rgba(173, 216, 230, 0.9);
+        --secondary-color: rgba(135, 206, 250, 0.9);
+    }
+    
+    /* 一般属性 */
+    &.border-一般-一般 {
+        --primary-color: rgba(169, 169, 169, 0.9);
+        --secondary-color: rgba(192, 192, 192, 0.9);
+    }
+}
+
+/* 为其他卡片添加相同的属性边框颜色 */
+.details,
+.weaknesses-container,
+.pokemon-method,
+.pokemon-belongings,
+.pokemon-moves {
+    /* 草属性 */
+    &.border-草-草 {
+        --primary-color: rgba(78, 205, 78, 0.8);
+        --secondary-color: rgba(34, 139, 34, 0.8);
+    }
+    
+    &.border-草-毒 {
+        --primary-color: rgba(78, 205, 78, 0.8);
+        --secondary-color: rgba(128, 0, 128, 0.8);
+    }
+    
+    /* 火属性 */
+    &.border-火-火 {
+        --primary-color: rgba(255, 69, 0, 0.8);
+        --secondary-color: rgba(255, 140, 0, 0.8);
+    }
+    
+    &.border-火-飞行 {
+        --primary-color: rgba(255, 69, 0, 0.8);
+        --secondary-color: rgba(135, 206, 235, 0.8);
+    }
+    
+    /* 水属性 */
+    &.border-水-水 {
+        --primary-color: rgba(0, 191, 255, 0.8);
+        --secondary-color: rgba(0, 100, 200, 0.8);
+    }
+    
+    &.border-水-冰 {
+        --primary-color: rgba(0, 191, 255, 0.8);
+        --secondary-color: rgba(173, 216, 230, 0.8);
+    }
+    
+    /* 电属性 */
+    &.border-电-电 {
+        --primary-color: rgba(255, 255, 0, 0.8);
+        --secondary-color: rgba(255, 215, 0, 0.8);
+    }
+    
+    /* 超能力属性 */
+    &.border-超能力-超能力 {
+        --primary-color: rgba(186, 85, 211, 0.8);
+        --secondary-color: rgba(138, 43, 226, 0.8);
+    }
+    
+    /* 格斗属性 */
+    &.border-格斗-格斗 {
+        --primary-color: rgba(205, 92, 92, 0.8);
+        --secondary-color: rgba(220, 20, 60, 0.8);
+    }
+    
+    /* 毒属性 */
+    &.border-毒-毒 {
+        --primary-color: rgba(128, 0, 128, 0.8);
+        --secondary-color: rgba(75, 0, 130, 0.8);
+    }
+    
+    /* 地面属性 */
+    &.border-地面-地面 {
+        --primary-color: rgba(160, 82, 45, 0.8);
+        --secondary-color: rgba(139, 69, 19, 0.8);
+    }
+    
+    /* 飞行属性 */
+    &.border-飞行-飞行 {
+        --primary-color: rgba(135, 206, 235, 0.8);
+        --secondary-color: rgba(70, 130, 180, 0.8);
+    }
+    
+    /* 虫属性 */
+    &.border-虫-虫 {
+        --primary-color: rgba(154, 205, 50, 0.8);
+        --secondary-color: rgba(107, 142, 35, 0.8);
+    }
+    
+    /* 岩石属性 */
+    &.border-岩石-岩石 {
+        --primary-color: rgba(169, 169, 169, 0.8);
+        --secondary-color: rgba(105, 105, 105, 0.8);
+    }
+    
+    /* 幽灵属性 */
+    &.border-幽灵-幽灵 {
+        --primary-color: rgba(75, 0, 130, 0.8);
+        --secondary-color: rgba(25, 25, 112, 0.8);
+    }
+    
+    /* 龙属性 */
+    &.border-龙-龙 {
+        --primary-color: rgba(72, 61, 139, 0.8);
+        --secondary-color: rgba(25, 25, 112, 0.8);
+    }
+    
+    /* 恶属性 */
+    &.border-恶-恶 {
+        --primary-color: rgba(47, 79, 79, 0.8);
+        --secondary-color: rgba(25, 25, 25, 0.8);
+    }
+    
+    /* 钢属性 */
+    &.border-钢-钢 {
+        --primary-color: rgba(192, 192, 192, 0.8);
+        --secondary-color: rgba(169, 169, 169, 0.8);
+    }
+    
+    /* 妖精属性 */
+    &.border-妖精-妖精 {
+        --primary-color: rgba(255, 182, 193, 0.8);
+        --secondary-color: rgba(255, 105, 180, 0.8);
+    }
+    
+    /* 冰属性 */
+    &.border-冰-冰 {
+        --primary-color: rgba(173, 216, 230, 0.8);
+        --secondary-color: rgba(135, 206, 250, 0.8);
+    }
+    
+    /* 一般属性 */
+    &.border-一般-一般 {
+        --primary-color: rgba(169, 169, 169, 0.8);
+        --secondary-color: rgba(192, 192, 192, 0.8);
+    }
 }
 </style>
