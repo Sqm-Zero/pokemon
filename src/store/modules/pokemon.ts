@@ -4,6 +4,7 @@ import { reqPokemon, reqAbility } from '@/apis/pokemon/index'
 import { reqMoves } from '@/apis/moves';
 import { reqPokemon_Moves, reqEggMoves } from '@/apis/pokemonMoves';
 import { reqMethod, reqEvolve } from '@/apis/method';
+import { reqPropsList } from '@/apis/props';
 
 import { Pokemon, Move, Ability, Method } from '@/apis/pokemon/type';
 import { Evolve } from '@/apis/pokemonMoves/type';
@@ -82,6 +83,10 @@ export const usePokemonStore = defineStore('counter', {
         pokemonQuery: '',
         lastSelectedType: '', // 新增：保存最后选择的属性
         scrollPosition: 0,
+        Prop: {
+            "name": "大师球",
+            "description": "必定捕捉野生宝可梦的 性能最好的球， 捕获率×255就是100%。"
+        },
     }),
     actions: {
         // 根据精灵编号查精灵信息
@@ -388,6 +393,25 @@ export const usePokemonStore = defineStore('counter', {
         },
         restoreLastType() {
             this.type = this.lastSelectedType; // 恢复上次的属性筛选
+        },
+        // 根据道具名称查询道具信息
+        getPropByName(propName: string) {
+            const prop = reqPropsList().find(
+                prop => prop.name === propName
+            )
+            return prop || {
+                "name": "大师球",
+                "description": "必定捕捉野生宝可梦的 性能最好的球， 捕获率×255就是100%。"
+            }
+        },
+        // 根据道具名称查询携带该道具的宝可梦
+        getPokemonByPropName(propName: string) {
+            const pokemonList = reqPokemon().filter(
+                pokemon => pokemon.可能携带的物品?.some(
+                    item => item.物品 === propName
+                )
+            )
+            return pokemonList;
         }
     },
     getters: {

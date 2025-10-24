@@ -4,6 +4,22 @@ import { Prop } from './type';
 export const reqPropsList = (): Prop[] => {
     return [
         {
+            'name': '全能爆发',
+            'description': '战斗中全能力爆发（+1）。并可以回复自身血量'
+        },
+        {
+            'name': '全能爆发2',
+            'description': '战斗中全能力爆发（+2）。并可以回复自身血量'
+        },
+        {
+            'name': '全能爆发3',
+            'description': '战斗中全能力爆发（+3）。并可以回复自身血量'
+        },
+        {
+            'name': '全能爆发6',
+            'description': '战斗中全能力爆发（+6）。并可以回复自身血量'
+        },
+        {
             "name": "大师球",
             "description": "必定捕捉野生宝可梦的 性能最好的球， 捕获率×255就是100%。"
         },

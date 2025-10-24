@@ -25,8 +25,8 @@
                     <div class="battle-content">
                         <div class="battle-title">{{ battle.title }}</div>
                         <div class="battle-meta">
-                            <span class="battle-type">{{ battle.item }}</span>
-                            <span class="battle-type">{{ battle.battle_type }}</span>
+                            <span class="battle-type" @click.stop="handlePropInfo(battle.item)">{{ battle.item }}</span>
+                            <span class="battle-type" @click.stop="handleMoveInfo(battle.battle_type)">{{ battle.battle_type }}</span>
                             <span class="pokemon-count">{{ battle.pokemons.length }}只</span>
                         </div>
                     </div>
@@ -58,7 +58,7 @@
                                 </div>
                                 <div class="poke-details">
                                     <span class="poke-ability">{{ p.ability }}</span>
-                                    <span v-if="p.item" class="poke-item">{{ p.item }}</span>
+                                    <span v-if="p.item" class="poke-item" @click.stop="handlePropInfo(p.item)">{{ p.item }}</span>
                                 </div>
                             </div>
                         </div>
@@ -270,8 +270,18 @@ const handlePokemonInfo = (pokemon: any, battleIndex: number, pokemonIndex: numb
 
 // 跳转到技能详情
 const handleMoveInfo = (moveName: string) => {
-    pokemonStore.Move = pokemonStore.getMoveByName(moveName)
+    // 切割字符串，去掉 *数字 后缀
+    const cleanMoveName = moveName.replace(/\*\d+$/, '');
+    pokemonStore.Move = pokemonStore.getMoveByName(cleanMoveName)
     $router.push('/move/move_info')
+}
+
+// 跳转到道具详情
+const handlePropInfo = (propName: string) => {
+    // 切割字符串，去掉 *数字 后缀
+    const cleanPropName = propName.replace(/\*\d+$/, '');
+    pokemonStore.Prop = pokemonStore.getPropByName(cleanPropName);
+    $router.push('/prop/prop_info')
 }
 </script>
 
@@ -400,6 +410,14 @@ const handleMoveInfo = (moveName: string) => {
     background: rgba(64, 158, 255, 0.1);
     padding: 3px 8px;
     border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        background: rgba(64, 158, 255, 0.2);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(64, 158, 255, 0.2);
+    }
 }
 
 .pokemon-list {
@@ -527,6 +545,14 @@ const handleMoveInfo = (moveName: string) => {
     border-radius: 8px;
     font-weight: 600;
     letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        background: linear-gradient(90deg, #2d8cf0, #53b1ff);
+        transform: translateY(-1px);
+        box-shadow: 0 2px 6px rgba(45, 140, 240, 0.3);
+    }
 }
 
 /* 技能整行 - 移动端优化 */

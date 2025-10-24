@@ -203,7 +203,7 @@
                 <div class="pokemon-belongings" v-if="pokemon_info.可能携带的物品.length !== 0" :style="getBorderStyle()" :class="getBorderColorClass()">
                     <div class="belongings-header">携带物品</div>
                     <div class="belongings-content">
-                        <div v-for="(item, index) in pokemon_info.可能携带的物品" :key="index" class="belongings-item">
+                        <div v-for="(item, index) in pokemon_info.可能携带的物品" :key="index" class="belongings-item" @click="handlePropInfo(item.物品)">
                             <div class="belongings-name">{{ item.物品 }} {{ item.概率 }}%</div>
                         </div>
                     </div>
@@ -944,6 +944,12 @@ const handleMoveInfo = (item: any) => {
 const showHiddenAbility = (abilityName: string) => {
     pokemonStore.abilityName = abilityName;
     $router.push('/ability/ability_info')
+}
+
+// 跳转到道具详情页面
+const handlePropInfo = (propName: string) => {
+    pokemonStore.Prop = pokemonStore.getPropByName(propName);
+    $router.push('/prop/prop_info')
 }
 
 // 拖拽翻页事件
@@ -1902,7 +1908,11 @@ const handleAreaJump = (areaName: string) => {
             cursor: pointer;
             
             /* 移除移动端点击放大效果 */
-
+            &:hover {
+                background-color: #e3f2fd;
+                transform: translateY(-2px);
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            }
 
             .belongings-name {
                 flex-grow: 1;
