@@ -1,5 +1,5 @@
 <template>
-    <Top title="道具信息" router="/prop" icon="info" color="linear-gradient(90deg, #ffffff, #8B4513, #DAA520)"></Top>
+    <Top title="道具信息" :router="backRoute" icon="info" color="linear-gradient(90deg, #ffffff, #8B4513, #DAA520)"></Top>
 
     <div class="m_prop_info" :style="{ background: '#f8f9fa' }" @touchstart="handleTouchStart"
         @touchmove="handleTouchMove" @touchend="handleTouchEnd">
@@ -51,7 +51,7 @@
 <script setup lang="ts">
 import { usePokemonStore } from '@/store/modules/pokemon';
 import { useRouter } from 'vue-router';
-import { reactive, ref } from 'vue'
+import { reactive, ref, computed } from 'vue'
 // 获取精灵仓库
 const pokemonStore = usePokemonStore();
 // 定义响应式数据
@@ -62,6 +62,17 @@ let prop = reactive({
 prop = pokemonStore.Prop;
 // 路由
 let $router = useRouter()
+
+// 动态返回路由
+const backRoute = computed(() => {
+    // 获取上一个页面的路径
+    const previousRoute = window.history.state?.back;
+    if (previousRoute) {
+        return previousRoute;
+    }
+    // 如果没有上一个页面，默认返回到宝可梦列表
+    return '/pokemon';
+});
 
 // 获取 Pokemon 图片的 URL
 const getImageSrc = (编号: String) => {
@@ -280,11 +291,6 @@ function loadPreviousPropPage() {
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
         cursor: pointer;
         transition: all 0.2s ease;
-
-        &:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
     }
 
     .pokemon-avatar {
