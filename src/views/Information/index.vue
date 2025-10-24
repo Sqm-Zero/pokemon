@@ -7,47 +7,49 @@
         <div class="page-container" :style="pageContainerStyle">
             <div class="page-content" :style="pageContentStyle">
                 <div class="pokemon-title-wrapper">
-                    <div class="pokemon-title" :style="{...gradientStyle, ...getBorderStyle()}" :class="getBorderColorClass()">
-                    <div class="pokemon-title-left">
-                        <div class="pokemon-name">
-                            <p class="title">{{ pokemon_info.名称 }}</p>
-                            <div style="display: flex;">
-                                <p class="subtitle" v-for="(item, index) in pokemon_info.蛋群" :key="item">
-                                    {{ item }}<span v-if="index < pokemon_info.蛋群.length - 1">, </span>
-                                </p>
-                            </div>
-                        </div>
-                        <div class="pokemon-type">
-                            <div class="type">
-                                <div class="type1" v-for="item in pokemon_info.属性" :key="item"
-                                    :style="{ backgroundColor: getColor(item) }">{{
-                                        item }}</div>
-                            </div>
-                            <div class="ability">
-                                <div v-if="pokemon_info.特性.length < 3" class="ability-box"
-                                    v-for="item in pokemon_info.特性" :key="item">
-                                    {{ item }}
+                    <div class="pokemon-title" :style="{ ...gradientStyle, ...getBorderStyle() }"
+                        :class="getBorderColorClass()">
+                        <div class="pokemon-title-left">
+                            <div class="pokemon-name">
+                                <p class="title">{{ pokemon_info.名称 }}</p>
+                                <div style="display: flex;">
+                                    <p class="subtitle" v-for="(item, index) in pokemon_info.蛋群" :key="item">
+                                        {{ item }}<span v-if="index < pokemon_info.蛋群.length - 1">, </span>
+                                    </p>
                                 </div>
-                                <template v-else>
-                                    <div class="ability-box" @click="abilityDrawer = true">
-                                        {{ pokemon_info.特性[0] }}
-                                        <br>
-                                        {{ pokemon_info.特性[1] }}
+                            </div>
+                            <div class="pokemon-type">
+                                <div class="type">
+                                    <div class="type1" v-for="item in pokemon_info.属性" :key="item"
+                                        :style="{ backgroundColor: getColor(item) }">{{
+                                            item }}</div>
+                                </div>
+                                <div class="ability">
+                                    <div v-if="pokemon_info.特性.length < 3" class="ability-box"
+                                        v-for="item in pokemon_info.特性" :key="item">
+                                        {{ item }}
                                     </div>
-                                    <div class="ability-box" @click="showHiddenAbility(pokemon_info.特性[2])">
-                                        {{ pokemon_info.特性[2] }}
-                                        <p>隐藏特性</p>
-                                    </div>
-                                </template>
+                                    <template v-else>
+                                        <div class="ability-box" @click="abilityDrawer = true">
+                                            {{ pokemon_info.特性[0] }}
+                                            <br>
+                                            {{ pokemon_info.特性[1] }}
+                                        </div>
+                                        <div class="ability-box" @click="showHiddenAbility(pokemon_info.特性[2])">
+                                            {{ pokemon_info.特性[2] }}
+                                            <p>隐藏特性</p>
+                                        </div>
+                                    </template>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="pokemon-title-right">
-                        <img :src="getImageSrc(pokemon_info.编号)" alt="">
-                    </div>
+                        <div class="pokemon-title-right">
+                            <img :src="getImageSrc(pokemon_info.编号)" alt="">
+                        </div>
                     </div>
                 </div>
-                <div class="details" :style="{ background: getColor(pokemon_info.属性[0]), ...getBorderStyle() }" :class="getBorderColorClass()">
+                <div class="details" :style="{ background: getColor(pokemon_info.属性[0]), ...getBorderStyle() }"
+                    :class="getBorderColorClass()">
                     <div class="pokemon-header">
                         <div class="grade">
                             <p>等级</p>
@@ -138,7 +140,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="pokemon-method" v-if="appearAreas.length > 0" :style="getBorderStyle()" :class="getBorderColorClass()">
+                <div class="pokemon-method" v-if="appearAreas.length > 0" :style="getBorderStyle()"
+                    :class="getBorderColorClass()">
                     <div class="method-header">精灵分布</div>
                     <div class="method-content">
                         <template v-if="appearAreas.length > 0">
@@ -200,10 +203,12 @@
                     </div>
                 </div>
 
-                <div class="pokemon-belongings" v-if="pokemon_info.可能携带的物品.length !== 0" :style="getBorderStyle()" :class="getBorderColorClass()">
+                <div class="pokemon-belongings" v-if="pokemon_info.可能携带的物品.length !== 0" :style="getBorderStyle()"
+                    :class="getBorderColorClass()">
                     <div class="belongings-header">携带物品</div>
                     <div class="belongings-content">
-                        <div v-for="(item, index) in pokemon_info.可能携带的物品" :key="index" class="belongings-item" @click="handlePropInfo(item.物品)">
+                        <div v-for="(item, index) in pokemon_info.可能携带的物品" :key="index" class="belongings-item"
+                            @click="handlePropInfo(item.物品)">
                             <div class="belongings-name">{{ item.物品 }} {{ item.概率 }}%</div>
                         </div>
                     </div>
@@ -748,7 +753,7 @@ const getBorderColorClass = () => {
 const getBorderStyle = () => {
     const primaryColor = getColor(pokemon_info.属性[0])
     const secondaryColor = getColor(pokemon_info.属性[1]) || primaryColor
-    
+
     // 将十六进制颜色转换为rgba格式
     const hexToRgba = (hex: string, alpha: number = 0.8) => {
         const r = parseInt(hex.slice(1, 3), 16)
@@ -756,7 +761,7 @@ const getBorderStyle = () => {
         const b = parseInt(hex.slice(5, 7), 16)
         return `rgba(${r}, ${g}, ${b}, ${alpha})`
     }
-    
+
     return {
         '--primary-color': hexToRgba(primaryColor, 0.8),
         '--secondary-color': hexToRgba(secondaryColor, 0.8)
@@ -982,7 +987,7 @@ const handleTouchStart = (event: TouchEvent) => {
         return;
     }
     startX = event.touches[0].clientX;
-    startY = event.touches[0].clientY; 
+    startY = event.touches[0].clientY;
     isDragging.value = false;
     dragOffset.value = 0;
     dragDirection.value = '';
@@ -1054,7 +1059,7 @@ const handleMouseMove = (event: MouseEvent) => {
     const currentY = event.clientY;
     const deltaX = currentX - startX;
     const deltaY = currentY - startY;
-    
+
     // 如果垂直滑动距离明显大于水平滑动，则忽略拖拽
     if (Math.abs(deltaY) * 2 > Math.abs(deltaX)) {
         return;
@@ -1119,8 +1124,9 @@ const handlePageChange = (page: number) => {
     dragOffset.value = 0;
     dragDirection.value = '';
 
-    // 更新宝可梦信息
-    pokemon_info = pokemonStore.getPokemonByName(page);
+    // 更新宝可梦信息 - 使用 Object.assign 确保响应式更新
+    const newPokemonInfo = pokemonStore.getPokemonByName(page);
+    Object.assign(pokemon_info, newPokemonInfo);
 
     // 重置个体值和努力值
     IndividualValue.value = [31, 31, 31, 31, 31, 31];
@@ -1330,7 +1336,7 @@ const handleAreaJump = (areaName: string) => {
     align-items: center;
     position: relative;
     overflow: hidden;
-    
+
     /* 流光边框效果 */
     &::before {
         content: '';
@@ -1340,21 +1346,19 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 1)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 1)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 1)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 1)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
+        background: conic-gradient(from 0deg,
+                transparent 0deg,
+                var(--primary-color, rgba(78, 205, 78, 1)) 45deg,
+                var(--secondary-color, rgba(34, 139, 34, 1)) 90deg,
+                transparent 135deg,
+                var(--primary-color, rgba(78, 205, 78, 1)) 180deg,
+                var(--secondary-color, rgba(34, 139, 34, 1)) 225deg,
+                transparent 270deg,
+                transparent 360deg);
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
-    
+
     /* 内层背景 */
     &::after {
         content: '';
@@ -1367,9 +1371,9 @@ const handleAreaJump = (areaName: string) => {
         background: inherit;
         z-index: 2;
     }
-    
+
     /* 确保内容在流光边框之上 */
-    > * {
+    >* {
         position: relative;
         z-index: 3;
     }
@@ -1414,7 +1418,7 @@ const handleAreaJump = (areaName: string) => {
                     padding: 5px 10px;
                     border-radius: 5px;
                     transition: all 0.3s ease;
-                    
+
                     /* 移除移动端点击放大效果 */
                 }
 
@@ -1425,7 +1429,7 @@ const handleAreaJump = (areaName: string) => {
                     border-radius: 5px;
                     transition: all 0.3s ease;
                     cursor: pointer;
-                    
+
                     /* 移除移动端点击放大效果 */
                 }
             }
@@ -1449,7 +1453,7 @@ const handleAreaJump = (areaName: string) => {
     transition: background-color 0.3s ease;
     position: relative;
     overflow: hidden;
-    
+
     /* 流光边框效果 */
     &::before {
         content: '';
@@ -1459,21 +1463,19 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 0.9)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.9)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 0.9)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.9)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
+        background: conic-gradient(from 0deg,
+                transparent 0deg,
+                var(--primary-color, rgba(78, 205, 78, 0.9)) 45deg,
+                var(--secondary-color, rgba(34, 139, 34, 0.9)) 90deg,
+                transparent 135deg,
+                var(--primary-color, rgba(78, 205, 78, 0.9)) 180deg,
+                var(--secondary-color, rgba(34, 139, 34, 0.9)) 225deg,
+                transparent 270deg,
+                transparent 360deg);
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
-    
+
     /* 内层背景 */
     &::after {
         content: '';
@@ -1486,9 +1488,9 @@ const handleAreaJump = (areaName: string) => {
         background: inherit;
         z-index: 2;
     }
-    
+
     /* 确保内容在流光边框之上 */
-    > * {
+    >* {
         position: relative;
         z-index: 3;
     }
@@ -1649,7 +1651,7 @@ const handleAreaJump = (areaName: string) => {
     color: #333;
     position: relative;
     overflow: hidden;
-    
+
     /* 流光边框效果 */
     &::before {
         content: '';
@@ -1659,21 +1661,19 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 0.8)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.8)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 0.8)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.8)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
+        background: conic-gradient(from 0deg,
+                transparent 0deg,
+                var(--primary-color, rgba(78, 205, 78, 0.8)) 45deg,
+                var(--secondary-color, rgba(34, 139, 34, 0.8)) 90deg,
+                transparent 135deg,
+                var(--primary-color, rgba(78, 205, 78, 0.8)) 180deg,
+                var(--secondary-color, rgba(34, 139, 34, 0.8)) 225deg,
+                transparent 270deg,
+                transparent 360deg);
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
-    
+
     /* 内层背景 */
     &::after {
         content: '';
@@ -1686,9 +1686,9 @@ const handleAreaJump = (areaName: string) => {
         background: inherit;
         z-index: 2;
     }
-    
+
     /* 确保内容在流光边框之上 */
-    > * {
+    >* {
         position: relative;
         z-index: 3;
     }
@@ -1719,7 +1719,7 @@ const handleAreaJump = (areaName: string) => {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             cursor: pointer;
             transition: all 0.3s ease;
-            
+
             /* 移除移动端点击放大效果 */
 
             .weaknesses-type {
@@ -1749,7 +1749,7 @@ const handleAreaJump = (areaName: string) => {
     margin: 10px auto;
     position: relative;
     overflow: hidden;
-    
+
     /* 流光边框效果 */
     &::before {
         content: '';
@@ -1759,21 +1759,19 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 0.7)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.7)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 0.7)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.7)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
+        background: conic-gradient(from 0deg,
+                transparent 0deg,
+                var(--primary-color, rgba(78, 205, 78, 0.7)) 45deg,
+                var(--secondary-color, rgba(34, 139, 34, 0.7)) 90deg,
+                transparent 135deg,
+                var(--primary-color, rgba(78, 205, 78, 0.7)) 180deg,
+                var(--secondary-color, rgba(34, 139, 34, 0.7)) 225deg,
+                transparent 270deg,
+                transparent 360deg);
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
-    
+
     /* 内层背景 */
     &::after {
         content: '';
@@ -1786,9 +1784,9 @@ const handleAreaJump = (areaName: string) => {
         background: inherit;
         z-index: 2;
     }
-    
+
     /* 确保内容在流光边框之上 */
-    > * {
+    >* {
         position: relative;
         z-index: 3;
     }
@@ -1838,7 +1836,7 @@ const handleAreaJump = (areaName: string) => {
     margin: 10px auto;
     position: relative;
     overflow: hidden;
-    
+
     /* 流光边框效果 */
     &::before {
         content: '';
@@ -1848,21 +1846,19 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
+        background: conic-gradient(from 0deg,
+                transparent 0deg,
+                var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
+                var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
+                transparent 135deg,
+                var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
+                var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
+                transparent 270deg,
+                transparent 360deg);
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
-    
+
     /* 内层背景 */
     &::after {
         content: '';
@@ -1875,9 +1871,9 @@ const handleAreaJump = (areaName: string) => {
         background: inherit;
         z-index: 2;
     }
-    
+
     /* 确保内容在流光边框之上 */
-    > * {
+    >* {
         position: relative;
         z-index: 3;
     }
@@ -1906,7 +1902,7 @@ const handleAreaJump = (areaName: string) => {
             transition: all 0.3s ease;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            
+
             /* 移除移动端点击放大效果 */
             &:hover {
                 background-color: #e3f2fd;
@@ -1934,7 +1930,7 @@ const handleAreaJump = (areaName: string) => {
     margin: 10px auto;
     position: relative;
     overflow: hidden;
-    
+
     /* 流光边框效果 */
     &::before {
         content: '';
@@ -1944,21 +1940,19 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
+        background: conic-gradient(from 0deg,
+                transparent 0deg,
+                var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
+                var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
+                transparent 135deg,
+                var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
+                var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
+                transparent 270deg,
+                transparent 360deg);
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
-    
+
     /* 内层背景 */
     &::after {
         content: '';
@@ -1971,9 +1965,9 @@ const handleAreaJump = (areaName: string) => {
         background: inherit;
         z-index: 2;
     }
-    
+
     /* 确保内容在流光边框之上 */
-    > * {
+    >* {
         position: relative;
         z-index: 3;
     }
@@ -2127,7 +2121,7 @@ const handleAreaJump = (areaName: string) => {
         linear-gradient(to right, #f06, #4a90e2);
     position: relative;
     overflow: hidden;
-    
+
     /* 流光边框效果 */
     &::before {
         content: '';
@@ -2137,20 +2131,18 @@ const handleAreaJump = (areaName: string) => {
         right: -6px;
         bottom: -6px;
         border-radius: 50%;
-        background: conic-gradient(
-            from 0deg,
-            transparent,
-            rgba(78, 205, 78, 0.8),
-            rgba(34, 139, 34, 0.8),
-            transparent,
-            rgba(78, 205, 78, 0.8),
-            rgba(34, 139, 34, 0.8),
-            transparent
-        );
+        background: conic-gradient(from 0deg,
+                transparent,
+                rgba(78, 205, 78, 0.8),
+                rgba(34, 139, 34, 0.8),
+                transparent,
+                rgba(78, 205, 78, 0.8),
+                rgba(34, 139, 34, 0.8),
+                transparent);
         animation: rotate 3s linear infinite;
         z-index: -1;
     }
-    
+
     /* 内层边框 */
     &::after {
         content: '';
@@ -2219,6 +2211,7 @@ const handleAreaJump = (areaName: string) => {
     0% {
         left: -100%;
     }
+
     100% {
         left: 100%;
     }
@@ -2229,6 +2222,7 @@ const handleAreaJump = (areaName: string) => {
     0% {
         transform: translateX(-100%);
     }
+
     100% {
         transform: translateX(100%);
     }
@@ -2239,6 +2233,7 @@ const handleAreaJump = (areaName: string) => {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -2249,9 +2244,11 @@ const handleAreaJump = (areaName: string) => {
     0% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+
     100% {
         background-position: 0% 50%;
     }
@@ -2261,123 +2258,124 @@ const handleAreaJump = (areaName: string) => {
 
 /* 属性流光边框颜色 */
 .pokemon-title {
+
     /* 草属性 */
     &.border-草-草 {
         --primary-color: rgba(78, 205, 78, 0.9);
         --secondary-color: rgba(34, 139, 34, 0.9);
     }
-    
+
     &.border-草-毒 {
         --primary-color: rgba(78, 205, 78, 0.9);
         --secondary-color: rgba(128, 0, 128, 0.9);
     }
-    
+
     /* 火属性 */
     &.border-火-火 {
         --primary-color: rgba(255, 69, 0, 0.9);
         --secondary-color: rgba(255, 140, 0, 0.9);
     }
-    
+
     &.border-火-飞行 {
         --primary-color: rgba(255, 69, 0, 0.9);
         --secondary-color: rgba(135, 206, 235, 0.9);
     }
-    
+
     /* 水属性 */
     &.border-水-水 {
         --primary-color: rgba(0, 191, 255, 0.9);
         --secondary-color: rgba(0, 100, 200, 0.9);
     }
-    
+
     &.border-水-冰 {
         --primary-color: rgba(0, 191, 255, 0.9);
         --secondary-color: rgba(173, 216, 230, 0.9);
     }
-    
+
     /* 电属性 */
     &.border-电-电 {
         --primary-color: rgba(255, 255, 0, 0.9);
         --secondary-color: rgba(255, 215, 0, 0.9);
     }
-    
+
     /* 超能力属性 */
     &.border-超能力-超能力 {
         --primary-color: rgba(186, 85, 211, 0.9);
         --secondary-color: rgba(138, 43, 226, 0.9);
     }
-    
+
     /* 格斗属性 */
     &.border-格斗-格斗 {
         --primary-color: rgba(205, 92, 92, 0.9);
         --secondary-color: rgba(220, 20, 60, 0.9);
     }
-    
+
     /* 毒属性 */
     &.border-毒-毒 {
         --primary-color: rgba(128, 0, 128, 0.9);
         --secondary-color: rgba(75, 0, 130, 0.9);
     }
-    
+
     /* 地面属性 */
     &.border-地面-地面 {
         --primary-color: rgba(160, 82, 45, 0.9);
         --secondary-color: rgba(139, 69, 19, 0.9);
     }
-    
+
     /* 飞行属性 */
     &.border-飞行-飞行 {
         --primary-color: rgba(135, 206, 235, 0.9);
         --secondary-color: rgba(70, 130, 180, 0.9);
     }
-    
+
     /* 虫属性 */
     &.border-虫-虫 {
         --primary-color: rgba(154, 205, 50, 0.9);
         --secondary-color: rgba(107, 142, 35, 0.9);
     }
-    
+
     /* 岩石属性 */
     &.border-岩石-岩石 {
         --primary-color: rgba(169, 169, 169, 0.9);
         --secondary-color: rgba(105, 105, 105, 0.9);
     }
-    
+
     /* 幽灵属性 */
     &.border-幽灵-幽灵 {
         --primary-color: rgba(75, 0, 130, 0.9);
         --secondary-color: rgba(25, 25, 112, 0.9);
     }
-    
+
     /* 龙属性 */
     &.border-龙-龙 {
         --primary-color: rgba(72, 61, 139, 0.9);
         --secondary-color: rgba(25, 25, 112, 0.9);
     }
-    
+
     /* 恶属性 */
     &.border-恶-恶 {
         --primary-color: rgba(47, 79, 79, 0.9);
         --secondary-color: rgba(25, 25, 25, 0.9);
     }
-    
+
     /* 钢属性 */
     &.border-钢-钢 {
         --primary-color: rgba(192, 192, 192, 0.9);
         --secondary-color: rgba(169, 169, 169, 0.9);
     }
-    
+
     /* 妖精属性 */
     &.border-妖精-妖精 {
         --primary-color: rgba(255, 182, 193, 0.9);
         --secondary-color: rgba(255, 105, 180, 0.9);
     }
-    
+
     /* 冰属性 */
     &.border-冰-冰 {
         --primary-color: rgba(173, 216, 230, 0.9);
         --secondary-color: rgba(135, 206, 250, 0.9);
     }
-    
+
     /* 一般属性 */
     &.border-一般-一般 {
         --primary-color: rgba(169, 169, 169, 0.9);
@@ -2391,123 +2389,124 @@ const handleAreaJump = (areaName: string) => {
 .pokemon-method,
 .pokemon-belongings,
 .pokemon-moves {
+
     /* 草属性 */
     &.border-草-草 {
         --primary-color: rgba(78, 205, 78, 0.8);
         --secondary-color: rgba(34, 139, 34, 0.8);
     }
-    
+
     &.border-草-毒 {
         --primary-color: rgba(78, 205, 78, 0.8);
         --secondary-color: rgba(128, 0, 128, 0.8);
     }
-    
+
     /* 火属性 */
     &.border-火-火 {
         --primary-color: rgba(255, 69, 0, 0.8);
         --secondary-color: rgba(255, 140, 0, 0.8);
     }
-    
+
     &.border-火-飞行 {
         --primary-color: rgba(255, 69, 0, 0.8);
         --secondary-color: rgba(135, 206, 235, 0.8);
     }
-    
+
     /* 水属性 */
     &.border-水-水 {
         --primary-color: rgba(0, 191, 255, 0.8);
         --secondary-color: rgba(0, 100, 200, 0.8);
     }
-    
+
     &.border-水-冰 {
         --primary-color: rgba(0, 191, 255, 0.8);
         --secondary-color: rgba(173, 216, 230, 0.8);
     }
-    
+
     /* 电属性 */
     &.border-电-电 {
         --primary-color: rgba(255, 255, 0, 0.8);
         --secondary-color: rgba(255, 215, 0, 0.8);
     }
-    
+
     /* 超能力属性 */
     &.border-超能力-超能力 {
         --primary-color: rgba(186, 85, 211, 0.8);
         --secondary-color: rgba(138, 43, 226, 0.8);
     }
-    
+
     /* 格斗属性 */
     &.border-格斗-格斗 {
         --primary-color: rgba(205, 92, 92, 0.8);
         --secondary-color: rgba(220, 20, 60, 0.8);
     }
-    
+
     /* 毒属性 */
     &.border-毒-毒 {
         --primary-color: rgba(128, 0, 128, 0.8);
         --secondary-color: rgba(75, 0, 130, 0.8);
     }
-    
+
     /* 地面属性 */
     &.border-地面-地面 {
         --primary-color: rgba(160, 82, 45, 0.8);
         --secondary-color: rgba(139, 69, 19, 0.8);
     }
-    
+
     /* 飞行属性 */
     &.border-飞行-飞行 {
         --primary-color: rgba(135, 206, 235, 0.8);
         --secondary-color: rgba(70, 130, 180, 0.8);
     }
-    
+
     /* 虫属性 */
     &.border-虫-虫 {
         --primary-color: rgba(154, 205, 50, 0.8);
         --secondary-color: rgba(107, 142, 35, 0.8);
     }
-    
+
     /* 岩石属性 */
     &.border-岩石-岩石 {
         --primary-color: rgba(169, 169, 169, 0.8);
         --secondary-color: rgba(105, 105, 105, 0.8);
     }
-    
+
     /* 幽灵属性 */
     &.border-幽灵-幽灵 {
         --primary-color: rgba(75, 0, 130, 0.8);
         --secondary-color: rgba(25, 25, 112, 0.8);
     }
-    
+
     /* 龙属性 */
     &.border-龙-龙 {
         --primary-color: rgba(72, 61, 139, 0.8);
         --secondary-color: rgba(25, 25, 112, 0.8);
     }
-    
+
     /* 恶属性 */
     &.border-恶-恶 {
         --primary-color: rgba(47, 79, 79, 0.8);
         --secondary-color: rgba(25, 25, 25, 0.8);
     }
-    
+
     /* 钢属性 */
     &.border-钢-钢 {
         --primary-color: rgba(192, 192, 192, 0.8);
         --secondary-color: rgba(169, 169, 169, 0.8);
     }
-    
+
     /* 妖精属性 */
     &.border-妖精-妖精 {
         --primary-color: rgba(255, 182, 193, 0.8);
         --secondary-color: rgba(255, 105, 180, 0.8);
     }
-    
+
     /* 冰属性 */
     &.border-冰-冰 {
         --primary-color: rgba(173, 216, 230, 0.8);
         --secondary-color: rgba(135, 206, 250, 0.8);
     }
-    
+
     /* 一般属性 */
     &.border-一般-一般 {
         --primary-color: rgba(169, 169, 169, 0.8);
