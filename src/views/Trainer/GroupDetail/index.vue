@@ -323,12 +323,6 @@ const handlePropInfo = (propName: string) => {
     font-weight: 500;
 }
 
-.control-btn:hover {
-    background: #e6f4ff;
-    border-color: #409eff;
-    transform: translateY(-1px);
-    box-shadow: 0 2px 8px rgba(64, 158, 255, 0.2);
-}
 
 /* 战斗容器 */
 .battles-container {
@@ -355,12 +349,6 @@ const handlePropInfo = (propName: string) => {
     transition: all 0.3s ease;
     background: linear-gradient(135deg, #f8fbff 0%, #e6f4ff 100%);
     border-bottom: 1px solid #e6f0ff;
-}
-
-.battle-header:hover {
-    background: linear-gradient(135deg, #e6f4ff 0%, #d0e4ff 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(64, 158, 255, 0.15);
 }
 
 .battle-content {
@@ -412,12 +400,6 @@ const handlePropInfo = (propName: string) => {
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
-    
-    &:hover {
-        background: rgba(64, 158, 255, 0.2);
-        transform: translateY(-1px);
-        box-shadow: 0 2px 4px rgba(64, 158, 255, 0.2);
-    }
 }
 
 .pokemon-list {
@@ -448,12 +430,6 @@ const handlePropInfo = (propName: string) => {
     margin-bottom: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
-}
-
-.pokemon-item:hover {
-    background: #f8fbff;
-    border-left-color: #2d8cf0;
-    transform: translateX(2px);
 }
 
 /* 头像 + 文字信息 */
@@ -547,12 +523,6 @@ const handlePropInfo = (propName: string) => {
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 0.2s ease;
-    
-    &:hover {
-        background: linear-gradient(90deg, #2d8cf0, #53b1ff);
-        transform: translateY(-1px);
-        box-shadow: 0 2px 6px rgba(45, 140, 240, 0.3);
-    }
 }
 
 /* 技能整行 - 移动端优化 */

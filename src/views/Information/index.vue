@@ -749,7 +749,7 @@ const getBorderColorClass = () => {
     return `border-${primaryType}-${secondaryType}`
 }
 
-// 获取流光边框样式
+// 获取边框样式
 const getBorderStyle = () => {
     const primaryColor = getColor(pokemon_info.属性[0])
     const secondaryColor = getColor(pokemon_info.属性[1]) || primaryColor
@@ -1337,27 +1337,6 @@ const handleAreaJump = (areaName: string) => {
     position: relative;
     overflow: hidden;
 
-    /* 流光边框效果 */
-    &::before {
-        content: '';
-        position: absolute;
-        top: -8px;
-        left: -8px;
-        right: -8px;
-        bottom: -8px;
-        border-radius: 18px;
-        background: conic-gradient(from 0deg,
-                transparent 0deg,
-                var(--primary-color, rgba(78, 205, 78, 1)) 45deg,
-                var(--secondary-color, rgba(34, 139, 34, 1)) 90deg,
-                transparent 135deg,
-                var(--primary-color, rgba(78, 205, 78, 1)) 180deg,
-                var(--secondary-color, rgba(34, 139, 34, 1)) 225deg,
-                transparent 270deg,
-                transparent 360deg);
-        animation: rotate 2.5s linear infinite;
-        z-index: 1;
-    }
 
     /* 内层背景 */
     &::after {
@@ -1377,6 +1356,7 @@ const handleAreaJump = (areaName: string) => {
         position: relative;
         z-index: 3;
     }
+
 
     .pokemon-title-left {
         display: flex;
@@ -1903,13 +1883,6 @@ const handleAreaJump = (areaName: string) => {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             cursor: pointer;
 
-            /* 移除移动端点击放大效果 */
-            &:hover {
-                background-color: #e3f2fd;
-                transform: translateY(-2px);
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-            }
-
             .belongings-name {
                 flex-grow: 1;
                 text-align: center;
@@ -2228,16 +2201,16 @@ const handleAreaJump = (areaName: string) => {
     }
 }
 
-/* 旋转动画 */
+/* 旋转动画 - 流星效果 */
 @keyframes rotate {
     0% {
         transform: rotate(0deg);
     }
-
     100% {
         transform: rotate(360deg);
     }
 }
+
 
 /* 增强流光效果 */
 @keyframes shimmer {
