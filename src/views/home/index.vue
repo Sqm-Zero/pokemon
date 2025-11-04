@@ -2,6 +2,7 @@
   <div class="home_container">
     <div class="title">
       <p class="artboard">{{ title }}</p>
+      <SvgIcon name="pokemon" height="35px" width="35px" @click="drawerVisible = true" class="logo-icon"></SvgIcon>
     </div>
     <div class="bg_title">
       <img src="@/assets\images\home_images\image.png" alt="">
@@ -11,12 +12,34 @@
     <div class="bg">
       <Main class="flex-item"></Main>
     </div>
+
+    <!-- 抽屉 -->
+    <el-drawer v-model="drawerVisible" direction="ltr" size="70%">
+      <template #title>
+        <h3>功能菜单</h3>
+      </template>
+      <div class="drawer-nav">
+        <div class="nav-item" @click="navigateTo('/prop')">
+          <span>道具列表</span>
+        </div>
+      </div>
+    </el-drawer>
   </div>
 </template>
 
 <script setup lang="ts">
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 import Main from "@/views/home/Main/index.vue";
-let title = import.meta.env.VITE_Pokemon_Title
+
+let title = import.meta.env.VITE_Pokemon_Title;
+const drawerVisible = ref(false);
+const router = useRouter();
+
+const navigateTo = (path: string) => {
+  drawerVisible.value = false;
+  router.push(path);
+}
 </script>
 
 <style scoped lang="scss">
@@ -39,7 +62,7 @@ let title = import.meta.env.VITE_Pokemon_Title
     left: 0;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 60px; // 固定高度
     background: rgba(0, 0, 0, 0.1); // 轻微毛玻璃底（可选）
@@ -63,6 +86,20 @@ let title = import.meta.env.VITE_Pokemon_Title
       -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
       margin: 0;
       text-align: center;
+      flex: 1;
+    }
+
+    .logo-icon {
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.1);
+      }
+      
+      &:active {
+        transform: scale(0.95);
+      }
     }
   }
 
@@ -128,6 +165,29 @@ let title = import.meta.env.VITE_Pokemon_Title
   .bg_title img {
     max-height: 240px;
     border-radius: 12px;
+  }
+}
+
+/* 抽屉样式 */
+.drawer-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+
+  .nav-item {
+    padding: 16px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+    span {
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
   }
 }
 </style>

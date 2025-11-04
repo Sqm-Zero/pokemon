@@ -80,6 +80,14 @@ export const constantRoute = [
         }
     },
     {
+        path: '/prop',
+        component: () => import('@/views/Prop/index.vue'),
+        name: 'prop',
+        meta: {
+            title: '道具列表'
+        }
+    },
+    {
         path: '/prop/prop_info',
         component: () => import('@/views/Prop/Prop_info/index.vue'),
         name: 'propInfo',
