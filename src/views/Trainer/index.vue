@@ -14,7 +14,7 @@
                 <el-card class="group-item" :class="{ selected: currentVersion === 'hardcore', hardcore: true }"
                     shadow="hover" @click="currentVersion = 'hardcore'">
                     <div class="card-content">
-                        <span class="group-name">硬核版</span>
+                        <span class="group-name">噩梦版</span>
                     </div>
                 </el-card>
             </div>
@@ -44,9 +44,9 @@ const groupNames = [
     "青梅/劲敌 详细阵容",
     "道馆馆主 详细阵容",
     "宝可梦联盟 详细阵容",
-    "连胜家族（紫堇市上方）",
     "隐藏五天王",
     "二周目 重要战斗",
+    '新增的传奇挑战！',
     "最终挑战！游戏作者（茵郁市右下角树屋）"
 ]
 

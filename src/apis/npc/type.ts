@@ -20,6 +20,7 @@ export interface BattleInfo {
     battle_type: string;
     /** 战斗奖励或道具（如 "全能爆发*2"） */
     item: string;
+    location?: string;
     /** 出战宝可梦列表 */
     pokemons: Pokemon[];
 }
