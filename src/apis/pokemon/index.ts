@@ -11879,7 +11879,7 @@ export const reqAbility = (): Ability[] => {
         },
         {
             ability: '复眼',
-            description: '招式的命中率提升1.3倍'
+            description: '招式的命中率提升1.3倍，野怪携带物品概率翻倍'
         },
         {
             ability: '不眠',
@@ -11974,7 +11974,7 @@ export const reqAbility = (): Ability[] => {
             description: '拥有强壮的体魄，物理攻击威力翻倍'
         },
         {
-            ability: '毒刺',
+            ability: '污毒之躯',
             description: '受到近身攻击时对手30%几率使其中毒'
         },
         {
@@ -12546,7 +12546,7 @@ export const reqAbility = (): Ability[] => {
             description: '同伴使用道具时，会把持有的道具传递给同伴'
         },
         {
-            ability: '硬爪',
+            ability: '强击',
             description: '接触到对手的招式威力会提高30%'
         },
         {
@@ -12586,8 +12586,12 @@ export const reqAbility = (): Ability[] => {
             description: '该天气可免疫水系技能，且无法被普通天气覆盖'
         },
         {
-            ability: '时空乱流',
+            ability: '气流掌控',
             description: '该天气可消除飞行系弱点，且无法被普通天气覆盖'
+        },
+        {
+            ability: '未知',
+            description: '未知'
         }
     ];
 };

@@ -1,41 +1,76 @@
 <template>
-    <Top title="宝可梦介绍" icon="pokemon" router="/pokemon" :color="getColor(pokemon_info.属性[0])"></Top>
-    <div class="pokemon-info" :style="gradientHttp" @touchstart="handleTouchStart" @touchmove="handleTouchMove"
-        @touchend="handleTouchEnd" @mousedown="handleMouseDown" @mousemove="handleMouseMove" @mouseup="handleMouseUp"
-        @mouseleave="handleMouseUp">
+    <Top
+        title="宝可梦介绍"
+        icon="pokemon"
+        router="/pokemon"
+        :color="getColor(pokemon_info.属性[0])"
+    ></Top>
+    <div
+        class="pokemon-info"
+        :style="gradientHttp"
+        @touchstart="handleTouchStart"
+        @touchmove="handleTouchMove"
+        @touchend="handleTouchEnd"
+        @mousedown="handleMouseDown"
+        @mousemove="handleMouseMove"
+        @mouseup="handleMouseUp"
+        @mouseleave="handleMouseUp"
+    >
         <!-- 翻页动画容器 -->
         <div class="page-container" :style="pageContainerStyle">
             <div class="page-content" :style="pageContentStyle">
                 <div class="pokemon-title-wrapper">
-                    <div class="pokemon-title" :style="{ ...gradientStyle, ...getBorderStyle() }"
-                        :class="getBorderColorClass()">
+                    <div
+                        class="pokemon-title"
+                        :style="{ ...gradientStyle, ...getBorderStyle() }"
+                        :class="getBorderColorClass()"
+                    >
                         <div class="pokemon-title-left">
                             <div class="pokemon-name">
                                 <p class="title">{{ pokemon_info.名称 }}</p>
-                                <div style="display: flex;">
-                                    <p class="subtitle" v-for="(item, index) in pokemon_info.蛋群" :key="item">
-                                        {{ item }}<span v-if="index < pokemon_info.蛋群.length - 1">, </span>
+                                <div style="display: flex">
+                                    <p
+                                        class="subtitle"
+                                        v-for="(item, index) in pokemon_info.蛋群"
+                                        :key="item"
+                                    >
+                                        {{ item
+                                        }}<span v-if="index < pokemon_info.蛋群.length - 1"
+                                            >,
+                                        </span>
                                     </p>
                                 </div>
                             </div>
                             <div class="pokemon-type">
                                 <div class="type">
-                                    <div class="type1" v-for="item in pokemon_info.属性" :key="item"
-                                        :style="{ backgroundColor: getColor(item) }">{{
-                                            item }}</div>
+                                    <div
+                                        class="type1"
+                                        v-for="item in pokemon_info.属性"
+                                        :key="item"
+                                        :style="{ backgroundColor: getColor(item) }"
+                                    >
+                                        {{ item }}
+                                    </div>
                                 </div>
                                 <div class="ability">
-                                    <div v-if="pokemon_info.特性.length < 3" class="ability-box"
-                                        v-for="item in pokemon_info.特性" :key="item">
+                                    <div
+                                        v-if="pokemon_info.特性.length < 3"
+                                        class="ability-box"
+                                        v-for="item in pokemon_info.特性"
+                                        :key="item"
+                                    >
                                         {{ item }}
                                     </div>
                                     <template v-else>
                                         <div class="ability-box" @click="abilityDrawer = true">
                                             {{ pokemon_info.特性[0] }}
-                                            <br>
+                                            <br />
                                             {{ pokemon_info.特性[1] }}
                                         </div>
-                                        <div class="ability-box" @click="showHiddenAbility(pokemon_info.特性[2])">
+                                        <div
+                                            class="ability-box"
+                                            @click="showHiddenAbility(pokemon_info.特性[2])"
+                                        >
                                             {{ pokemon_info.特性[2] }}
                                             <p>隐藏特性</p>
                                         </div>
@@ -44,12 +79,15 @@
                             </div>
                         </div>
                         <div class="pokemon-title-right">
-                            <img :src="getImageSrc(pokemon_info.编号)" alt="">
+                            <img :src="getImageSrc(pokemon_info.编号)" alt="" />
                         </div>
                     </div>
                 </div>
-                <div class="details" :style="{ background: getColor(pokemon_info.属性[0]), ...getBorderStyle() }"
-                    :class="getBorderColorClass()">
+                <div
+                    class="details"
+                    :style="{ background: getColor(pokemon_info.属性[0]), ...getBorderStyle() }"
+                    :class="getBorderColorClass()"
+                >
                     <div class="pokemon-header">
                         <div class="grade">
                             <p>等级</p>
@@ -66,7 +104,7 @@
                         <div class="pokemon-base-stats">
                             <p>种族值</p>
                             <div v-for="(item, index) in pokemon_info.种族值" :key="index">
-                                <div>{{ RaceValue[index] }}:{{ item }}</div>
+                                <div>{{ (RaceValue as any)[index] }}:{{ item }}</div>
                             </div>
                             <div>
                                 总种族值<br />
@@ -76,13 +114,20 @@
 
                         <div class="pokemon-individual-values">
                             <p>个体值</p>
-                            <div class="input-container" v-for="(item, index) in IndividualValue" :key="index">
-                                <div class="editable-div" @input="updateIndividual($event, index)"
-                                    contenteditable="true" v-html="item">
-                                </div>
+                            <div
+                                class="input-container"
+                                v-for="(item, index) in IndividualValue"
+                                :key="index"
+                            >
+                                <div
+                                    class="editable-div"
+                                    @input="updateIndividual($event, index)"
+                                    contenteditable="true"
+                                    v-html="item"
+                                ></div>
                             </div>
                             <div>
-                                <span v-if="pokemon_info.canUseEvolutionStone" style="color: red;">
+                                <span v-if="pokemon_info.canUseEvolutionStone" style="color: red">
                                     可用<br />进化奇石
                                 </span>
                                 <span v-else>
@@ -94,20 +139,35 @@
 
                         <div class="pokemon-effort-values">
                             <p>努力值</p>
-                            <div class="input-container" v-for="(item, index) in EffortValue" :key="index">
-                                <div class="editable-div" v-html="item" @input="updateEffort($event, index)"
-                                    contenteditable="true">
-                                </div>
+                            <div
+                                class="input-container"
+                                v-for="(item, index) in EffortValue"
+                                :key="index"
+                            >
+                                <div
+                                    class="editable-div"
+                                    v-html="item"
+                                    @input="updateEffort($event, index)"
+                                    contenteditable="true"
+                                ></div>
                             </div>
                             <div>
                                 孵蛋速度<br />
-                                {{ pokemon_info.蛋群[0] == "未发现" ? "不可孵蛋" : pokemon_info.孵蛋周期 }}
+                                {{
+                                    pokemon_info.蛋群[0] == '未发现'
+                                        ? '不可孵蛋'
+                                        : pokemon_info.孵蛋周期
+                                }}
                             </div>
                         </div>
 
                         <div class="pokemon-ability-values">
                             <p>能力值</p>
-                            <div class="input-container" v-for="(item, index) in AbilityValue" :key="index">
+                            <div
+                                class="input-container"
+                                v-for="(item, index) in AbilityValue"
+                                :key="index"
+                            >
                                 <div>{{ item }}</div>
                             </div>
                             <div>
@@ -117,20 +177,33 @@
                         </div>
                     </div>
                 </div>
-                <div class="weaknesses-container" :style="getBorderStyle()" :class="getBorderColorClass()">
+                <div
+                    class="weaknesses-container"
+                    :style="getBorderStyle()"
+                    :class="getBorderColorClass()"
+                >
                     <div class="weaknesses-header">属性相性</div>
                     <div class="weaknesses-content">
                         <div class="weaknesses-grid">
-                            <div v-for="(item, index) in attributeList" :key="index" class="weaknesses-item">
-                                <div class="weaknesses-type" :style="{ backgroundColor: colorMap[item] }">
-                                    {{ item == "超能力" ? "超能" : item }}
+                            <div
+                                v-for="(item, index) in attributeList"
+                                :key="index"
+                                class="weaknesses-item"
+                            >
+                                <div
+                                    class="weaknesses-type"
+                                    :style="{ backgroundColor: colorMap[item] }"
+                                >
+                                    {{ item == '超能力' ? '超能' : item }}
                                 </div>
                                 <div class="weaknesses-value">
                                     <template v-if="shuxing[index - 1] > 1">
                                         <span class="text-red-500"> {{ shuxing[index - 1] }}</span>
                                     </template>
                                     <template v-else-if="shuxing[index - 1] < 1">
-                                        <span class="text-green-500"> {{ shuxing[index - 1] }}</span>
+                                        <span class="text-green-500">
+                                            {{ shuxing[index - 1] }}</span
+                                        >
                                     </template>
                                     <template v-else>
                                         <span class="text-gray-500"> {{ shuxing[index - 1] }}</span>
@@ -140,8 +213,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="pokemon-method" v-if="appearAreas.length > 0" :style="getBorderStyle()"
-                    :class="getBorderColorClass()">
+                <div
+                    class="pokemon-method"
+                    v-if="appearAreas.length > 0"
+                    :style="getBorderStyle()"
+                    :class="getBorderColorClass()"
+                >
                     <div class="method-header">精灵分布</div>
                     <div class="method-content">
                         <template v-if="appearAreas.length > 0">
@@ -158,31 +235,61 @@
                         <div class="evolution-step" v-for="(evolve, index) in evolves" :key="index">
                             <div class="evolution-container" v-show="evolve.condition !== 'trade'">
                                 <!-- 当前形态 -->
-                                <div class="pokemon-card" @click="handleNextStageInfo(evolve.pokemonName)">
-                                    <img class="pokemon-image"
-                                        :src="getImageSrc(pokemonStore.getPokemonIdByName(evolve.pokemonName))"
-                                        :alt="pokemon_info.名称">
+                                <div
+                                    class="pokemon-card"
+                                    @click="handleNextStageInfo(evolve.pokemonName)"
+                                >
+                                    <img
+                                        class="pokemon-image"
+                                        :src="
+                                            getImageSrc(
+                                                pokemonStore.getPokemonIdByName(evolve.pokemonName)
+                                            )
+                                        "
+                                        :alt="pokemon_info.名称"
+                                    />
                                     <p class="pokemon-name">{{ evolve.pokemonName }}</p>
                                 </div>
 
                                 <!-- 进化条件 -->
                                 <div class="evolution-condition">
-                                    <div class="condition-bubble" v-if="evolve.condition === 'level_up'">
-                                        <i class="fas fa-level-up-alt"></i> Lv. {{ evolve.level }} 进化
+                                    <div
+                                        class="condition-bubble"
+                                        v-if="evolve.condition === 'level_up'"
+                                    >
+                                        <i class="fas fa-level-up-alt"></i> Lv.
+                                        {{ evolve.level }} 进化
                                     </div>
-                                    <div class="condition-bubble" v-if="evolve.condition === 'use_item'">
+                                    <div
+                                        class="condition-bubble"
+                                        v-if="evolve.condition === 'use_item'"
+                                    >
                                         <i class="fas fa-potion"></i> 使用 {{ evolve.item }} 进化
                                     </div>
-                                    <div class="condition-bubble" v-if="evolve.condition === 'learn_move'">
-                                        <i class="fas fa-potion"></i> 学会{{ evolve.move }} 后提升等级进化
+                                    <div
+                                        class="condition-bubble"
+                                        v-if="evolve.condition === 'learn_move'"
+                                    >
+                                        <i class="fas fa-potion"></i> 学会{{ evolve.move }}
+                                        后提升等级进化
                                     </div>
-                                    <div class="condition-bubble" v-if="evolve.condition === 'level_up_holding_item'">
-                                        <i class="fas fa-level-up-alt"></i> 携带 {{ evolve.item }} 进化
+                                    <div
+                                        class="condition-bubble"
+                                        v-if="evolve.condition === 'level_up_holding_item'"
+                                    >
+                                        <i class="fas fa-level-up-alt"></i> 携带
+                                        {{ evolve.item }} 进化
                                     </div>
-                                    <div class="condition-bubble" v-if="evolve.condition === 'friendship'">
+                                    <div
+                                        class="condition-bubble"
+                                        v-if="evolve.condition === 'friendship'"
+                                    >
                                         <i class="fas fa-level-up-alt"></i> 友好度进化
                                     </div>
-                                    <div class="condition-bubble" v-if="evolve.condition === 'special'">
+                                    <div
+                                        class="condition-bubble"
+                                        v-if="evolve.condition === 'special'"
+                                    >
                                         <i class="fas fa-level-up-alt"></i> {{ evolve.item }}
                                     </div>
                                     <div class="evolution-arrow">
@@ -191,11 +298,20 @@
                                 </div>
 
                                 <!-- 进化后形态 -->
-                                <div class="pokemon-card" style="cursor:pointer"
-                                    @click="handleNextStageInfo(evolve.NextStage)">
-                                    <img class="pokemon-image"
-                                        :src="getImageSrc(pokemonStore.getPokemonIdByName(evolve.NextStage))"
-                                        :alt="evolve.NextStage">
+                                <div
+                                    class="pokemon-card"
+                                    style="cursor: pointer"
+                                    @click="handleNextStageInfo(evolve.NextStage)"
+                                >
+                                    <img
+                                        class="pokemon-image"
+                                        :src="
+                                            getImageSrc(
+                                                pokemonStore.getPokemonIdByName(evolve.NextStage)
+                                            )
+                                        "
+                                        :alt="evolve.NextStage"
+                                    />
                                     <p class="pokemon-name">{{ evolve.NextStage }}</p>
                                 </div>
                             </div>
@@ -203,34 +319,61 @@
                     </div>
                 </div>
 
-                <div class="pokemon-belongings" v-if="pokemon_info.可能携带的物品.length !== 0" :style="getBorderStyle()"
-                    :class="getBorderColorClass()">
+                <div
+                    class="pokemon-belongings"
+                    v-if="pokemon_info.可能携带的物品.length !== 0"
+                    :style="getBorderStyle()"
+                    :class="getBorderColorClass()"
+                >
                     <div class="belongings-header">携带物品</div>
                     <div class="belongings-content">
-                        <div v-for="(item, index) in pokemon_info.可能携带的物品" :key="index" class="belongings-item"
-                            @click="handlePropInfo(item.物品)">
+                        <div
+                            v-for="(item, index) in pokemon_info.可能携带的物品"
+                            :key="index"
+                            class="belongings-item"
+                            @click="handlePropInfo(item.物品)"
+                        >
                             <div class="belongings-name">{{ item.物品 }} {{ item.概率 }}%</div>
                         </div>
                     </div>
                 </div>
                 <div class="pokemon-moves" :style="getBorderStyle()" :class="getBorderColorClass()">
-                    <div style="position: relative; text-align: center;">
+                    <div style="position: relative; text-align: center">
                         <div class="moves-header">{{ movesTitle }}</div>
-                        <div style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); cursor: pointer;"
-                            @click="toggleEggMoves">
-                            <SvgIcon name="toggle" height="30px" width="30px"
-                                :color="isEggMoves ? '#ff6b6b' : '#00bfff'">
+                        <div
+                            style="
+                                position: absolute;
+                                right: 0;
+                                top: 50%;
+                                transform: translateY(-50%);
+                                cursor: pointer;
+                            "
+                            @click="toggleEggMoves"
+                        >
+                            <SvgIcon
+                                name="toggle"
+                                height="30px"
+                                width="30px"
+                                :color="isEggMoves ? '#ff6b6b' : '#00bfff'"
+                            >
                             </SvgIcon>
                         </div>
                     </div>
 
                     <div class="moves-content">
-                        <div v-for="(item, index) in moves" :key="index" class="moves-item" :class="{
-                            'moves-item-early': parseInt(item.level) <= 10,
-                            'moves-item-mid': parseInt(item.level) > 10 && parseInt(item.level) <= 50,
-                            'moves-item-late': parseInt(item.level) > 50,
-                            'moves-item-lates': parseInt(item.level) == 100
-                        }" @click="handleMoveInfo(item)">
+                        <div
+                            v-for="(item, index) in moves"
+                            :key="index"
+                            class="moves-item"
+                            :class="{
+                                'moves-item-early': parseInt(item.level) <= 10,
+                                'moves-item-mid':
+                                    parseInt(item.level) > 10 && parseInt(item.level) <= 50,
+                                'moves-item-late': parseInt(item.level) > 50,
+                                'moves-item-lates': parseInt(item.level) == 100
+                            }"
+                            @click="handleMoveInfo(item)"
+                        >
                             <div class="moves-type">Lv. {{ item.level }}</div>
                             <div class="moves-name">{{ item.skill_name }}</div>
                         </div>
@@ -245,7 +388,12 @@
                 <el-table-column prop="description" />
             </el-table>
         </el-drawer>
-        <el-drawer style="height: 35%; margin-top: 90px;" v-model="abilityDrawer" direction="rtl" size="40%">
+        <el-drawer
+            style="height: 35%; margin-top: 90px"
+            v-model="abilityDrawer"
+            direction="rtl"
+            size="40%"
+        >
             <div class="ability-info-box" @click="showHiddenAbility(pokemon_info.特性[0])">
                 <div class="ability-title">特性 1</div>
                 <div class="ability-content">{{ pokemon_info.特性[0] }}</div>
@@ -268,86 +416,64 @@
 import { ref, reactive, computed, watch, nextTick, onMounted, onUnmounted } from 'vue';
 import { usePokemonStore } from '@/store/modules/pokemon';
 import { useRouter } from 'vue-router';
-import { getAreas } from '@/apis/areas/index.ts'
-import { useAreaStore } from '@/store/modules/area'
+import { getAreas } from '@/apis/areas/index.ts';
+import { useAreaStore } from '@/store/modules/area';
 
 // 地区数据
-const areaStore = useAreaStore()
+const areaStore = useAreaStore();
 // 路由
-let $router = useRouter()
+let $router = useRouter();
 // 获取精灵数据仓库
-const pokemonStore = usePokemonStore()
+const pokemonStore = usePokemonStore();
 // 性格选择抽屉
-const drawer = ref(false)
+const drawer = ref(false);
 // 特性选择抽屉
-const abilityDrawer = ref(false)
+const abilityDrawer = ref(false);
 // 宝可梦信息
 let pokemon_info: any = reactive({
-    "编号": "001",
-    "名称": "妙蛙种子",
-    "进化阶段": 1,
-    "种族值": [
-        45,
-        49,
-        49,
-        65,
-        65,
-        45
-    ],
-    "总种族值": 318,
-    "特性": [
-        "茂盛",
-        "太阳驱动",
-        "太阳驱动"
-    ],
-    "属性": [
-        "草",
-        "毒"
-    ],
-    "可能携带的物品": [
+    编号: '001',
+    名称: '妙蛙种子',
+    进化阶段: 1,
+    种族值: [45, 49, 49, 65, 65, 45],
+    总种族值: 318,
+    特性: ['茂盛', '太阳驱动', '太阳驱动'],
+    属性: ['草', '毒'],
+    可能携带的物品: [
         {
-            "物品": "妙蛙花进化石",
-            "概率": 50
+            物品: '妙蛙花进化石',
+            概率: 50
         }
     ],
-    "经验值累积速度": "较慢",
-    "蛋群": [
-        "怪兽",
-        "植物"
-    ],
-    "孵蛋周期": 5,
+    经验值累积速度: '较慢',
+    蛋群: ['怪兽', '植物'],
+    孵蛋周期: 5,
     canUseEvolutionStone: false // 初始化属性
-})
-pokemon_info = pokemonStore.Pokemon
+});
+pokemon_info = pokemonStore.Pokemon;
 // 种族值信息表
-let RaceValue = ref(['HP',
-    'AT',
-    'DF',
-    'SA',
-    'SD',
-    'SP'])
+let RaceValue = ref(['HP', 'AT', 'DF', 'SA', 'SD', 'SP']);
 // 等级性格
 let RankCharacter = reactive({
     grade: 100,
     nature: '勤奋'
-})
+});
 
 // 获取进化方式
-let evolves = pokemonStore.getEvolveByName(pokemon_info.名称)
+let evolves = pokemonStore.getEvolveByName(pokemon_info.名称);
 
 const maxValue = 31; // 最大值
-const minValue = 0;  // 最小值
+const minValue = 0; // 最小值
 // 个体值
-let IndividualValue = ref([31, 31, 31, 31, 31, 31])
+let IndividualValue = ref([31, 31, 31, 31, 31, 31]);
 // 努力值
-let EffortValue = ref([0, 0, 0, 0, 0, 0])
+let EffortValue = ref([0, 0, 0, 0, 0, 0]);
 const maxEffort = 252;
 const minEffort = 0;
 // 能力值
-let AbilityValue = ref([0, 0, 0, 0, 0, 0])
+let AbilityValue = ref([0, 0, 0, 0, 0, 0]);
 // 性格数据
 const natures: any = {
-    '勤奋': {
+    勤奋: {
         name: '勤奋',
         attack: 1.0,
         defense: 1.0,
@@ -356,7 +482,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '能力均衡，无提升和降低'
     },
-    '怕寂寞': {
+    怕寂寞: {
         name: '怕寂寞',
         attack: 1.1,
         defense: 0.9,
@@ -365,7 +491,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '攻击提升，防御降低'
     },
-    '固执': {
+    固执: {
         name: '固执',
         attack: 1.1,
         defense: 1.0,
@@ -374,7 +500,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '攻击提升，特攻降低'
     },
-    '顽皮': {
+    顽皮: {
         name: '顽皮',
         attack: 1.1,
         defense: 1.0,
@@ -383,7 +509,7 @@ const natures: any = {
         specialDefense: 0.9,
         description: '攻击提升，特防降低'
     },
-    '勇敢': {
+    勇敢: {
         name: '勇敢',
         attack: 1.1,
         defense: 1.0,
@@ -392,7 +518,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '攻击提升，速度降低'
     },
-    '大胆': {
+    大胆: {
         name: '大胆',
         attack: 0.9,
         defense: 1.1,
@@ -401,7 +527,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '防御提升，攻击降低'
     },
-    '坦率': {
+    坦率: {
         name: '坦率',
         attack: 1.0,
         defense: 1.0,
@@ -410,7 +536,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '能力均衡，无提升和降低'
     },
-    '淘气': {
+    淘气: {
         name: '淘气',
         attack: 1.0,
         defense: 1.1,
@@ -419,7 +545,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '防御提升，特攻降低'
     },
-    '乐天': {
+    乐天: {
         name: '乐天',
         attack: 1.0,
         defense: 1.1,
@@ -428,7 +554,7 @@ const natures: any = {
         specialDefense: 0.9,
         description: '防御提升，特防降低'
     },
-    '悠闲': {
+    悠闲: {
         name: '悠闲',
         attack: 1.0,
         defense: 1.1,
@@ -437,7 +563,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '防御提升，速度降低'
     },
-    '内敛': {
+    内敛: {
         name: '内敛',
         attack: 0.9,
         defense: 1.0,
@@ -446,7 +572,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '特攻提升，攻击降低'
     },
-    '慢吞吞': {
+    慢吞吞: {
         name: '慢吞吞',
         attack: 1.0,
         defense: 0.9,
@@ -455,7 +581,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '特攻提升，防御降低'
     },
-    '害羞': {
+    害羞: {
         name: '害羞',
         attack: 1.0,
         defense: 1.0,
@@ -464,7 +590,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '能力均衡，无提升和降低'
     },
-    '马虎': {
+    马虎: {
         name: '马虎',
         attack: 1.0,
         defense: 1.0,
@@ -473,7 +599,7 @@ const natures: any = {
         specialDefense: 0.9,
         description: '特功提升，特防降低'
     },
-    '冷静': {
+    冷静: {
         name: '冷静',
         attack: 1.0,
         defense: 1.0,
@@ -482,7 +608,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '特攻提升，速度降低'
     },
-    '温和': {
+    温和: {
         name: '温和',
         attack: 0.9,
         defense: 1.0,
@@ -491,7 +617,7 @@ const natures: any = {
         specialDefense: 1.1,
         description: '特防提升，攻击降低'
     },
-    '温顺': {
+    温顺: {
         name: '温顺',
         attack: 1.0,
         defense: 0.9,
@@ -500,7 +626,7 @@ const natures: any = {
         specialDefense: 1.1,
         description: '特防提升，防御降低'
     },
-    '慎重': {
+    慎重: {
         name: '慎重',
         attack: 1.0,
         defense: 1.0,
@@ -509,7 +635,7 @@ const natures: any = {
         specialDefense: 1.1,
         description: '特防提升，特攻降低'
     },
-    '自大': {
+    自大: {
         name: '自大',
         attack: 1.0,
         defense: 1.0,
@@ -518,7 +644,7 @@ const natures: any = {
         specialDefense: 1.1,
         description: '特防提升，速度降低'
     },
-    '胆小': {
+    胆小: {
         name: '胆小',
         attack: 0.9,
         defense: 1.0,
@@ -527,7 +653,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '速度提升，攻击降低'
     },
-    '浮躁': {
+    浮躁: {
         name: '浮躁',
         attack: 1.0,
         defense: 0.9,
@@ -536,7 +662,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '速度提升，防御降低'
     },
-    '爽朗': {
+    爽朗: {
         name: '爽朗',
         attack: 1.0,
         defense: 1.0,
@@ -545,7 +671,7 @@ const natures: any = {
         specialDefense: 1.0,
         description: '速度提升，特攻降低'
     },
-    '天真': {
+    天真: {
         name: '天真',
         attack: 1.0,
         defense: 1.0,
@@ -554,7 +680,7 @@ const natures: any = {
         specialDefense: 0.9,
         description: '速度提升，特防降低'
     },
-    '认真': {
+    认真: {
         name: '认真',
         attack: 1.0,
         defense: 1.0,
@@ -562,15 +688,15 @@ const natures: any = {
         specialAttack: 1.0,
         specialDefense: 1.0,
         description: '能力均衡，无提升和降低'
-    },
+    }
 };
-const natureList = Object.values(natures)
+const natureList = Object.values(natures);
 // 颜色映射
-let colorMap = pokemonStore.colorMap
+let colorMap = pokemonStore.colorMap;
 
 // 获取 Pokemon 图片的 URL
 const getImageSrc = (编号: String) => {
-    let imageSrc = Number(编号)
+    let imageSrc = Number(编号);
     return new URL(`/src/assets/images/pokemonList_images/${imageSrc}.png`, import.meta.url).href;
 };
 // 能力值计算函数
@@ -583,12 +709,17 @@ const calculateSingleStat = (
     isHP: boolean = false
 ) => {
     const baseCalculation = isHP
-        ? Math.floor((baseStat * 2 + individualValue + Math.floor(effortValue / 4)) * level / 100 + 10 + level)
-        : Math.floor((baseStat * 2 + individualValue + Math.floor(effortValue / 4)) * level / 100 + 5);
+        ? Math.floor(
+              ((baseStat * 2 + individualValue + Math.floor(effortValue / 4)) * level) / 100 +
+                  10 +
+                  level
+          )
+        : Math.floor(
+              ((baseStat * 2 + individualValue + Math.floor(effortValue / 4)) * level) / 100 + 5
+          );
 
     return isHP ? baseCalculation : Math.floor(baseCalculation * natureModifier);
 };
-
 
 // 性格对应的键
 const natureKeys = ['attack', 'defense', 'specialAttack', 'specialDefense', 'speed'];
@@ -601,7 +732,9 @@ const updateAllAbilities = () => {
         const isHP = index === 0;
         const individualValue = IndividualValue.value[index];
         const effortValue = EffortValue.value[index];
-        const natureModifier = isHP ? 1.0 : natures[RankCharacter.nature][natureKeys[index - 1]] || 1.0;
+        const natureModifier = isHP
+            ? 1.0
+            : natures[RankCharacter.nature][natureKeys[index - 1]] || 1.0;
 
         AbilityValue.value[index] = calculateSingleStat(
             baseStat,
@@ -622,20 +755,20 @@ watch(
 );
 
 let movesTitle = ref<string>('可用招式');
-const isEggMoves = ref(false)
+const isEggMoves = ref(false);
 const toggleEggMoves = () => {
-    isEggMoves.value = !isEggMoves.value
-    movesTitle.value = isEggMoves.value ? '蛋招式' : '可用招式'
+    isEggMoves.value = !isEggMoves.value;
+    movesTitle.value = isEggMoves.value ? '蛋招式' : '可用招式';
     if (isEggMoves.value) {
-        getEggMoves()
+        getEggMoves();
     } else {
-        getMoves()
+        getMoves();
     }
-}
+};
 
-let moves: any = ref([])
+let moves: any = ref([]);
 // 获取位置
-let appearAreas: any = ref([])
+let appearAreas: any = ref([]);
 onMounted(() => {
     // 初始化
     updateAllAbilities();
@@ -644,8 +777,8 @@ onMounted(() => {
 
     getMoves();
 
-    pokemon_info.old_pokemon_name = pokemon_info.名称
-    pokemon_info.名称 = processPokemonName(pokemon_info.名称)
+    pokemon_info.old_pokemon_name = pokemon_info.名称;
+    pokemon_info.名称 = processPokemonName(pokemon_info.名称);
     // 精灵捕获位置
     appearAreas = getAppearAreas(pokemon_info.old_pokemon_name);
 
@@ -669,43 +802,43 @@ onUnmounted(() => {
 
 const getMoves = () => {
     if (!isNaN(Number(pokemon_info.编号)) && !pokemon_info.编号.includes('_')) {
-        moves.value = pokemonStore.getPokemonMovesByNumber(String(Number(pokemon_info.编号)))
+        moves.value = pokemonStore.getPokemonMovesByNumber(String(Number(pokemon_info.编号)));
     } else {
         // 保持原编号
         moves.value = pokemonStore.getPokemonMovesByNumber(pokemon_info.编号);
     }
-}
+};
 
 const getEggMoves = () => {
     if (!isNaN(Number(pokemon_info.编号)) && !pokemon_info.编号.includes('_')) {
-        moves.value = pokemonStore.getEggMovesByNumber(String(Number(pokemon_info.编号)))
+        moves.value = pokemonStore.getEggMovesByNumber(String(Number(pokemon_info.编号)));
     } else {
         // 保持原编号
         moves.value = pokemonStore.getEggMovesByNumber(pokemon_info.编号);
     }
-}
+};
 
-// 名称问题解决 
+// 名称问题解决
 // 特殊形态的映射表
 const specialForms: Record<string, string[]> = {
-    '代欧奇希斯': ['攻击形态', '防御形态', '速度形态'],
-    '结草贵妇': ['砂土蓑衣', '垃圾蓑衣'],
-    '谢米': ['天空形态'],
-    '骑拉帝纳': ['起源形态'],
-    '洛托姆': ['加热', '清洗', '结冰', '旋转', '切割'],
-    '飘浮泡泡': ['太阳', '雨天', '雪天'],
-    '樱花儿': ['晴天形态'],
-    '野蛮鲈鱼': ['蓝条纹的样子'],
-    '达摩狒狒': ['达摩模式'],
-    '美洛耶塔': ['舞步形态'],
-    '酋雷姆': ['焰白', '暗黑'],
-    '凯路迪欧': ['觉悟形态'],
-    '毒卷云': ['灵兽形态'],
-    '雷电云': ['灵兽形态'],
-    '土地云': ['灵兽形态'],
-    '超能妙喵': ['雌性'],
-    '花叶蒂': ['', '', '', '', '永恒之花'],
-    '皮卡丘': ['摇滚巨星', '贵妇', '流行偶像', '博士', '面罩摔角手', '智皮']
+    代欧奇希斯: ['攻击形态', '防御形态', '速度形态'],
+    结草贵妇: ['砂土蓑衣', '垃圾蓑衣'],
+    谢米: ['天空形态'],
+    骑拉帝纳: ['起源形态'],
+    洛托姆: ['加热', '清洗', '结冰', '旋转', '切割'],
+    飘浮泡泡: ['太阳', '雨天', '雪天'],
+    樱花儿: ['晴天形态'],
+    野蛮鲈鱼: ['蓝条纹的样子'],
+    达摩狒狒: ['达摩模式'],
+    美洛耶塔: ['舞步形态'],
+    酋雷姆: ['焰白', '暗黑'],
+    凯路迪欧: ['觉悟形态'],
+    毒卷云: ['灵兽形态'],
+    雷电云: ['灵兽形态'],
+    土地云: ['灵兽形态'],
+    超能妙喵: ['雌性'],
+    花叶蒂: ['', '', '', '', '永恒之花'],
+    皮卡丘: ['摇滚巨星', '贵妇', '流行偶像', '博士', '面罩摔角手', '智皮']
 };
 const processPokemonName = (name: string): string => {
     // 首先检查是否是特殊形态的宝可梦
@@ -730,50 +863,74 @@ const processPokemonName = (name: string): string => {
 // 进化奇石
 // 在script部分添加
 const canUseStoneFinalForms = [
-    "美纳斯", "火暴猴", "白海狮", "大奶罐", "圈圈熊",
-    "猫头夜鹰", "随风球", "南瓜怪人", "念力土偶", "舞天鹅",
-    "乌贼王", "朽木妖", "顽皮雷弹", "热带龙", "电飞鼠",
-    "摩鲁蛾", "钢臂炮虾", "裙儿小姐", "几何雪花", "麒麟奇", "钢炮臂虾",
-    "樱花儿", "千针鱼", "风铃铃", "优雅猫", "太阳珊瑚", "土龙翅灵"
+    '美纳斯',
+    '火暴猴',
+    '白海狮',
+    '大奶罐',
+    '圈圈熊',
+    '猫头夜鹰',
+    '随风球',
+    '南瓜怪人',
+    '念力土偶',
+    '舞天鹅',
+    '乌贼王',
+    '朽木妖',
+    '顽皮雷弹',
+    '热带龙',
+    '电飞鼠',
+    '摩鲁蛾',
+    '钢臂炮虾',
+    '裙儿小姐',
+    '几何雪花',
+    '麒麟奇',
+    '钢炮臂虾',
+    '樱花儿',
+    '千针鱼',
+    '风铃铃',
+    '优雅猫',
+    '太阳珊瑚',
+    '土龙翅灵'
 ];
 
 // 在onMounted或数据初始化时
-pokemon_info.canUseEvolutionStone = canUseStoneFinalForms.includes(pokemon_info.名称.replace(/（.*）/, '').trim());
+pokemon_info.canUseEvolutionStone = canUseStoneFinalForms.includes(
+    pokemon_info.名称.replace(/（.*）/, '').trim()
+);
 // 获取 Pokemon 图片的 URL
-const getColor = (type: any) => colorMap[type] || '#BBBBAA'
+const getColor = (type: any) => colorMap[type] || '#BBBBAA';
 
 // 获取边框颜色类
 const getBorderColorClass = () => {
-    const primaryType = pokemon_info.属性[0]
-    const secondaryType = pokemon_info.属性[1] || pokemon_info.属性[0]
-    return `border-${primaryType}-${secondaryType}`
-}
+    const primaryType = pokemon_info.属性[0];
+    const secondaryType = pokemon_info.属性[1] || pokemon_info.属性[0];
+    return `border-${primaryType}-${secondaryType}`;
+};
 
 // 获取边框样式
 const getBorderStyle = () => {
-    const primaryColor = getColor(pokemon_info.属性[0])
-    const secondaryColor = getColor(pokemon_info.属性[1]) || primaryColor
+    const primaryColor = getColor(pokemon_info.属性[0]);
+    const secondaryColor = getColor(pokemon_info.属性[1]) || primaryColor;
 
     // 将十六进制颜色转换为rgba格式
     const hexToRgba = (hex: string, alpha: number = 0.8) => {
-        const r = parseInt(hex.slice(1, 3), 16)
-        const g = parseInt(hex.slice(3, 5), 16)
-        const b = parseInt(hex.slice(5, 7), 16)
-        return `rgba(${r}, ${g}, ${b}, ${alpha})`
-    }
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+    };
 
     return {
         '--primary-color': hexToRgba(primaryColor, 0.8),
         '--secondary-color': hexToRgba(secondaryColor, 0.8)
-    }
-}
+    };
+};
 
 const gradientStyle = computed(() => ({
     background: `linear-gradient(to bottom, ${getColor(pokemon_info.属性[0])}, #FFFFFF)`
-}))
+}));
 const gradientHttp = computed(() => ({
     background: `linear-gradient(60deg, ${getColor(pokemon_info.属性[0])}, ${getColor(pokemon_info.属性[1])})`
-}))
+}));
 // 修改种族值
 const updateIndividual = (event: any, index: number) => {
     let value = event.target.innerText.trim();
@@ -813,7 +970,7 @@ const updateIndividual = (event: any, index: number) => {
         selection.removeAllRanges();
         selection.addRange(newRange);
     });
-}
+};
 // 修改努力值
 const updateEffort = (event: any, index: number) => {
     let value = event.target.innerText.trim();
@@ -853,16 +1010,15 @@ const updateEffort = (event: any, index: number) => {
         selection.removeAllRanges();
         selection.addRange(newRange);
     });
-}
+};
 // 选择性格
 const optionNature = (row: any) => {
     RankCharacter.nature = row.name;
     drawer.value = false;
-
-}
+};
 
 // 属性克制关系
-let shuxing: any[] = []
+let shuxing: any[] = [];
 // 属性匹配表
 const attributeList = {
     1: '一般',
@@ -882,14 +1038,14 @@ const attributeList = {
     15: '冰',
     16: '龙',
     17: '恶',
-    18: '妖精',
-}
+    18: '妖精'
+};
 // 属性克制关系
 const attributeRestraintRelationship: any = {
     1: [1, 2, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     2: [1, 1, 2, 1, 1, 0.5, 0.5, 1, 1, 1, 1, 1, 1, 2, 1, 1, 0.5, 2],
     3: [1, 0.5, 1, 1, 0, 2, 0.5, 1, 1, 1, 1, 0.5, 2, 1, 2, 1, 1, 1],
-    4: [1, 0.5, 1, 0.5, 2, 1, 0, 1, 1, 1, 1, 0.5, 1, 2, 1, 1, 1, 0.5],
+    4: [1, 0.5, 1, 0.5, 2, 1, 0.5, 1, 1, 1, 1, 0.5, 1, 2, 1, 1, 1, 0.5],
     5: [1, 1, 1, 0.5, 1, 0.5, 1, 1, 1, 1, 2, 2, 0, 1, 2, 1, 1, 1],
     6: [0.5, 2, 0.5, 0.5, 2, 1, 1, 1, 2, 0.5, 2, 2, 1, 1, 1, 1, 1, 1],
     7: [1, 0.5, 2, 1, 0.5, 2, 1, 1, 1, 2, 1, 0.5, 1, 1, 1, 1, 1, 1], // 虫属性的打击面
@@ -904,23 +1060,21 @@ const attributeRestraintRelationship: any = {
     16: [1.0, 1.0, 1, 1.0, 1, 1.0, 1.0, 1.0, 1, 0.5, 0.5, 0.5, 0.5, 1.0, 2, 2.0, 1.0, 2],
     17: [1.0, 2, 1.0, 1.0, 1.0, 1.0, 2, 0.5, 1, 1.0, 1.0, 1.0, 1.0, 0, 1.0, 1, 0.5, 2],
     18: [1.0, 0.5, 1.0, 2, 1.0, 1.0, 2, 1, 2, 1.0, 1.0, 1.0, 1.0, 1, 1.0, 0, 0.5, 1]
-}
+};
 // 属性相克
 const attributeList1 = () => {
-
     if (pokemon_info.属性.length == 1) {
         for (const [key, val] of Object.entries(attributeList)) {
             // 若找到匹配的值，则返回其对应的键
             if (val === pokemon_info.属性[0]) {
                 shuxing = attributeRestraintRelationship[key];
-                return
+                return;
             }
         }
-
     } else {
-        let list1 = []
-        let list2 = []
-        let list3 = []
+        let list1 = [];
+        let list2 = [];
+        let list3 = [];
         for (const [key, val] of Object.entries(attributeList)) {
             // 若找到匹配的值，则返回其对应的键
             if (val === pokemon_info.属性[0]) {
@@ -931,35 +1085,34 @@ const attributeList1 = () => {
             }
         }
 
-
         for (let i = 0; i < list1.length; i++) {
-            list3.push(list1[i] * list2[i])
+            list3.push(list1[i] * list2[i]);
         }
-        shuxing = list3
+        shuxing = list3;
     }
-}
+};
 
 // 跳转到技能页面
 const handleMoveInfo = (item: any) => {
     pokemonStore.Move = pokemonStore.getMoveByName(item.skill_name);
-    $router.push('/move/move_info')
-}
+    $router.push('/move/move_info');
+};
 
 // 跳转到特性页面
 const showHiddenAbility = (abilityName: string) => {
     pokemonStore.abilityName = abilityName;
-    $router.push('/ability/ability_info')
-}
+    $router.push('/ability/ability_info');
+};
 
 // 跳转到道具详情页面
 const handlePropInfo = (propName: string) => {
     pokemonStore.Prop = pokemonStore.getPropByName(propName);
-    $router.push('/prop/prop_info')
-}
+    $router.push('/prop/prop_info');
+};
 
 // 拖拽翻页事件
 let startX = 0; // 起始触摸点的 X 坐标
-let endX = 0;   // 结束触摸点的 X 坐标
+let endX = 0; // 结束触摸点的 X 坐标
 let isDragging = ref(false); // 是否正在进行拖动
 let dragDirection = ref(''); // 拖拽方向
 let dragOffset = ref(0); // 拖拽偏移量
@@ -1024,9 +1177,11 @@ const handleTouchEnd = () => {
     const deltaX = endX - startX;
 
     if (Math.abs(deltaX) > MIN_SWIPE_DISTANCE) {
-        if (deltaX < 0) { // 左滑 - 下一页
+        if (deltaX < 0) {
+            // 左滑 - 下一页
             loadNextPokemonPage();
-        } else { // 右滑 - 上一页
+        } else {
+            // 右滑 - 上一页
             loadPreviousPokemonPage();
         }
     }
@@ -1084,9 +1239,11 @@ const handleMouseUp = () => {
         const deltaX = endX - startX;
 
         if (Math.abs(deltaX) > MIN_SWIPE_DISTANCE) {
-            if (deltaX < 0) { // 左拖 - 下一页
+            if (deltaX < 0) {
+                // 左拖 - 下一页
                 loadNextPokemonPage();
-            } else { // 右拖 - 上一页
+            } else {
+                // 右拖 - 上一页
                 loadPreviousPokemonPage();
             }
         }
@@ -1103,18 +1260,18 @@ function loadNextPokemonPage() {
     console.log('加载下一页的精灵');
     // 实现具体的逻辑，例如请求新的数据
     if (pokemon_info.编号.includes('_')) {
-        pokemon_info.编号 = pokemon_info.编号.split('_')[0]
+        pokemon_info.编号 = pokemon_info.编号.split('_')[0];
     }
-    handlePageChange(Number(pokemon_info.编号) + 1)
+    handlePageChange(Number(pokemon_info.编号) + 1);
 }
 
 function loadPreviousPokemonPage() {
     console.log('加载上一页的精灵');
     // 实现具体的逻辑，例如请求新的数据
     if (pokemon_info.编号.includes('_')) {
-        pokemon_info.编号 = pokemon_info.编号.split('_')[0]
+        pokemon_info.编号 = pokemon_info.编号.split('_')[0];
     }
-    handlePageChange(Number(pokemon_info.编号) - 1)
+    handlePageChange(Number(pokemon_info.编号) - 1);
 }
 
 // 翻页更新数据
@@ -1137,7 +1294,7 @@ const handlePageChange = (page: number) => {
 
     // 同步更新moves
     if (!isNaN(Number(pokemon_info.编号)) && !pokemon_info.编号.includes('_')) {
-        moves.value = pokemonStore.getPokemonMovesByNumber(String(Number(pokemon_info.编号)))
+        moves.value = pokemonStore.getPokemonMovesByNumber(String(Number(pokemon_info.编号)));
     } else {
         moves.value = pokemonStore.getPokemonMovesByNumber(pokemon_info.编号);
     }
@@ -1149,26 +1306,29 @@ const handlePageChange = (page: number) => {
     appearAreas = getAppearAreas(pokemon_info.old_pokemon_name || pokemon_info.名称);
 
     // 更新进化奇石状态
-    pokemon_info.canUseEvolutionStone = canUseStoneFinalForms.includes(pokemon_info.名称.replace(/（.*）/, '').trim());
+    pokemon_info.canUseEvolutionStone = canUseStoneFinalForms.includes(
+        pokemon_info.名称.replace(/（.*）/, '').trim()
+    );
 
     // 重新计算能力值
     nextTick(() => {
         updateAllAbilities();
     });
-}
+};
 // 跳转进化后形态
 const handleNextStageInfo = (nextStageName: string | undefined) => {
-    const id = pokemonStore.getPokemonIdByName(nextStageName)
-    handlePageChange(Number(id))
-}
+    const id = pokemonStore.getPokemonIdByName(nextStageName);
+    handlePageChange(Number(id));
+};
 
 // 新增：根据宝可梦名反查所有出现地区和方式
 const getAppearAreas = (pokemonName: string) => {
     const areas = getAreas();
-    const result: Array<{ area: string, method: string, level: string | number, rate: string }> = [];
+    const result: Array<{ area: string; method: string; level: string | number; rate: string }> =
+        [];
     for (const area in areas) {
         for (const method in areas[area]) {
-            const list = areas[area][method as keyof typeof areas[typeof area]];
+            const list = areas[area][method as keyof (typeof areas)[typeof area]];
             if (Array.isArray(list)) {
                 list.forEach((item: any) => {
                     if (item.name === pokemonName) {
@@ -1292,7 +1452,6 @@ const handleAreaJump = (areaName: string) => {
 
 /* 响应式优化 */
 @media (max-width: 768px) {
-
     .pokemon-title,
     .details,
     .weaknesses-container,
@@ -1305,7 +1464,6 @@ const handleAreaJump = (areaName: string) => {
 }
 
 @media (max-width: 480px) {
-
     .pokemon-title,
     .details,
     .weaknesses-container,
@@ -1337,7 +1495,6 @@ const handleAreaJump = (areaName: string) => {
     position: relative;
     overflow: hidden;
 
-
     /* 内层背景 */
     &::after {
         content: '';
@@ -1352,11 +1509,10 @@ const handleAreaJump = (areaName: string) => {
     }
 
     /* 确保内容在流光边框之上 */
-    >* {
+    > * {
         position: relative;
         z-index: 3;
     }
-
 
     .pokemon-title-left {
         display: flex;
@@ -1370,7 +1526,7 @@ const handleAreaJump = (areaName: string) => {
                 font-size: 1.6em;
                 color: white;
                 font-weight: bold;
-                font-family: "Times New Roman", Times, serif;
+                font-family: 'Times New Roman', Times, serif;
             }
 
             .subtitle {
@@ -1443,15 +1599,17 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(from 0deg,
-                transparent 0deg,
-                var(--primary-color, rgba(78, 205, 78, 0.9)) 45deg,
-                var(--secondary-color, rgba(34, 139, 34, 0.9)) 90deg,
-                transparent 135deg,
-                var(--primary-color, rgba(78, 205, 78, 0.9)) 180deg,
-                var(--secondary-color, rgba(34, 139, 34, 0.9)) 225deg,
-                transparent 270deg,
-                transparent 360deg);
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 0.9)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.9)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 0.9)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.9)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
@@ -1470,7 +1628,7 @@ const handleAreaJump = (areaName: string) => {
     }
 
     /* 确保内容在流光边框之上 */
-    >* {
+    > * {
         position: relative;
         z-index: 3;
     }
@@ -1596,7 +1754,6 @@ const handleAreaJump = (areaName: string) => {
             .pokemon-individual-values,
             .pokemon-effort-values,
             .pokemon-ability-values {
-
                 p,
                 div {
                     padding: 6px 2px;
@@ -1641,15 +1798,17 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(from 0deg,
-                transparent 0deg,
-                var(--primary-color, rgba(78, 205, 78, 0.8)) 45deg,
-                var(--secondary-color, rgba(34, 139, 34, 0.8)) 90deg,
-                transparent 135deg,
-                var(--primary-color, rgba(78, 205, 78, 0.8)) 180deg,
-                var(--secondary-color, rgba(34, 139, 34, 0.8)) 225deg,
-                transparent 270deg,
-                transparent 360deg);
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 0.8)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.8)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 0.8)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.8)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
@@ -1668,7 +1827,7 @@ const handleAreaJump = (areaName: string) => {
     }
 
     /* 确保内容在流光边框之上 */
-    >* {
+    > * {
         position: relative;
         z-index: 3;
     }
@@ -1739,15 +1898,17 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(from 0deg,
-                transparent 0deg,
-                var(--primary-color, rgba(78, 205, 78, 0.7)) 45deg,
-                var(--secondary-color, rgba(34, 139, 34, 0.7)) 90deg,
-                transparent 135deg,
-                var(--primary-color, rgba(78, 205, 78, 0.7)) 180deg,
-                var(--secondary-color, rgba(34, 139, 34, 0.7)) 225deg,
-                transparent 270deg,
-                transparent 360deg);
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 0.7)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.7)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 0.7)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.7)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
@@ -1766,7 +1927,7 @@ const handleAreaJump = (areaName: string) => {
     }
 
     /* 确保内容在流光边框之上 */
-    >* {
+    > * {
         position: relative;
         z-index: 3;
     }
@@ -1794,7 +1955,6 @@ const handleAreaJump = (areaName: string) => {
             align-items: center;
             border-radius: 8px;
             overflow: hidden;
-
         }
 
         .method-text {
@@ -1826,15 +1986,17 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(from 0deg,
-                transparent 0deg,
-                var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
-                var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
-                transparent 135deg,
-                var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
-                var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
-                transparent 270deg,
-                transparent 360deg);
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
@@ -1853,7 +2015,7 @@ const handleAreaJump = (areaName: string) => {
     }
 
     /* 确保内容在流光边框之上 */
-    >* {
+    > * {
         position: relative;
         z-index: 3;
     }
@@ -1913,15 +2075,17 @@ const handleAreaJump = (areaName: string) => {
         right: -8px;
         bottom: -8px;
         border-radius: 18px;
-        background: conic-gradient(from 0deg,
-                transparent 0deg,
-                var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
-                var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
-                transparent 135deg,
-                var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
-                var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
-                transparent 270deg,
-                transparent 360deg);
+        background: conic-gradient(
+            from 0deg,
+            transparent 0deg,
+            var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
+            transparent 135deg,
+            var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
+            var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
+            transparent 270deg,
+            transparent 360deg
+        );
         animation: rotate 2.5s linear infinite;
         z-index: 1;
     }
@@ -1940,7 +2104,7 @@ const handleAreaJump = (areaName: string) => {
     }
 
     /* 确保内容在流光边框之上 */
-    >* {
+    > * {
         position: relative;
         z-index: 3;
     }
@@ -2042,7 +2206,6 @@ const handleAreaJump = (areaName: string) => {
         color: #562af4;
         margin-bottom: 5px;
     }
-
 }
 
 .pokemon-method {
@@ -2090,8 +2253,7 @@ const handleAreaJump = (areaName: string) => {
     border-radius: 50%;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
-    background-image: linear-gradient(#fff, #fff),
-        linear-gradient(to right, #f06, #4a90e2);
+    background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #f06, #4a90e2);
     position: relative;
     overflow: hidden;
 
@@ -2104,14 +2266,16 @@ const handleAreaJump = (areaName: string) => {
         right: -6px;
         bottom: -6px;
         border-radius: 50%;
-        background: conic-gradient(from 0deg,
-                transparent,
-                rgba(78, 205, 78, 0.8),
-                rgba(34, 139, 34, 0.8),
-                transparent,
-                rgba(78, 205, 78, 0.8),
-                rgba(34, 139, 34, 0.8),
-                transparent);
+        background: conic-gradient(
+            from 0deg,
+            transparent,
+            rgba(78, 205, 78, 0.8),
+            rgba(34, 139, 34, 0.8),
+            transparent,
+            rgba(78, 205, 78, 0.8),
+            rgba(34, 139, 34, 0.8),
+            transparent
+        );
         animation: rotate 3s linear infinite;
         z-index: -1;
     }
@@ -2211,7 +2375,6 @@ const handleAreaJump = (areaName: string) => {
     }
 }
 
-
 /* 增强流光效果 */
 @keyframes shimmer {
     0% {
@@ -2231,7 +2394,6 @@ const handleAreaJump = (areaName: string) => {
 
 /* 属性流光边框颜色 */
 .pokemon-title {
-
     /* 草属性 */
     &.border-草-草 {
         --primary-color: rgba(78, 205, 78, 0.9);
@@ -2362,7 +2524,6 @@ const handleAreaJump = (areaName: string) => {
 .pokemon-method,
 .pokemon-belongings,
 .pokemon-moves {
-
     /* 草属性 */
     &.border-草-草 {
         --primary-color: rgba(78, 205, 78, 0.8);

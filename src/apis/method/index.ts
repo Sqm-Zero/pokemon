@@ -1686,7 +1686,7 @@ export const reqMethod = (): Method[] => {
             特殊说明: null
         },
         {
-            pokemonName: '请假王',
+            pokemonName: '加班王',
             捕捉方式: '进化',
             进化等级: 60.0,
             特殊说明: null
@@ -4375,6 +4375,12 @@ export const reqEvolve = (): Evolve[] => {
             condition: 'level_up'
         },
         {
+            pokemonName: '喷火龙',
+            item: '龙之石板',
+            NextStage: '破天炎',
+            condition: 'level_up_holding_item'
+        },
+        {
             pokemonName: '杰尼龟',
             level: '16',
             NextStage: '卡咪龟',
@@ -4391,6 +4397,12 @@ export const reqEvolve = (): Evolve[] => {
             item: '日之石',
             NextStage: '铁甲蛹',
             condition: 'use_item'
+        },
+        {
+            pokemonName: '绿毛虫',
+            item: '蓝天石板',
+            NextStage: '烈空坐',
+            condition: 'level_up_holding_item'
         },
         {
             pokemonName: '铁甲蛹',
@@ -4433,6 +4445,12 @@ export const reqEvolve = (): Evolve[] => {
             level: '20',
             NextStage: '大嘴雀',
             condition: 'level_up'
+        },
+        {
+            pokemonName: '大嘴雀',
+            item: '火球石板',
+            NextStage: '凤王',
+            condition: 'level_up_holding_item'
         },
         {
             pokemonName: '阿柏蛇',
@@ -4705,6 +4723,12 @@ export const reqEvolve = (): Evolve[] => {
             condition: 'level_up'
         },
         {
+            pokemonName: '大岩蛇',
+            item: '金属膜',
+            NextStage: '大钢蛇',
+            condition: 'level_up_holding_item'
+        },
+        {
             pokemonName: '催眠貘',
             level: '26',
             NextStage: '引梦貘人',
@@ -4793,6 +4817,12 @@ export const reqEvolve = (): Evolve[] => {
             item: '水之石',
             NextStage: '宝石海星',
             condition: 'use_item'
+        },
+        {
+            pokemonName: '飞天螳螂',
+            item: '金属膜',
+            NextStage: '巨钳螳螂',
+            condition: 'level_up_holding_item'
         },
         {
             pokemonName: '电击兽',
@@ -5053,16 +5083,34 @@ export const reqEvolve = (): Evolve[] => {
             condition: 'use_item'
         },
         {
+            pokemonName: '梦妖',
+            item: '古代王冠',
+            NextStage: '古代梦妖',
+            condition: 'level_up_holding_item'
+        },
+        {
             pokemonName: '榛果球',
             level: '31',
             NextStage: '佛烈托斯',
             condition: 'level_up'
         },
         {
+            pokemonName: '天蝎',
+            item: '锐利之牙',
+            NextStage: '天蝎王',
+            condition: 'level_up_holding_item'
+        },
+        {
             pokemonName: '布鲁',
             level: '30',
             NextStage: '布鲁皇',
             condition: 'level_up'
+        },
+        {
+            pokemonName: '狃拉',
+            item: '锐利之爪',
+            NextStage: '玛狃拉',
+            condition: 'level_up_holding_item'
         },
         {
             pokemonName: '熊宝宝',
@@ -5183,6 +5231,12 @@ export const reqEvolve = (): Evolve[] => {
             level: '36',
             NextStage: '火焰鸡',
             condition: 'level_up'
+        },
+        {
+            pokemonName: '火焰鸡',
+            item: '电冰转换',
+            NextStage: '闪冰焰',
+            condition: 'level_up_holding_item'
         },
         {
             pokemonName: '水跃鱼',
@@ -5307,7 +5361,7 @@ export const reqEvolve = (): Evolve[] => {
         {
             pokemonName: '过动猿',
             level: '60',
-            NextStage: '请假王',
+            NextStage: '加班王',
             condition: 'level_up'
         },
         {
@@ -5581,6 +5635,12 @@ export const reqEvolve = (): Evolve[] => {
             condition: 'level_up'
         },
         {
+            pokemonName: '烈焰猴',
+            item: '熔岩装甲',
+            NextStage: '帝焰猴',
+            condition: 'level_up_holding_item'
+        },
+        {
             pokemonName: '波加曼',
             level: '16',
             NextStage: '波皇子',
@@ -5759,6 +5819,12 @@ export const reqEvolve = (): Evolve[] => {
             item: '觉醒之石',
             NextStage: '路卡利欧',
             condition: 'use_item'
+        },
+        {
+            pokemonName: '利欧路',
+            item: '恶颜石板',
+            NextStage: '暗黑路卡',
+            condition: 'level_up_holding_item'
         },
         {
             pokemonName: '沙河马',
@@ -6277,6 +6343,12 @@ export const reqEvolve = (): Evolve[] => {
             condition: 'level_up'
         },
         {
+            pokemonName: '甲贺忍蛙',
+            item: '水滴石板',
+            NextStage: 'M甲贺忍蛙',
+            condition: 'level_up_holding_item'
+        },
+        {
             pokemonName: '掘掘兔',
             level: '20',
             NextStage: '掘地兔',
@@ -6395,6 +6467,12 @@ export const reqEvolve = (): Evolve[] => {
             level: '40',
             NextStage: '冰雪巨龙',
             condition: 'level_up'
+        },
+        {
+            pokemonName: '小碎钻',
+            item: '妖精石板',
+            NextStage: '蒂安希',
+            condition: 'level_up_holding_item'
         },
         {
             pokemonName: '黏黏宝',

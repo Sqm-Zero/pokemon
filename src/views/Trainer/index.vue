@@ -4,22 +4,35 @@
 
         <div class="group-list">
             <div class="version-container">
-                <el-card class="group-item" :class="{ selected: currentVersion === 'normal', challenge: true }"
-                    shadow="hover" @click="currentVersion = 'normal'">
+                <el-card
+                    class="group-item"
+                    :class="{ selected: currentVersion === 'normal', challenge: true }"
+                    shadow="hover"
+                    @click="currentVersion = 'normal'"
+                >
                     <div class="card-content">
                         <span class="group-name">挑战版</span>
                     </div>
                 </el-card>
 
-                <el-card class="group-item" :class="{ selected: currentVersion === 'hardcore', hardcore: true }"
-                    shadow="hover" @click="currentVersion = 'hardcore'">
+                <el-card
+                    class="group-item"
+                    :class="{ selected: currentVersion === 'hardcore', hardcore: true }"
+                    shadow="hover"
+                    @click="currentVersion = 'hardcore'"
+                >
                     <div class="card-content">
                         <span class="group-name">噩梦版</span>
                     </div>
                 </el-card>
             </div>
-            <el-card v-for="(name, index) in groupNames" :key="index" class="group-item" shadow="hover"
-                @click="handleClick(name)">
+            <el-card
+                v-for="(name, index) in groupNames"
+                :key="index"
+                class="group-item"
+                shadow="hover"
+                @click="handleClick(name)"
+            >
                 <div class="card-content">
                     <span class="group-name">{{ name }}</span>
                     <el-icon>
@@ -33,32 +46,32 @@
 
 <script setup lang="ts">
 import { ref, onMounted, watch } from 'vue';
-import { ArrowRight } from '@element-plus/icons-vue'
+import { ArrowRight } from '@element-plus/icons-vue';
 import { useRouter } from 'vue-router';
 
 // 路由
-let $router = useRouter()
+let $router = useRouter();
 
 const groupNames = [
-    "海洋队 重要战斗 阵容",
-    "青梅/劲敌 详细阵容",
-    "道馆馆主 详细阵容",
-    "宝可梦联盟 详细阵容",
-    "隐藏五天王",
-    "二周目 重要战斗",
+    '海洋队 重要战斗 阵容',
+    '青梅/劲敌 详细阵容',
+    '道馆馆主 详细阵容',
+    '宝可梦联盟 详细阵容',
+    '隐藏五天王',
+    '二周目 重要战斗',
     '新增的传奇挑战！',
-    "最终挑战！游戏作者（茵郁市右下角树屋）"
-]
+    '最终挑战！游戏作者（茵郁市右下角树屋）'
+];
 
 const VERSION_KEY = 'trainer_version';
 
 const currentVersion = ref<'normal' | 'hardcore'>(
     (localStorage.getItem(VERSION_KEY) as 'normal' | 'hardcore') || 'normal'
-)
+);
 
-watch(currentVersion, (val) => {
-    localStorage.setItem(VERSION_KEY, val)
-})
+watch(currentVersion, val => {
+    localStorage.setItem(VERSION_KEY, val);
+});
 
 onMounted(() => {
     // 进入页面时再次同步，防止外部变更
@@ -66,18 +79,16 @@ onMounted(() => {
     if (saved && saved !== currentVersion.value) {
         currentVersion.value = saved;
     }
-})
+});
 
 function handleClick(name: string) {
     $router.push({
         name: 'GroupDetail',
         params: { groupName: encodeURIComponent(name) },
         query: { version: currentVersion.value }
-    })
+    });
 }
-
 </script>
-
 
 <style scoped>
 .trainer-list {

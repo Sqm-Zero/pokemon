@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
-import type { Pokemon_Type } from './type'
-import { reqPokemon, reqAbility } from '@/apis/pokemon/index'
+import { defineStore } from 'pinia';
+import type { Pokemon_Type } from './type';
+import { reqPokemon, reqAbility } from '@/apis/pokemon/index';
 import { reqMoves } from '@/apis/moves';
 import { reqPokemon_Moves, reqEggMoves } from '@/apis/pokemonMoves';
 import { reqMethod, reqEvolve } from '@/apis/method';
@@ -14,69 +14,52 @@ export const usePokemonStore = defineStore('counter', {
         PokemonList: reqPokemon(),
         // 精灵数据
         Pokemon: {
-            "编号": "001",
-            "名称": "妙蛙种子",
-            "进化阶段": 1,
-            "种族值": [
-                45,
-                49,
-                49,
-                65,
-                65,
-                45
-            ],
-            "总种族值": 318,
-            "特性": [
-                "茂盛",
-                "太阳驱动",
-                "太阳驱动"
-            ],
-            "属性": [
-                "草",
-                "毒"
-            ],
-            "可能携带的物品": [
+            编号: '001',
+            名称: '妙蛙种子',
+            进化阶段: 1,
+            种族值: [45, 49, 49, 65, 65, 45],
+            总种族值: 318,
+            特性: ['茂盛', '太阳驱动', '太阳驱动'],
+            属性: ['草', '毒'],
+            可能携带的物品: [
                 {
-                    "物品": "妙蛙花进化石",
-                    "概率": 50
+                    物品: '妙蛙花进化石',
+                    概率: 50
                 }
             ],
-            "经验值累积速度": "较慢",
-            "蛋群": [
-                "怪兽",
-                "植物"
-            ],
-            "孵蛋周期": 5
+            经验值累积速度: '较慢',
+            蛋群: ['怪兽', '植物'],
+            孵蛋周期: 5
         },
         colorMap: {
-            '一般': '#BBBBAA',
-            '火': '#FF4422',
-            '水': '#3399FF',
-            '草': '#77CC55',
-            '电': '#FFCC33',
-            '格斗': '#BB5544',
-            '毒': '#AA5599',
-            '飞行': '#3366cc',
-            '超能力': '#FF5599',
-            '虫': '#AABB22',
-            '地面': '#DDBB55',
-            '冰': '#77DDFF',
-            '岩石': '#afa981',
-            '幽灵': '#704170',
-            "龙": '#7766EE',
-            '恶': '#775544',
-            '钢': '#AAAABB',
-            '妖精': '#FFAAFF',
-            '进化奇石': '#ff5ce9'
+            一般: '#BBBBAA',
+            火: '#FF4422',
+            水: '#3399FF',
+            草: '#77CC55',
+            电: '#FFCC33',
+            格斗: '#BB5544',
+            毒: '#AA5599',
+            飞行: '#3366cc',
+            超能力: '#FF5599',
+            虫: '#AABB22',
+            地面: '#DDBB55',
+            冰: '#77DDFF',
+            岩石: '#afa981',
+            幽灵: '#704170',
+            龙: '#7766EE',
+            恶: '#775544',
+            钢: '#AAAABB',
+            妖精: '#FFAAFF',
+            进化奇石: '#ff5ce9'
         },
         Move: {
-            "accuracy": "100",
-            "category": "物理",
-            "description": "使用长长的尾巴或手等拍打对手进行攻击。",
-            "move": "拍击",
-            "move_id": "1",
-            "power": "40",
-            "type": "一般"
+            accuracy: '100',
+            category: '物理',
+            description: '使用长长的尾巴或手等拍打对手进行攻击。',
+            move: '拍击',
+            move_id: '1',
+            power: '40',
+            type: '一般'
         },
         type: '',
         abilityName: '',
@@ -84,70 +67,77 @@ export const usePokemonStore = defineStore('counter', {
         lastSelectedType: '', // 新增：保存最后选择的属性
         scrollPosition: 0,
         Prop: {
-            "name": "大师球",
-            "description": "必定捕捉野生宝可梦的 性能最好的球， 捕获率×255就是100%。"
-        },
+            name: '大师球',
+            description: '必定捕捉野生宝可梦的 性能最好的球， 捕获率×255就是100%。'
+        }
     }),
     actions: {
         // 根据精灵编号查精灵信息
         getPokemonByNumber(number: string): Pokemon {
             // 从数据源中查找匹配的精灵
-            const pokemon = reqPokemon().find(
-                pokemon => pokemon.编号 === number)
+            const pokemon = reqPokemon().find(pokemon => pokemon.编号 === number);
             // 如果找到，返回精灵信息；否则返回空对象
-            return pokemon || {
-                "编号": "001",
-                "名称": "妙蛙种子",
-                "进化阶段": 1,
-                "种族值": [
-                    45,
-                    49,
-                    49,
-                    65,
-                    65,
-                    45
-                ],
-                "总种族值": 318,
-                "特性": [
-                    "茂盛",
-                    "太阳驱动",
-                    "太阳驱动"
-                ],
-                "属性": [
-                    "草",
-                    "毒"
-                ],
-                "可能携带的物品": [
-                    {
-                        "物品": "妙蛙花进化石",
-                        "概率": 50
-                    }
-                ],
-                "经验值累积速度": "较慢",
-                "蛋群": [
-                    "怪兽",
-                    "植物"
-                ],
-                "孵蛋周期": 5
-            }
+            return (
+                pokemon || {
+                    编号: '001',
+                    名称: '妙蛙种子',
+                    进化阶段: 1,
+                    种族值: [45, 49, 49, 65, 65, 45],
+                    总种族值: 318,
+                    特性: ['茂盛', '太阳驱动', '太阳驱动'],
+                    属性: ['草', '毒'],
+                    可能携带的物品: [
+                        {
+                            物品: '妙蛙花进化石',
+                            概率: 50
+                        }
+                    ],
+                    经验值累积速度: '较慢',
+                    蛋群: ['怪兽', '植物'],
+                    孵蛋周期: 5
+                }
+            );
         },
         // 根据精灵属性查询精灵列表
         getPokemonListByType(type: string): Pokemon[] {
             // 从数据源中查找匹配的精灵列表
-            const pokemonList = reqPokemon().filter(
-                pokemon => pokemon.属性.includes(type)
-            )
+            const pokemonList = reqPokemon().filter(pokemon => pokemon.属性.includes(type));
 
-            return pokemonList
+            return pokemonList;
         },
         // 进化奇石精灵列表
         getPokemonListByEvoStone(): Pokemon[] {
             const canUseStoneFinalForms = [
-                "美纳斯", "火暴猴", "白海狮", "大奶罐", "圈圈熊",
-                "猫头夜鹰", "随风球", "南瓜怪人", "念力土偶", "舞天鹅",
-                "乌贼王", "朽木妖", "顽皮雷弹", "热带龙", "电飞鼠",
-                "摩鲁蛾", "钢臂炮虾", "裙儿小姐", "几何雪花", "麒麟奇", "钢炮臂虾",
-                "樱花儿", "千针鱼", "风铃铃", "优雅猫", "太阳珊瑚", "土龙翅灵"
+                '摩鲁蛾',
+                '火暴猴',
+                '白海狮',
+                '顽皮雷弹',
+                '猫头夜鹰',
+                '麒麟奇',
+                '土龙翅灵',
+                '章鱼桶',
+                '太阳珊瑚',
+                '大奶罐',
+                '风铃铃',
+                '优雅猫',
+                '月石',
+                '太阳岩',
+                '念力土偶',
+                '美纳斯',
+                '飘浮泡泡',
+                '樱花儿',
+                '随风球',
+                '洛托姆',
+                '远古巨蜓',
+                '舞天鹅',
+                '电飞鼠',
+                '几何雪花',
+                '冰九尾',
+                '大宇怪',
+                '乌贼王',
+                '钢炮臂虾',
+                '南瓜怪人',
+                '朽木妖'
             ];
             return canUseStoneFinalForms
                 .map(name => reqPokemon().find(pokemon => pokemon.名称 === name))
@@ -156,107 +146,82 @@ export const usePokemonStore = defineStore('counter', {
         // 根据精灵名称查询精灵信息
         getPokemonByName(name: number): Pokemon {
             // 从数据源中查找匹配的精灵
-            const pokemon = reqPokemon().find(
-                pokemon => Number(pokemon.编号) === name)
+            const pokemon = reqPokemon().find(pokemon => Number(pokemon.编号) === name);
             // 如果找到，返回精灵信息；否则返回空对象
-            return pokemon || {
-                "编号": "001",
-                "名称": "妙蛙种子",
-                "进化阶段": 1,
-                "种族值": [
-                    45,
-                    49,
-                    49,
-                    65,
-                    65,
-                    45
-                ],
-                "总种族值": 318,
-                "特性": [
-                    "茂盛",
-                    "太阳驱动",
-                    "太阳驱动"
-                ],
-                "属性": [
-                    "草",
-                    "毒"
-                ],
-                "可能携带的物品": [
-                    {
-                        "物品": "妙蛙花进化石",
-                        "概率": 50
-                    }
-                ],
-                "经验值累积速度": "较慢",
-                "蛋群": [
-                    "怪兽",
-                    "植物"
-                ],
-                "孵蛋周期": 5
-            }
+            return (
+                pokemon || {
+                    编号: '826',
+                    名称: '未知宝可梦',
+                    进化阶段: 825,
+                    种族值: [0, 0, 0, 0, 0, 0],
+                    总种族值: 0,
+                    特性: ['未知'],
+                    属性: ['未知', '未知'],
+                    可能携带的物品: [],
+                    经验值累积速度: '未知',
+                    蛋群: ['未知'],
+                    孵蛋周期: 15
+                }
+            );
         },
         // 根据精灵名称查询精灵编号
         getPokemonIdByName(name: string | undefined): string {
             // 从数据源中查找匹配的精灵
-            const pokemon = reqPokemon().find(
-                pokemon => pokemon.名称 === name)
+            const pokemon = reqPokemon().find(pokemon => pokemon.名称 === name);
             // 如果找到，返回精灵信息；否则返回空对象
             if (pokemon === undefined) {
-                return '1';
+                return '826';
             }
-            return pokemon.编号
+            return pokemon.编号;
         },
         // 根据技能编号查询技能信息
         getMOveById(moveId: number): Move {
             // 从数据源中查找匹配的技能
-            const move = reqMoves().find(
-                move => Number(move.move_id) === moveId
-            )
+            const move = reqMoves().find(move => Number(move.move_id) === moveId);
             // 如果找到，返回技能信息；否则返回空对象
-            return move || {
-                "accuracy": "100",
-                "category": "物理",
-                "description": "使用长长的尾巴或手等拍打对手进行攻击。",
-                "move": "拍击",
-                "move_id": "1",
-                "power": "40",
-                "type": "一般"
-            }
+            return (
+                move || {
+                    accuracy: '100',
+                    category: '物理',
+                    description: '使用长长的尾巴或手等拍打对手进行攻击。',
+                    move: '拍击',
+                    move_id: '1',
+                    power: '40',
+                    type: '一般'
+                }
+            );
         },
         // 根据技能名称查询技能信息
         getMoveByName(moveName: string): Move {
             // 从数据源中查找匹配的技能
-            const move = reqMoves().find(
-                move => move.move === moveName
-            )
+            const move = reqMoves().find(move => move.move === moveName);
             // 如果找到，返回技能信息；否则返回空对象
-            return move || {
-                "accuracy": "100",
-                "category": "物理",
-                "description": "使用长长的尾巴或手等拍打对手进行攻击。",
-                "move": "拍击",
-                "move_id": "1",
-                "power": "40",
-                "type": "一般"
-            }
+            return (
+                move || {
+                    accuracy: '100',
+                    category: '物理',
+                    description: '使用长长的尾巴或手等拍打对手进行攻击。',
+                    move: '拍击',
+                    move_id: '1',
+                    power: '40',
+                    type: '一般'
+                }
+            );
         },
         // 根据精灵编号获取技能列表
         getPokemonMovesByNumber(number: string) {
             // 从数据源中查找匹配的精灵
-            const pokemonMoves = reqPokemon_Moves().find(
-                pokemon => pokemon.序号 === number
-            )
+            const pokemonMoves = reqPokemon_Moves().find(pokemon => pokemon.序号 === number);
+
             // 如果找到，返回技能列表；否则返回空数组
-            return pokemonMoves ? pokemonMoves.SkillList : []
+            return pokemonMoves ? pokemonMoves.SkillList : [];
         },
         // 根据精灵编号获取蛋招式
         getEggMovesByNumber(number: string) {
             // 从数据源中查找匹配的精灵
-            const pokemonMoves = reqEggMoves().find(
-                pokemon => pokemon.序号 === number
-            )
+            const pokemonMoves = reqEggMoves().find(pokemon => pokemon.序号 === number);
             // 如果找到，返回技能列表；否则返回空数组
-            return pokemonMoves ? pokemonMoves.SkillList : []
+            return pokemonMoves ? pokemonMoves.SkillList : [];
         },
         // 根据技能名称查询能学会该技能蛋招式的列表
         getPokemonByEggMoveName(moveName: string) {
@@ -273,7 +238,7 @@ export const usePokemonStore = defineStore('counter', {
                         id: pokemon.序号,
                         name: pokemon.name,
                         learnLevel: null
-                    }
+                    };
                 })
                 .filter(Boolean);
             return result;
@@ -313,39 +278,38 @@ export const usePokemonStore = defineStore('counter', {
         // 根据特性名称查询特性信息
         getAbilityByName(abilityName: string): Ability {
             // 从数据源中查找匹配的特性
-            const ability = reqAbility().find(
-                ability => ability.ability === abilityName
-            )
+            const ability = reqAbility().find(ability => ability.ability === abilityName);
             // 如果找到，返回特性信息；否则返回空对象
-            return ability || {
-                "ability": "结实",
-                "description": "在ＨＰ全满时，即使受到招式攻击，也不会被一击打倒。一击必杀的招式也没有效果。"
-            }
+            return (
+                ability || {
+                    ability: '结实',
+                    description:
+                        '在ＨＰ全满时，即使受到招式攻击，也不会被一击打倒。一击必杀的招式也没有效果。'
+                }
+            );
         },
         // 根据特性查询拥有该特性的精灵信息
         getPokemonByAbility(ability: string) {
             // 从数据源中查找匹配的精灵
-            const pokemonList = reqPokemon().filter(
-                pokemon => pokemon.特性.some(
-                    item => item === ability
-                )
-            )
+            const pokemonList = reqPokemon().filter(pokemon =>
+                pokemon.特性.some(item => item === ability)
+            );
             // 返回所有拥有该特性的精灵列表
             return pokemonList;
         },
         // 根据精灵名称查询获取方式
         getMethodByName(name: string): Method {
             // 从数据源中查找匹配的精灵
-            const pokemon = reqMethod().find(
-                pokemon => pokemon.pokemonName === name
-            )
+            const pokemon = reqMethod().find(pokemon => pokemon.pokemonName === name);
             // 如果找到，返回精灵信息；否则返回空对象
-            return pokemon || {
-                "pokemonName": null,
-                "捕捉方式": "暂无数据",
-                "进化等级": null,
-                "特殊说明": null
-            }
+            return (
+                pokemon || {
+                    pokemonName: null,
+                    捕捉方式: '暂无数据',
+                    进化等级: null,
+                    特殊说明: null
+                }
+            );
         },
         // 根据精灵名称查询进化等级
         getEvolveByName(name: string): Evolve[] {
@@ -368,7 +332,13 @@ export const usePokemonStore = defineStore('counter', {
                 // 找到所有从此形态进化的路径
                 const children = allEvos.filter(evo => evo.pokemonName === pokemonName);
                 for (const child of children) {
-                    if (!result.some(r => r.pokemonName === child.pokemonName && r.NextStage === child.NextStage)) {
+                    if (
+                        !result.some(
+                            r =>
+                                r.pokemonName === child.pokemonName &&
+                                r.NextStage === child.NextStage
+                        )
+                    ) {
                         result.push(child);
                     }
                     // 递归处理下一级
@@ -396,28 +366,27 @@ export const usePokemonStore = defineStore('counter', {
         },
         // 根据道具名称查询道具信息
         getPropByName(propName: string) {
-            const prop = reqPropsList().find(
-                prop => prop.name === propName
-            )
-            return prop || {
-                "name": "大师球",
-                "description": "必定捕捉野生宝可梦的 性能最好的球， 捕获率×255就是100%。"
-            }
+            const prop = reqPropsList().find(prop => prop.name === propName);
+            return (
+                prop || {
+                    name: '大师球',
+                    description: '必定捕捉野生宝可梦的 性能最好的球， 捕获率×255就是100%。'
+                }
+            );
         },
         // 根据道具名称查询携带该道具的宝可梦
         getPokemonByPropName(propName: string) {
-            const pokemonList = reqPokemon().filter(
-                pokemon => pokemon.可能携带的物品?.some(
-                    item => item.物品 === propName
-                )
-            )
+            const pokemonList = reqPokemon().filter(pokemon =>
+                pokemon.可能携带的物品?.some(item => item.物品 === propName)
+            );
             return pokemonList;
         }
     },
     getters: {
         // 例如获取特定类型的精灵数量
         pokemonCountByType(state) {
-            return (type: string) => state.PokemonList.filter(pokemon => pokemon.属性.includes(type)).length;
+            return (type: string) =>
+                state.PokemonList.filter(pokemon => pokemon.属性.includes(type)).length;
         }
     }
 });

@@ -4,6 +4,10 @@ import { Prop } from './type';
 export const reqPropsList = (): Prop[] => {
     return [
         {
+            name: '未知',
+            description: '你点到什么奇奇怪怪的东西。'
+        },
+        {
             name: '大师球',
             description: '必定捕捉野生宝可梦的 性能最好的球， 捕获率×255就是100%。'
         },
@@ -453,18 +457,6 @@ export const reqPropsList = (): Prop[] => {
             description: '散发着光辉的宝珠。 让骑拉帝纳携带的话，龙和幽灵 属性招式威力提高20%。'
         },
         {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
             name: '水流卡带',
             description: '专门给盖诺赛克特携带的卡带。 携带后，招式高科技光炮 就会变为水属性了。'
         },
@@ -479,62 +471,6 @@ export const reqPropsList = (): Prop[] => {
         {
             name: '冰冻卡带',
             description: '专门给盖诺赛克特携带的卡带。 携带后，招式高科技光炮 就会变为冰属性了。'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
         },
         {
             name: '心形甜点',
@@ -1306,7 +1242,7 @@ export const reqPropsList = (): Prop[] => {
             description: '拥有着电系和冰系的能量箱子。 某只宝可梦带上它可能会发生特殊的情况。'
         },
         {
-            name: '熔岩增幅器',
+            name: '破坏增幅',
             description: '积蓄着破坏基因的背心。 可以让超梦进行超级进化。 会拥有格斗属性。'
         },
         {
@@ -1734,14 +1670,6 @@ export const reqPropsList = (): Prop[] => {
         {
             name: '秘传学习器06',
             description: '用拳头进行攻击。 30%会降低对手的防御（1级）。'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
-        },
-        {
-            name: '？？？',
-            description: '- - -'
         },
         {
             name: '探险套装',
@@ -2407,40 +2335,8 @@ export const reqPropsList = (): Prop[] => {
             description: '飞云市的特产。 能治愈1只宝可梦的 异常状态。'
         },
         {
-            name: '要害攻击 2',
-            description: '击中要害的几率会提高。 每次使用效果都会提升。 离场后，效果便会消失。'
-        },
-        {
-            name: '速度强化 2',
-            description: '能相对提高战斗中 宝可梦的速度。 离场后，效果便会消失。'
-        },
-        {
-            name: '特攻强化 2',
-            description: '能相对提高战斗中 宝可梦的特攻。 离场后，效果便会消失。'
-        },
-        {
-            name: '特防强化 2',
-            description: '能相对提高战斗中 宝可梦的特防。 离场后，效果便会消失。'
-        },
-        {
-            name: '防御强化 2',
-            description: '能相对提高战斗中 宝可梦的防御。 离场后，效果便会消失。'
-        },
-        {
-            name: '力量强化 2',
-            description: '能相对提高战斗中 宝可梦的攻击。 离场后，效果便会消失。'
-        },
-        {
-            name: '命中强化 2',
+            name: '全能爆发2',
             description: '战斗中全能力大幅度爆发（+2）。 并可以回复自身血量。'
-        },
-        {
-            name: '速度强化 3',
-            description: '能大量提高战斗中 宝可梦的速度。 离场后，效果便会消失。'
-        },
-        {
-            name: '特攻强化 3',
-            description: '能大量提高战斗中 宝可梦的特攻。 离场后，效果便会消失。'
         },
         {
             name: '全能秘药',
@@ -2456,7 +2352,7 @@ export const reqPropsList = (): Prop[] => {
             description: '精英训练师药剂。 战斗中提升全能力（+1）。 并可以回复自身血量。'
         },
         {
-            name: '命中强化 3',
+            name: '全能爆发3',
             description: '战斗中全能力大量的爆发（+3）。 并可以回复自身血量。'
         },
         {
@@ -2475,7 +2371,7 @@ export const reqPropsList = (): Prop[] => {
                 '大师级训练家专用的秘药。 使用后回复自身血量及状态。 并提升自身全能力等级+2。'
         },
         {
-            name: '防御强化 6',
+            name: '全能爆发1',
             description: '战斗中全能力爆发（+1）。 并可以回复自身血量。'
         },
         {
@@ -2483,7 +2379,7 @@ export const reqPropsList = (): Prop[] => {
             description: '一种神奇的秘药。 能治愈1只宝可梦的所有HP和异常状态。 并提升命中率。'
         },
         {
-            name: '命中强化 6',
+            name: '全能爆发6',
             description: '战斗中全能力全部释放爆发（+6）。 并可以回复自身血量。'
         },
         {
@@ -2884,10 +2780,6 @@ export const reqPropsList = (): Prop[] => {
         {
             name: '娑罗沙布蕾',
             description: '娑罗市特产的沙布蕾。 能治愈1只宝可梦的 所有异常状态。'
-        },
-        {
-            name: '原始化石',
-            description: '特别暗昂贵的化石，价值连城。 可以在商店高价卖出。'
         },
         {
             name: '鳍之化石',
