@@ -41,9 +41,8 @@ const areas_name = Object.keys(areas);
 
 const handleAreaInfo = (area_name: string) => {
     areaStore.areaName = area_name;
-    // 兼容新的嵌套结构：获取该地区的所有天气条件，优先使用"默认"
-    const weatherConditions = areas[area_name];
-    areaStore.sharedData = weatherConditions['默认'] || Object.values(weatherConditions)[0] || {};
+    // 传递完整的天气条件对象
+    areaStore.sharedData = areas[area_name] || {};
     $router.push('/areas/area_info');
 };
 

@@ -6,8 +6,8 @@ import { reqPokemon_Moves, reqEggMoves } from '@/apis/pokemonMoves';
 import { reqMethod, reqEvolve } from '@/apis/method';
 import { reqPropsList } from '@/apis/props';
 
-import { Pokemon, Move, Ability, Method } from '@/apis/pokemon/type';
-import { Evolve } from '@/apis/pokemonMoves/type';
+import type { Pokemon, Ability, Method } from '@/apis/pokemon/type';
+import type { Move, Evolve } from '@/apis/pokemonMoves/type';
 
 export const usePokemonStore = defineStore('counter', {
     state: (): Pokemon_Type => ({

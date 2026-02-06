@@ -1362,9 +1362,8 @@ const getAppearAreas = (pokemonName: string) => {
 const handleAreaJump = (areaName: string) => {
     const areas = getAreas();
     areaStore.areaName = areaName;
-    // 兼容新的嵌套结构：获取该地区的所有天气条件，优先使用"默认"
-    const weatherConditions = areas[areaName];
-    areaStore.sharedData = weatherConditions['默认'] || Object.values(weatherConditions)[0] || {};
+    // 传递完整的天气条件对象
+    areaStore.sharedData = areas[areaName] || {};
     $router.push('/areas/area_info');
 };
 </script>
