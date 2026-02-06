@@ -1,45 +1,39 @@
 <template>
     <div class="trainer-list">
-        <Top title="训练家列表" color="linear-gradient(90deg, #bdbdbd,#dedede,#ffffff)" />
+        <div class="header-bg-blob"></div>
+        <Top title="训练家图鉴" color="transparent" />
 
         <div class="group-list">
-            <div class="version-container">
-                <el-card
-                    class="group-item"
-                    :class="{ selected: currentVersion === 'normal', challenge: true }"
-                    shadow="hover"
+            <div class="version-switch">
+                <div
+                    class="switch-item"
+                    :class="{ active: currentVersion === 'normal' }"
                     @click="currentVersion = 'normal'"
                 >
-                    <div class="card-content">
-                        <span class="group-name">挑战版</span>
-                    </div>
-                </el-card>
-
-                <el-card
-                    class="group-item"
-                    :class="{ selected: currentVersion === 'hardcore', hardcore: true }"
-                    shadow="hover"
+                    挑战版
+                </div>
+                <div
+                    class="switch-item"
+                    :class="{ active: currentVersion === 'hardcore' }"
                     @click="currentVersion = 'hardcore'"
                 >
-                    <div class="card-content">
-                        <span class="group-name">噩梦版</span>
-                    </div>
-                </el-card>
+                    噩梦版
+                </div>
+                <div class="switch-slider" :class="currentVersion"></div>
             </div>
-            <el-card
+
+            <div
                 v-for="(name, index) in groupNames"
                 :key="index"
-                class="group-item"
-                shadow="hover"
+                class="glass-item"
                 @click="handleClick(name)"
             >
-                <div class="card-content">
+                <div class="item-inner">
+                    <div class="item-icon-box">{{ index + 1 }}</div>
                     <span class="group-name">{{ name }}</span>
-                    <el-icon>
-                        <ArrowRight />
-                    </el-icon>
+                    <el-icon class="arrow-icon"><ArrowRight /></el-icon>
                 </div>
-            </el-card>
+            </div>
         </div>
     </div>
 </template>
@@ -90,116 +84,133 @@ function handleClick(name: string) {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .trainer-list {
     min-height: 100vh;
-    background: linear-gradient(135deg, #f8fbff 0%, #e3e9f6 100%);
-    padding-bottom: 24px;
-    max-width: 420px;
-    margin: 0 auto;
+    background: #f0f4f8;
+    position: relative;
+    overflow-x: hidden;
+    padding-bottom: 40px;
+}
+
+.header-bg-blob {
+    position: absolute;
+    top: -100px;
+    right: -50px;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(64, 158, 255, 0.15) 0%, transparent 70%);
+    z-index: 0;
 }
 
 .group-list {
+    position: relative;
+    z-index: 1;
     display: flex;
     flex-direction: column;
-    gap: 14px;
-    margin-top: 20px;
-    padding: 0 10px;
-}
-
-/* 版本容器样式 */
-.version-container {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 8px;
-}
-
-.version-container .group-item {
-    flex: 1;
-    border-radius: 14px;
-    font-size: 16px;
-    font-weight: 600;
-    text-align: center;
-    padding: 16px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #f6f8fa;
-    border: 1.5px solid #ebeef5;
-    cursor: pointer;
-}
-
-.group-item {
-    border-radius: 14px;
-    background: #fff;
-    border: 1.5px solid #ebeef5;
-    padding: 16px 14px;
-    cursor: pointer;
-    width: 90%;
+    gap: 16px;
+    padding: 0 16px;
+    max-width: 500px;
     margin: 0 auto;
 }
 
-/* 挑战版样式 */
-.group-item.challenge {
-    background: #f0f7ff;
-    border: 1.5px solid #a0cfff;
-}
-
-/* 硬核版样式 */
-.group-item.hardcore {
-    background: #fff0f0;
-    border: 1.5px solid #ffa0a0;
-}
-
-.group-item.selected {
-    border: 2px solid #409eff;
-    background: #eaf6ff;
-}
-
-.card-content {
+/* 现代化版本切换器 */
+.version-switch {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 16px;
-    color: #303133;
-    font-weight: 600;
-    letter-spacing: 0.2px;
-}
+    background: rgba(0, 0, 0, 0.05);
+    padding: 4px;
+    border-radius: 12px;
+    position: relative;
+    margin-bottom: 10px;
 
-.group-name {
-    line-height: 1.5;
-    word-break: break-word;
-    font-weight: 700;
-    flex: 1;
-    margin-right: 8px;
-    color: #2d3a4b;
-    font-size: 16px;
-}
-
-.el-icon {
-    font-size: 18px;
-    color: #409eff;
-}
-
-@media (max-width: 600px) {
-    .trainer-list {
-        max-width: 100vw;
-        padding-bottom: 16px;
-    }
-
-    .group-list {
-        padding: 0 2px;
-    }
-
-    .version-container .group-item,
-    .group-item {
-        font-size: 15px;
-        padding: 12px 0;
-    }
-
-    .card-content,
-    .group-name {
+    .switch-item {
+        flex: 1;
+        text-align: center;
+        padding: 10px 0;
         font-size: 14px;
+        font-weight: 600;
+        color: #606266;
+        z-index: 2;
+        cursor: pointer;
+        transition: color 0.3s;
+
+        &.active {
+            color: #fff;
+        }
+    }
+
+    .switch-slider {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: calc(50% - 4px);
+        height: calc(100% - 8px);
+        border-radius: 10px;
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        z-index: 1;
+
+        &.normal {
+            transform: translateX(0);
+            background: #409eff;
+            box-shadow: 0 4px 12px rgba(64, 158, 255, 0.3);
+        }
+        &.hardcore {
+            transform: translateX(100%);
+            background: #f56c6c;
+            box-shadow: 0 4px 12px rgba(245, 108, 108, 0.3);
+        }
+    }
+}
+
+/* 玻璃质感列表项 */
+.glass-item {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 16px;
+    padding: 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+
+    &:active {
+        transform: scale(0.98);
+        background: rgba(255, 255, 255, 0.9);
+    }
+
+    .item-inner {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .item-icon-box {
+        width: 28px;
+        height: 28px;
+        background: #eef2f7;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: 800;
+        color: #909399;
+    }
+
+    .group-name {
+        flex: 1;
+        font-size: 15px;
+        font-weight: 600;
+        color: #2c3e50;
+    }
+
+    .arrow-icon {
+        color: #dcdfe6;
+        transition: transform 0.3s;
+    }
+    &:hover .arrow-icon {
+        transform: translateX(3px);
+        color: #409eff;
     }
 }
 </style>
