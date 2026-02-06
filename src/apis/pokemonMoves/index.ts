@@ -15823,7 +15823,8 @@ export const reqPokemon_Moves = () => {
                 { level: '63', skill_name: '猛推' }
             ]
         },
-        {   序号: '820', 
+        {
+            序号: '820',
             name: '皮卡丘（智皮）',
             SkillList: [
                 { level: '1', skill_name: '铁尾' },

@@ -7,16 +7,20 @@ export interface PokemonEncounter {
 }
 
 export interface EncounterMethods {
-    "Good Rod": PokemonEncounter[] | [];
-    "Grass": PokemonEncounter[] | [];
-    "Old Rod": PokemonEncounter[] | [];
-    "Rock Smash": PokemonEncounter[] | [];
-    "Super Rod": PokemonEncounter[] | [];
-    "Surf": PokemonEncounter[] | [];
-    "Swarm": PokemonEncounter[] | [];
-    "Tall Grass": PokemonEncounter[] | [];
+    'Good Rod'?: PokemonEncounter[] | [];
+    Grass?: PokemonEncounter[] | [];
+    'Old Rod'?: PokemonEncounter[] | [];
+    'Rock Smash'?: PokemonEncounter[] | [];
+    'Super Rod'?: PokemonEncounter[] | [];
+    Surf?: PokemonEncounter[] | [];
+    Swarm?: PokemonEncounter[] | [];
+    'Tall Grass'?: PokemonEncounter[] | [];
+}
+
+export interface WeatherCondition {
+    [weatherType: string]: EncounterMethods;
 }
 
 export interface LocationData {
-    [locationName: string]: EncounterMethods;
+    [locationName: string]: WeatherCondition;
 }

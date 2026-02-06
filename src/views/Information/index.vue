@@ -1327,19 +1327,23 @@ const getAppearAreas = (pokemonName: string) => {
     const result: Array<{ area: string; method: string; level: string | number; rate: string }> =
         [];
     for (const area in areas) {
-        for (const method in areas[area]) {
-            const list = areas[area][method as keyof (typeof areas)[typeof area]];
-            if (Array.isArray(list)) {
-                list.forEach((item: any) => {
-                    if (item.name === pokemonName) {
-                        result.push({
-                            area,
-                            method,
-                            level: item.level,
-                            rate: item.rate
-                        });
-                    }
-                });
+        const weatherConditions = areas[area];
+        for (const weather in weatherConditions) {
+            const methods = weatherConditions[weather];
+            for (const method in methods) {
+                const list = methods[method as keyof typeof methods];
+                if (Array.isArray(list)) {
+                    list.forEach((item: any) => {
+                        if (item.name === pokemonName) {
+                            result.push({
+                                area,
+                                method,
+                                level: item.level,
+                                rate: item.rate
+                            });
+                        }
+                    });
+                }
             }
         }
     }
@@ -1358,7 +1362,9 @@ const getAppearAreas = (pokemonName: string) => {
 const handleAreaJump = (areaName: string) => {
     const areas = getAreas();
     areaStore.areaName = areaName;
-    areaStore.sharedData = areas[areaName];
+    // 兼容新的嵌套结构：获取该地区的所有天气条件，优先使用"默认"
+    const weatherConditions = areas[areaName];
+    areaStore.sharedData = weatherConditions['默认'] || Object.values(weatherConditions)[0] || {};
     $router.push('/areas/area_info');
 };
 </script>

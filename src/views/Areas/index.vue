@@ -1,6 +1,10 @@
 <template>
     <div class="m_areas">
-        <Top title="地区列表" icon="pokemon" color="linear-gradient(90deg, #009fca, #fc5948, #313862)"></Top>
+        <Top
+            title="地区列表"
+            icon="pokemon"
+            color="linear-gradient(90deg, #009fca, #fc5948, #313862)"
+        ></Top>
         <div class="areas-content">
             <div
                 v-for="(item, index) in areas_name"
@@ -21,31 +25,33 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, onBeforeUnmount, onActivated, nextTick } from 'vue'
+import { onMounted, onBeforeUnmount, onActivated, nextTick } from 'vue';
 import { useRouter } from 'vue-router';
-import { getAreas } from '@/apis/areas/index.ts'
-import { useAreaStore } from '@/store/modules/area'
+import { getAreas } from '@/apis/areas/index.ts';
+import { useAreaStore } from '@/store/modules/area';
 import { reverseLocationNameMap } from '@/constants/locationNameMap';
 
 // 引入 AreaStore 实例
-const areaStore = useAreaStore()
+const areaStore = useAreaStore();
 // 引入路由实例
 let $router = useRouter();
 // 获取地区列表
-const areas = getAreas()
-const areas_name = Object.keys(areas)
+const areas = getAreas();
+const areas_name = Object.keys(areas);
 
 const handleAreaInfo = (area_name: string) => {
-    areaStore.areaName = area_name
-    areaStore.sharedData = areas[area_name]
-    $router.push("/areas/area_info")
-}
+    areaStore.areaName = area_name;
+    // 兼容新的嵌套结构：获取该地区的所有天气条件，优先使用"默认"
+    const weatherConditions = areas[area_name];
+    areaStore.sharedData = weatherConditions['默认'] || Object.values(weatherConditions)[0] || {};
+    $router.push('/areas/area_info');
+};
 
 // 获取图片路径
 const getImageSrc = (area_name: string) => {
     // 使用 reverseLocationNameMap 来获取英文名称
     const englishName = reverseLocationNameMap[area_name];
-    
+
     if (!englishName) {
         console.warn(`No English name found for: ${area_name}`);
         return ''; // 或者返回一个默认图片路径
@@ -55,25 +61,25 @@ const getImageSrc = (area_name: string) => {
 
 // 滚动位置保存与恢复（使用窗口滚动）
 const saveScroll = () => {
-    const top = window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0
-    areaStore.scrollPosition = Math.max(0, top)
-}
+    const top =
+        window.scrollY || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    areaStore.scrollPosition = Math.max(0, top);
+};
 
 onMounted(() => {
-    window.addEventListener('scroll', saveScroll, { passive: true })
-})
+    window.addEventListener('scroll', saveScroll, { passive: true });
+});
 
 onBeforeUnmount(() => {
-    window.removeEventListener('scroll', saveScroll)
-})
+    window.removeEventListener('scroll', saveScroll);
+});
 
 onActivated(async () => {
-    await nextTick()
+    await nextTick();
     setTimeout(() => {
-        window.scrollTo({ top: areaStore.scrollPosition || 0, behavior: 'auto' })
-    }, 50)
-})
-
+        window.scrollTo({ top: areaStore.scrollPosition || 0, behavior: 'auto' });
+    }, 50);
+});
 </script>
 
 <style scoped lang="scss">
@@ -100,7 +106,9 @@ onActivated(async () => {
     }
 
     &:focus-visible {
-        box-shadow: 0 0 0 3px rgba(0, 159, 202, 0.35), 0 6px 16px rgba(0, 0, 0, 0.18);
+        box-shadow:
+            0 0 0 3px rgba(0, 159, 202, 0.35),
+            0 6px 16px rgba(0, 0, 0, 0.18);
     }
 }
 
