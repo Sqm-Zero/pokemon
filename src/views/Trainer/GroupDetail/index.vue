@@ -273,8 +273,26 @@ const handleMoveInfo = (moveName: string) => {
 
 // 跳转到道具详情
 const handlePropInfo = (propName: string) => {
-    // 切割字符串，去掉 *数字 后缀
-    const cleanPropName = propName.replace(/\*\d+$/, '');
+    // 处理多种格式的 item 字段
+    // 格式1: "单打，全能秘药*3" -> 取 "全能秘药*3"
+    // 格式2: "全能秘药*2，大师秘药*2" -> 取 "全能秘药*2"
+    const battleTypes = ['单打', '双打', '群战', '三打', '一番战'];
+    let cleanItemStr = propName;
+
+    // 如果以战斗类型开头，先移除战斗类型部分
+    for (const type of battleTypes) {
+        if (cleanItemStr.startsWith(type + '，')) {
+            cleanItemStr = cleanItemStr.replace(type + '，', '');
+            break;
+        }
+    }
+
+    // 然后按中文或英文逗号分割，取第一个道具
+    let singlePropName = cleanItemStr.split(/[,，]/)[0].trim();
+
+    // 去掉 *数字 后缀
+    const cleanPropName = singlePropName.replace(/\*\d+$/, '');
+
     pokemonStore.Prop = pokemonStore.getPropByName(cleanPropName);
     $router.push('/prop/prop_info');
 };
