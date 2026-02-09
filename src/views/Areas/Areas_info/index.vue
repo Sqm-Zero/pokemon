@@ -193,7 +193,10 @@ const getImageSrc = (name: string) => {
     // 给名字去除空格
     name = name.replace(/\s/g, '');
     let id = pokemonStore.getPokemonIdByName(name);
-    return new URL(`/src/assets/images/pokemonList_images/${id}.png`, import.meta.url).href;
+    // console.log("图片的id："+id);
+    // 给id转为int行，来去除前缀的0
+    let intId = parseInt(id);
+    return new URL(`/src/assets/images/pokemonList_images/${intId}.png`, import.meta.url).href;
 };
 
 // 图片加载失败处理
