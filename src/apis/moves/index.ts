@@ -4932,7 +4932,7 @@ export const reqMoves = (): Move[] => {
         {
             accuracy: '75',
             category: '特殊',
-            description: '用强烈的风席卷对手进行攻击。20%会使对手混乱。（雨天必中、晴天命中减半）',
+            description: '敌方全体）强烈的风席卷敌方全体对手。10%会使对手混乱。（雨天必中、晴天命中减半）',
             move: '暴风',
             move_id: '542',
             power: '110',
@@ -5480,7 +5480,7 @@ export const reqMoves = (): Move[] => {
             move: '精神掌控',
             move_id: '601',
             power: '0',
-            type: '妖精'
+            type: '超能力'
         },
         {
             accuracy: '101',

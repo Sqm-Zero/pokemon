@@ -294,7 +294,7 @@ function onMouseDown(e: MouseEvent) {
 }
 
 function onWheel(e: WheelEvent) {
-    const delta = -e.deltaY || e.detail || e.wheelDelta;
+    const delta = -e.deltaY || e.detail
     const zoomFactor = delta > 0 ? 1.1 : 0.9;
     const rect = imgWrapper.value?.getBoundingClientRect();
     if (!rect) return;
