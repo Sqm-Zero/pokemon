@@ -115,7 +115,7 @@ const resetAll = () => {
 // Prevent body scroll when viewer is open
 watch(
     () => props.isVisible,
-    (val) => {
+    val => {
         if (val) {
             document.body.style.overflow = 'hidden';
         } else {
