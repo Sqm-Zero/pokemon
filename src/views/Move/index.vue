@@ -9,17 +9,44 @@
 
         <div class="search-section">
             <Search @search="handleSearch" :initial-value="query" />
-            <div v-if="selectedTypes.length" class="active-filters">
-                <el-tag
-                    closable
-                    v-for="t in selectedTypes"
-                    :key="t"
-                    @close="toggleType(t)"
-                    :color="colorMap[t]"
-                    effect="dark"
-                >
-                    {{ t }}
-                </el-tag>
+            <div class="filter-group">
+                <div v-if="selectedTypes.length" class="active-filters">
+                    <el-tag
+                        closable
+                        v-for="t in selectedTypes"
+                        :key="t"
+                        @close="toggleType(t)"
+                        :color="colorMap[t]"
+                        effect="dark"
+                    >
+                        {{ t }}
+                    </el-tag>
+                </div>
+                <div v-if="selectedCategories.length" class="active-filters">
+                    <el-tag
+                        closable
+                        v-for="c in selectedCategories"
+                        :key="c"
+                        @close="toggleCategory(c)"
+                        :type="getCategoryTagType(c)"
+                        effect="dark"
+                    >
+                        {{ c }}
+                    </el-tag>
+                </div>
+            </div>
+        </div>
+
+        <!-- 技能分类快速筛选 -->
+        <div class="category-filter">
+            <div 
+                v-for="category in moveCategories"
+                :key="category"
+                class="category-item"
+                :class="{ active: selectedCategories.includes(category) }"
+                @click="toggleCategory(category)"
+            >
+                {{ category }}
             </div>
         </div>
 
@@ -93,6 +120,9 @@ const query = ref<string>(''); // 从缓存恢复搜索
 const selectedTypes = ref<string[]>(
     JSON.parse(sessionStorage.getItem('move_selected_types') || '[]') // 从缓存恢复筛选
 );
+const selectedCategories = ref<string[]>(
+    JSON.parse(sessionStorage.getItem('move_selected_categories') || '[]') // 从缓存恢复分类筛选
+);
 const scrollContainer = ref<HTMLElement | null>(null);
 
 const pokemonTypes = [
@@ -116,6 +146,8 @@ const pokemonTypes = [
     '妖精'
 ];
 
+const moveCategories = ['物理', '特殊', '变化'];
+
 const MoveList: Move[] = reqMoves();
 
 // --- 逻辑处理 ---
@@ -124,7 +156,13 @@ const getColor = (type: string) => colorMap[type] || '#BBBBAA';
 const getCategoryClass = (cat: string) => {
     if (cat === '物理') return 'cat-physical';
     if (cat === '特殊') return 'cat-special';
-    return 'cat-status';
+    return 'cat-change';
+};
+
+const getCategoryTagType = (cat: string) => {
+    if (cat === '物理') return 'danger';
+    if (cat === '特殊') return 'primary';
+    return 'warning';
 };
 
 function handleSearch(q: string) {
@@ -143,14 +181,27 @@ const toggleType = (type: string) => {
     sessionStorage.setItem('move_selected_types', JSON.stringify(selectedTypes.value));
 };
 
+const toggleCategory = (category: string) => {
+    // 单选模式：如果已选中则取消，否则替换
+    if (selectedCategories.value.includes(category)) {
+        selectedCategories.value = [];
+    } else {
+        selectedCategories.value = [category];
+    }
+    // 持久化存储
+    sessionStorage.setItem('move_selected_categories', JSON.stringify(selectedCategories.value));
+};
+
 // --- 计算过滤 (性能优化：添加 memoization 思想) ---
 const filteredMoveList = computed(() => {
     return MoveList.filter(move => {
         const matchType =
             selectedTypes.value.length === 0 || selectedTypes.value.includes(move.type);
+        const matchCategory =
+            selectedCategories.value.length === 0 || selectedCategories.value.includes(move.category);
         const matchQuery =
             !query.value || move.move.includes(query.value) || move.type.includes(query.value);
-        return matchType && matchQuery;
+        return matchType && matchCategory && matchQuery;
     });
 });
 
@@ -206,11 +257,63 @@ onBeforeUnmount(() => {
         background: #f5f7fa;
         padding: 10px 5%;
 
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
         .active-filters {
             display: flex;
             gap: 8px;
             margin-top: 8px;
             flex-wrap: wrap;
+        }
+    }
+
+    .category-filter {
+        display: flex;
+        gap: 10px;
+        padding: 10px 5%;
+        justify-content: center;
+        flex-wrap: wrap;
+        background: #f5f7fa;
+        position: sticky;
+        top: 62px;
+        z-index: 9;
+
+        .category-item {
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #fff;
+            border: 1px solid #dcdfe6;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            font-size: 14px;
+
+            &:hover {
+                border-color: #c6e2ff;
+                background: #f0f9ff;
+            }
+
+            &.active {
+                &:nth-child(1) {
+                    background: #fee2e2;
+                    border-color: #ef4444;
+                    color: #ef4444;
+                }
+                &:nth-child(2) {
+                    background: #dbeafe;
+                    border-color: #3b82f6;
+                    color: #3b82f6;
+                }
+                &:nth-child(3) {
+                    background: #fef3c7;
+                    border-color: #f59e0b;
+                    color: #f59e0b;
+                }
+            }
         }
     }
 
@@ -278,9 +381,9 @@ onBeforeUnmount(() => {
                             background: #dbeafe;
                             color: #3b82f6;
                         }
-                        &.cat-status {
-                            background: #f3f4f6;
-                            color: #6b7280;
+                        &.cat-change {
+                            background: #fef3c7;
+                            color: #f59e0b;
                         }
                     }
                 }
