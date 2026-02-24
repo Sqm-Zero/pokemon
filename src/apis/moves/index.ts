@@ -726,7 +726,7 @@ export const reqMoves = (): Move[] => {
         {
             accuracy: '100',
             category: '特殊',
-            description: '在2～3回合内，散落花瓣攻击所有对手。之后自己会陷入混乱。',
+            description: '（敌方全体）在2～3回合内，散落花瓣攻击所有对手。之后自己会陷入混乱。',
             move: '花瓣舞',
             move_id: '80',
             power: '120',

@@ -2461,14 +2461,14 @@ export const reqPokemon_Moves = () => {
             序号: '162',
             name: '大尾立',
             SkillList: [
-                { level: '1', skill_name: '抓' },
+                { level: '1', skill_name: '万圣夜' },
                 { level: '1', skill_name: '识破' },
                 { level: '1', skill_name: '变圆' },
                 { level: '1', skill_name: '电光一闪' },
                 { level: '4', skill_name: '变圆' },
                 { level: '7', skill_name: '电光一闪' },
                 { level: '13', skill_name: '乱抓' },
-                { level: '17', skill_name: '高速星星' },
+                { level: '21', skill_name: '高速星星' },
                 { level: '21', skill_name: '看我嘛' },
                 { level: '28', skill_name: '奇异之风' },
                 { level: '32', skill_name: '舌舔' },
@@ -7291,7 +7291,7 @@ export const reqPokemon_Moves = () => {
                 { level: '1', skill_name: '剑舞' },
                 { level: '1', skill_name: '硬撑' },
                 { level: '1', skill_name: '摇尾巴' },
-                { level: '1', skill_name: '电光一闪' },
+                { level: '1', skill_name: '毒菱' },
                 { level: '1', skill_name: '聚气' },
                 { level: '4', skill_name: '电光一闪' },
                 { level: '7', skill_name: '聚气' },
@@ -7354,7 +7354,15 @@ export const reqPokemon_Moves = () => {
                 { level: '61', skill_name: '治愈之愿' },
                 { level: '85', skill_name: '天龙之息' },
                 { level: '90', skill_name: '治愈波动' },
-                { level: '100', skill_name: '薄雾球' }
+                { level: '100', skill_name: '薄雾球' },
+                { level: '1', skill_name: '冲浪' },
+                { level: '1', skill_name: '瀑布' },
+                { level: '1', skill_name: '冲岩' },
+                { level: '1', skill_name: '挖洞' },
+                { level: '1', skill_name: '飞行' },
+                { level: '1', skill_name: '岩石爬行' },
+                { level: '1', skill_name: '水上漂' },
+                { level: '1', skill_name: '秘密之力' }
             ]
         },
         {
@@ -9483,8 +9491,10 @@ export const reqPokemon_Moves = () => {
                 { level: '30', skill_name: '影子偷袭' },
                 { level: '36', skill_name: '奇异之风' },
                 { level: '40', skill_name: '分担痛楚' },
-                { level: '44', skill_name: '暗影球' },
-                { level: '50', skill_name: '万圣夜' }
+                { level: '45', skill_name: '终极吸取' },
+                { level: '50', skill_name: '万圣夜' },
+                { level: '55', skill_name: '暗影球' },
+                { level: '60', skill_name: '能量球' }
             ]
         },
         {
@@ -10524,7 +10534,8 @@ export const reqPokemon_Moves = () => {
                 { level: '41', skill_name: '接棒' },
                 { level: '46', skill_name: '诡计' },
                 { level: '50', skill_name: '精神强念' },
-                { level: '55', skill_name: '破坏光线' }
+                { level: '55', skill_name: '破坏光线' },
+                { level: '62', skill_name: '特性互换' }
             ]
         },
         {
@@ -11130,7 +11141,8 @@ export const reqPokemon_Moves = () => {
                 { level: '60', skill_name: '虫鸣' },
                 { level: '65', skill_name: '龙之波动' },
                 { level: '70', skill_name: '暴狂龙卷' },
-                { level: '80', skill_name: '天龙之息' }
+                { level: '80', skill_name: '天龙之息' },
+                { level: '90', skill_name: '蝶舞' }
             ]
         },
         {
@@ -14730,7 +14742,8 @@ export const reqPokemon_Moves = () => {
                 { level: '42', skill_name: '起死回生' },
                 { level: '51', skill_name: '珍藏' },
                 { level: '59', skill_name: '终极冲击' },
-                { level: '63', skill_name: '嬉闹' }
+                { level: '63', skill_name: '嬉闹' },
+                { level: '70', skill_name: '硬撑' }
             ]
         },
         {
@@ -15655,6 +15668,7 @@ export const reqPokemon_Moves = () => {
             序号: '710',
             name: '古代耿鬼',
             SkillList: [
+                { level: '1', skill_name: '终极吸取' },
                 { level: '10', skill_name: '舌舔' },
                 { level: '20', skill_name: '黑雾' },
                 { level: '30', skill_name: '浊雾' },
