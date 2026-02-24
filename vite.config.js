@@ -43,17 +43,17 @@ export default defineConfig(function () {
         },
         resolve: {
             alias: {
-                "@": path.resolve("./src") // 相对路径别名配置，使用 @ 代替 src
+                '@': path.resolve('./src') // 相对路径别名配置，使用 @ 代替 src
             }
         },
         //scss全局变量配置
         css: {
             preprocessorOptions: {
                 scss: {
-                            javascriptEnabled: true,
-                            additionalData: '@use "./src/styles/variable.scss" as *;',
-                        },
-            },
+                    javascriptEnabled: true,
+                    additionalData: '@use "./src/styles/variable.scss" as *;'
+                }
+            }
         }
     };
 });
