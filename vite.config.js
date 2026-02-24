@@ -50,9 +50,9 @@ export default defineConfig(function () {
         css: {
             preprocessorOptions: {
                 scss: {
-                    javascriptEnabled: true,
-                    additionalData: '@import "./src/styles/variable.scss";',
-                },
+                            javascriptEnabled: true,
+                            additionalData: '@use "./src/styles/variable.scss" as *;',
+                        },
             },
         }
     };
