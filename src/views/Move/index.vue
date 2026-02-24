@@ -39,7 +39,7 @@
 
         <!-- 技能分类快速筛选 -->
         <div class="category-filter">
-            <div 
+            <div
                 v-for="category in moveCategories"
                 :key="category"
                 class="category-item"
@@ -198,7 +198,8 @@ const filteredMoveList = computed(() => {
         const matchType =
             selectedTypes.value.length === 0 || selectedTypes.value.includes(move.type);
         const matchCategory =
-            selectedCategories.value.length === 0 || selectedCategories.value.includes(move.category);
+            selectedCategories.value.length === 0 ||
+            selectedCategories.value.includes(move.category);
         const matchQuery =
             !query.value || move.move.includes(query.value) || move.type.includes(query.value);
         return matchType && matchCategory && matchQuery;
