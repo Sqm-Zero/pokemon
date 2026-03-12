@@ -171,7 +171,7 @@ const toggleAllBattles = () => {
     }
 };
 
-// 特殊形态映射
+// 特殊形态映射（NPC名称中的括号形态 → pokemon数据中的数字后缀索引，1-based）
 const specialForms: Record<string, string[]> = {
     代欧奇希斯: ['攻击', '防御', '速度'],
     结草贵妇: ['砂土蓑衣', '垃圾蓑衣'],
@@ -184,59 +184,54 @@ const specialForms: Record<string, string[]> = {
     达摩狒狒: ['达摩模式'],
     美洛耶塔: ['舞步'],
     酋雷姆: ['焰白', '暗黑'],
-    凯路迪欧: ['觉醒'],
-    毒卷云: ['灵兽', ''],
-    雷电云: ['灵兽', ''],
-    土地云: ['灵兽', ''],
+    凯路迪欧: ['胜利', '觉醒'],
+    毒卷云: ['灵兽'],
+    雷电云: ['灵兽'],
+    土地云: ['灵兽'],
     超能妙喵: ['雌性'],
-    花叶蒂: ['', '', '', '', '永恒之花'],
+    花叶蒂: ['永恒之花'],
     皮卡丘: ['摇滚', '贵妇', '流行偶像', '博士', '面罩摔角手', '赤皮'],
     胡帕: ['解放'],
     固拉多: ['原始'],
     盖欧卡: ['原始']
 };
-const processPokemonName = (name: string): string => {
-    // 首先检查是否是特殊形态的宝可梦
-    const baseName = name.replace(/\s+\d+$/, ''); // 去掉末尾的数字
-    if (specialForms[baseName]) {
-        const match = name.match(/(\d+)$/); // 提取末尾的数字
-        if (match) {
-            const formIndex = parseInt(match[1]) - 1; // 转为0-based索引
-            if (formIndex >= 0 && formIndex < specialForms[baseName].length) {
-                return `${baseName}（${specialForms[baseName][formIndex]}）`;
-            }
-        }
-    }
-    // 普通情况：去掉数字并添加"超级"前缀
-    if (/\d/.test(name)) {
-        return '超级' + name.replace(/\d/g, '').trim();
-    }
-    return name;
+
+// NPC数据中的别名映射 → pokemon数据中的实际名称
+const nameAliases: Record<string, string> = {
+    龙卷云: '毒卷云'
 };
 
-// 新增：将“皮卡丘（贵妇）”还原为“皮卡丘 1”
+const processPokemonName = (name: string): string => {
+    // NPC数据已经是"xxx（形态）"格式，直接返回（去除多余空格）
+    return name.trim().replace(/\s+（/, '（');
+};
+
+// 将"皮卡丘（贵妇）"还原为pokemon数据中的名称"皮卡丘 1"
 const restorePokemonRawName = (displayName: string): string => {
-    // 匹配“xxx（形态）”
-    const match = displayName.match(/^(.+?)（(.+?)）$/);
+    const normalized = displayName.trim().replace(/\s+（/, '（');
+    // 匹配"xxx（形态）"
+    const match = normalized.match(/^(.+?)（(.+?)）$/);
     if (match) {
-        const baseName = match[1];
+        const baseName = nameAliases[match[1]] ?? match[1];
         const form = match[2];
         if (specialForms[baseName]) {
             const formsList = specialForms[baseName];
             for (let i = 0; i < formsList.length; i++) {
-                const candidate = formsList[i];
-                // 模糊匹配：互相包含即视为匹配
-                if (form.includes(candidate) || candidate.includes(form)) {
+                if (form === formsList[i] || form.includes(formsList[i]) || formsList[i].includes(form)) {
                     return baseName + ' ' + (i + 1);
                 }
             }
         }
+        // 括号形态但不在specialForms中（如"尼多后（贵妇）"），返回基础名称
+        return baseName;
     }
-    // 匹配“超级xxx”
-    if (displayName.startsWith('M') && displayName !== 'M甲贺忍蛙') {
-        return displayName.replace('M', '') + ' 1';
+    // 别名处理
+    if (nameAliases[normalized]) return nameAliases[normalized];
+    // 匹配"M超级进化"前缀
+    if (normalized.startsWith('M') && normalized !== 'M甲贺忍蛙') {
+        return normalized.replace('M', '') + ' 1';
     }
-    return displayName;
+    return normalized;
 };
 
 // 获取精灵编号
