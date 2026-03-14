@@ -1420,7 +1420,7 @@ export const reqNPC = (): BattleData => {
                         moves: ['闪电之触', '大地之力', '天龙之息', '伏特替换']
                     },
                     {
-                        name: '酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 40,
                         item: '强力香草',
                         ability: '双连击',
@@ -1476,7 +1476,7 @@ export const reqNPC = (): BattleData => {
                         moves: ['胜利之炎', '十字劈', '精神利刃', '暗影爪']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 50,
                         item: '强力香草',
                         ability: '双连击',
@@ -1814,7 +1814,7 @@ export const reqNPC = (): BattleData => {
                         moves: ['神威', '怒雷', '治愈波动', '精神震荡']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -1863,7 +1863,7 @@ export const reqNPC = (): BattleData => {
                         moves: ['地焰爆裂', '地裂', '尖石攻击', '神之怒吼']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -2257,14 +2257,14 @@ export const reqNPC = (): BattleData => {
                         moves: ['高科技光炮', '磁铁轰炸', '虫鸣', '十万伏特']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 97,
                         item: '强力香草',
                         ability: '双连击',
                         moves: ['冰冻伏特', '理想闪电', '龙之逆鳞', '神威']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 97,
                         item: '强力香草',
                         ability: '双连击',
@@ -2994,14 +2994,14 @@ export const reqNPC = (): BattleData => {
                         moves: ['时光咆哮', '力量宝石', '大地之力', '龙星群']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 95,
                         item: '强力香草',
                         ability: '双连击',
                         moves: ['大地之力', '真实之焰', '极寒冷焰', '龙星群']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 95,
                         item: '强力香草',
                         ability: '双连击',
@@ -4801,7 +4801,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['闪电之触', '大地神力', '龙星群', '伏特替换']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 58,
                         item: '强力香草',
                         ability: '双连击',
@@ -4857,7 +4857,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['胜利之炎', '制裁猛击', '精神突进', '迅炎']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 68,
                         item: '强力香草',
                         ability: '双连击',
@@ -5195,7 +5195,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['神威', '怒雷', '治愈波动', '洁净光芒']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -5244,7 +5244,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['地焰爆裂', '千波激荡', '裁决之柱', '神之怒吼']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -5638,14 +5638,14 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['高科技光炮', '磁铁轰炸', '虫鸣', '怒雷']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
                         moves: ['冰冻伏特', '理想闪电', '制裁猛击', '千波激荡']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -6382,7 +6382,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['大地神力', '真实之焰', '极寒冷焰', '龙星群']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -6722,7 +6722,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['制裁光砾', '千波激荡', '亚空裂斩', '异次元洞']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 100,
                         item: '抗地果',
                         ability: '双连击',
