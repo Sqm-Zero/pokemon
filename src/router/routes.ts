@@ -59,9 +59,20 @@ export const constantRoute = [
         }
     },
     {
-        path: '/group-detail/:groupName',
-        component: () => import('@/views/Trainer/GroupDetail/index.vue'),
-        name: 'GroupDetail'
+        path: '/trainer/group/:groupName',
+        component: () => import('@/views/Trainer/BattleList/index.vue'),
+        name: 'BattleList',
+        meta: {
+            title: '战斗列表'
+        }
+    },
+    {
+        path: '/trainer/group/:groupName/battle/:battleIndex',
+        component: () => import('@/views/Trainer/BattleDetail/index.vue'),
+        name: 'BattleDetail',
+        meta: {
+            title: '战斗详情'
+        }
     },
     {
         path: '/move/move_info',

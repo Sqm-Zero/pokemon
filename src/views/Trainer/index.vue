@@ -51,6 +51,7 @@ const groupNames = [
     '青梅/劲敌 详细阵容',
     '道馆馆主 详细阵容',
     '宝可梦联盟 详细阵容',
+    '二周目对战区 1-5道馆馆主',
     '隐藏五天王',
     '二周目 重要战斗',
     '新增的传奇挑战！',
@@ -77,7 +78,7 @@ onMounted(() => {
 
 function handleClick(name: string) {
     $router.push({
-        name: 'GroupDetail',
+        name: 'BattleList',
         params: { groupName: encodeURIComponent(name) },
         query: { version: currentVersion.value }
     });
