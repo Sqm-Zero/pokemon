@@ -1035,6 +1035,160 @@ export const reqNPC = (): BattleData => {
         ],
         '青梅/劲敌 详细阵容': [
             {
+                title: '宝可梦训练家 祐树/小遥（二番战）',
+                battle_type: '轮盘',
+                item: '全能爆发*3',
+                pokemons: [
+                    {
+                        name: '念力土偶',
+                        level: 38,
+                        item: '进化奇石',
+                        ability: '扬沙',
+                        moves: ['幻象光线', '大地之力', '隐形岩', '戏法空间']
+                    },
+                    {
+                        name: '嘎啦嘎啦',
+                        level: 38,
+                        item: '粗骨头',
+                        ability: '连续攻击',
+                        moves: ['骨棒乱打', '骨头回力镖', '岩石爆击', '守住']
+                    },
+                    {
+                        name: '鲶鱼王',
+                        level: 38,
+                        item: '吃剩的东西',
+                        ability: '单纯',
+                        moves: ['大地之力', '热水', '沙暴', '龙之舞']
+                    },
+                    {
+                        name: '太古盔甲',
+                        level: 38,
+                        item: '弱点保险',
+                        ability: '坚硬岩石',
+                        moves: ['虫突', '冲岩', '十字剪', '十万马力']
+                    },
+                    {
+                        name: '尼多王',
+                        level: 38,
+                        item: '生命宝珠',
+                        ability: '强行',
+                        moves: ['污泥波', '大地之力', '喷射火焰', '十万伏特']
+                    },
+                    {
+                        name: '巨沼怪',
+                        level: 38,
+                        item: '巨沼怪进化石',
+                        ability: '拨沙',
+                        moves: ['水流喷射', '十万马力', '攀瀑', '冰冻拳']
+                    }
+                ]
+            },
+            {
+                title: '宝可梦训练家 祐树/小遥（三番战）',
+                battle_type: '轮盘',
+                item: '全能爆发2*4',
+                pokemons: [
+                    {
+                        name: '河马兽',
+                        level: 63,
+                        item: '吃剩的东西',
+                        ability: '扬沙',
+                        moves: ['十万马力', '哈欠', '隐形岩', '吹飞']
+                    },
+                    {
+                        name: '天蝎王',
+                        level: 63,
+                        item: '气势披带',
+                        ability: '拨沙',
+                        moves: ['十字毒刃', '地裂', '断头钳', '暗袭要害']
+                    },
+                    {
+                        name: '海兔兽',
+                        level: 63,
+                        item: '抗草果',
+                        ability: '引水',
+                        moves: ['浊流', '大地之力', '自我再生', '沙暴']
+                    },
+                    {
+                        name: '大朝北鼻',
+                        level: 63,
+                        item: '抗斗果',
+                        ability: '飘浮',
+                        moves: ['三重攻击', '力量宝石', '加农光炮', '大地之力']
+                    },
+                    {
+                        name: '爆炸头水牛',
+                        level: 63,
+                        item: '生命宝珠',
+                        ability: '坚硬脑袋',
+                        moves: ['波动冲', '超级角击', '突飞猛扑', '雪崩']
+                    },
+                    {
+                        name: '巨沼怪',
+                        level: 63,
+                        item: '巨沼怪进化石',
+                        ability: '拨沙',
+                        moves: ['水流喷射', '十万马力', '波动冲', '冰冻拳']
+                    }
+                ]
+            },
+            {
+                title: '宝可梦训练家 祐树/小遥（四番战）',
+                battle_type: '轮盘',
+                item: '全能爆发2*4',
+                pokemons: [
+                    {
+                        name: '超甲龙犀',
+                        level: 70,
+                        item: '突击背心',
+                        ability: '扬沙',
+                        moves: ['冰冻光束', '天龙之息', '岩石巨炮', '大地之力']
+                    },
+                    {
+                        name: '摇篮百合',
+                        level: 70,
+                        item: '吃剩的东西',
+                        ability: '引水',
+                        moves: ['终极吸取', '气象球', '寄生种子', '守住']
+                    },
+                    {
+                        name: '（男）盖诺赛克特',
+                        level: 70,
+                        item: '水流卡带',
+                        ability: '引火',
+                        moves: ['高科技光炮', '虫鸣', '磁铁轰炸', '能量球']
+                    },
+                    {
+                        name: '（女）星空妖皇',
+                        level: 70,
+                        item: '抗火果',
+                        ability: '魔法反射',
+                        moves: ['加农光炮', '大地之力', '治愈波动', '破灭之光']
+                    },
+                    {
+                        name: '泥偶巨灵',
+                        level: 70,
+                        item: '先制之爪',
+                        ability: '无防守',
+                        moves: ['暗影拳', '地裂', '爆裂拳', '影子偷袭']
+                    },
+                    {
+                        name: '雷吉斯奇鲁',
+                        level: 70,
+                        item: '异常果',
+                        ability: '纯朴',
+                        moves: ['磁铁轰炸', '力量宝石', '沙暴', '三重攻击']
+                    },
+                    {
+                        name: '巨沼怪',
+                        level: 70,
+                        item: '巨沼怪进化石',
+                        ability: '拨沙',
+                        moves: ['水流喷射', '十万马力', '波动冲', '雪崩']
+                    }
+                ]
+            },
+            {
                 title: '宝可梦训练家 满充',
                 battle_type: '一番战',
                 item: '单打，全能秘药*3',
@@ -1266,7 +1420,7 @@ export const reqNPC = (): BattleData => {
                         moves: ['闪电之触', '大地之力', '天龙之息', '伏特替换']
                     },
                     {
-                        name: '酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 40,
                         item: '强力香草',
                         ability: '双连击',
@@ -1322,7 +1476,7 @@ export const reqNPC = (): BattleData => {
                         moves: ['胜利之炎', '十字劈', '精神利刃', '暗影爪']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 50,
                         item: '强力香草',
                         ability: '双连击',
@@ -1525,7 +1679,9 @@ export const reqNPC = (): BattleData => {
                         moves: ['神秘之剑', '真空波', '水炮', '冰冻光束']
                     }
                 ]
-            },
+            }
+        ],
+        '二周目对战区 1-5道馆馆主': [
             {
                 title: '道馆馆主 杜娟',
                 battle_type: '双打',
@@ -1658,7 +1814,7 @@ export const reqNPC = (): BattleData => {
                         moves: ['神威', '怒雷', '治愈波动', '精神震荡']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -1707,7 +1863,7 @@ export const reqNPC = (): BattleData => {
                         moves: ['地焰爆裂', '地裂', '尖石攻击', '神之怒吼']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -2101,14 +2257,14 @@ export const reqNPC = (): BattleData => {
                         moves: ['高科技光炮', '磁铁轰炸', '虫鸣', '十万伏特']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 97,
                         item: '强力香草',
                         ability: '双连击',
                         moves: ['冰冻伏特', '理想闪电', '龙之逆鳞', '神威']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 97,
                         item: '强力香草',
                         ability: '双连击',
@@ -2264,7 +2420,7 @@ export const reqNPC = (): BattleData => {
                 ]
             }
         ],
-        '隐藏五天王': [
+        隐藏五天王: [
             {
                 title: '格兰德（地面天王）',
                 battle_type: '轮盘',
@@ -2516,7 +2672,401 @@ export const reqNPC = (): BattleData => {
                 ]
             }
         ],
+        '一周目&二周目 重要战斗': [
+            {
+                title: '火箭队首领 坂木',
+                battle_type: '双打',
+                item: '全能秘药*3',
+                pokemons: [
+                    {
+                        name: '超甲龙犀',
+                        level: 45,
+                        item: '突击背心',
+                        ability: '扬沙',
+                        moves: ['天龙之息', '岩石巨炮', '大地之力', '十万伏特']
+                    },
+                    {
+                        name: '尼多后',
+                        level: 45,
+                        item: '吃剩的东西',
+                        ability: '污毒之躯',
+                        moves: ['广域防守', '污泥波', '大地之力', '隐形岩']
+                    },
+                    {
+                        name: '尼多王',
+                        level: 45,
+                        item: '生命宝珠',
+                        ability: '强行',
+                        moves: ['污泥波', '大地之力', '冰冻光束', '喷射火焰']
+                    },
+                    {
+                        name: '基格尔德犬',
+                        level: 45,
+                        item: '生命宝珠',
+                        ability: '强击',
+                        moves: ['嬉闹', '千波激荡', '近身战', '剧毒牙']
+                    },
+                    {
+                        name: '大钢蛇',
+                        level: 45,
+                        item: '大钢蛇进化石',
+                        ability: '结实',
+                        moves: ['钢铁之躯', '陀螺球', '十万马力', '尖石攻击']
+                    },
+                    {
+                        name: '地皇蜂',
+                        level: 45,
+                        item: '气势披带',
+                        ability: '适应力',
+                        moves: ['致命针刺', '双冲钻', '双翼', '十字毒刃']
+                    }
+                ]
+            },
+            {
+                title: '八大师 艾岚',
+                battle_type: '双打',
+                item: '大师秘药*3',
+                pokemons: [
+                    {
+                        name: '巨金怪',
+                        level: 76,
+                        item: '巨金怪进化石',
+                        ability: '恒净之躯',
+                        moves: ['钢铁飞盘', '科技爆破', '精神利刃', '广域防守']
+                    },
+                    {
+                        name: '班基拉斯',
+                        level: 76,
+                        item: '抗斗果',
+                        ability: '强行',
+                        moves: ['暗黑连击', '尖石攻击', '十万马力', '高温重压']
+                    },
+                    {
+                        name: '布里卡隆',
+                        level: 76,
+                        item: '抗火果',
+                        ability: '防弹',
+                        moves: ['钢铁之躯', '尖刺臂', '钢铁头槌', '尖刺防守']
+                    },
+                    {
+                        name: '玛狃拉',
+                        level: 76,
+                        item: '气势披带',
+                        ability: '强行',
+                        moves: ['冰柱坠击', '冰砾', '暗黑连击', '十字剪']
+                    },
+                    {
+                        name: '乌贼王',
+                        level: 76,
+                        item: '进化奇石',
+                        ability: '狙击手',
+                        moves: ['精神利刃', '暗黑连击', '十字毒刃', '起死回生']
+                    },
+                    {
+                        name: '超神宝可梦',
+                        level: 76,
+                        item: '',
+                        ability: '',
+                        moves: ['未知', '未知', '未知', '未知']
+                    }
+                ]
+            },
+            {
+                title: '培育之人 青绿',
+                battle_type: '双打',
+                item: '大师秘药*3',
+                pokemons: [
+                    {
+                        name: 'M烈风鸟',
+                        level: 90,
+                        item: '讲究围巾',
+                        ability: '无防守',
+                        moves: ['暴风']
+                    },
+                    {
+                        name: 'M化石翼龙',
+                        level: 90,
+                        item: '气势披带',
+                        ability: '坚硬脑袋',
+                        moves: ['勇鸟猛攻', '双刃头锤', '冲岩', '隐形岩']
+                    },
+                    {
+                        name: 'M暴鲤龙',
+                        level: 90,
+                        item: '突击背心',
+                        ability: '强壮之颚',
+                        moves: ['咬碎', '强力腮咬', '冰冻牙', '雷电牙']
+                    },
+                    {
+                        name: 'M班基拉斯',
+                        level: 90,
+                        item: '抗斗果',
+                        ability: '强行',
+                        moves: ['暗黑连击', '尖石攻击', '十万马力', '高温重压']
+                    },
+                    {
+                        name: '古代胡地',
+                        level: 90,
+                        item: '生命宝珠',
+                        ability: '变幻自如',
+                        moves: ['雷电拳', '火焰拳', '冰冻拳', '精神利刃']
+                    },
+                    {
+                        name: '超神宝可梦',
+                        level: 90,
+                        item: '',
+                        ability: '',
+                        moves: ['未知', '未知', '未知', '未知']
+                    }
+                ]
+            },
+            {
+                title: '宝可梦训练家 希嘉娜',
+                battle_type: '一番战',
+                item: '双打，大师秘药*3',
+                pokemons: [
+                    {
+                        name: '拉帝亚斯',
+                        level: 90,
+                        item: '心之水滴',
+                        ability: '飘浮',
+                        moves: ['薄雾球', '庆祝', '治愈波动', '帮手']
+                    },
+                    {
+                        name: '基格尔德',
+                        level: 90,
+                        item: '先制果',
+                        ability: '纯朴',
+                        moves: ['万箭毒射', '大地之力', '龙星群', '神威']
+                    },
+                    {
+                        name: '毒刺酋雷姆',
+                        level: 90,
+                        item: '速度果',
+                        ability: '龙之威压',
+                        moves: ['冰封世界', '龙星群', '真气弹', '大地之力']
+                    },
+                    {
+                        name: '捷克罗姆',
+                        level: 90,
+                        item: '生命宝珠',
+                        ability: '加速',
+                        moves: ['理想闪电', '龙之逆鳞', '神之怒吼', '十万马力']
+                    },
+                    {
+                        name: '莱希拉姆',
+                        level: 90,
+                        item: '抗岩果',
+                        ability: '加速',
+                        moves: ['真实之焰', '龙星群', '大地之力', '力量宝石']
+                    },
+                    {
+                        name: '拉帝欧斯',
+                        level: 90,
+                        item: '拉帝欧斯进化石',
+                        ability: '飘浮',
+                        moves: ['洁净光芒', '天龙之息', '空气斩', '暗影球']
+                    }
+                ]
+            },
+            {
+                title: '琉璃市居民 米可利',
+                battle_type: '群战',
+                item: '大师秘药*3',
+                pokemons: [
+                    {
+                        name: '帕路奇亚',
+                        level: 90,
+                        item: '速度果',
+                        ability: '强击',
+                        moves: ['近身战', '龙之逆鳞', '亚空裂斩', '暗影爪']
+                    },
+                    {
+                        name: '亚克诺姆',
+                        level: 90,
+                        item: '生命宝珠',
+                        ability: '魔法防守',
+                        moves: ['波动冲', '意念头锤', '水流喷射', '嬉闹']
+                    },
+                    {
+                        name: '盖欧卡',
+                        level: 90,
+                        item: '靛蓝色宝珠',
+                        ability: '降雨',
+                        moves: ['根源波动', '暴风', '冷冻干燥', '守住']
+                    },
+                    {
+                        name: '洛奇亚',
+                        level: 90,
+                        item: '吃剩的东西',
+                        ability: '避雷针',
+                        moves: ['空中爆破', '神威', '广域防守', '大海之力']
+                    },
+                    {
+                        name: '凯路迪欧',
+                        level: 90,
+                        item: '拳头石板',
+                        ability: '好胜',
+                        moves: ['神秘之剑', '水炮', '冰冻光束', '真空波']
+                    },
+                    {
+                        name: '超神宝可梦',
+                        level: 90,
+                        item: '',
+                        ability: '',
+                        moves: ['未知', '未知', '未知', '未知']
+                    }
+                ]
+            },
+            {
+                title: '火箭队首领 坂木',
+                battle_type: '双打',
+                item: '大师秘药*4',
+                pokemons: [
+                    {
+                        name: '尼多王',
+                        level: 95,
+                        item: '生命宝珠',
+                        ability: '强行',
+                        moves: ['污泥波', '大地之力', '喷射火焰', '冰冻光束']
+                    },
+                    {
+                        name: '尼多后',
+                        level: 95,
+                        item: '沙沙岩石',
+                        ability: '扬沙',
+                        moves: ['广域防守', '污泥波', '隐形岩', '大地之力']
+                    },
+                    {
+                        name: '基格尔德犬',
+                        level: 95,
+                        item: '气势披带',
+                        ability: '强击',
+                        moves: ['千波激荡', '剧毒牙', '尖石攻击', '近身战']
+                    },
+                    {
+                        name: 'M大钢蛇',
+                        level: 95,
+                        item: '吃剩的东西',
+                        ability: '多重鳞片',
+                        moves: ['钢铁之躯', '陀螺球', '广域防守', '十万马力']
+                    },
+                    {
+                        name: 'M超梦',
+                        level: 95,
+                        item: '破坏增幅',
+                        ability: '魔法防守',
+                        moves: ['精神突进', '制裁猛击', '暗影爪', '冰冻拳']
+                    },
+                    {
+                        name: '超神宝可梦',
+                        level: 95,
+                        item: '',
+                        ability: '',
+                        moves: ['未知', '未知', '未知', '未知']
+                    }
+                ]
+            },
+            {
+                title: '传承者 希嘉娜（二番战）',
+                battle_type: '三打',
+                item: '大师秘药*4',
+                pokemons: [
+                    {
+                        name: '帕路奇亚',
+                        level: 95,
+                        item: '速度果',
+                        ability: '强击',
+                        moves: ['亚空裂斩', '龙之逆鳞', '近身战', '暗影爪']
+                    },
+                    {
+                        name: '骑拉帝纳',
+                        level: 95,
+                        item: '吃剩的东西',
+                        ability: '无关天气',
+                        moves: ['暗影潜袭', '广域防守', '神之怒吼', '神威']
+                    },
+                    {
+                        name: '帝牙卢卡',
+                        level: 95,
+                        item: '突击背心',
+                        ability: '适应力',
+                        moves: ['时光咆哮', '力量宝石', '大地之力', '龙星群']
+                    },
+                    {
+                        name: '酋雷姆（焰白）',
+                        level: 95,
+                        item: '强力香草',
+                        ability: '双连击',
+                        moves: ['大地之力', '真实之焰', '极寒冷焰', '龙星群']
+                    },
+                    {
+                        name: '酋雷姆（暗黑）',
+                        level: 95,
+                        item: '强力香草',
+                        ability: '双连击',
+                        moves: ['理想闪电', '冰冻伏特', '龙之逆鳞', '神之怒吼']
+                    },
+                    {
+                        name: '阿尔宙斯',
+                        level: 95,
+                        item: '龙之石板',
+                        ability: '多属性',
+                        moves: ['制裁光砾', '冰封世界', '万箭毒射', '破灭之光']
+                    }
+                ]
+            }
+        ],
         '新增的传奇挑战！': [
+            {
+                title: '熔岩队首领 赤焰松（琉璃市内）',
+                battle_type: '轮盘',
+                item: '全能爆发*3',
+                pokemons: [
+                    {
+                        name: '席多蓝恩',
+                        level: 100,
+                        item: '讲究眼镜',
+                        ability: '飘浮',
+                        moves: ['熔岩风暴']
+                    },
+                    {
+                        name: '莱希拉姆',
+                        level: 100,
+                        item: '突击背心',
+                        ability: '加速',
+                        moves: ['真实之焰', '龙星群', '大地之力', '力量宝石']
+                    },
+                    {
+                        name: '波尔凯尼恩',
+                        level: 100,
+                        item: '吃剩的东西',
+                        ability: '纯朴',
+                        moves: ['蒸汽爆炸', '白雾', '大字爆炎', '神威']
+                    },
+                    {
+                        name: '炎帝',
+                        level: 100,
+                        item: '气势披带',
+                        ability: '适应力',
+                        moves: ['地震', '灭世之火', '龙神俯冲', '迅炎']
+                    },
+                    {
+                        name: '火焰鸟',
+                        level: 100,
+                        item: '抗岩果',
+                        ability: '日照',
+                        moves: ['灭世之火', '勇鸟猛攻', '迅炎', '羽栖']
+                    },
+                    {
+                        name: '赤波焰',
+                        level: 100,
+                        item: '生命宝珠',
+                        ability: '无防守',
+                        moves: ['打雷', '暴风雪', '加农水炮', '爆炸烈焰']
+                    }
+                ]
+            },
             {
                 title: '神奥冠军 希罗娜（水静市--商场右边小屋）',
                 battle_type: '双打',
@@ -3866,6 +4416,160 @@ export const reqYHNPC = (): BattleData => {
         ],
         '青梅/劲敌 详细阵容': [
             {
+                title: '宝可梦训练家 祐树/小遥（二番战）',
+                battle_type: '轮盘',
+                item: '全能爆发*4',
+                pokemons: [
+                    {
+                        name: '念力土偶',
+                        level: 52,
+                        item: '进化奇石',
+                        ability: '扬沙',
+                        moves: ['幻象光线', '大地之力', '隐形岩', '戏法空间']
+                    },
+                    {
+                        name: '嘎啦嘎啦',
+                        level: 52,
+                        item: '粗骨头',
+                        ability: '连续攻击',
+                        moves: ['骨棒乱打', '骨头回力镖', '岩石爆击', '守住']
+                    },
+                    {
+                        name: '鲶鱼王',
+                        level: 52,
+                        item: '吃剩的东西',
+                        ability: '单纯',
+                        moves: ['大地之力', '热水', '沙暴', '龙之舞']
+                    },
+                    {
+                        name: '太古盔甲',
+                        level: 52,
+                        item: '弱点保险',
+                        ability: '坚硬岩石',
+                        moves: ['虫突', '冲岩', '十字剪', '十万马力']
+                    },
+                    {
+                        name: '尼多王',
+                        level: 52,
+                        item: '生命宝珠',
+                        ability: '强行',
+                        moves: ['污泥波', '大地之力', '喷射火焰', '十万伏特']
+                    },
+                    {
+                        name: 'M巨沼怪',
+                        level: 52,
+                        item: '气势披带',
+                        ability: '拨沙',
+                        moves: ['水流喷射', '十万马力', '攀瀑', '冰冻拳']
+                    }
+                ]
+            },
+            {
+                title: '宝可梦训练家 祐树/小遥（三番战）',
+                battle_type: '轮盘',
+                item: '全能爆发2*4',
+                pokemons: [
+                    {
+                        name: '河马兽',
+                        level: 80,
+                        item: '吃剩的东西',
+                        ability: '扬沙',
+                        moves: ['十万马力', '哈欠', '隐形岩', '吹飞']
+                    },
+                    {
+                        name: '天蝎王',
+                        level: 80,
+                        item: '气势披带',
+                        ability: '拨沙',
+                        moves: ['十字毒刃', '地裂', '断头钳', '暗袭要害']
+                    },
+                    {
+                        name: '海兔兽',
+                        level: 80,
+                        item: '抗草果',
+                        ability: '引水',
+                        moves: ['浊流', '大地之力', '自我再生', '沙暴']
+                    },
+                    {
+                        name: '大朝北鼻',
+                        level: 80,
+                        item: '抗斗果',
+                        ability: '飘浮',
+                        moves: ['三重攻击', '力量宝石', '加农光炮', '大地之力']
+                    },
+                    {
+                        name: '爆炸头水牛',
+                        level: 80,
+                        item: '生命宝珠',
+                        ability: '坚硬脑袋',
+                        moves: ['波动冲', '超级角击', '突飞猛扑', '雪崩']
+                    },
+                    {
+                        name: 'M巨沼怪',
+                        level: 80,
+                        item: '气势披带',
+                        ability: '强击',
+                        moves: ['水流喷射', '千波激荡', '波动冲', '冰冻拳']
+                    }
+                ]
+            },
+            {
+                title: '宝可梦训练家 祐树/小遥（四番战）',
+                battle_type: '轮盘',
+                item: '全能爆发2*4',
+                pokemons: [
+                    {
+                        name: '超甲龙犀',
+                        level: 88,
+                        item: '突击背心',
+                        ability: '扬沙',
+                        moves: ['冰冻光束', '天龙之息', '岩石巨炮', '大地之力']
+                    },
+                    {
+                        name: '摇篮百合',
+                        level: 88,
+                        item: '吃剩的东西',
+                        ability: '引水',
+                        moves: ['终极吸取', '气象球', '寄生种子', '守住']
+                    },
+                    {
+                        name: '（男）盖诺赛克特',
+                        level: 88,
+                        item: '水流卡带',
+                        ability: '引火',
+                        moves: ['高科技光炮', '虫鸣', '磁铁轰炸', '种子闪光']
+                    },
+                    {
+                        name: '（女）星空妖皇',
+                        level: 88,
+                        item: '抗钢果',
+                        ability: '魔法反射',
+                        moves: ['磁铁轰炸', '大地神力', '治愈波动', '破灭之光']
+                    },
+                    {
+                        name: '泥偶巨灵',
+                        level: 88,
+                        item: '先制之爪',
+                        ability: '无防守',
+                        moves: ['暗影拳', '地裂', '爆裂拳', '影子偷袭']
+                    },
+                    {
+                        name: '雷吉斯奇鲁',
+                        level: 88,
+                        item: '异常果',
+                        ability: '纯朴',
+                        moves: ['磁铁轰炸', '力量宝石', '沙暴', '三重攻击']
+                    },
+                    {
+                        name: 'M巨沼怪',
+                        level: 88,
+                        item: '气势披带',
+                        ability: '拨沙',
+                        moves: ['水流喷射', '千波激荡', '波动冲', '雪崩']
+                    }
+                ]
+            },
+            {
                 title: '宝可梦训练家 满充',
                 battle_type: '一番战',
                 item: '单打，全能秘药*4',
@@ -4097,7 +4801,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['闪电之触', '大地神力', '龙星群', '伏特替换']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 58,
                         item: '强力香草',
                         ability: '双连击',
@@ -4153,7 +4857,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['胜利之炎', '制裁猛击', '精神突进', '迅炎']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 68,
                         item: '强力香草',
                         ability: '双连击',
@@ -4356,7 +5060,9 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['神秘之剑', '真空波', '根源波动', '冰封世界']
                     }
                 ]
-            },
+            }
+        ],
+        '二周目对战区 1-5道馆馆主': [
             {
                 title: '道馆馆主 杜娟（岩石）',
                 battle_type: '双打',
@@ -4489,7 +5195,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['神威', '怒雷', '治愈波动', '洁净光芒']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -4538,7 +5244,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['地焰爆裂', '千波激荡', '裁决之柱', '神之怒吼']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -4932,14 +5638,14 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['高科技光炮', '磁铁轰炸', '虫鸣', '怒雷']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
                         moves: ['冰冻伏特', '理想闪电', '制裁猛击', '千波激荡']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -5676,7 +6382,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['大地神力', '真实之焰', '极寒冷焰', '龙星群']
                     },
                     {
-                        name: '暗黑酋雷姆',
+                        name: '酋雷姆（暗黑）',
                         level: 100,
                         item: '强力香草',
                         ability: '双连击',
@@ -5693,6 +6399,55 @@ export const reqYHNPC = (): BattleData => {
             }
         ],
         '新增的传奇挑战！': [
+            {
+                title: '熔岩队首领 赤焰松',
+                battle_type: '轮盘',
+                item: '全能爆发3*4',
+                pokemons: [
+                    {
+                        name: '席多蓝恩',
+                        level: 100,
+                        item: '讲究眼镜',
+                        ability: '飘浮',
+                        moves: ['熔岩风暴']
+                    },
+                    {
+                        name: '莱希拉姆',
+                        level: 100,
+                        item: '突击背心',
+                        ability: '加速',
+                        moves: ['真实之焰', '龙星群', '大地神力', '钻石风暴']
+                    },
+                    {
+                        name: '波尔凯尼恩',
+                        level: 100,
+                        item: '吃剩的东西',
+                        ability: '引水',
+                        moves: ['蒸汽爆炸', '裁决之柱', '火山喷发', '神威']
+                    },
+                    {
+                        name: '炎帝',
+                        level: 100,
+                        item: '气势披带',
+                        ability: '适应力',
+                        moves: ['地震', '灭世之火', '龙神俯冲', '迅炎']
+                    },
+                    {
+                        name: '火焰鸟',
+                        level: 100,
+                        item: '抗岩果',
+                        ability: '日照',
+                        moves: ['灭世之火', '死亡之翼', '迅炎', '羽栖']
+                    },
+                    {
+                        name: 'M喷火驼',
+                        level: 100,
+                        item: '生命宝珠',
+                        ability: '强行',
+                        moves: ['火山喷发', '大地之力', '力量宝石', '哈欠']
+                    }
+                ]
+            },
             {
                 title: '神奥冠军 希罗娜（水静市--商场右边小屋）',
                 battle_type: '双打',
@@ -5967,7 +6722,7 @@ export const reqYHNPC = (): BattleData => {
                         moves: ['制裁光砾', '千波激荡', '亚空裂斩', '异次元洞']
                     },
                     {
-                        name: '焰白酋雷姆',
+                        name: '酋雷姆（焰白）',
                         level: 100,
                         item: '抗地果',
                         ability: '双连击',
