@@ -22,8 +22,8 @@
                 <div class="pokemon-title-wrapper">
                     <div
                         class="pokemon-title"
-                        :style="{ ...gradientStyle, ...getBorderStyle() }"
-                        :class="getBorderColorClass()"
+                        :style="{ ...gradientStyle, ...borderStyle }"
+                        :class="borderClass"
                     >
                         <div class="pokemon-title-left">
                             <div class="pokemon-name">
@@ -89,8 +89,8 @@
                 </div>
                 <div
                     class="details"
-                    :style="{ background: getColor(pokemon_info.属性[0]), ...getBorderStyle() }"
-                    :class="getBorderColorClass()"
+                    :style="{ background: getColor(pokemon_info.属性[0]), ...borderStyle }"
+                    :class="borderClass"
                 >
                     <div class="pokemon-header">
                         <div class="grade">
@@ -183,8 +183,8 @@
                 </div>
                 <div
                     class="weaknesses-container"
-                    :style="getBorderStyle()"
-                    :class="getBorderColorClass()"
+                    :style="borderStyle"
+                    :class="borderClass"
                 >
                     <div class="weaknesses-header">属性相性</div>
                     <div class="weaknesses-content">
@@ -220,8 +220,8 @@
                 <div
                     class="pokemon-method"
                     v-if="appearAreas.length > 0"
-                    :style="getBorderStyle()"
-                    :class="getBorderColorClass()"
+                    :style="borderStyle"
+                    :class="borderClass"
                 >
                     <div class="method-header">精灵分布</div>
                     <div class="method-content">
@@ -326,8 +326,8 @@
                 <div
                     class="pokemon-belongings"
                     v-if="pokemon_info.可能携带的物品.length !== 0"
-                    :style="getBorderStyle()"
-                    :class="getBorderColorClass()"
+                    :style="borderStyle"
+                    :class="borderClass"
                 >
                     <div class="belongings-header">携带物品</div>
                     <div class="belongings-content">
@@ -341,7 +341,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="pokemon-moves" :style="getBorderStyle()" :class="getBorderColorClass()">
+                <div class="pokemon-moves" :style="borderStyle" :class="borderClass">
                     <div style="position: relative; text-align: center">
                         <div class="moves-header">{{ movesTitle }}</div>
                         <div
@@ -434,7 +434,7 @@ const drawer = ref(false);
 // 特性选择抽屉
 const abilityDrawer = ref(false);
 // 宝可梦信息
-let pokemon_info: any = reactive({
+const defaultPokemonInfo = {
     编号: '001',
     名称: '妙蛙种子',
     进化阶段: 1,
@@ -452,8 +452,9 @@ let pokemon_info: any = reactive({
     蛋群: ['怪兽', '植物'],
     孵蛋周期: 5,
     canUseEvolutionStone: false // 初始化属性
-});
-pokemon_info = pokemonStore.Pokemon;
+};
+const pokemon_info: any = reactive({ ...defaultPokemonInfo });
+Object.assign(pokemon_info, pokemonStore.Pokemon || {});
 // 种族值信息表
 let RaceValue = ref(['HP', 'AT', 'DF', 'SA', 'SD', 'SP']);
 // 等级性格
@@ -463,7 +464,7 @@ let RankCharacter = reactive({
 });
 
 // 获取进化方式
-let evolves = pokemonStore.getEvolveByName(pokemon_info.名称);
+const evolves = ref<any[]>(pokemonStore.getEvolveByName(pokemon_info.名称) || []);
 
 const maxValue = 31; // 最大值
 const minValue = 0; // 最小值
@@ -772,19 +773,27 @@ const toggleEggMoves = () => {
 
 let moves: any = ref([]);
 // 获取位置
-let appearAreas: any = ref([]);
+const appearAreas = ref<any[]>([]);
+
+const normalizeCurrentPokemon = () => {
+    pokemon_info.old_pokemon_name = pokemon_info.名称;
+    pokemon_info.名称 = processPokemonName(pokemon_info.名称);
+    pokemon_info.canUseEvolutionStone = canUseStoneFinalForms.includes(
+        pokemon_info.名称.replace(/（.*）/, '').trim()
+    );
+};
+
+const syncDetailData = () => {
+    attributeList1();
+    getMoves();
+    normalizeCurrentPokemon();
+    evolves.value = pokemonStore.getEvolveByName(pokemon_info.old_pokemon_name || pokemon_info.名称) || [];
+    appearAreas.value = getAppearAreas(pokemon_info.old_pokemon_name || pokemon_info.名称);
+};
 onMounted(() => {
     // 初始化
     updateAllAbilities();
-    // 计算属性相性
-    attributeList1();
-
-    getMoves();
-
-    pokemon_info.old_pokemon_name = pokemon_info.名称;
-    pokemon_info.名称 = processPokemonName(pokemon_info.名称);
-    // 精灵捕获位置
-    appearAreas = getAppearAreas(pokemon_info.old_pokemon_name);
+    syncDetailData();
 
     // 添加键盘事件监听
     document.addEventListener('keydown', handleKeyDown);
@@ -938,6 +947,8 @@ const gradientStyle = computed(() => ({
 const gradientHttp = computed(() => ({
     background: `linear-gradient(60deg, ${getColor(pokemon_info.属性[0])}, ${getColor(pokemon_info.属性[1])})`
 }));
+const borderStyle = computed(() => getBorderStyle());
+const borderClass = computed(() => getBorderColorClass());
 // 修改种族值
 const updateIndividual = (event: any, index: number) => {
     let value = event.target.innerText.trim();
@@ -1025,7 +1036,7 @@ const optionNature = (row: any) => {
 };
 
 // 属性克制关系
-let shuxing: any[] = [];
+const shuxing = ref<any[]>([]);
 // 属性匹配表
 const attributeList = {
     1: '一般',
@@ -1074,7 +1085,7 @@ const attributeList1 = () => {
         for (const [key, val] of Object.entries(attributeList)) {
             // 若找到匹配的值，则返回其对应的键
             if (val === pokemon_info.属性[0]) {
-                shuxing = attributeRestraintRelationship[key];
+                shuxing.value = attributeRestraintRelationship[key];
                 return;
             }
         }
@@ -1095,7 +1106,7 @@ const attributeList1 = () => {
         for (let i = 0; i < list1.length; i++) {
             list3.push(list1[i] * list2[i]);
         }
-        shuxing = list3;
+        shuxing.value = list3;
     }
 };
 
@@ -1296,26 +1307,7 @@ const handlePageChange = (page: number) => {
     IndividualValue.value = [31, 31, 31, 31, 31, 31];
     EffortValue.value = [0, 0, 0, 0, 0, 0];
 
-    // 重新计算属性相性
-    attributeList1();
-
-    // 同步更新moves
-    if (!isNaN(Number(pokemon_info.编号)) && !pokemon_info.编号.includes('_')) {
-        moves.value = pokemonStore.getPokemonMovesByNumber(String(Number(pokemon_info.编号)));
-    } else {
-        moves.value = pokemonStore.getPokemonMovesByNumber(pokemon_info.编号);
-    }
-
-    // 同步更新evolves
-    evolves = pokemonStore.getEvolveByName(pokemon_info.名称);
-
-    // 更新精灵捕获位置
-    appearAreas = getAppearAreas(pokemon_info.old_pokemon_name || pokemon_info.名称);
-
-    // 更新进化奇石状态
-    pokemon_info.canUseEvolutionStone = canUseStoneFinalForms.includes(
-        pokemon_info.名称.replace(/（.*）/, '').trim()
-    );
+    syncDetailData();
 
     // 重新计算能力值
     nextTick(() => {
@@ -1401,6 +1393,7 @@ const handleAreaJump = (areaName: string) => {
     display: flex;
     flex-direction: column;
     align-items: center;
+    animation: detailFadeIn 0.28s ease-out;
 }
 
 .page-indicator {
@@ -2384,6 +2377,17 @@ const handleAreaJump = (areaName: string) => {
     }
     100% {
         transform: rotate(360deg);
+    }
+}
+
+@keyframes detailFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
