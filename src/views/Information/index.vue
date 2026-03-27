@@ -17,8 +17,8 @@
         @mouseleave="handleMouseUp"
     >
         <!-- 翻页动画容器 -->
-        <div class="page-container" :style="pageContainerStyle">
-            <div class="page-content" :style="pageContentStyle">
+        <div class="page-container" :style="pageContainerStyle" :class="pageContainerClass">
+            <div class="page-content" :style="pageContentStyle" :class="pageTransitionClass">
                 <div class="pokemon-title-wrapper">
                     <div
                         class="pokemon-title"
@@ -429,6 +429,7 @@ const areaStore = useAreaStore();
 let $router = useRouter();
 // 获取精灵数据仓库
 const pokemonStore = usePokemonStore();
+const allAreas = getAreas();
 // 性格选择抽屉
 const drawer = ref(false);
 // 特性选择抽屉
@@ -774,6 +775,10 @@ const toggleEggMoves = () => {
 let moves: any = ref([]);
 // 获取位置
 const appearAreas = ref<any[]>([]);
+const appearAreasCache = new Map<
+    string,
+    Array<{ area: string; method: string; level: string | number; rate: string }>
+>();
 
 const normalizeCurrentPokemon = () => {
     pokemon_info.old_pokemon_name = pokemon_info.名称;
@@ -790,6 +795,16 @@ const syncDetailData = () => {
     evolves.value = pokemonStore.getEvolveByName(pokemon_info.old_pokemon_name || pokemon_info.名称) || [];
     appearAreas.value = getAppearAreas(pokemon_info.old_pokemon_name || pokemon_info.名称);
 };
+
+const maxPokemonIndex = Math.max(
+    ...pokemonStore.PokemonList.map(item => Number(String(item.编号).split('_')[0]) || 0)
+);
+
+const getCurrentPokemonIndex = () => {
+    const currentId = String(pokemon_info.编号 || '').split('_')[0];
+    const parsed = Number(currentId);
+    return Number.isFinite(parsed) && parsed > 0 ? parsed : 1;
+};
 onMounted(() => {
     // 初始化
     updateAllAbilities();
@@ -801,6 +816,15 @@ onMounted(() => {
 
 // 键盘事件处理
 const handleKeyDown = (event: KeyboardEvent) => {
+    const activeElement = document.activeElement as HTMLElement | null;
+    if (
+        activeElement &&
+        (activeElement.isContentEditable ||
+            ['INPUT', 'TEXTAREA', 'SELECT'].includes(activeElement.tagName))
+    ) {
+        return;
+    }
+
     if (event.key === 'ArrowLeft') {
         loadPreviousPokemonPage();
     } else if (event.key === 'ArrowRight') {
@@ -811,7 +835,38 @@ const handleKeyDown = (event: KeyboardEvent) => {
 // 组件卸载时清理事件监听器
 onUnmounted(() => {
     document.removeEventListener('keydown', handleKeyDown);
+    if (edgeFeedbackTimer) {
+        clearTimeout(edgeFeedbackTimer);
+        edgeFeedbackTimer = null;
+    }
+    if (pageTransitionTimer) {
+        clearTimeout(pageTransitionTimer);
+        pageTransitionTimer = null;
+    }
 });
+
+const triggerEdgeFeedback = (direction: 'left' | 'right') => {
+    dragOffset.value = direction === 'left' ? -20 : 20;
+    edgeFeedbackClass.value = direction === 'left' ? 'edge-left' : 'edge-right';
+
+    if (edgeFeedbackTimer) {
+        clearTimeout(edgeFeedbackTimer);
+    }
+    edgeFeedbackTimer = setTimeout(() => {
+        dragOffset.value = 0;
+        edgeFeedbackClass.value = '';
+    }, 220);
+};
+
+const applyPageTransition = (direction: 'forward' | 'backward') => {
+    pageTransitionClass.value = direction === 'forward' ? 'slide-forward' : 'slide-backward';
+    if (pageTransitionTimer) {
+        clearTimeout(pageTransitionTimer);
+    }
+    pageTransitionTimer = setTimeout(() => {
+        pageTransitionClass.value = '';
+    }, 240);
+};
 
 const getMoves = () => {
     if (!isNaN(Number(pokemon_info.编号)) && !pokemon_info.编号.includes('_')) {
@@ -1135,6 +1190,10 @@ let isDragging = ref(false); // 是否正在进行拖动
 let dragDirection = ref(''); // 拖拽方向
 let dragOffset = ref(0); // 拖拽偏移量
 let isMouseDown = ref(false); // 鼠标按下状态
+const edgeFeedbackClass = ref('');
+let edgeFeedbackTimer: ReturnType<typeof setTimeout> | null = null;
+const pageTransitionClass = ref('');
+let pageTransitionTimer: ReturnType<typeof setTimeout> | null = null;
 
 const MIN_SWIPE_DISTANCE = 50; // 设置最小滑动距离，单位为像素
 const MAX_DRAG_OFFSET = 200; // 最大拖拽偏移量
@@ -1144,6 +1203,10 @@ const pageContainerStyle = computed(() => ({
     transform: `translateX(${dragOffset.value}px)`,
     transition: isDragging.value ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
     opacity: isDragging.value ? Math.max(0.7, 1 - Math.abs(dragOffset.value) / 300) : 1
+}));
+const pageContainerClass = computed(() => ({
+    dragging: isDragging.value,
+    [edgeFeedbackClass.value]: !!edgeFeedbackClass.value
 }));
 
 const pageContentStyle = computed(() => ({
@@ -1275,25 +1338,30 @@ const handleMouseUp = () => {
 };
 
 function loadNextPokemonPage() {
-    console.log('加载下一页的精灵');
-    // 实现具体的逻辑，例如请求新的数据
-    if (pokemon_info.编号.includes('_')) {
-        pokemon_info.编号 = pokemon_info.编号.split('_')[0];
+    const current = getCurrentPokemonIndex();
+    if (current >= maxPokemonIndex) {
+        triggerEdgeFeedback('left');
+        return;
     }
-    handlePageChange(Number(pokemon_info.编号) + 1);
+    const nextPage = current + 1;
+    handlePageChange(nextPage, 'forward');
 }
 
 function loadPreviousPokemonPage() {
-    console.log('加载上一页的精灵');
-    // 实现具体的逻辑，例如请求新的数据
-    if (pokemon_info.编号.includes('_')) {
-        pokemon_info.编号 = pokemon_info.编号.split('_')[0];
+    const current = getCurrentPokemonIndex();
+    if (current <= 1) {
+        triggerEdgeFeedback('right');
+        return;
     }
-    handlePageChange(Number(pokemon_info.编号) - 1);
+    const prevPage = current - 1;
+    handlePageChange(prevPage, 'backward');
 }
 
 // 翻页更新数据
-const handlePageChange = (page: number) => {
+const handlePageChange = (page: number, direction: 'forward' | 'backward' = 'forward') => {
+    if (!Number.isFinite(page) || page < 1 || page > maxPokemonIndex) return;
+    applyPageTransition(direction);
+
     // 重置拖拽状态
     isDragging.value = false;
     dragOffset.value = 0;
@@ -1317,16 +1385,22 @@ const handlePageChange = (page: number) => {
 // 跳转进化后形态
 const handleNextStageInfo = (nextStageName: string | undefined) => {
     const id = pokemonStore.getPokemonIdByName(nextStageName);
-    handlePageChange(Number(id));
+    const target = Number(id);
+    const current = getCurrentPokemonIndex();
+    handlePageChange(target, target >= current ? 'forward' : 'backward');
 };
 
 // 新增：根据宝可梦名反查所有出现地区和方式
 const getAppearAreas = (pokemonName: string) => {
-    const areas = getAreas();
+    if (!pokemonName) return [];
+    if (appearAreasCache.has(pokemonName)) {
+        return appearAreasCache.get(pokemonName)!;
+    }
+
     const result: Array<{ area: string; method: string; level: string | number; rate: string }> =
         [];
-    for (const area in areas) {
-        const weatherConditions = areas[area];
+    for (const area in allAreas) {
+        const weatherConditions = allAreas[area];
         for (const weather in weatherConditions) {
             const methods = weatherConditions[weather];
             for (const method in methods) {
@@ -1347,7 +1421,7 @@ const getAppearAreas = (pokemonName: string) => {
         }
     }
     const seenIds = new Set<string>();
-    return result.filter(r => {
+    const deduplicated = result.filter(r => {
         if (seenIds.has(r.area)) {
             return false;
         } else {
@@ -1355,14 +1429,15 @@ const getAppearAreas = (pokemonName: string) => {
             return true;
         }
     });
+    appearAreasCache.set(pokemonName, deduplicated);
+    return deduplicated;
 };
 
 // 跳转到地区详情
 const handleAreaJump = (areaName: string) => {
-    const areas = getAreas();
     areaStore.areaName = areaName;
     // 传递完整的天气条件对象
-    areaStore.sharedData = areas[areaName] || {};
+    areaStore.sharedData = allAreas[areaName] || {};
     $router.push('/areas/area_info');
 };
 </script>
@@ -1394,6 +1469,14 @@ const handleAreaJump = (areaName: string) => {
     flex-direction: column;
     align-items: center;
     animation: detailFadeIn 0.28s ease-out;
+}
+
+.page-content.slide-forward {
+    animation: detailSlideForward 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.page-content.slide-backward {
+    animation: detailSlideBackward 0.24s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .page-indicator {
@@ -1442,6 +1525,11 @@ const handleAreaJump = (areaName: string) => {
 
 .page-container.dragging {
     filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
+}
+
+.page-container.edge-left,
+.page-container.edge-right {
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* 确保所有容器都有正确的对齐 */
@@ -2388,6 +2476,28 @@ const handleAreaJump = (areaName: string) => {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes detailSlideForward {
+    from {
+        opacity: 0.72;
+        transform: translateX(18px) scale(0.985);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes detailSlideBackward {
+    from {
+        opacity: 0.72;
+        transform: translateX(-18px) scale(0.985);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
     }
 }
 
