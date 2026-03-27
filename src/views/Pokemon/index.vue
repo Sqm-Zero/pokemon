@@ -173,7 +173,7 @@ const clearFilter = () => {
             .search-wrapper {
                 width: 90%;
                 max-width: 600px;
-                margin-top: -5px;
+                margin-top: 2px;
             }
         }
     }
