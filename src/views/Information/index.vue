@@ -18,7 +18,7 @@
     >
         <!-- 翻页动画容器 -->
         <div class="page-container" :style="pageContainerStyle" :class="pageContainerClass">
-            <div class="page-content" :style="pageContentStyle" :class="pageTransitionClass">
+            <div class="page-content" :style="pageContentStyle">
                 <div class="pokemon-title-wrapper">
                     <div
                         class="pokemon-title"
@@ -408,11 +408,6 @@
             </div>
         </el-drawer>
 
-        <!-- 翻页指示器 -->
-        <div class="page-indicator" v-if="isDragging">
-            <div class="indicator-dot" :class="{ active: dragDirection === 'left' }"></div>
-            <div class="indicator-dot" :class="{ active: dragDirection === 'right' }"></div>
-        </div>
     </div>
 </template>
 
@@ -839,33 +834,17 @@ onUnmounted(() => {
         clearTimeout(edgeFeedbackTimer);
         edgeFeedbackTimer = null;
     }
-    if (pageTransitionTimer) {
-        clearTimeout(pageTransitionTimer);
-        pageTransitionTimer = null;
-    }
 });
 
 const triggerEdgeFeedback = (direction: 'left' | 'right') => {
-    dragOffset.value = direction === 'left' ? -20 : 20;
     edgeFeedbackClass.value = direction === 'left' ? 'edge-left' : 'edge-right';
 
     if (edgeFeedbackTimer) {
         clearTimeout(edgeFeedbackTimer);
     }
     edgeFeedbackTimer = setTimeout(() => {
-        dragOffset.value = 0;
         edgeFeedbackClass.value = '';
     }, 220);
-};
-
-const applyPageTransition = (direction: 'forward' | 'backward') => {
-    pageTransitionClass.value = direction === 'forward' ? 'slide-forward' : 'slide-backward';
-    if (pageTransitionTimer) {
-        clearTimeout(pageTransitionTimer);
-    }
-    pageTransitionTimer = setTimeout(() => {
-        pageTransitionClass.value = '';
-    }, 240);
 };
 
 const getMoves = () => {
@@ -1190,29 +1169,36 @@ let isDragging = ref(false); // 是否正在进行拖动
 let dragDirection = ref(''); // 拖拽方向
 let dragOffset = ref(0); // 拖拽偏移量
 let isMouseDown = ref(false); // 鼠标按下状态
+let gestureLock: 'none' | 'horizontal' | 'vertical' = 'none';
 const edgeFeedbackClass = ref('');
 let edgeFeedbackTimer: ReturnType<typeof setTimeout> | null = null;
-const pageTransitionClass = ref('');
-let pageTransitionTimer: ReturnType<typeof setTimeout> | null = null;
 
-const MIN_SWIPE_DISTANCE = 50; // 设置最小滑动距离，单位为像素
+const MIN_SWIPE_DISTANCE = 72; // iOS风格：更高阈值，减少误触
 const MAX_DRAG_OFFSET = 200; // 最大拖拽偏移量
+const GESTURE_DEAD_ZONE = 12; // 手势识别死区
+const HORIZONTAL_LOCK_RATIO = 1.45; // 横向锁定判定
+const VERTICAL_LOCK_RATIO = 1.2; // 纵向锁定判定
 
 // 页面容器样式
 const pageContainerStyle = computed(() => ({
-    transform: `translateX(${dragOffset.value}px)`,
-    transition: isDragging.value ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-    opacity: isDragging.value ? Math.max(0.7, 1 - Math.abs(dragOffset.value) / 300) : 1
+    transition: 'none'
 }));
 const pageContainerClass = computed(() => ({
     dragging: isDragging.value,
     [edgeFeedbackClass.value]: !!edgeFeedbackClass.value
 }));
-
 const pageContentStyle = computed(() => ({
-    transform: `scale(${isDragging.value ? Math.max(0.95, 1 - Math.abs(dragOffset.value) / 1000) : 1})`,
-    transition: isDragging.value ? 'none' : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
+    transform: `translate3d(${dragOffset.value}px, 0, 0)`,
+    transition: isDragging.value ? 'none' : 'transform 220ms cubic-bezier(0.22, 0.61, 0.36, 1)'
 }));
+
+const getDampedOffset = (deltaX: number) => {
+    const sign = Math.sign(deltaX) || 1;
+    const abs = Math.min(Math.abs(deltaX), MAX_DRAG_OFFSET);
+    // 更明显的 iOS 弹性：前段更跟手，后段更阻尼
+    const damped = abs * 0.28 * (1 - abs / (MAX_DRAG_OFFSET * 1.2));
+    return sign * damped;
+};
 
 let startY = 0;
 // 触摸开始
@@ -1225,6 +1211,7 @@ const handleTouchStart = (event: TouchEvent) => {
     isDragging.value = false;
     dragOffset.value = 0;
     dragDirection.value = '';
+    gestureLock = 'none';
 };
 
 // 触摸移动
@@ -1233,21 +1220,33 @@ const handleTouchMove = (event: TouchEvent) => {
     const currentY = event.touches[0].clientY;
     const deltaX = currentX - startX;
     const deltaY = currentY - startY;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
 
-    // 如果垂直滑动距离明显大于水平滑动，则忽略拖拽
-    if (Math.abs(deltaY) * 2 > Math.abs(deltaX)) {
-        return;
+    if (gestureLock === 'none') {
+        if (absX < GESTURE_DEAD_ZONE && absY < GESTURE_DEAD_ZONE) return;
+        if (absY > absX * VERTICAL_LOCK_RATIO) {
+            gestureLock = 'vertical';
+            return;
+        }
+        if (absX > absY * HORIZONTAL_LOCK_RATIO) {
+            gestureLock = 'horizontal';
+        } else {
+            return;
+        }
     }
 
+    if (gestureLock === 'vertical') return;
+
     // 只有水平滑动距离足够大时才启动拖拽
-    if (!isDragging.value && Math.abs(deltaX) > 15) {
+    if (!isDragging.value && absX > 18) {
         isDragging.value = true;
     }
 
     if (isDragging.value) {
+        event.preventDefault();
         endX = currentX;
-        // 限制拖拽范围
-        dragOffset.value = Math.max(-MAX_DRAG_OFFSET, Math.min(MAX_DRAG_OFFSET, deltaX));
+        dragOffset.value = getDampedOffset(deltaX);
         dragDirection.value = deltaX > 0 ? 'right' : 'left';
     }
 };
@@ -1271,6 +1270,7 @@ const handleTouchEnd = () => {
     isDragging.value = false;
     dragOffset.value = 0;
     dragDirection.value = '';
+    gestureLock = 'none';
 };
 
 // 鼠标事件处理
@@ -1285,6 +1285,7 @@ const handleMouseDown = (event: MouseEvent) => {
     isDragging.value = false;
     dragOffset.value = 0;
     dragDirection.value = '';
+    gestureLock = 'none';
     event.preventDefault(); // 只对非编辑区域阻止默认行为
 };
 
@@ -1295,20 +1296,32 @@ const handleMouseMove = (event: MouseEvent) => {
     const currentY = event.clientY;
     const deltaX = currentX - startX;
     const deltaY = currentY - startY;
+    const absX = Math.abs(deltaX);
+    const absY = Math.abs(deltaY);
 
-    // 如果垂直滑动距离明显大于水平滑动，则忽略拖拽
-    if (Math.abs(deltaY) * 2 > Math.abs(deltaX)) {
-        return;
+    if (gestureLock === 'none') {
+        if (absX < GESTURE_DEAD_ZONE && absY < GESTURE_DEAD_ZONE) return;
+        if (absY > absX * VERTICAL_LOCK_RATIO) {
+            gestureLock = 'vertical';
+            return;
+        }
+        if (absX > absY * HORIZONTAL_LOCK_RATIO) {
+            gestureLock = 'horizontal';
+        } else {
+            return;
+        }
     }
 
+    if (gestureLock === 'vertical') return;
+
     // 只有水平滑动距离足够大时才启动拖拽
-    if (!isDragging.value && Math.abs(deltaX) > 15) {
+    if (!isDragging.value && absX > 18) {
         isDragging.value = true;
     }
 
     if (isDragging.value) {
         endX = currentX;
-        dragOffset.value = Math.max(-MAX_DRAG_OFFSET, Math.min(MAX_DRAG_OFFSET, deltaX));
+        dragOffset.value = getDampedOffset(deltaX);
         dragDirection.value = deltaX > 0 ? 'right' : 'left';
     }
 };
@@ -1335,6 +1348,7 @@ const handleMouseUp = () => {
     isDragging.value = false;
     dragOffset.value = 0;
     dragDirection.value = '';
+    gestureLock = 'none';
 };
 
 function loadNextPokemonPage() {
@@ -1344,7 +1358,7 @@ function loadNextPokemonPage() {
         return;
     }
     const nextPage = current + 1;
-    handlePageChange(nextPage, 'forward');
+    handlePageChange(nextPage);
 }
 
 function loadPreviousPokemonPage() {
@@ -1354,13 +1368,12 @@ function loadPreviousPokemonPage() {
         return;
     }
     const prevPage = current - 1;
-    handlePageChange(prevPage, 'backward');
+    handlePageChange(prevPage);
 }
 
 // 翻页更新数据
-const handlePageChange = (page: number, direction: 'forward' | 'backward' = 'forward') => {
+const handlePageChange = (page: number) => {
     if (!Number.isFinite(page) || page < 1 || page > maxPokemonIndex) return;
-    applyPageTransition(direction);
 
     // 重置拖拽状态
     isDragging.value = false;
@@ -1385,9 +1398,7 @@ const handlePageChange = (page: number, direction: 'forward' | 'backward' = 'for
 // 跳转进化后形态
 const handleNextStageInfo = (nextStageName: string | undefined) => {
     const id = pokemonStore.getPokemonIdByName(nextStageName);
-    const target = Number(id);
-    const current = getCurrentPokemonIndex();
-    handlePageChange(target, target >= current ? 'forward' : 'backward');
+    handlePageChange(Number(id));
 };
 
 // 新增：根据宝可梦名反查所有出现地区和方式
@@ -1459,6 +1470,8 @@ const handleAreaJump = (areaName: string) => {
     height: 100%;
     position: relative;
     will-change: transform;
+    overflow: hidden;
+    background: inherit;
 }
 
 .page-content {
@@ -1471,43 +1484,6 @@ const handleAreaJump = (areaName: string) => {
     animation: detailFadeIn 0.28s ease-out;
 }
 
-.page-content.slide-forward {
-    animation: detailSlideForward 0.24s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.page-content.slide-backward {
-    animation: detailSlideBackward 0.24s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.page-indicator {
-    position: fixed;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    z-index: 1000;
-    pointer-events: none;
-}
-
-.indicator-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-    border: 2px solid rgba(255, 255, 255, 0.8);
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-.indicator-dot.active {
-    background-color: #3498db;
-    border-color: #2980b9;
-    transform: scale(1.2);
-    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.4);
-}
-
 /* 拖拽时的视觉反馈 */
 .pokemon-info:active {
     cursor: grabbing;
@@ -1517,19 +1493,13 @@ const handleAreaJump = (areaName: string) => {
     cursor: grab;
 }
 
-/* 拖拽时的阴影效果 */
-.page-container {
-    filter: drop-shadow(0 0 0 transparent);
-    transition: filter 0.3s ease;
+/* 边界反馈：仅内部内容轻推，不移动容器，避免露白边 */
+.page-container.edge-left .page-content {
+    animation: edgeNudgeLeft 0.18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.page-container.dragging {
-    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.2));
-}
-
-.page-container.edge-left,
-.page-container.edge-right {
-    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+.page-container.edge-right .page-content {
+    animation: edgeNudgeRight 0.18s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* 确保所有容器都有正确的对齐 */
@@ -1581,7 +1551,7 @@ const handleAreaJump = (areaName: string) => {
     flex-direction: row;
     width: 100%;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(58, 50, 50, 0.1);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.14);
     padding: 20px;
     justify-content: space-between;
     align-items: center;
@@ -1676,55 +1646,12 @@ const handleAreaJump = (areaName: string) => {
     width: 95%;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.14);
     margin: 10px auto;
     padding: 15px;
     transition: background-color 0.3s ease;
     position: relative;
     overflow: hidden;
-
-    /* 流光边框效果 */
-    &::before {
-        content: '';
-        position: absolute;
-        top: -8px;
-        left: -8px;
-        right: -8px;
-        bottom: -8px;
-        border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 0.9)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.9)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 0.9)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.9)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
-        animation: rotate 2.5s linear infinite;
-        z-index: 1;
-    }
-
-    /* 内层背景 */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 10px;
-        background: inherit;
-        z-index: 2;
-    }
-
-    /* 确保内容在流光边框之上 */
-    > * {
-        position: relative;
-        z-index: 3;
-    }
 
     .pokemon-header {
         display: flex;
@@ -1874,56 +1801,13 @@ const handleAreaJump = (areaName: string) => {
     width: 95%;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
     padding: 20px;
     margin: 10px auto;
     font-size: 0.9em;
     color: #333;
     position: relative;
     overflow: hidden;
-
-    /* 流光边框效果 */
-    &::before {
-        content: '';
-        position: absolute;
-        top: -8px;
-        left: -8px;
-        right: -8px;
-        bottom: -8px;
-        border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 0.8)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.8)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 0.8)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.8)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
-        animation: rotate 2.5s linear infinite;
-        z-index: 1;
-    }
-
-    /* 内层背景 */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 10px;
-        background: inherit;
-        z-index: 2;
-    }
-
-    /* 确保内容在流光边框之上 */
-    > * {
-        position: relative;
-        z-index: 3;
-    }
 
     .weaknesses-header {
         padding-bottom: 10px;
@@ -1976,54 +1860,11 @@ const handleAreaJump = (areaName: string) => {
     width: 95%;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
     padding: 20px;
     margin: 10px auto;
     position: relative;
     overflow: hidden;
-
-    /* 流光边框效果 */
-    &::before {
-        content: '';
-        position: absolute;
-        top: -8px;
-        left: -8px;
-        right: -8px;
-        bottom: -8px;
-        border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 0.7)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.7)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 0.7)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.7)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
-        animation: rotate 2.5s linear infinite;
-        z-index: 1;
-    }
-
-    /* 内层背景 */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 10px;
-        background: inherit;
-        z-index: 2;
-    }
-
-    /* 确保内容在流光边框之上 */
-    > * {
-        position: relative;
-        z-index: 3;
-    }
 
     .method-header {
         padding-bottom: 10px;
@@ -2064,54 +1905,11 @@ const handleAreaJump = (areaName: string) => {
     width: 95%;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
     padding: 20px;
     margin: 10px auto;
     position: relative;
     overflow: hidden;
-
-    /* 流光边框效果 */
-    &::before {
-        content: '';
-        position: absolute;
-        top: -8px;
-        left: -8px;
-        right: -8px;
-        bottom: -8px;
-        border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
-        animation: rotate 2.5s linear infinite;
-        z-index: 1;
-    }
-
-    /* 内层背景 */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 10px;
-        background: inherit;
-        z-index: 2;
-    }
-
-    /* 确保内容在流光边框之上 */
-    > * {
-        position: relative;
-        z-index: 3;
-    }
 
     .belongings-header {
         padding-bottom: 10px;
@@ -2153,54 +1951,11 @@ const handleAreaJump = (areaName: string) => {
     width: 95%;
     background-color: #fff;
     border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
     padding: 20px;
     margin: 10px auto;
     position: relative;
     overflow: hidden;
-
-    /* 流光边框效果 */
-    &::before {
-        content: '';
-        position: absolute;
-        top: -8px;
-        left: -8px;
-        right: -8px;
-        bottom: -8px;
-        border-radius: 18px;
-        background: conic-gradient(
-            from 0deg,
-            transparent 0deg,
-            var(--primary-color, rgba(78, 205, 78, 0.6)) 45deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.6)) 90deg,
-            transparent 135deg,
-            var(--primary-color, rgba(78, 205, 78, 0.6)) 180deg,
-            var(--secondary-color, rgba(34, 139, 34, 0.6)) 225deg,
-            transparent 270deg,
-            transparent 360deg
-        );
-        animation: rotate 2.5s linear infinite;
-        z-index: 1;
-    }
-
-    /* 内层背景 */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 10px;
-        background: inherit;
-        z-index: 2;
-    }
-
-    /* 确保内容在流光边框之上 */
-    > * {
-        position: relative;
-        z-index: 3;
-    }
 
     .moves-header {
         padding-bottom: 10px;
@@ -2339,52 +2094,13 @@ const handleAreaJump = (areaName: string) => {
 
 .pokemon-image {
     width: 18vw;
-    padding: 3px;
+    padding: 2px;
     object-fit: contain;
-    border: 4px solid transparent;
+    border: none;
     z-index: 1;
     border-radius: 50%;
-    background-clip: padding-box, border-box;
-    background-origin: padding-box, border-box;
-    background-image: linear-gradient(#fff, #fff), linear-gradient(to right, #f06, #4a90e2);
-    position: relative;
-    overflow: hidden;
-
-    /* 流光边框效果 */
-    &::before {
-        content: '';
-        position: absolute;
-        top: -6px;
-        left: -6px;
-        right: -6px;
-        bottom: -6px;
-        border-radius: 50%;
-        background: conic-gradient(
-            from 0deg,
-            transparent,
-            rgba(78, 205, 78, 0.8),
-            rgba(34, 139, 34, 0.8),
-            transparent,
-            rgba(78, 205, 78, 0.8),
-            rgba(34, 139, 34, 0.8),
-            transparent
-        );
-        animation: rotate 3s linear infinite;
-        z-index: -1;
-    }
-
-    /* 内层边框 */
-    &::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        border-radius: 50%;
-        background: inherit;
-        z-index: 1;
-    }
+    background: transparent;
+    box-shadow: none;
 }
 
 .pokemon-name {
@@ -2479,25 +2195,23 @@ const handleAreaJump = (areaName: string) => {
     }
 }
 
-@keyframes detailSlideForward {
-    from {
-        opacity: 0.72;
-        transform: translateX(18px) scale(0.985);
+@keyframes edgeNudgeLeft {
+    0%,
+    100% {
+        transform: translateX(0);
     }
-    to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
+    50% {
+        transform: translateX(-6px);
     }
 }
 
-@keyframes detailSlideBackward {
-    from {
-        opacity: 0.72;
-        transform: translateX(-18px) scale(0.985);
+@keyframes edgeNudgeRight {
+    0%,
+    100% {
+        transform: translateX(0);
     }
-    to {
-        opacity: 1;
-        transform: translateX(0) scale(1);
+    50% {
+        transform: translateX(6px);
     }
 }
 
