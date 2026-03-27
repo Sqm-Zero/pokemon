@@ -79,7 +79,11 @@
                             </div>
                         </div>
                         <div class="pokemon-title-right">
-                            <img :src="getImageSrc(pokemon_info.编号)" alt="" />
+                            <img
+                                :src="getImageSrc(pokemon_info.编号)"
+                                alt=""
+                                :style="{ 'view-transition-name': `poke-${pokemon_info.编号}` }"
+                            />
                         </div>
                     </div>
                 </div>

@@ -86,8 +86,9 @@ const handleClick = (pokemon: Pokemon) => {
     }
 
     // 执行带动画的跳转
-    document.startViewTransition(() => {
-        $router.push('/pokemon/info');
+    document.startViewTransition(async () => {
+        await $router.push('/pokemon/info');
+        await nextTick();
     });
 };
 

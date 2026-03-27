@@ -1,7 +1,13 @@
 <template>
     <div class="T_container" :style="{background: color}">
         <div class="left">
-            <SvgIcon @click="$router.push(router)" name="ArrowLeft" height="30px" width="30px" color="#00bfff"></SvgIcon>
+            <SvgIcon
+                @click="handleBack"
+                name="ArrowLeft"
+                height="30px"
+                width="30px"
+                color="#00bfff"
+            ></SvgIcon>
         </div>
         <div class="center">
             <p>{{ title }}</p>
@@ -13,11 +19,12 @@
 </template>
 
 <script setup lang="ts">
+import { nextTick } from 'vue';
 import { useRouter } from 'vue-router';
 
 let $router = useRouter();
 //接收父类传递的数据
-defineProps({
+const props = defineProps({
     title: {
         type: String,
         default: ''
@@ -35,12 +42,27 @@ defineProps({
         default: '/'
     }
 })
-// 
+//
 const emit = defineEmits(['icon_func']);
 // 点击右侧图标方法函数
 const handleIcon = () => {
     emit('icon_func');
 }
+
+// 返回时同样使用 View Transition，实现详情 -> 列表反向丝滑过渡
+const handleBack = async () => {
+    const targetRoute = props.router || '/';
+
+    if (!document.startViewTransition) {
+        await $router.push(targetRoute);
+        return;
+    }
+
+    document.startViewTransition(async () => {
+        await $router.push(targetRoute);
+        await nextTick();
+    });
+};
 </script>
 
 <style scoped>
