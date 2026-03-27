@@ -1471,17 +1471,23 @@ const handleAreaJump = (areaName: string) => {
     position: relative;
     will-change: transform;
     overflow: hidden;
-    background: inherit;
+    background: transparent;
 }
 
 .page-content {
-    width: 100%;
+    /* 过扫 1px，避免 translate3d 产生边缘缝隙（白边） */
+    width: calc(100% + 2px);
+    margin-left: -1px;
     height: 100%;
     will-change: transform;
     display: flex;
     flex-direction: column;
     align-items: center;
     animation: detailFadeIn 0.28s ease-out;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform-style: preserve-3d;
+    contain: paint;
 }
 
 /* 拖拽时的视觉反馈 */
