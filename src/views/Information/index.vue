@@ -383,7 +383,7 @@
         </div>
 
         <el-drawer v-model="drawer" direction="btt" size="60%">
-            <el-table :data="natureList" style="width: 100%" @row-click="optionNature">
+            <el-table :data="NATURE_LIST" style="width: 100%" @row-click="optionNature">
                 <el-table-column prop="name" width="180" />
                 <el-table-column prop="description" />
             </el-table>
@@ -418,6 +418,7 @@ import { usePokemonStore } from '@/store/modules/pokemon';
 import { useRouter } from 'vue-router';
 import { getAreas } from '@/apis/areas/index.ts';
 import { useAreaStore } from '@/store/modules/area';
+import { POKEMON_NATURES, calculateSingleStat, NATURE_STAT_KEYS, NATURE_LIST } from '@/utils/pokemonNatures';
 
 // 地区数据
 const areaStore = useAreaStore();
@@ -471,226 +472,6 @@ const maxEffort = 252;
 const minEffort = 0;
 // 能力值
 let AbilityValue = ref([0, 0, 0, 0, 0, 0]);
-// 性格数据
-const natures: any = {
-    勤奋: {
-        name: '勤奋',
-        attack: 1.0,
-        defense: 1.0,
-        speed: 1.0,
-        specialAttack: 1.0,
-        specialDefense: 1.0,
-        description: '能力均衡，无提升和降低'
-    },
-    怕寂寞: {
-        name: '怕寂寞',
-        attack: 1.1,
-        defense: 0.9,
-        speed: 1.0,
-        specialAttack: 1.0,
-        specialDefense: 1.0,
-        description: '攻击提升，防御降低'
-    },
-    固执: {
-        name: '固执',
-        attack: 1.1,
-        defense: 1.0,
-        speed: 1.0,
-        specialAttack: 0.9,
-        specialDefense: 1.0,
-        description: '攻击提升，特攻降低'
-    },
-    顽皮: {
-        name: '顽皮',
-        attack: 1.1,
-        defense: 1.0,
-        speed: 1.0,
-        specialAttack: 1.0,
-        specialDefense: 0.9,
-        description: '攻击提升，特防降低'
-    },
-    勇敢: {
-        name: '勇敢',
-        attack: 1.1,
-        defense: 1.0,
-        speed: 0.9,
-        specialAttack: 1.0,
-        specialDefense: 1.0,
-        description: '攻击提升，速度降低'
-    },
-    大胆: {
-        name: '大胆',
-        attack: 0.9,
-        defense: 1.1,
-        speed: 1.0,
-        specialAttack: 1.0,
-        specialDefense: 1.0,
-        description: '防御提升，攻击降低'
-    },
-    坦率: {
-        name: '坦率',
-        attack: 1.0,
-        defense: 1.0,
-        speed: 1.0,
-        specialAttack: 1.0,
-        specialDefense: 1.0,
-        description: '能力均衡，无提升和降低'
-    },
-    淘气: {
-        name: '淘气',
-        attack: 1.0,
-        defense: 1.1,
-        speed: 1.0,
-        specialAttack: 0.9,
-        specialDefense: 1.0,
-        description: '防御提升，特攻降低'
-    },
-    乐天: {
-        name: '乐天',
-        attack: 1.0,
-        defense: 1.1,
-        speed: 1.0,
-        specialAttack: 1.0,
-        specialDefense: 0.9,
-        description: '防御提升，特防降低'
-    },
-    悠闲: {
-        name: '悠闲',
-        attack: 1.0,
-        defense: 1.1,
-        speed: 0.9,
-        specialAttack: 1.0,
-        specialDefense: 1.0,
-        description: '防御提升，速度降低'
-    },
-    内敛: {
-        name: '内敛',
-        attack: 0.9,
-        defense: 1.0,
-        speed: 1.0,
-        specialAttack: 1.1,
-        specialDefense: 1.0,
-        description: '特攻提升，攻击降低'
-    },
-    慢吞吞: {
-        name: '慢吞吞',
-        attack: 1.0,
-        defense: 0.9,
-        speed: 1.0,
-        specialAttack: 1.1,
-        specialDefense: 1.0,
-        description: '特攻提升，防御降低'
-    },
-    害羞: {
-        name: '害羞',
-        attack: 1.0,
-        defense: 1.0,
-        speed: 1.0,
-        specialAttack: 1.0,
-        specialDefense: 1.0,
-        description: '能力均衡，无提升和降低'
-    },
-    马虎: {
-        name: '马虎',
-        attack: 1.0,
-        defense: 1.0,
-        speed: 1.0,
-        specialAttack: 1.1,
-        specialDefense: 0.9,
-        description: '特功提升，特防降低'
-    },
-    冷静: {
-        name: '冷静',
-        attack: 1.0,
-        defense: 1.0,
-        speed: 0.9,
-        specialAttack: 1.1,
-        specialDefense: 1.0,
-        description: '特攻提升，速度降低'
-    },
-    温和: {
-        name: '温和',
-        attack: 0.9,
-        defense: 1.0,
-        speed: 1.0,
-        specialAttack: 1.0,
-        specialDefense: 1.1,
-        description: '特防提升，攻击降低'
-    },
-    温顺: {
-        name: '温顺',
-        attack: 1.0,
-        defense: 0.9,
-        speed: 1.0,
-        specialAttack: 1.0,
-        specialDefense: 1.1,
-        description: '特防提升，防御降低'
-    },
-    慎重: {
-        name: '慎重',
-        attack: 1.0,
-        defense: 1.0,
-        speed: 1.0,
-        specialAttack: 0.9,
-        specialDefense: 1.1,
-        description: '特防提升，特攻降低'
-    },
-    自大: {
-        name: '自大',
-        attack: 1.0,
-        defense: 1.0,
-        speed: 0.9,
-        specialAttack: 1.0,
-        specialDefense: 1.1,
-        description: '特防提升，速度降低'
-    },
-    胆小: {
-        name: '胆小',
-        attack: 0.9,
-        defense: 1.0,
-        speed: 1.1,
-        specialAttack: 1.0,
-        specialDefense: 1.0,
-        description: '速度提升，攻击降低'
-    },
-    浮躁: {
-        name: '浮躁',
-        attack: 1.0,
-        defense: 0.9,
-        speed: 1.1,
-        specialAttack: 1.0,
-        specialDefense: 1.0,
-        description: '速度提升，防御降低'
-    },
-    爽朗: {
-        name: '爽朗',
-        attack: 1.0,
-        defense: 1.0,
-        speed: 1.1,
-        specialAttack: 0.9,
-        specialDefense: 1.0,
-        description: '速度提升，特攻降低'
-    },
-    天真: {
-        name: '天真',
-        attack: 1.0,
-        defense: 1.0,
-        speed: 1.1,
-        specialAttack: 1.0,
-        specialDefense: 0.9,
-        description: '速度提升，特防降低'
-    },
-    认真: {
-        name: '认真',
-        attack: 1.0,
-        defense: 1.0,
-        speed: 1.1,
-        specialAttack: 1.0,
-        specialDefense: 1.0,
-        description: '能力均衡，无提升和降低'
-    }
-};
-const natureList = Object.values(natures);
 // 颜色映射
 let colorMap = pokemonStore.colorMap;
 
@@ -699,31 +480,6 @@ const getImageSrc = (编号: String) => {
     let imageSrc = Number(编号);
     return new URL(`/src/assets/images/pokemonList_images/${imageSrc}.png`, import.meta.url).href;
 };
-// 能力值计算函数
-const calculateSingleStat = (
-    baseStat: number,
-    individualValue: number,
-    effortValue: number,
-    level: number,
-    natureModifier: number,
-    isHP: boolean = false
-) => {
-    const baseCalculation = isHP
-        ? Math.floor(
-              ((baseStat * 2 + individualValue + Math.floor(effortValue / 4)) * level) / 100 +
-                  10 +
-                  level
-          )
-        : Math.floor(
-              ((baseStat * 2 + individualValue + Math.floor(effortValue / 4)) * level) / 100 + 5
-          );
-
-    return isHP ? baseCalculation : Math.floor(baseCalculation * natureModifier);
-};
-
-// 性格对应的键
-const natureKeys = ['attack', 'defense', 'specialAttack', 'specialDefense', 'speed'];
-
 // 更新所有能力值的方法
 const updateAllAbilities = () => {
     const level = Math.max(1, Math.min(100, RankCharacter.grade));
@@ -734,7 +490,9 @@ const updateAllAbilities = () => {
         const effortValue = EffortValue.value[index];
         const natureModifier = isHP
             ? 1.0
-            : natures[RankCharacter.nature][natureKeys[index - 1]] || 1.0;
+            : (POKEMON_NATURES[RankCharacter.nature] ?? POKEMON_NATURES['勤奋'])[
+                  NATURE_STAT_KEYS[index - 1]
+              ] || 1.0;
 
         AbilityValue.value[index] = calculateSingleStat(
             baseStat,
