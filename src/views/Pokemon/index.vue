@@ -20,7 +20,7 @@
         </main>
 
         <el-drawer
-            size="60%"
+            size="72%"
             direction="ttb"
             v-model="visible"
             :show-close="false"
@@ -28,8 +28,20 @@
         >
             <div class="drawer-content">
                 <div class="drawer-header">
-                    <span class="drawer-title">按属性筛选</span>
+                    <div class="drawer-title-row">
+                        <span class="drawer-title">按属性筛选</span>
+                        <div class="drawer-actions">
+                            <button class="action-btn clear" @click="clearFilter" :disabled="!activeType">
+                                清空
+                            </button>
+                            <button class="action-btn close" @click="visible = false">关闭</button>
+                        </div>
+                    </div>
                     <div class="title-line"></div>
+                    <div class="filter-status" :class="{ active: !!activeType }">
+                        <span class="status-label">当前筛选：</span>
+                        <span class="status-value">{{ activeType || '全部属性' }}</span>
+                    </div>
                 </div>
                 <div class="drawer-list">
                     <div
@@ -53,11 +65,12 @@ import Top from '@/components/Top/index.vue'; // 确保路径正确
 import Search from '@/components/Search/index.vue'; // 确保路径正确
 import PokemonList from './PokemonList/index.vue';
 import { usePokemonStore } from '@/store/modules/pokemon';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 const pokemonStore = usePokemonStore();
 const query = pokemonStore.pokemonQuery;
 const visible = ref(false);
+const activeType = computed(() => pokemonStore.type);
 
 // 属性列表
 const attributeList: string[] = [
@@ -117,6 +130,11 @@ const handleAttribute = (item: string) => {
     }
     visible.value = false; // 选中后关闭
 };
+
+const clearFilter = () => {
+    pokemonStore.setType('');
+    pokemonStore.getPokemonListByType('');
+};
 </script>
 
 <style scoped lang="scss">
@@ -155,7 +173,7 @@ const handleAttribute = (item: string) => {
             .search-wrapper {
                 width: 90%;
                 max-width: 600px;
-                margin-top: -5px;
+                margin-top: 2px;
             }
         }
     }
@@ -174,8 +192,14 @@ const handleAttribute = (item: string) => {
     .drawer-header {
         display: flex;
         flex-direction: column;
-        align-items: center;
         margin-bottom: 20px;
+
+        .drawer-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
 
         .drawer-title {
             font-size: 18px;
@@ -189,6 +213,63 @@ const handleAttribute = (item: string) => {
             background: #3498db;
             border-radius: 2px;
             margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        .drawer-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .action-btn {
+            border: none;
+            border-radius: 14px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .action-btn.clear {
+            background: #eef3ff;
+            color: #3559d8;
+        }
+
+        .action-btn.close {
+            background: #f2f4f7;
+            color: #344054;
+        }
+
+        .action-btn:disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .filter-status {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            border-radius: 999px;
+            padding: 6px 12px;
+            background: #f4f6f8;
+            color: #5a6470;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .filter-status.active {
+            background: rgba(52, 152, 219, 0.12);
+            color: #0f4c81;
+        }
+
+        .status-label {
+            margin-right: 6px;
+            opacity: 0.75;
+        }
+
+        .status-value {
+            font-weight: 700;
         }
     }
 
@@ -204,14 +285,14 @@ const handleAttribute = (item: string) => {
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transition: all 0.18s ease;
 
             &:hover {
-                transform: scale(1.05);
+                transform: translateY(-1px);
             }
 
             &.active {
-                animation: bounce 0.4s ease;
+                animation: bounce 0.28s ease;
             }
         }
     }
@@ -231,5 +312,26 @@ const handleAttribute = (item: string) => {
 :deep(.el-drawer) {
     background: rgba(255, 255, 255, 0.95) !important;
     border-radius: 0 0 24px 24px !important;
+}
+
+@media (max-width: 768px) {
+    .drawer-content {
+        padding: 8px 14px 22px;
+
+        .drawer-header {
+            .drawer-title-row {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .drawer-actions {
+                width: 100%;
+            }
+
+            .action-btn {
+                flex: 1;
+            }
+        }
+    }
 }
 </style>
