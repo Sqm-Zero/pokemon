@@ -25,6 +25,13 @@
           </div>
         </el-card>
       </div>
+      <div class="function_container">
+        <el-card class="function function_damage" @click="handleAreaInfo('伤害计算')">
+          <div class="text-wrapper">
+            <p>伤害计算（Gen6·双打）</p>
+          </div>
+        </el-card>
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +53,9 @@ const handleAreaInfo = (area_name: string) => {
       break;
     case '训练家对位':
       router.push('/trainer');
+      break;
+    case '伤害计算':
+      router.push('/damage-calc');
       break;
   }
 }
@@ -129,6 +139,10 @@ const handleAreaInfo = (area_name: string) => {
 
 .function_trainers {
   background-image: url('@/assets/images/main_images/img04.png');
+}
+
+.function_damage {
+  background: linear-gradient(135deg, #2d1b4e 0%, #7b1fa2 45%, #c62828 100%);
 }
 
 /* 小屏适配：保持两列，但缩小尺寸 */
