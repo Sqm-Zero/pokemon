@@ -9,23 +9,20 @@
         />
 
         <div class="scroll">
-            <p class="hint">
-                Gen6 双打向估算。攻防数值按<strong>图鉴详情页同一套公式</strong>：种族值、等级、性格、个体（默认全 31）、努力（默认
-                0）。下方可折叠调整天气、场地与更多修正。
+            <div class="page-inner">
+            <p class="hint-banner">
+                <span class="hint-badge">Gen6</span>
+                双打伤害估算 · 能力与<strong>图鉴详情页</strong>同公式 · 天气、个体努力等在底部折叠
             </p>
 
             <el-form label-position="top" class="form">
-                <div class="section-title">攻守配置</div>
+                <div class="block-title">攻守</div>
+                <div class="battle-arena">
                 <div class="battle-columns">
                     <div class="battle-col">
                         <div class="side-card attacker-side">
                             <div class="side-label">进攻方</div>
-                            <div v-if="attacker" class="poke-head">
-                                <p class="poke-name">{{ attacker.名称 }}</p>
-                                <p class="poke-id muted">#{{ attacker.编号 }}</p>
-                                <img class="poke-sprite-lg" :src="pokemonImageSrc(attackerNo)" alt="" />
-                            </div>
-                            <el-form-item label="宝可梦">
+                            <el-form-item label="宝可梦" class="form-item-tight">
                                 <el-select
                                     v-model="attackerNo"
                                     filterable
@@ -48,16 +45,23 @@
                                     </el-option>
                                 </el-select>
                             </el-form-item>
-                            <div v-if="attacker" class="type-row type-row-center">
-                                <span
-                                    v-for="t in attacker.属性"
-                                    :key="t"
-                                    class="type-tag"
-                                    :style="{ background: colorMap[t] || '#666' }"
-                                    >{{ t }}</span
-                                >
+                            <div v-if="attacker" class="poke-strip poke-strip--atk">
+                                <img class="poke-sprite-lg" :src="pokemonImageSrc(attackerNo)" alt="" />
+                                <div class="poke-strip-meta">
+                                    <p class="poke-name">{{ attacker.名称 }}</p>
+                                    <p class="poke-id muted">#{{ attacker.编号 }}</p>
+                                    <div class="type-row type-row--compact">
+                                        <span
+                                            v-for="t in attacker.属性"
+                                            :key="t"
+                                            class="type-tag"
+                                            :style="{ background: colorMap[t] || '#666' }"
+                                            >{{ t }}</span
+                                        >
+                                    </div>
+                                </div>
                             </div>
-                            <el-row :gutter="8">
+                            <el-row :gutter="8" class="row-tight">
                                 <el-col :span="12">
                                     <el-form-item label="等级">
                                         <el-input-number
@@ -97,15 +101,13 @@
                             </el-form-item>
                         </div>
                     </div>
+                    <div class="battle-vs-col" aria-hidden="true">
+                        <span class="battle-vs-text">VS</span>
+                    </div>
                     <div class="battle-col">
                         <div class="side-card defender-side">
                             <div class="side-label defend-label">受击方</div>
-                            <div v-if="defender" class="poke-head">
-                                <p class="poke-name">{{ defender.名称 }}</p>
-                                <p class="poke-id muted">#{{ defender.编号 }}</p>
-                                <img class="poke-sprite-lg" :src="pokemonImageSrc(defenderNo)" alt="" />
-                            </div>
-                            <el-form-item label="宝可梦">
+                            <el-form-item label="宝可梦" class="form-item-tight">
                                 <el-select
                                     v-model="defenderNo"
                                     filterable
@@ -128,16 +130,23 @@
                                     </el-option>
                                 </el-select>
                             </el-form-item>
-                            <div v-if="defender" class="type-row type-row-center">
-                                <span
-                                    v-for="t in defender.属性"
-                                    :key="t"
-                                    class="type-tag"
-                                    :style="{ background: colorMap[t] || '#666' }"
-                                    >{{ t }}</span
-                                >
+                            <div v-if="defender" class="poke-strip poke-strip--def">
+                                <img class="poke-sprite-lg" :src="pokemonImageSrc(defenderNo)" alt="" />
+                                <div class="poke-strip-meta">
+                                    <p class="poke-name">{{ defender.名称 }}</p>
+                                    <p class="poke-id muted">#{{ defender.编号 }}</p>
+                                    <div class="type-row type-row--compact">
+                                        <span
+                                            v-for="t in defender.属性"
+                                            :key="t"
+                                            class="type-tag"
+                                            :style="{ background: colorMap[t] || '#666' }"
+                                            >{{ t }}</span
+                                        >
+                                    </div>
+                                </div>
                             </div>
-                            <el-row :gutter="8">
+                            <el-row :gutter="8" class="row-tight">
                                 <el-col :span="12">
                                     <el-form-item label="等级">
                                         <el-input-number
@@ -196,8 +205,10 @@
                         </div>
                     </div>
                 </div>
+                </div>
 
-                <div class="section-title">招式</div>
+                <div class="content-panel">
+                <div class="block-title">招式</div>
                 <el-form-item label="技能">
                     <el-select v-model="moveName" filterable clearable size="small" placeholder="选择技能" class="full" :filter-method="filterMove">
                         <el-option
@@ -212,8 +223,10 @@
                     <el-input-number v-model="powerOverride" :min="0" :max="999" size="small" controls-position="right" class="full-num" />
                     <span class="sub">0 = 用表内威力</span>
                 </el-form-item>
+                </div>
 
-                <div class="section-title">结果</div>
+                <div class="content-panel content-panel--result">
+                <div class="block-title">伤害结果</div>
                 <div v-if="move && baseInput" class="result-card">
                     <p class="big-line">
                         预估伤害：
@@ -256,9 +269,13 @@
                         </template>
                     </div>
                 </div>
-                <el-alert v-else type="warning" :closable="false" title="请选择可造成伤害的物理/特殊招式，必要时填威力覆盖" />
+                <div v-else class="result-empty">
+                    <p class="result-empty-title">尚未算出伤害</p>
+                    <p class="result-empty-desc">请选择<strong>物理 / 特殊</strong>招式；可变威力可在「威力覆盖」填写。</p>
+                </div>
+                </div>
 
-                <el-collapse v-model="advancedOpen" class="collapse-adv">
+                <el-collapse v-model="advancedOpen" class="collapse-adv collapse-card">
                     <el-collapse-item title="环境、个体·努力与其它修正" name="adv">
                         <div class="subsection">天气 · 场地 · 规则</div>
                         <el-form-item label="双打">
@@ -368,7 +385,7 @@
 
                         <div class="subsection">其它倍率</div>
                         <p class="mult-hint muted">
-                            厚脂肪、毛皮大衣、引火未激活、破格、技师、铁拳、强壮之颚等与<strong>特性</strong>相关的项已随上方「特性」自动代入伤害链；本区主要留<strong>道具、暴击、异常、墙面与队友</strong>等需手动的常见修正。
+                            厚脂肪、毛皮大衣、适应力 STAB、破格、技师、铁拳、强壮之颚等与<strong>特性</strong>相关的修正已随「特性」自动代入；本区为<strong>队友、暴击、灼伤、生命宝珠、墙面</strong>等手动项（专家腰带未做入口）。
                         </p>
                         <div class="mult-group">
                             <div class="mult-group-title">队友</div>
@@ -387,16 +404,14 @@
                             </div>
                         </div>
                         <div class="mult-group">
-                            <div class="mult-group-title">道具与 STAB</div>
+                            <div class="mult-group-title">道具</div>
                             <div class="switch-grid switch-grid--3">
                                 <el-checkbox v-model="lifeOrb">生命宝珠</el-checkbox>
-                                <el-checkbox v-model="expertBelt">专家腰带（效果绝佳）</el-checkbox>
-                                <el-checkbox v-model="adaptability">适应力 STAB ×2（特性已是适应力可不勾）</el-checkbox>
                             </div>
                         </div>
                         <div class="mult-group">
                             <div class="mult-group-title">防守减免（手动）</div>
-                            <div class="switch-grid switch-grid--3">
+                            <div class="switch-grid switch-grid--stack">
                                 <el-checkbox v-model="filterOrSolidRock">过滤 / 坚硬岩石（无对应特性时手动）</el-checkbox>
                                 <el-checkbox v-model="reflectDoubles">反射壁（双打·物理）</el-checkbox>
                                 <el-checkbox v-model="lightScreenDoubles">光墙（双打·特殊）</el-checkbox>
@@ -417,6 +432,7 @@
                 </el-collapse>
 
             </el-form>
+            </div>
         </div>
     </div>
 </template>
@@ -621,9 +637,7 @@ const helpingHand = ref(false);
 const critical = ref(false);
 const sniper = ref(false);
 const burned = ref(false);
-const adaptability = ref(false);
 const lifeOrb = ref(false);
-const expertBelt = ref(false);
 const filterOrSolidRock = ref(false);
 const friendGuard = ref(false);
 const reflectDoubles = ref(false);
@@ -679,9 +693,9 @@ const baseInput = computed((): Gen6DamageInput | null => {
         critical: critical.value,
         sniper: sniper.value || atkAbFromSlot.value.sniper,
         burned: burned.value && cat === '物理',
-        adaptability: adaptability.value || atkAbFromSlot.value.adaptability,
+        adaptability: atkAbFromSlot.value.adaptability,
         lifeOrb: lifeOrb.value,
-        expertBelt: expertBelt.value,
+        expertBelt: false,
         filterOrSolidRock: filterOrSolidRock.value || defenderMods.value.filterOrSolidRock,
         friendGuard: friendGuard.value,
         reflectDoubles: reflectDoubles.value,
@@ -846,28 +860,79 @@ watch(defenderNo, () => {
 <style scoped>
 .damage-calc {
     min-height: 100vh;
-    background: #f4f4f7;
-    /* 手机 WebView 里避免横向溢出 */
+    background: linear-gradient(165deg, #e6e9f2 0%, #eef0f6 40%, #f3f4f8 100%);
     overflow-x: hidden;
 }
 .scroll {
-    padding: 8px 10px 20px;
+    padding: 10px 12px 28px;
     box-sizing: border-box;
     max-width: 100%;
 }
-.hint {
-    font-size: 11px;
-    color: #555;
-    line-height: 1.45;
-    margin: 0 0 8px;
+.page-inner {
+    max-width: 520px;
+    margin: 0 auto;
 }
-.section-title {
+.hint-banner {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #4a4f5c;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(8px);
+    border: 1px solid #e2e5ef;
+    border-radius: 12px;
+    padding: 9px 11px;
+    margin: 0 0 14px;
+    box-shadow: 0 1px 8px rgba(30, 35, 55, 0.04);
+}
+.hint-badge {
+    flex-shrink: 0;
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    color: #fff;
+    background: linear-gradient(135deg, #4527a0, #7b1fa2);
+    padding: 4px 7px;
+    border-radius: 6px;
+    line-height: 1.2;
+}
+.block-title {
+    font-size: 12px;
     font-weight: 700;
-    font-size: 13px;
-    margin: 10px 0 6px;
-    color: #222;
-    border-left: 3px solid #7b1fa2;
-    padding-left: 6px;
+    color: #2d3142;
+    margin: 0 0 8px;
+    letter-spacing: 0.05em;
+}
+.block-title::after {
+    content: '';
+    display: block;
+    margin-top: 6px;
+    width: 32px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #7b1fa2, rgba(123, 31, 162, 0.2));
+}
+.content-panel {
+    background: #fff;
+    border: 1px solid #e4e7f0;
+    border-radius: 14px;
+    padding: 12px 12px 14px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 16px rgba(22, 28, 48, 0.06);
+}
+.content-panel--result {
+    background: linear-gradient(180deg, #fff 0%, #f9faff 100%);
+    border-color: #dde2ee;
+}
+.battle-arena {
+    background: #fff;
+    border: 1px solid #e4e7f0;
+    border-radius: 14px;
+    padding: 10px 2px 12px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 16px rgba(22, 28, 48, 0.06);
 }
 .subsection {
     font-size: 12px;
@@ -903,9 +968,9 @@ watch(defenderNo, () => {
     margin-bottom: 8px;
 }
 .type-tag {
-    padding: 1px 8px;
+    padding: 1px 6px;
     border-radius: 999px;
-    font-size: 11px;
+    font-size: 10px;
     color: #fff;
 }
 .sub {
@@ -947,6 +1012,22 @@ watch(defenderNo, () => {
 .switch-grid--3 {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 2px 10px;
+}
+/* 长文案勾选：单列，避免挤在一行 */
+.switch-grid--stack {
+    grid-template-columns: 1fr;
+    gap: 10px 0;
+}
+.switch-grid--stack :deep(.el-checkbox) {
+    align-items: flex-start;
+    height: auto;
+    margin-right: 0;
+    white-space: normal;
+}
+.switch-grid--stack :deep(.el-checkbox__label) {
+    white-space: normal;
+    line-height: 1.45;
+    padding-left: 8px;
 }
 .mult-hint {
     font-size: 10px;
@@ -1062,14 +1143,40 @@ watch(defenderNo, () => {
     margin-bottom: 8px;
 }
 .result-card {
-    background: #fff;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    background: transparent;
+    border-radius: 0;
+    padding: 6px 0 0;
+    box-shadow: none;
+    border: none;
+}
+.result-empty {
+    padding: 18px 14px;
+    text-align: center;
+    background: #f4f6fb;
+    border-radius: 12px;
+    border: 1px dashed #cfd5e3;
+}
+.result-empty-title {
+    margin: 0 0 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #5a6172;
+}
+.result-empty-desc {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.5;
+    color: #858ca0;
 }
 .big-line {
-    font-size: 14px;
-    margin: 0 0 6px;
+    font-size: 15px;
+    margin: 0 0 8px;
+    color: #2d3142;
+}
+.big-line strong {
+    color: #c62828;
+    font-weight: 800;
+    letter-spacing: 0.02em;
 }
 .eff {
     margin-left: 8px;
@@ -1083,15 +1190,33 @@ watch(defenderNo, () => {
     line-height: 1.4;
 }
 .collapse-adv {
-    margin-top: 10px;
+    margin-top: 0;
 }
-.form :deep(.el-collapse-item__header) {
+.collapse-card {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid #e4e7f0;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(22, 28, 48, 0.05);
+}
+.collapse-card :deep(.el-collapse) {
+    border: none;
+}
+.collapse-card :deep(.el-collapse-item__header) {
     font-size: 13px;
-    padding: 8px 10px;
-    min-height: 40px;
+    font-weight: 600;
+    padding: 12px 14px;
+    min-height: 44px;
+    background: #f8f9fc;
+    border: none;
+    color: #3d4250;
 }
-.form :deep(.el-collapse-item__content) {
-    padding-bottom: 8px;
+.collapse-card :deep(.el-collapse-item__wrap) {
+    border: none;
+}
+.collapse-card :deep(.el-collapse-item__content) {
+    padding: 10px 12px 16px;
+    border-top: 1px solid #eef0f5;
 }
 .collapse {
     margin-top: 12px;
@@ -1110,78 +1235,133 @@ watch(defenderNo, () => {
     margin: 0 4px;
 }
 
-/* 全宽度左右并排（含手机）；minmax 防止内容撑破 */
 .battle-columns {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    gap: 6px;
-    margin-bottom: 6px;
+    grid-template-columns: minmax(0, 1fr) 18px minmax(0, 1fr);
+    gap: 0;
     align-items: stretch;
 }
 .battle-col {
     min-width: 0;
 }
-.side-card {
+.battle-vs-col {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: stretch;
+    min-height: 100px;
+}
+.battle-vs-col::before {
+    content: '';
+    position: absolute;
+    top: 6%;
+    bottom: 6%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    background: linear-gradient(180deg, transparent, #c5cad8 15%, #c5cad8 85%, transparent);
+}
+.battle-vs-text {
+    position: relative;
+    z-index: 1;
+    font-size: 8px;
+    font-weight: 800;
+    color: #9aa3b5;
+    letter-spacing: 0.08em;
     background: #fff;
-    border-radius: 10px;
-    padding: 8px 8px 10px;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.06);
+    padding: 5px 1px;
+    line-height: 1;
+}
+.side-card {
+    background: #f9fafc;
+    border-radius: 12px;
+    padding: 8px 6px 10px;
+    border: 1px solid #eceff5;
+    box-shadow: none;
     height: 100%;
     box-sizing: border-box;
 }
 .attacker-side {
-    border-top: 2px solid #c62828;
+    box-shadow: inset 0 3px 0 #c62828;
+    border-top-color: #f5e6e8;
 }
 .defender-side {
-    border-top: 2px solid #2e7d32;
+    box-shadow: inset 0 3px 0 #2e7d32;
+    border-top-color: #e6f0e8;
 }
 .side-label {
     font-weight: 700;
-    font-size: 12px;
+    font-size: 11px;
     color: #c62828;
     margin: 0 0 6px;
     text-align: center;
+    letter-spacing: 0.06em;
 }
 .defend-label {
     color: #2e7d32;
 }
-.poke-head {
-    text-align: center;
+.poke-strip {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
     margin-bottom: 8px;
+    padding: 6px 5px;
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid #e8ebf2;
+    border-radius: 10px;
+}
+.poke-strip-meta {
+    flex: 1;
+    min-width: 0;
 }
 .poke-name {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 700;
     margin: 0;
-    color: #222;
-    line-height: 1.2;
+    color: #1e222c;
+    line-height: 1.25;
+    word-break: break-all;
 }
 .poke-id {
-    margin: 1px 0 6px;
-    font-size: 11px;
+    margin: 2px 0 4px;
+    font-size: 10px;
 }
 .poke-sprite-lg {
-    width: 56px;
-    height: 56px;
+    width: 44px;
+    height: 44px;
+    flex-shrink: 0;
     object-fit: contain;
     image-rendering: pixelated;
-    vertical-align: middle;
 }
 @media screen and (min-width: 400px) {
     .poke-sprite-lg {
-        width: 64px;
-        height: 64px;
+        width: 52px;
+        height: 52px;
+    }
+    .poke-name {
+        font-size: 13px;
     }
 }
 @media screen and (min-width: 640px) {
     .poke-sprite-lg {
-        width: 76px;
-        height: 76px;
+        width: 58px;
+        height: 58px;
     }
 }
-.type-row-center {
-    justify-content: center;
-    margin-bottom: 6px;
+.type-row--compact {
+    margin: 0;
+    gap: 3px;
+    flex-wrap: wrap;
+}
+.form-item-tight :deep(.el-form-item) {
+    margin-bottom: 4px;
+}
+.form-item-tight :deep(.el-form-item__label) {
+    margin-bottom: 1px;
+}
+.row-tight {
+    margin-bottom: 0;
 }
 .hp-scale-hint {
     font-size: 11px;
@@ -1208,9 +1388,9 @@ watch(defenderNo, () => {
 }
 
 .ko-block {
-    margin-top: 8px;
-    padding-top: 8px;
-    border-top: 1px solid #eee;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e8ecf4;
 }
 .ko-title {
     font-size: 11px;
