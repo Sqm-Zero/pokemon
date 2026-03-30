@@ -35,6 +35,14 @@ export const constantRoute = [
         }
     },
     {
+        path: '/damage-calc',
+        component: () => import('@/views/DamageCalc/index.vue'),
+        name: 'damageCalc',
+        meta: {
+            title: '伤害计算器'
+        }
+    },
+    {
         path: '/areas',
         component: () => import('@/views/Areas/index.vue'),
         name: 'areas',
