@@ -13,11 +13,10 @@
             </div>
 
             <BattleCard
-                v-for="(battle, index) in battles"
+                v-for="(display, index) in displayBattles"
                 :key="index"
-                :battle="battle"
-                :index="index"
-                @click="handleBattleClick(index)"
+                :display="display"
+                @click="handleDisplayClick(display)"
                 @item-click="handlePropInfo"
             />
 
@@ -45,22 +44,97 @@ const version = computed<'normal' | 'hardcore'>(() =>
     route.query.version === 'hardcore' ? 'hardcore' : 'normal'
 );
 
+// 双打卡组类型
+interface DoubleBattlePair {
+    type: 'pair';
+    battle1: BattleInfo;
+    battle2: BattleInfo;
+    index1: number;
+    index2: number;
+}
+
+// 单战斗类型（用于单打或其他类型）
+interface SingleBattle {
+    type: 'single';
+    battle: BattleInfo;
+    index: number;
+}
+
+type BattleDisplay = DoubleBattlePair | SingleBattle;
+
 const battles = ref<BattleInfo[]>([]);
+const displayBattles = ref<BattleDisplay[]>([]);
+
+// 识别和组合双打战斗
+function groupDoubleBattles(battleList: BattleInfo[]): BattleDisplay[] {
+    const result: BattleDisplay[] = [];
+    let i = 0;
+
+    while (i < battleList.length) {
+        const current = battleList[i];
+        const isDoubleBattle = current.item.includes('双打');
+
+        if (isDoubleBattle && i + 1 < battleList.length) {
+            const next = battleList[i + 1];
+            const isNextDoubleBattle = next.item.includes('双打');
+
+            if (isNextDoubleBattle) {
+                // 组合成双打卡组
+                result.push({
+                    type: 'pair',
+                    battle1: current,
+                    battle2: next,
+                    index1: i,
+                    index2: i + 1
+                });
+                i += 2; // 跳过这两场战斗
+                continue;
+            }
+        }
+
+        // 单独显示
+        result.push({
+            type: 'single',
+            battle: current,
+            index: i
+        });
+        i++;
+    }
+
+    return result;
+}
 
 onMounted(() => {
     const allData: any = version.value === 'hardcore' ? reqYHNPC() : reqNPC();
     battles.value = allData[groupName] || [];
+    displayBattles.value = groupDoubleBattles(battles.value);
 });
 
-function handleBattleClick(index: number) {
-    $router.push({
-        name: 'BattleDetail',
-        params: {
-            groupName: encodeURIComponent(groupName),
-            battleIndex: index
-        },
-        query: { version: version.value }
-    });
+function handleDisplayClick(display: BattleDisplay) {
+    if (display.type === 'single') {
+        // 单打战斗，正常跳转
+        $router.push({
+            name: 'BattleDetail',
+            params: {
+                groupName: encodeURIComponent(groupName),
+                battleIndex: display.index
+            },
+            query: { version: version.value }
+        });
+    } else {
+        // 双打卡组，跳转到第一场战斗，但携带第二场的索引
+        $router.push({
+            name: 'BattleDetail',
+            params: {
+                groupName: encodeURIComponent(groupName),
+                battleIndex: display.index1
+            },
+            query: {
+                version: version.value,
+                pairIndex: String(display.index2) // 携带配对战斗的索引
+            }
+        });
+    }
 }
 
 function handlePropInfo(propName: string) {

@@ -265,7 +265,7 @@ export const reqNPC = (): BattleData => {
             {
                 title: '反派首领 海洋队-水梧桐（烟囱山',
                 battle_type: '一番战',
-                item: '双打，全能爆发2*4',
+                item: '全能爆发2*4',
                 pokemons: [
                     {
                         name: '毒卷云（化身）',
@@ -3632,7 +3632,7 @@ export const reqYHNPC = (): BattleData => {
             {
                 title: '反派首领 海洋队-水梧桐（烟囱山',
                 battle_type: '一番战',
-                item: '双打，全能爆发2*4',
+                item: '全能爆发2*4',
                 pokemons: [
                     {
                         name: '龙卷云（化身）',
