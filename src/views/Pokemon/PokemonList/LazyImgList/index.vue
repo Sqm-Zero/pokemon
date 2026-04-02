@@ -54,6 +54,7 @@ import { ref, onMounted, onBeforeUnmount, watch, computed, nextTick } from 'vue'
 import { useRouter } from 'vue-router';
 import { reqPokemon } from '@/apis/pokemon/index';
 import { usePokemonStore } from '@/store/modules/pokemon';
+import { isPokemonListHiddenNumberedVariant } from '@/constants/pokemonSpecialForms';
 import type { Pokemon } from '@/apis/pokemon/type';
 
 const props = defineProps<{ scrollContainer: any }>();
@@ -130,7 +131,12 @@ const displayedPokemons = computed(() => {
     let list =
         pokemonStore.type === '进化奇石' ? pokemonStore.getPokemonListByEvoStone() : reqPokemon();
 
+    const nameSet = new Set(list.map(p => p.名称));
+
     return list.filter(p => {
+        if (isPokemonListHiddenNumberedVariant(p.名称, nameSet)) {
+            return false;
+        }
         const nameMatch = !pokemonStore.pokemonQuery || p.名称.includes(pokemonStore.pokemonQuery);
         const typeMatch =
             !pokemonStore.type ||

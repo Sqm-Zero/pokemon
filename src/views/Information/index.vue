@@ -4,7 +4,37 @@
         icon="pokemon"
         router="/pokemon"
         :color="getColor(pokemon_info.属性[0])"
-    ></Top>
+    >
+        <template #right>
+            <el-popover
+                v-if="specialFormOptions.length > 1"
+                v-model:visible="specialFormMenuVisible"
+                placement="bottom-end"
+                :width="200"
+                trigger="click"
+                popper-class="information-special-form-popper"
+            >
+                <div class="information-special-form-menu">
+                    <button
+                        v-for="opt in specialFormOptions"
+                        :key="opt.rawName"
+                        type="button"
+                        class="information-special-form-item"
+                        :class="{ 'is-active': isSpecialFormActive(opt.rawName) }"
+                        @click="selectSpecialFormFromMenu(opt.rawName)"
+                    >
+                        {{ opt.label }}
+                    </button>
+                </div>
+                <template #reference>
+                    <span class="top-special-form-icon-ref" role="button" tabindex="0">
+                        <SvgIcon name="pokemon" height="30px" width="30px" />
+                    </span>
+                </template>
+            </el-popover>
+            <SvgIcon v-else name="pokemon" height="30px" width="30px" />
+        </template>
+    </Top>
     <div
         class="pokemon-info"
         :style="gradientHttp"
@@ -419,6 +449,10 @@ import { useRouter } from 'vue-router';
 import { getAreas } from '@/apis/areas/index.ts';
 import { useAreaStore } from '@/store/modules/area';
 import { POKEMON_NATURES, calculateSingleStat, NATURE_STAT_KEYS, NATURE_LIST } from '@/utils/pokemonNatures';
+import {
+    POKEMON_SPECIAL_FORMS,
+    getNumberedFormSuffixesForBase
+} from '@/constants/pokemonSpecialForms';
 
 // 地区数据
 const areaStore = useAreaStore();
@@ -576,28 +610,8 @@ const getEggMoves = () => {
     }
 };
 
-// 名称问题解决
-// 特殊形态的映射表
-const specialForms: Record<string, string[]> = {
-    代欧奇希斯: ['攻击形态', '防御形态', '速度形态'],
-    结草贵妇: ['砂土蓑衣', '垃圾蓑衣'],
-    谢米: ['天空形态'],
-    骑拉帝纳: ['起源形态'],
-    洛托姆: ['加热', '清洗', '结冰', '旋转', '切割'],
-    飘浮泡泡: ['太阳', '雨天', '雪天'],
-    樱花儿: ['晴天形态'],
-    野蛮鲈鱼: ['蓝条纹的样子'],
-    达摩狒狒: ['达摩模式'],
-    美洛耶塔: ['舞步形态'],
-    酋雷姆: ['焰白', '暗黑'],
-    凯路迪欧: ['觉悟形态'],
-    毒卷云: ['灵兽形态'],
-    雷电云: ['灵兽形态'],
-    土地云: ['灵兽形态'],
-    超能妙喵: ['雌性'],
-    花叶蒂: ['', '', '', '', '永恒之花'],
-    皮卡丘: ['摇滚巨星', '贵妇', '流行偶像', '博士', '面罩摔角手', '智皮']
-};
+// 名称问题解决（与列表隐藏规则共用 constants/pokemonSpecialForms）
+const specialForms = POKEMON_SPECIAL_FORMS;
 const processPokemonName = (name: string): string => {
     // 首先检查是否是特殊形态的宝可梦
     const baseName = name.replace(/\s+\d+$/, ''); // 去掉末尾的数字
@@ -617,6 +631,94 @@ const processPokemonName = (name: string): string => {
     }
 
     return name;
+};
+
+/** 用于形态切换：与 processPokemonName 中 baseName 规则一致 */
+const rawNameForSpecialForms = computed(() => {
+    if (pokemon_info.old_pokemon_name) {
+        return String(pokemon_info.old_pokemon_name);
+    }
+    const n = String(pokemon_info.名称 || '');
+    return n.replace(/（[^）]*）/g, '').trim();
+});
+
+const specialFormBaseName = computed(() => {
+    const raw = rawNameForSpecialForms.value;
+    const base = raw.replace(/\s+\d+$/, '');
+    if (!base) return '';
+    if (specialForms[base]) return base;
+    if (getNumberedFormSuffixesForBase(base).length > 0) return base;
+    return '';
+});
+
+const specialFormOptions = computed(() => {
+    const base = specialFormBaseName.value;
+    if (!base) return [];
+
+    const options: { rawName: string; label: string }[] = [{ rawName: base, label: '通常' }];
+
+    const mapped = specialForms[base];
+    if (mapped) {
+        mapped.forEach((lab, i) => {
+            const text = lab.trim();
+            options.push({
+                rawName: `${base} ${i + 1}`,
+                label: text || `形态${i + 1}`
+            });
+        });
+        return options;
+    }
+
+    for (const n of getNumberedFormSuffixesForBase(base)) {
+        const raw = `${base} ${n}`;
+        options.push({ rawName: raw, label: processPokemonName(raw) });
+    }
+    return options;
+});
+
+const isSpecialFormActive = (rawName: string) => {
+    const current = pokemon_info.old_pokemon_name
+        ? String(pokemon_info.old_pokemon_name)
+        : rawNameForSpecialForms.value;
+    return current === rawName;
+};
+
+const specialFormMenuVisible = ref(false);
+
+const selectSpecialFormFromMenu = (rawName: string) => {
+    switchToSpecialFormRaw(rawName);
+    specialFormMenuVisible.value = false;
+};
+
+watch(
+    () => pokemon_info.编号,
+    () => {
+        specialFormMenuVisible.value = false;
+    }
+);
+
+const switchToSpecialFormRaw = (rawName: string) => {
+    if (isSpecialFormActive(rawName)) return;
+    const id = pokemonStore.getPokemonIdByName(rawName);
+    const newPokemonInfo = pokemonStore.getPokemonByName(Number(id));
+    Object.assign(pokemon_info, newPokemonInfo);
+    pokemon_info.old_pokemon_name = pokemon_info.名称;
+    pokemon_info.名称 = processPokemonName(pokemon_info.old_pokemon_name);
+
+    attributeList1();
+    if (isEggMoves.value) {
+        getEggMoves();
+    } else {
+        getMoves();
+    }
+    evolves = pokemonStore.getEvolveByName(pokemon_info.名称);
+    appearAreas = getAppearAreas(pokemon_info.old_pokemon_name || pokemon_info.名称);
+    pokemon_info.canUseEvolutionStone = canUseStoneFinalForms.includes(
+        pokemon_info.名称.replace(/（.*）/, '').trim()
+    );
+    nextTick(() => {
+        updateAllAbilities();
+    });
 };
 // 进化奇石
 // 在script部分添加
@@ -2411,6 +2513,56 @@ const handleAreaJump = (areaName: string) => {
     &.border-一般-一般 {
         --primary-color: rgba(169, 169, 169, 0.8);
         --secondary-color: rgba(192, 192, 192, 0.8);
+    }
+}
+
+.top-special-form-icon-ref {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+</style>
+
+<style lang="scss">
+/* el-popper 挂到 body，需非 scoped */
+.information-special-form-popper.el-popper {
+    padding: 10px 12px !important;
+}
+
+.information-special-form-popper .information-special-form-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.information-special-form-popper .information-special-form-item {
+    display: block;
+    width: 100%;
+    padding: 8px 10px;
+    font-size: 14px;
+    text-align: left;
+    color: #303133;
+    background: #fff;
+    border: 1px solid #ebeef5;
+    border-radius: 6px;
+    cursor: pointer;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease;
+
+    &:hover {
+        background: #f5f7fa;
+    }
+
+    &.is-active {
+        color: #fff;
+        background: #409eff;
+        border-color: #409eff;
     }
 }
 </style>

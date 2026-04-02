@@ -7,7 +7,9 @@
             <p>{{ title }}</p>
         </div>
         <div class="right">
-            <SvgIcon :name="icon" height="30px" width="30px" @click="handleIcon"></SvgIcon>
+            <slot name="right">
+                <SvgIcon :name="icon" height="30px" width="30px" @click="handleIcon"></SvgIcon>
+            </slot>
         </div>
     </div>
 </template>
