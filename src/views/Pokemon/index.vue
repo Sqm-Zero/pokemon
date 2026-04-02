@@ -43,6 +43,97 @@
                         {{ item }}
                     </div>
                 </div>
+
+                <div class="drawer-header stats-drawer-header">
+                    <span class="drawer-title">种族值筛选与排序</span>
+                    <div class="title-line"></div>
+                </div>
+                <div class="stats-panel">
+                    <div class="stats-row">
+                        <span class="stats-label">总种族值</span>
+                        <div class="stats-inputs">
+                            <input
+                                type="number"
+                                class="stats-num-input"
+                                :value="pokemonStore.statsTotalMin ?? ''"
+                                placeholder="最小"
+                                min="0"
+                                @input="setStoreNumber('statsTotalMin', $event)"
+                            />
+                            <span class="stats-tilde">~</span>
+                            <input
+                                type="number"
+                                class="stats-num-input"
+                                :value="pokemonStore.statsTotalMax ?? ''"
+                                placeholder="最大"
+                                min="0"
+                                @input="setStoreNumber('statsTotalMax', $event)"
+                            />
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <span class="stats-label">单项范围</span>
+                        <div class="stats-row-inner">
+                            <el-select
+                                v-model="pokemonStore.statsRangeStatKey"
+                                placeholder="不按单项"
+                                class="stats-select-stat"
+                            >
+                                <el-option label="不按单项" :value="null" />
+                                <el-option
+                                    v-for="opt in BASE_STAT_OPTIONS"
+                                    :key="opt.key"
+                                    :label="opt.label"
+                                    :value="opt.key"
+                                />
+                            </el-select>
+                            <div class="stats-inputs">
+                                <input
+                                    type="number"
+                                    class="stats-num-input"
+                                    :disabled="!pokemonStore.statsRangeStatKey"
+                                    :value="pokemonStore.statsRangeStatMin ?? ''"
+                                    placeholder="最小"
+                                    min="0"
+                                    @input="setStoreNumber('statsRangeStatMin', $event)"
+                                />
+                                <span class="stats-tilde">~</span>
+                                <input
+                                    type="number"
+                                    class="stats-num-input"
+                                    :disabled="!pokemonStore.statsRangeStatKey"
+                                    :value="pokemonStore.statsRangeStatMax ?? ''"
+                                    placeholder="最大"
+                                    min="0"
+                                    @input="setStoreNumber('statsRangeStatMax', $event)"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="stats-row">
+                        <span class="stats-label">排序依据</span>
+                        <el-select v-model="pokemonStore.statsSortField" class="stats-select-sort">
+                            <el-option label="图鉴编号" value="dex" />
+                            <el-option label="总种族值" value="total" />
+                            <el-option
+                                v-for="opt in BASE_STAT_OPTIONS"
+                                :key="opt.key"
+                                :label="opt.label"
+                                :value="opt.key"
+                            />
+                        </el-select>
+                    </div>
+                    <div v-if="pokemonStore.statsSortField !== 'dex'" class="stats-row">
+                        <span class="stats-label">排序方向</span>
+                        <el-radio-group v-model="pokemonStore.statsSortOrder" size="small">
+                            <el-radio-button value="desc">高 → 低</el-radio-button>
+                            <el-radio-button value="asc">低 → 高</el-radio-button>
+                        </el-radio-group>
+                    </div>
+                    <button type="button" class="stats-reset-btn" @click="clearStatsFilters">
+                        清除种族值条件
+                    </button>
+                </div>
             </div>
         </el-drawer>
     </div>
@@ -53,9 +144,31 @@ import Top from '@/components/Top/index.vue'; // 确保路径正确
 import Search from '@/components/Search/index.vue'; // 确保路径正确
 import PokemonList from './PokemonList/index.vue';
 import { usePokemonStore } from '@/store/modules/pokemon';
+import { BASE_STAT_OPTIONS } from '@/constants/pokemonBaseStats';
 import { ref } from 'vue';
 
 const pokemonStore = usePokemonStore();
+
+type StatsNumberKey =
+    | 'statsTotalMin'
+    | 'statsTotalMax'
+    | 'statsRangeStatMin'
+    | 'statsRangeStatMax';
+
+function setStoreNumber(key: StatsNumberKey, e: Event) {
+    const raw = (e.target as HTMLInputElement).value;
+    pokemonStore[key] = raw === '' ? null : Number(raw);
+}
+
+function clearStatsFilters() {
+    pokemonStore.statsTotalMin = null;
+    pokemonStore.statsTotalMax = null;
+    pokemonStore.statsRangeStatKey = null;
+    pokemonStore.statsRangeStatMin = null;
+    pokemonStore.statsRangeStatMax = null;
+    pokemonStore.statsSortField = 'dex';
+    pokemonStore.statsSortOrder = 'desc';
+}
 const query = pokemonStore.pokemonQuery;
 const visible = ref(false);
 
@@ -189,6 +302,94 @@ const handleAttribute = (item: string) => {
             background: #3498db;
             border-radius: 2px;
             margin-top: 5px;
+        }
+    }
+
+    .stats-drawer-header {
+        margin-top: 28px;
+    }
+
+    .stats-panel {
+        max-width: 420px;
+        margin: 0 auto 16px;
+        padding: 0 8px;
+    }
+
+    .stats-row {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 16px;
+
+        .stats-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #34495e;
+        }
+
+        .stats-row-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .stats-inputs {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .stats-tilde {
+            color: #7f8c8d;
+            font-weight: 600;
+        }
+
+        .stats-num-input {
+            width: 100px;
+            padding: 8px 10px;
+            border: 1px solid #dce4ec;
+            border-radius: 10px;
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.2s;
+
+            &:focus {
+                border-color: #3498db;
+            }
+
+            &:disabled {
+                opacity: 0.45;
+                cursor: not-allowed;
+            }
+        }
+
+        .stats-select-stat,
+        .stats-select-sort {
+            width: 100%;
+        }
+
+        :deep(.el-radio-group) {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+    }
+
+    .stats-reset-btn {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 12px;
+        background: #ecf0f1;
+        color: #2c3e50;
+        font-size: 14px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.2s;
+
+        &:hover {
+            background: #dfe6e9;
         }
     }
 
