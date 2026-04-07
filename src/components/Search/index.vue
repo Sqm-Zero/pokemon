@@ -77,12 +77,12 @@ function clearSearch() {
 
 <style scoped lang="scss">
 .S_header {
-    width: 95%;
-    height: 50px;
+    width: 100%;
+    height: 46px;
     display: flex;
     align-items: center;
     flex-shrink: 0;
-    margin: 10px 0;
+    margin: 0;
 }
 
 .search_container {
@@ -91,29 +91,25 @@ function clearSearch() {
     height: 100%;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-    border-radius: 25px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     overflow: hidden;
 
-    &:hover {
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-        transform: translateY(-1px);
-    }
-
     &:focus-within {
-        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-        border: 2px solid #667eea;
+        border-color: rgba(0, 159, 202, 0.5);
+        box-shadow: 0 0 0 2px rgba(0, 159, 202, 0.12);
     }
 }
 
 .search_icon {
     position: absolute;
-    left: 16px;
-    color: #7f8c8d;
+    left: 13px;
+    color: #8b96a6;
     z-index: 2;
-    transition: color 0.3s ease;
+    transition: color 0.2s ease;
 
     .search_container:focus-within & {
         color: #667eea;
@@ -122,61 +118,54 @@ function clearSearch() {
 
 .clear_icon {
     position: absolute;
-    right: 16px;
-    color: #7f8c8d;
+    right: 10px;
+    color: #8b96a6;
     cursor: pointer;
     z-index: 2;
-    transition: all 0.3s ease;
-    padding: 4px;
+    transition: all 0.2s ease;
+    padding: 6px;
     border-radius: 50%;
 
     &:hover {
-        color: #e74c3c;
-        background: rgba(231, 76, 60, 0.1);
-        transform: scale(1.1);
+        color: #ef4444;
+        background: rgba(239, 68, 68, 0.12);
     }
 }
 
 .search_input {
     width: 100%;
     height: 100%;
-    padding: 0 50px 0 50px;
+    padding: 0 44px 0 40px;
     border: none;
     background: transparent;
     font-size: 16px;
-    color: #2c3e50;
+    color: #1f2a37;
     outline: none;
-    transition: all 0.3s ease;
+    line-height: 1;
 
     &::placeholder {
-        color: #95a5a6;
+        color: #9aa4b2;
         font-weight: 400;
-    }
-
-    &:focus {
-        &::placeholder {
-            color: #bdc3c7;
-        }
     }
 }
 
 // 响应式设计
 @media (max-width: 480px) {
     .S_header {
-        height: 45px;
+        height: 42px;
     }
 
     .search_input {
-        font-size: 14px;
-        padding: 0 45px 0 45px;
+        font-size: 15px;
+        padding: 0 40px 0 36px;
     }
 
     .search_icon {
-        left: 14px;
+        left: 12px;
     }
 
     .clear_icon {
-        right: 14px;
+        right: 10px;
     }
 }
 </style>

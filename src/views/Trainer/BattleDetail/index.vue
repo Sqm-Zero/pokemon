@@ -6,7 +6,7 @@
     >
         <div class="sticky-header">
             <Top
-                :title="`${currentIndex + 1} / ${battles.length}`"
+                :title="isDoublePair ? `双打卡组 #${currentIndex + 1}&${pairIndex + 1}` : `${currentIndex + 1} / ${battles.length}`"
                 :router="`/trainer/group/${route.params.groupName}`"
                 color="transparent"
             />
@@ -21,26 +21,92 @@
         </div>
 
         <div class="detail-container" v-if="currentBattle">
-            <BattleInfoComp :battle="currentBattle" @item-click="handlePropInfo" />
+            <!-- 双打卡组显示模式 -->
+            <template v-if="isDoublePair && pairBattle">
+                <div class="battle-pair-container">
+                    <!-- 第一场战斗 -->
+                    <div class="battle-section">
+                        <div class="battle-section-header">
+                            <span class="battle-badge">第一场</span>
+                            <span class="battle-title">{{ currentBattle.title }}</span>
+                        </div>
+                        <BattleInfoComp :battle="currentBattle" @item-click="handlePropInfo" />
+                        <BattleStats :stats="battle1Stats" />
+                        <div class="pokemon-section">
+                            <div class="section-header">
+                                <span class="section-title">精灵阵容</span>
+                                <span class="pokemon-count">{{ currentBattle.pokemons.length }} 只</span>
+                            </div>
+                            <div class="pokemon-list">
+                                <PokemonCard
+                                    v-for="(p, i) in currentBattle.pokemons"
+                                    :key="`b1-${i}`"
+                                    :pokemon="p"
+                                    @click="handlePokemonInfo(p)"
+                                    @item-click="handlePropInfo"
+                                    @move-click="handleMoveInfo"
+                                />
+                            </div>
+                        </div>
+                    </div>
 
-            <BattleStats :stats="stats" />
+                    <!-- 分隔符 -->
+                    <div class="pair-divider">
+                        <div class="divider-content">
+                            <span>VS</span>
+                            <span>第二场战斗</span>
+                        </div>
+                    </div>
 
-            <div class="pokemon-section">
-                <div class="section-header">
-                    <span class="section-title">精灵阵容</span>
-                    <span class="pokemon-count">{{ currentBattle.pokemons.length }} 只</span>
+                    <!-- 第二场战斗 -->
+                    <div class="battle-section">
+                        <div class="battle-section-header">
+                            <span class="battle-badge">第二场</span>
+                            <span class="battle-title">{{ pairBattle.title }}</span>
+                        </div>
+                        <BattleInfoComp :battle="pairBattle" @item-click="handlePropInfo" />
+                        <BattleStats :stats="battle2Stats" />
+                        <div class="pokemon-section">
+                            <div class="section-header">
+                                <span class="section-title">精灵阵容</span>
+                                <span class="pokemon-count">{{ pairBattle.pokemons.length }} 只</span>
+                            </div>
+                            <div class="pokemon-list">
+                                <PokemonCard
+                                    v-for="(p, i) in pairBattle.pokemons"
+                                    :key="`b2-${i}`"
+                                    :pokemon="p"
+                                    @click="handlePokemonInfo(p)"
+                                    @item-click="handlePropInfo"
+                                    @move-click="handleMoveInfo"
+                                />
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="pokemon-list">
-                    <PokemonCard
-                        v-for="(p, i) in currentBattle.pokemons"
-                        :key="i"
-                        :pokemon="p"
-                        @click="handlePokemonInfo(p)"
-                        @item-click="handlePropInfo"
-                        @move-click="handleMoveInfo"
-                    />
+            </template>
+
+            <!-- 单战斗显示模式 -->
+            <template v-else>
+                <BattleInfoComp :battle="currentBattle" @item-click="handlePropInfo" />
+                <BattleStats :stats="stats" />
+                <div class="pokemon-section">
+                    <div class="section-header">
+                        <span class="section-title">精灵阵容</span>
+                        <span class="pokemon-count">{{ currentBattle.pokemons.length }} 只</span>
+                    </div>
+                    <div class="pokemon-list">
+                        <PokemonCard
+                            v-for="(p, i) in currentBattle.pokemons"
+                            :key="i"
+                            :pokemon="p"
+                            @click="handlePokemonInfo(p)"
+                            @item-click="handlePropInfo"
+                            @move-click="handleMoveInfo"
+                        />
+                    </div>
                 </div>
-            </div>
+            </template>
         </div>
     </div>
 </template>
@@ -71,9 +137,18 @@ const version = computed<'normal' | 'hardcore'>(() =>
 
 const battles = ref<BattleInfo[]>([]);
 const currentIndex = ref(Number(route.params.battleIndex) || 0);
+const pairIndex = ref(Number(route.query.pairIndex) || -1);
 const currentBattle = computed<BattleInfo | undefined>(() => battles.value[currentIndex.value]);
+const pairBattle = computed<BattleInfo | undefined>(() =>
+    pairIndex.value >= 0 ? battles.value[pairIndex.value] : undefined
+);
+const isDoublePair = computed(() => pairBattle.value !== undefined);
 
 const { stats } = useBattleStats(currentBattle);
+const { stats: battle1Stats } = useBattleStats(currentBattle);
+
+const computedPairBattle = computed(() => pairBattle.value);
+const { stats: battle2Stats } = useBattleStats(computedPairBattle);
 
 onMounted(() => {
     const allData: any = version.value === 'hardcore' ? reqYHNPC() : reqNPC();
@@ -96,13 +171,18 @@ function nextBattle() {
 }
 
 function updateRoute() {
+    const query: any = { version: version.value };
+    if (isDoublePair.value && pairIndex.value >= 0) {
+        query.pairIndex = String(pairIndex.value);
+    }
+
     $router.replace({
         name: 'BattleDetail',
         params: {
             groupName: encodeURIComponent(groupName),
             battleIndex: currentIndex.value
         },
-        query: { version: version.value }
+        query
     });
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
@@ -206,6 +286,97 @@ function handlePropInfo(propName: string) {
     flex-direction: column;
     gap: 12px;
     padding-bottom: 40px;
+
+    .battle-pair-container {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .battle-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 12px;
+        border: 1px solid rgba(156, 39, 176, 0.1);
+    }
+
+    .battle-section-header {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid rgba(156, 39, 176, 0.15);
+    }
+
+    .battle-badge {
+        font-size: 10px;
+        font-weight: 800;
+        padding: 4px 10px;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #9c27b0 0%, #ba68c8 100%);
+        color: #fff;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 8px rgba(156, 39, 176, 0.2);
+    }
+
+    .battle-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #2c3e50;
+    }
+
+    .pair-divider {
+        position: relative;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            right: 20px;
+            top: 50%;
+            height: 1px;
+            background: linear-gradient(90deg,
+                transparent 0%,
+                rgba(156, 39, 176, 0.2) 50%,
+                transparent 100%
+            );
+            z-index: 1;
+        }
+    }
+
+    .divider-content {
+        position: relative;
+        z-index: 2;
+        background: linear-gradient(135deg, #9c27b0 0%, #ba68c8 100%);
+        color: #fff;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: 700;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
+
+        span:first-child {
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        span:last-child {
+            font-size: 10px;
+            opacity: 0.9;
+        }
+    }
 }
 
 .pokemon-section {
