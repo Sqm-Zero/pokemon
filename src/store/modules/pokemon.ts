@@ -66,6 +66,13 @@ export const usePokemonStore = defineStore('counter', {
         pokemonQuery: '',
         lastSelectedType: '', // 新增：保存最后选择的属性
         scrollPosition: 0,
+        statsTotalMin: null,
+        statsTotalMax: null,
+        statsRangeStatKey: null,
+        statsRangeStatMin: null,
+        statsRangeStatMax: null,
+        statsSortField: 'dex',
+        statsSortOrder: 'desc',
         Prop: {
             name: '大师球',
             description: '必定捕捉野生宝可梦的 性能最好的球， 捕获率×255就是100%。'
@@ -360,6 +367,17 @@ export const usePokemonStore = defineStore('counter', {
         setType(type: string) {
             this.type = type;
             this.lastSelectedType = type; // 保存选择的属性
+        },
+        resetPokemonListFilters() {
+            this.pokemonQuery = '';
+            this.setType('');
+            this.statsTotalMin = null;
+            this.statsTotalMax = null;
+            this.statsRangeStatKey = null;
+            this.statsRangeStatMin = null;
+            this.statsRangeStatMax = null;
+            this.statsSortField = 'dex';
+            this.statsSortOrder = 'desc';
         },
         restoreLastType() {
             this.type = this.lastSelectedType; // 恢复上次的属性筛选

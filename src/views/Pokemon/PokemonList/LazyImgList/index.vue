@@ -2,7 +2,7 @@
     <div v-if="displayedPokemons.length === 0" class="empty_state">
         <div class="empty_icon">🔍</div>
         <h3 class="empty_title">未找到相关宝可梦</h3>
-        <p class="empty_description">尝试换个名字或者属性搜索一下吧</p>
+        <p class="empty_description">尝试调整名称、属性或种族值条件</p>
         <button class="reset_button" @click="resetFilters">重置筛选</button>
     </div>
 
@@ -56,6 +56,7 @@ import { reqPokemon } from '@/apis/pokemon/index';
 import { usePokemonStore } from '@/store/modules/pokemon';
 import { isPokemonListHiddenNumberedVariant } from '@/constants/pokemonSpecialForms';
 import type { Pokemon } from '@/apis/pokemon/type';
+import { baseStatIndex } from '@/constants/pokemonBaseStats';
 
 const props = defineProps<{ scrollContainer: any }>();
 
@@ -134,7 +135,7 @@ const displayedPokemons = computed(() => {
 
     const nameSet = new Set(list.map(p => p.名称));
 
-    return list.filter(p => {
+    const filtered = list.filter(p => {
         if (isPokemonListHiddenNumberedVariant(p.名称, nameSet)) {
             return false;
         }
@@ -143,8 +144,37 @@ const displayedPokemons = computed(() => {
             !pokemonStore.type ||
             pokemonStore.type === '进化奇石' ||
             p.属性.includes(pokemonStore.type);
-        return nameMatch && typeMatch;
+        if (!nameMatch || !typeMatch) return false;
+
+        const { statsTotalMin, statsTotalMax, statsRangeStatKey, statsRangeStatMin, statsRangeStatMax } =
+            pokemonStore;
+        if (statsTotalMin != null && p.总种族值 < statsTotalMin) return false;
+        if (statsTotalMax != null && p.总种族值 > statsTotalMax) return false;
+        if (statsRangeStatKey) {
+            const idx = baseStatIndex(statsRangeStatKey);
+            const v = p.种族值[idx];
+            if (statsRangeStatMin != null && v < statsRangeStatMin) return false;
+            if (statsRangeStatMax != null && v > statsRangeStatMax) return false;
+        }
+        return true;
     });
+
+    const { statsSortField, statsSortOrder } = pokemonStore;
+    const desc = statsSortOrder === 'desc';
+    const sorted = [...filtered];
+    if (statsSortField === 'dex') {
+        sorted.sort((a, b) => Number(a.编号) - Number(b.编号));
+    } else if (statsSortField === 'total') {
+        sorted.sort((a, b) => (desc ? b.总种族值 - a.总种族值 : a.总种族值 - b.总种族值));
+    } else {
+        const idx = baseStatIndex(statsSortField);
+        sorted.sort((a, b) => {
+            const va = a.种族值[idx];
+            const vb = b.种族值[idx];
+            return desc ? vb - va : va - vb;
+        });
+    }
+    return sorted;
 });
 
 watch(displayedPokemons, () => resetObservers(), { immediate: true });
@@ -159,9 +189,7 @@ onBeforeUnmount(() => destroyObservers());
 const onLoad = (id: string) => {};
 const onError = (id: string) => (imageErrors.value[id] = true);
 const resetFilters = () => {
-    pokemonStore.pokemonQuery = '';
-    pokemonStore.setType('');
-    pokemonStore.getPokemonListByType('');
+    pokemonStore.resetPokemonListFilters();
 };
 
 // 动态卡片样式
