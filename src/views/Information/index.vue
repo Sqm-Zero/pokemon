@@ -408,7 +408,10 @@
                             }"
                             @click="handleMoveInfo(item)"
                         >
-                            <div class="moves-type">Lv. {{ item.level }}</div>
+                            <div class="moves-type">
+                                <template v-if="isEggMoves">蛋招</template>
+                                <template v-else>Lv. {{ item.level }}</template>
+                            </div>
                             <div class="moves-name">{{ item.skill_name }}</div>
                         </div>
                     </div>
@@ -649,12 +652,8 @@ const getMoves = () => {
 };
 
 const getEggMoves = () => {
-    if (!isNaN(Number(pokemon_info.编号)) && !pokemon_info.编号.includes('_')) {
-        moves.value = pokemonStore.getEggMovesByNumber(String(Number(pokemon_info.编号)));
-    } else {
-        // 保持原编号
-        moves.value = pokemonStore.getEggMovesByNumber(pokemon_info.编号);
-    }
+    const lookupName = pokemon_info.old_pokemon_name || pokemon_info.名称;
+    moves.value = pokemonStore.getCommonEggMovesForEvolutionFamily(lookupName);
 };
 
 // 名称问题解决（与列表隐藏规则共用 constants/pokemonSpecialForms）
@@ -758,8 +757,9 @@ const switchToSpecialFormRaw = (rawName: string) => {
     } else {
         getMoves();
     }
-    evolves = pokemonStore.getEvolveByName(pokemon_info.名称);
-    appearAreas = getAppearAreas(pokemon_info.old_pokemon_name || pokemon_info.名称);
+    evolves.value =
+        pokemonStore.getEvolveByName(pokemon_info.old_pokemon_name || pokemon_info.名称) || [];
+    appearAreas.value = getAppearAreas(pokemon_info.old_pokemon_name || pokemon_info.名称);
     pokemon_info.canUseEvolutionStone = canUseStoneFinalForms.includes(
         pokemon_info.名称.replace(/（.*）/, '').trim()
     );

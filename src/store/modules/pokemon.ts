@@ -230,6 +230,43 @@ export const usePokemonStore = defineStore('counter', {
             // 如果找到，返回技能列表；否则返回空数组
             return pokemonMoves ? pokemonMoves.SkillList : [];
         },
+        /** 进化链上全部物种的标准图鉴名（按全国图鉴编号升序，去重） */
+        getEvolutionChainSpeciesNames(name: string | undefined): string[] {
+            if (!name) return [];
+            const edges = this.getEvolveByName(name);
+            const names = new Set<string>();
+            names.add(name);
+            for (const e of edges) {
+                if (e.pokemonName) names.add(e.pokemonName);
+                if (e.NextStage) names.add(e.NextStage);
+            }
+            const ordered = [...names]
+                .map(n => {
+                    const idRaw = this.getPokemonIdByName(n);
+                    const idNum = Number(String(idRaw).split('_')[0]);
+                    return { n, idNum };
+                })
+                .filter(x => Number.isFinite(x.idNum) && x.idNum > 0)
+                .sort((a, b) => a.idNum - b.idNum);
+            return ordered.map(x => x.n);
+        },
+        /**
+         * 同一条进化链上的蛋招式：数据通常只在最前段；若链上多段均有蛋招数据则取招式名的交集（共同蛋招）。
+         */
+        getCommonEggMovesForEvolutionFamily(name: string | undefined): { skill_name: string; level?: string }[] {
+            const species = this.getEvolutionChainSpeciesNames(name);
+            const lists: { skill_name: string; level?: string }[][] = [];
+            for (const sp of species) {
+                const idRaw = this.getPokemonIdByName(sp);
+                const id = String(idRaw).split('_')[0];
+                const egg = this.getEggMovesByNumber(id);
+                if (egg.length) lists.push(egg);
+            }
+            if (lists.length === 0) return [];
+            if (lists.length === 1) return lists[0];
+            const [first, ...rest] = lists;
+            return first.filter(skill => rest.every(list => list.some(s => s.skill_name === skill.skill_name)));
+        },
         // 根据技能名称查询能学会该技能蛋招式的列表
         getPokemonByEggMoveName(moveName: string) {
             // 1. 首先过滤出所有包含该招式的宝可梦
